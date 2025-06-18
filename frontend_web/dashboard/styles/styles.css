@@ -1,0 +1,62 @@
+/* Colores 
+
+Aside{
+    Nombre de Usuario: #5A6ACF;
+    Rol del Usuario: #5A6ACF;
+    Logos menu y otros: #A6ABC8;
+    Letra : #A6ABC8;
+    Sección donde se encuentra el usuario: 
+    - letra: #5A6ACF 
+    - logo: #5A6ACF;
+}
+
+Nav{
+    Buscador: 
+    - letra: #1F384C
+    - Lupa: #627B87;
+}
+
+Main{
+    Nombe de la sección: #1F384C;
+    Mensaje de Bienvenida: #1F384C;
+    
+}  
+
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    width: 100dvw;
+    height: 100dvh;
+}
+
+.container{
+    display: grid;
+    grid-template-areas: 
+    "aside header"
+    "aside main"
+    "aside main"
+    ;
+}
+
+aside{
+    grid-area: aside;
+}
+
+header{
+    grid-area: header;
+    display: flex;
+}
+
+.search-icon:hover{
+    cursor: pointer;
+}
+
+main{
+    grid-area: main;
+}
