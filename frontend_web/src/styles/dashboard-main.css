@@ -1,0 +1,92 @@
+/* Información principal de la pagina */
+main{
+    grid-area: main;
+}
+
+
+/* Nombre de la seccion en la que se encuentra el usuario */
+.section-name{
+    height: 10%;
+    font-weight: 500;
+    padding: 40px 0px 40px 40px;
+}
+
+/* Contenedor de los graficos*/
+.charts-container{
+    width: 100%;
+    height: 90%;
+    display: grid;
+    grid-template-areas: 
+    "chart1 chart2"
+    "chart3 chart4"
+    ;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.chart1{
+    grid-area: chart1;
+    padding: 20px 30px 30px 40px;
+    border-bottom: 1px solid #C8CBD9;
+}
+
+/* Periodo de ventas */
+.sales-period{
+    padding: 20px 0px 0px 0px;
+}
+
+/* Plazos de Tiempo de los gráficos */
+.chart-time-frames{
+    padding: 8px 8px 8px 0px;
+    display: flex;
+    gap: 20px;
+}
+
+.chart2{
+    grid-area: chart2;
+    padding: 20px 30px 30px 40px;
+    border-bottom: 1px solid #C8CBD9;
+    border-left: 1px solid #C8CBD9;
+}
+
+/* Tiempos de orden */
+.order-times{
+    display: flex;
+    justify-content: space-between;
+}
+
+.chart3{
+    grid-area: chart3;
+    padding: 30px 30px 30px 40px;
+}
+
+.chart4{
+    grid-area: chart4;
+    padding: 30px 30px 30px 40px;
+    border-left: 1px solid #C8CBD9;
+}
+
+/* Nombre del grafico */
+.chart-name{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botón que dice ver informe */
+.see-report{
+    background-color: #FBFCFE;
+    color: #5A6ACF;
+    border: 1px solid #DDE4F0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Imágen del primer y tercer grafico */
+.image-chart{
+    padding: 10px 0px 0px 0px;
+}
+
+/* Imágen del segundo gráfico */
+.second-image-chart{
+    padding: 30px 200px 30px 200px;
+}
