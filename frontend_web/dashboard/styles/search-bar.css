@@ -1,0 +1,27 @@
+/* Barra de Busqueda */
+.search-bar{
+    margin: 0px 0px 0px 10%;
+    width: 40%;
+    padding: 5px;
+    border: 1px solid rgb(221, 214, 214);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Texto "Buscar" que va dentro de la barra */
+.search-text{
+    color: #9196b1;
+    font-size: 15px;
+    padding: 0px 0px 0px 20px;
+}
+
+
+/* Campo donde va la imagen de la lupa */
+.search-icon-field{
+    height: 24px;
+    width: 24px;
+    padding: 0px 30px 0px 0px;
+}

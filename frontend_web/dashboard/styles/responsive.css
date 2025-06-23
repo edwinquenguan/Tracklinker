@@ -1,0 +1,24 @@
+/* Adaptabilidad a cualquier tipo de pantalla */
+
+/* Movil */
+@media (width <= 400px) {
+    .container{
+        grid-template-areas:
+        "header header header"
+        "main main main"
+        "main main main"
+        ;
+    }
+}
+
+
+/* Tablet */
+@media (width <= 768px){
+    .container{
+        grid-template-areas:
+        "header header"
+        "main main aside"
+        "main main aside"
+        ;
+    }
+}

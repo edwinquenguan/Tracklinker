@@ -1,0 +1,12 @@
+/* Explicacion de la distribucion de la página */
+.container{
+    height: 100dvh;
+    width: 100dvw;
+    display: grid;
+    grid-template-areas:
+    "aside header"
+    "aside main"
+    ;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 6% 94%;
+}

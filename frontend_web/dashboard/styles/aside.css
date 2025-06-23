@@ -1,0 +1,73 @@
+/* Menú lateral de opciones y informacion del usuario */
+aside{
+    grid-area: aside;
+    background-color: #F1F2F7;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Seccion donde va el avatar del usuario, nombre y rol */
+.user-info{
+    margin-top: 20px;
+    padding: 20px 0px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Secciones del menú */
+.first-section, .second-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+.user-rol, .user-name{
+    color: #5A6ACF;
+}
+
+
+.user-name{
+    margin: 10px 0px 0px 0px;
+}
+
+
+/* Identificador de cada parte del menú como "menú" y "otros"*/
+.section-identificator{
+    color: #9196b1;
+    padding: 10px 0px 5px 45px;
+    align-self: flex-start;
+}
+
+
+a{
+    text-decoration: none;
+    color: #A6ABC8;
+}
+
+
+/* Iconos del menu */
+.menu-icon{
+    width: 25px;
+    height: 25px;
+}
+
+
+/* Subclase para los iconos del menu */
+.menu-icon:hover{
+    cursor: pointer;
+}
+
+
+/* Opciones del menu */
+.option{
+    padding: 18px 10px 10px 0px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

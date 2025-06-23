@@ -1,0 +1,16 @@
+/* Importar la barra de búsqueda */
+@import url('search-bar.css');
+
+/* Cabecera de la página donde se encuentra la barra de búsqueda y el la campana de notificaciones */
+header{
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(230, 224, 224);
+}
+
+/* Imagen de la Campana de notificaciones */
+.bell{
+    padding: 20px 15px 20px 20px;
+}
