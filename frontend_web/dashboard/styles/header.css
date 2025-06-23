@@ -1,6 +1,3 @@
-/* Importar la barra de búsqueda */
-@import url('search-bar.css');
-
 /* Cabecera de la página donde se encuentra la barra de búsqueda y el la campana de notificaciones */
 header{
     grid-area: header;
