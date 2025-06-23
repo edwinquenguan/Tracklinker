@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/dashboard-main.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -95,16 +96,124 @@
             <button id="menu-button" class="menu-button">
                 <img src="../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
             </button>
-            <script src="../../scripts/aside.js"></script>
         </header>
         <main>
             <!-- Titúlo De La Sección -->
             <p class="section-name">
                 Panel De Control
             </p>
-            <!-- Contenido De La Sección --> 
-            
+            <!-- Contenido De La Sección -->
+            <!-- Contenedor de gráficos --> 
+            <section class="charts-container">
+                <!-- Gráfico 1-->
+                <section class="chart1">
+                    <div class="chart-name">
+                        <p> 
+                            Ganancia 
+                        </p>
+                        <button class="see-report">
+                            Ver Informe
+                        </button>
+                    </div>
+                    <h2> 
+                        COP 7.852.000
+                    </h2>
+                    <p class="percentage-info"> 
+                        <img src="../../assets/images/main/arrow-up.svg" alt="">
+                        2.1% vs Semana Pasada
+                    </p>
+                    <p class="sales-period">
+                        Ventas Desde 1-12 Dic, 2029
+                    </p>
+                    <img 
+                    src="../../assets/images/main/first-chart.svg" 
+                    alt="Grafico de ganancias en cierto plazo"
+                    class="image-chart"
+                    >
+                    <!-- Plazos de tiempo del gráfico -->
+                    <p class="chart-time-frames">
+                        <img src="../../assets/images/main/gray-circle.svg" alt="Circulo gris para diferenciar colores">
+                        Ultimos 6 días
+                        <img src="../../assets/images/main/purple-circle.svg" alt="Ciruclo morado para diferenciar colores">
+                        Semana Pasada
+                    </p>
+                </section>
+                <!-- Gráfico 2 -->
+                <section class="chart2">
+                    <div class="chart-name">
+                        <p>
+                            Tiempos de Entrega
+                        </p>
+                        <button class="see-report">
+                            Ver Informe 
+                        </button>
+                    </div>
+                    <p>
+                        Desde 1-16 Dic, 2029
+                    </p>
+                    <img src="../../assets/images/main/second-chart.svg" alt="Grafico de tiempos de entrega" class="second-image-chart">
+                    <!-- Tiempos de entrega -->
+                    <div class="order-times">
+                        <p>
+                            <img 
+                            src="../../assets/images/main/purple-circle.svg" 
+                            alt="Ciruclo morado para diferenciar colores">
+                            Tarde
+                            <br>
+                            40%
+                        </p>
+                        <p>
+                            <img 
+                            src="../../assets/images/main/light-purple-circle.svg" 
+                            alt="Circulo morado claro para diferenciar colores">
+                            Noche
+                            <br>
+                            32%
+                        </p>
+                        <p>
+                            <img 
+                            src="../../assets/images/main/gray-circle.svg" 
+                            alt="Circulo gris para diferenciar colores">
+                            Mañana
+                            <br>
+                            28%
+                        </p>
+                    </div>
+                </section>
+                <!-- Gráfico 3 -->
+                <section class="chart3">
+                </section>
+                <!-- Gráfico 4 -->
+                <section class="chart4">
+                    <p class="chart-name">
+                        Ordenes
+                        <button class="see-report">
+                            Ver Informe
+                        </button>
+                    </p>
+                    <h2>
+                        2.568
+                    </h2>
+                    <p class="percentage-info">
+                        <img src="../../assets/images/main/arrow-down.svg" alt="">
+                        2.1% vs Semana Pasada
+                    </p>
+                    <p class="sales-period">
+                        Ventas Desde 1-6 Dic, 2029
+                    </p class="image-chart">
+                    <img src="../../assets/images/main/fourth-chart.svg" alt="Gráfico de ordenes">
+                    <!-- Plazos de tiempo del gráfico -->
+                    <p class="chart-time-frames">
+                        <img src="../../assets/images/main/purple-circle.svg" alt="Circulo morado para diferenciar colores">
+                        Ultimos 6 Días
+                        <img src="../../assets/images/main/gray-circle.svg" alt="Circulo gris para diferenciar colores">
+                        Ultima Semana
+                    </p>
+                </section>
+            </section>
         </main>
     </div>
+    <!-- Archivo Javascript para el responsive -->
+    <script src="../../scripts/aside-toogle.js"></script>
 </body>
 </html>
