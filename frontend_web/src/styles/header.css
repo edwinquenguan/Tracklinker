@@ -7,8 +7,10 @@ header{
     border-bottom: 1px solid rgb(230, 224, 224);
 }
 
+/* Botón para desplegar el menú de opciones en responsive */
 .menu-button{
     border: 0px;
+    padding: 0px 20px 0px 0px;
     display: none;
 }
 
