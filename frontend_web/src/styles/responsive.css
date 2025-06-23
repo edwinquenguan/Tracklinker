@@ -1,13 +1,25 @@
 /* Adaptabilidad a cualquier tipo de pantalla */
 
 /* Movil */
-@media (width <= 400px) {
+@media (width <= 480px) {
     .container{
         grid-template-areas:
         "header header header"
         "main main main"
         "main main main"
         ;
+    }
+
+    aside{
+        display: none;
+    }
+
+    .menu-button{
+        display: block;
+    }
+
+    .show-aside{
+        display: block;
     }
 }
 
