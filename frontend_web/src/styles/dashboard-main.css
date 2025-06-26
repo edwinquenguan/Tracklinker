@@ -24,6 +24,7 @@ main{
     grid-template-rows: 1fr 1fr;
 }
 
+/* Primer Gráfico */
 .chart1{
     grid-area: chart1;
     padding: 20px 30px 30px 40px;
@@ -42,6 +43,7 @@ main{
     gap: 20px;
 }
 
+/* Segundo Gráfico */
 .chart2{
     grid-area: chart2;
     padding: 20px 30px 30px 40px;
@@ -55,11 +57,13 @@ main{
     justify-content: space-between;
 }
 
+/* Tercer Gráfico */
 .chart3{
     grid-area: chart3;
     padding: 30px 30px 30px 40px;
 }
 
+/* Cuarto Gráfico */
 .chart4{
     grid-area: chart4;
     padding: 30px 30px 30px 40px;
