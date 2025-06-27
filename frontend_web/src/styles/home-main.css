@@ -1,0 +1,52 @@
+/* Información principal de la pagina */
+main{
+    grid-area: main;
+}
+
+/* Bienvenida */
+.welcome{
+    height: 15%;
+    display: flex;
+    padding: 30px 30px 30px 60px;
+    gap: 8px;
+    color: #1F384C;
+    align-items: center;
+}
+
+/* Texto de bienvenida */
+.welcome-text{
+    font-size: 46px;
+}
+
+/* Nombre del usuario */
+.name{
+    font-size: 42px;
+}
+
+/* Sección que contiene las dos filas de opciones*/
+.sections-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 85%
+}
+
+/* Secciones */
+.users,
+.products, 
+.categories, 
+.subcategories, 
+.reports, 
+.warrantys,
+.supliers,
+.transformations{
+    height: 150px;
+    width: 150px;
+}
+
+/* Tarjeta de cada sección */
+.card-section{
+    height: 120px;
+    width: 120px;
+    background-color: #aaa;
+    border-radius: 10px;
+}
