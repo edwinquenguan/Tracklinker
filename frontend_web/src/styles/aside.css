@@ -9,8 +9,7 @@ aside{
 
 /* Seccion donde va el avatar del usuario, nombre y rol */
 .user-info{
-    margin-top: 20px;
-    padding: 20px 0px 10px 0px;
+    padding: 30px 0px 10px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,9 +22,6 @@ aside{
     flex-direction: column;
     align-items: center;
 }
-
-
-
 
 .user-rol, .user-name{
     color: #5A6ACF;
@@ -42,14 +38,15 @@ aside{
     color: #9196b1;
     padding: 10px 0px 5px 45px;
     align-self: flex-start;
+    font-size: 16px;
 }
 
 
-a{
+.option-text{
     text-decoration: none;
     color: #A6ABC8;
+    font-size: 16px;
 }
-
 
 /* Iconos del menu */
 .menu-icon{
@@ -68,6 +65,6 @@ a{
 .option{
     padding: 18px 10px 10px 0px;
     display: flex;
-    align-items: center;
+    align-content: center;
     gap: 15px;
 }
