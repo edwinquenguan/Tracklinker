@@ -7,7 +7,7 @@ main{
 .welcome{
     height: 15%;
     display: flex;
-    padding: 30px 30px 30px 60px;
+    padding: 82px 30px 30px 60px;
     gap: 8px;
     color: #1F384C;
     align-items: center;
@@ -16,18 +16,24 @@ main{
 /* Texto de bienvenida */
 .welcome-text{
     font-size: 46px;
+    font-weight: 500;
 }
 
 /* Nombre del usuario */
 .name{
     font-size: 42px;
+    font-weight: 500;
 }
 
-/* Sección que contiene las dos filas de opciones*/
+/* Sección que contiene todas las opciones*/
 .sections-container{
-    display: flex;
-    flex-wrap: wrap;
-    height: 85%
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 0px 90px;
+    height: 85%;
+    width: 100%;
+    padding: 82px 200px 200px 100px;
+    justify-content: center;
 }
 
 /* Secciones */
@@ -39,14 +45,33 @@ main{
 .warrantys,
 .supliers,
 .transformations{
-    height: 150px;
-    width: 150px;
+    height: 160px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Tarjeta de cada sección */
 .card-section{
     height: 120px;
-    width: 120px;
-    background-color: #aaa;
+    width: 100%;
+    background-color: #e6e1e1;
     border-radius: 10px;
+}
+
+/* Iconos de cada sección */
+.module-icon{
+    width: 100%;
+    height: 100%;
+    padding: 35px;
+}
+
+/* Nombre del modúlo */
+.module-name{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 16px;
 }
