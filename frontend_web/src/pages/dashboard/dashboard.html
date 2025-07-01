@@ -9,14 +9,106 @@
 </head>
 <body>
     <div class="container">
-        <iframe src="../../components/aside.html" frameborder="0" width="100%"></iframe>
-        <iframe src="../../components/header.html" frameborder="0" width="100%" height="90vh"></iframe>
+        <!-- Menú ubicado al lado -->
+        <aside id="aside">
+            <!-- Informacion Del Usuario -->
+            <section class="user-info">
+                <img src="../../assets/images/aside/avatar.svg" alt="Foto de Perfil">
+                <p class="user-name">
+                    <strong> Agustín Perez</strong>
+                </p>
+                <p class="user-rol"> Administrador </p>
+            </section>
+            <!-- Menú -->
+            <section class="menu">
+                <nav class="menu-sections">
+                    <!-- Primera Sección -->
+                    <section class="first-section">
+                        <p class="section-identificator">Menu</p>
+                        <!-- Lista De Opciones -->
+                        <ul>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/controlpanel-icon.svg" alt="Icono del Panel de Control">
+                                <a class="option-text" href="../dashboard/dashboard.html">Panel De Control</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/users-icon.svg" alt="Icono de la seccion de usuarios">
+                                <a class="option-text" href="../users/users.html">Usuarios</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/products-icon.svg" alt="Icono de la seccion productos">
+                                <a class="option-text" href="../products/products.html">Productos</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/categories-icon.svg" alt="Icono de la seccion categorias">
+                                <a class="option-text" href="../categories/categories.html">Categorias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/subcategories-icon.svg" alt="Icono de la seccion subcategorias">
+                                <a class="option-text" href="../subcategories/subcategories.html">Subcategorias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/reports-icon.svg" alt="Icono de la seccion informes">
+                                <a class="option-text" href="../reports/reports.html">Informes</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/warrantys-icon.svg" alt="Icono de la seccion garantias">
+                                <a class="option-text" href="../warranties/warranties.html">Garantias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/supliers-icon.svg" alt="Icono de la seccion de proveedores">
+                                <a class="option-text" href="../supliers/supliers.html">Proveedores</a>
+                            </li>
+                            <li class="option">
+                                <img src="../../assets/images/aside/transformations-icon.svg" alt="Icono modúlo Tranformaciones">
+                                <a class="option-text" href="../transformations/transformations.html">Transformaciones</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- Segunda Sección -->
+                    <section class="second-section">
+                        <p class="section-identificator"> Otros </p>
+                        <ul>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/settings-icon.svg" alt="Icono de la seccion configuracion">
+                                <a class="option-text" href="../configuration/configuration.html">Configuracion</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/help-icon.svg" alt="Icono de la seccion ayuda">
+                                <a class="option-text" href="../help/help.html">Ayuda</a>
+                            </li>
+                            <li class="option">
+                                    <img class="menu-icon" src="../../assets/images/aside/logout-icon.svg" alt="icono de cerrar sesion">
+                                    <a class="option-text" href="../index.html">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </section>
+        </aside>
+        <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
+        <header>
+            <!-- Barra De Búsqueda -->
+            <form role="search" class="search-bar">
+                <p class="search-text">Buscar</p>
+                <a href="#" class="search-icon-space">
+                    <img class="search-icon" src="../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
+                </a>
+            </form>
+            <!-- Campana De Notificaciones -->
+            <a href="#">
+                <img class="bell" src="../../assets/images/header/bell.svg" alt="Icono de notificaciones">
+            </a>
+            <button id="menu-button" class="menu-button">
+                <img src="../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
+            </button>
+        </header>
+        <!-- Contenido Principal de la página -->
         <main>
             <!-- Titúlo De La Sección -->
             <p class="section-name">
                 Panel De Control
             </p>
-            <!-- Contenido De La Sección -->
             <!-- Contenedor de gráficos --> 
             <section class="charts-container">
                 <!-- Gráfico 1-->
@@ -33,22 +125,22 @@
                         COP 7.852.000
                     </h2>
                     <p class="percentage-info"> 
-                        <img src="../../assets/images/main/arrow-up.svg" alt="">
+                        <img src="../../assets/images/main/dashboard/arrow-up.svg" alt="">
                         2.1% vs Semana Pasada
                     </p>
                     <p class="sales-period">
                         Ventas Desde 1-12 Dic, 2029
                     </p>
                     <img 
-                    src="../../assets/images/main/first-chart.svg" 
+                    src="../../assets/images/main/dashboard/first-chart.svg" 
                     alt="Grafico de ganancias en cierto plazo"
                     class="image-chart"
                     >
                     <!-- Plazos de tiempo del gráfico -->
                     <p class="chart-time-frames">
-                        <img src="../../assets/images/main/gray-circle.svg" alt="Circulo gris para diferenciar colores">
+                        <img src="../../assets/images/main/dashboard/gray-circle.svg" alt="Circulo gris para diferenciar colores">
                         Ultimos 6 días
-                        <img src="../../assets/images/main/purple-circle.svg" alt="Ciruclo morado para diferenciar colores">
+                        <img src="../../assets/images/main/dashboard/purple-circle.svg" alt="Ciruclo morado para diferenciar colores">
                         Semana Pasada
                     </p>
                 </section>
@@ -65,12 +157,12 @@
                     <p>
                         Desde 1-16 Dic, 2029
                     </p>
-                    <img src="../../assets/images/main/second-chart.svg" alt="Grafico de tiempos de entrega" class="second-image-chart">
+                    <img src="../../assets/images/main/dashboard/second-chart.svg" alt="Grafico de tiempos de entrega" class="second-image-chart">
                     <!-- Tiempos de entrega -->
                     <div class="order-times">
                         <p>
                             <img 
-                            src="../../assets/images/main/purple-circle.svg" 
+                            src="../../assets/images/main/dashboard/purple-circle.svg" 
                             alt="Ciruclo morado para diferenciar colores">
                             Tarde
                             <br>
@@ -78,7 +170,7 @@
                         </p>
                         <p>
                             <img 
-                            src="../../assets/images/main/light-purple-circle.svg" 
+                            src="../../assets/images/main/dashboard/light-purple-circle.svg" 
                             alt="Circulo morado claro para diferenciar colores">
                             Noche
                             <br>
@@ -86,7 +178,7 @@
                         </p>
                         <p>
                             <img 
-                            src="../../assets/images/main/gray-circle.svg" 
+                            src="../../assets/images/main/dashboard/gray-circle.svg" 
                             alt="Circulo gris para diferenciar colores">
                             Mañana
                             <br>
@@ -109,18 +201,18 @@
                         2.568
                     </h2>
                     <p class="percentage-info">
-                        <img src="../../assets/images/main/arrow-down.svg" alt="">
+                        <img src="../../assets/images/main/dashboard/arrow-down.svg" alt="">
                         2.1% vs Semana Pasada
                     </p>
                     <p class="sales-period">
                         Ventas Desde 1-6 Dic, 2029
                     </p class="image-chart">
-                    <img src="../../assets/images/main/fourth-chart.svg" alt="Gráfico de ordenes">
+                    <img src="../../assets/images/main/dashboard/fourth-chart.svg" alt="Gráfico de ordenes">
                     <!-- Plazos de tiempo del gráfico -->
                     <p class="chart-time-frames">
-                        <img src="../../assets/images/main/purple-circle.svg" alt="Circulo morado para diferenciar colores">
+                        <img src="../../assets/images/main/dashboard/purple-circle.svg" alt="Circulo morado para diferenciar colores">
                         Ultimos 6 Días
-                        <img src="../../assets/images/main/gray-circle.svg" alt="Circulo gris para diferenciar colores">
+                        <img src="../../assets/images/main/dashboard/gray-circle.svg" alt="Circulo gris para diferenciar colores">
                         Ultima Semana
                     </p>
                 </section>
