@@ -9,12 +9,17 @@ aside{
 
 /* Seccion donde va el avatar del usuario, nombre y rol */
 .user-info{
-    padding: 30px 0px 10px 0px;
+    padding: 30px 20px 20px 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 15px;
 }
 
+/* Texto dentro de la informacion del usuario */
+.user-info-text{
+    display: flex;
+    flex-direction: column;
+}
 
 /* Secciones del menú */
 .first-section, .second-section{
