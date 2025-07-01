@@ -8,6 +8,7 @@ main{
 .section-name{
     height: 10%;
     font-weight: 500;
+    font-size: 18px;
     padding: 40px 0px 40px 40px;
 }
 
@@ -78,6 +79,8 @@ main{
 
 /* Botón que dice ver informe */
 .see-report{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     background-color: #FBFCFE;
     color: #5A6ACF;
     border: 1px solid #DDE4F0;
