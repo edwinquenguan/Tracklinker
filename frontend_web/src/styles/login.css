@@ -1,0 +1,68 @@
+/* Importar valores predeterminados */
+@import url('root.css');
+@import url('responsive.css');
+
+/* Container */
+.container{
+    display: flex;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tarjeta que contiene el login */
+.login-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+    background-color: #e6e1e1;
+    border-radius: 15px;
+    gap: 8px;
+}
+
+/* Logo del proyecto */
+.logo{
+    padding: 0px 183px 0px 183px;
+}
+
+.user-name-field, .password-field{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.login-label{
+    align-self: flex-start;
+}
+
+/* Campos donde se escribe */
+input{
+    border-radius: 8px;
+    border: 0;
+    padding: 12px 16px;
+}
+
+input::placeholder{
+    color: #B3B3B3;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Campo del boton de login */
+.button-field{
+    padding: 44px 0px 0px 0px;
+}
+
+/* Boton de ingreso */
+.login-button{
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #4252B7;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
