@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/users-main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú ubicado al lado -->
+        <aside id="aside">
+            <!-- Informacion Del Usuario -->
+            <section class="user-info">
+                <img src="../../assets/images/aside/avatar.svg" alt="Foto de Perfil">
+                <p class="user-name">
+                    <strong> Agustín Perez</strong>
+                </p>
+                <p class="user-rol"> Administrador </p>
+            </section>
+            <!-- Menú -->
+            <section class="menu">
+                <nav class="menu-sections">
+                    <!-- Primera Sección -->
+                    <section class="first-section">
+                        <p class="section-identificator">Menu</p>
+                        <!-- Lista De Opciones -->
+                        <ul>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/controlpanel-icon.svg" alt="Icono del Panel de Control">
+                                <a class="option-text" href="../dashboard/dashboard.html">Panel De Control</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/users-icon.svg" alt="Icono de la seccion de usuarios">
+                                <a class="option-text" href="../users/users.html">Usuarios</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/products-icon.svg" alt="Icono de la seccion productos">
+                                <a class="option-text" href="../products/products.html">Productos</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/categories-icon.svg" alt="Icono de la seccion categorias">
+                                <a class="option-text" href="../categories/categories.html">Categorias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/subcategories-icon.svg" alt="Icono de la seccion subcategorias">
+                                <a class="option-text" href="../subcategories/subcategories.html">Subcategorias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/reports-icon.svg" alt="Icono de la seccion informes">
+                                <a class="option-text" href="../reports/reports.html">Informes</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/warrantys-icon.svg" alt="Icono de la seccion garantias">
+                                <a class="option-text" href="../warranties/warranties.html">Garantias</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/supliers-icon.svg" alt="Icono de la seccion de proveedores">
+                                <a class="option-text" href="../supliers/supliers.html">Proveedores</a>
+                            </li>
+                            <li class="option">
+                                <img src="../../assets/images/aside/transformations-icon.svg" alt="Icono modúlo Tranformaciones">
+                                <a class="option-text" href="../transformations/transformations.html">Transformaciones</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- Segunda Sección -->
+                    <section class="second-section">
+                        <p class="section-identificator"> Otros </p>
+                        <ul>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/settings-icon.svg" alt="Icono de la seccion configuracion">
+                                <a class="option-text" href="../configuration/configuration.html">Configuracion</a>
+                            </li>
+                            <li class="option">
+                                <img class="menu-icon" src="../../assets/images/aside/help-icon.svg" alt="Icono de la seccion ayuda">
+                                <a class="option-text" href="../help/help.html">Ayuda</a>
+                            </li>
+                            <li class="option">
+                                    <img class="menu-icon" src="../../assets/images/aside/logout-icon.svg" alt="icono de cerrar sesion">
+                                    <a class="option-text" href="../index.html">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </section>
+        </aside>
+        <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
+        <header>
+            <!-- Barra De Búsqueda -->
+            <form role="search" class="search-bar">
+                <p class="search-text">Buscar</p>
+                <a href="#" class="search-icon-space">
+                    <img class="search-icon" src="../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
+                </a>
+            </form>
+            <!-- Campana De Notificaciones -->
+            <a href="#">
+                <img class="bell" src="../../assets/images/header/bell.svg" alt="Icono de notificaciones">
+            </a>
+            <button id="menu-button" class="menu-button">
+                <img src="../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
+            </button>
+        </header>
+        <!-- Contenido Principal -->
+         <main>
+            <section class="top-section">
+                <!-- Titúlo De La Sección -->
+                <p class="section-name">
+                    Usuarios
+                </p>
+                <!-- Botones de Añadir usuario y filtro -->
+                <div class="user-top-buttons">
+                    <button class="filter-button">
+                        <img src="../../assets/images/main/users/filter-icon.svg" alt="Icono de filtrar">
+                        <p class="button-text">
+                            Filtrar
+                        </p>
+                    </button>
+                    <button class="add-user-button">
+                        <img src="../../assets/images/main/users/add-user-icon.svg" alt="Icono de Añadir usuario">
+                        <p class="button-text">
+                            Añadir Usuario
+                        </p>
+                    </button>
+                </div>
+            </section>
+            <!-- Contenedor de todos los usuarios -->
+            <section class="users-container">
+                <!-- Primer Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones -->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+
+                </section>
+
+                <!-- Segundo Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Tercer Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Cuarto Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Quinto Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Sexto Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+                <!-- Septimo Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button">
+                            <img src="../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
+            </section>
+            <!-- Números de páginas que aparecen en la parte inferior -->
+            <section class="pages">
+                <a href="../../pages/users/users.html" class="active-page">
+                    1
+                </a>
+                <a href="../../pages/users/users2.html" class="inactive-page">
+                    2
+                </a>
+            </section>
+        </main>
+    </div>
+    <script src="../../scripts/aside-toogle.js"></script>
+</body>
+</html>
