@@ -1,0 +1,134 @@
+.main{
+    grid-area: main;
+}
+
+/* Sección que contiene su nombre y dos botones */
+.top-section{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Nombre de la sección */
+.section-name{
+    height: 10%;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+/* Sección de los botones */
+.user-top-buttons{
+    display: flex;
+    gap: 19px;
+    padding-right: 51px;
+}
+
+/* Contenedor con todos los usuarios */
+.users-container{
+    display: flex;
+    flex-direction: column;
+    height: 82%;
+    width: 100%;
+    padding: 0px 14px 20px 14px;
+    gap: 5px;
+}
+
+/* Paginación*/
+.pages{
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    padding: 5px;
+    gap: 6px;
+}
+
+/* Botón de filtrar */
+.filter-button{
+    display: flex;
+    align-items: center;
+    padding: 0px 15px 0px 15px;
+    border-radius: 15px;
+    border: 0;
+    background-color: #ede8e9;
+}
+
+/* Botón de añadir usuarios */
+.add-user-button{
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    border: 0;
+    background-color: #b2aaf4;
+    padding: 5px 15px 5px 15px;
+    gap: 8px;
+}
+
+/* Texto dentro del botón */
+.button-text{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Campo con datos del usuario */
+.user-field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e2d6d6;
+    border-radius: 16px;
+    padding: 25px 36px;
+}
+
+/* Informacion del Usuario */
+.user-information{
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+/* Nombre */
+.username{
+    font-size: 32px;
+}
+
+/* Telefono */
+.phone{
+  font-size: 18px;
+}
+
+.button-image{
+    width: 28px;
+    height: 28px;
+}
+
+.user-buttons{
+    display: flex;
+    gap: 22px;
+}
+
+.user-button{
+    border: 0;
+    background-color: #e2d6d6;
+}
+
+.active-page{
+    border-radius: 50%;
+    background-color: #b1aaf4dc;
+    padding: 8px 18px 8px 18px;
+}
+
+.inactive-page{
+    color: #000;
+}
