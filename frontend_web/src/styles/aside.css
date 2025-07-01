@@ -25,7 +25,8 @@ aside{
 .first-section, .second-section{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 45px;
 }
 
 .user-rol, .user-name{
@@ -41,9 +42,9 @@ aside{
 /* Identificador de cada parte del menú como "menú" y "otros"*/
 .section-identificator{
     color: #9196b1;
-    padding: 10px 0px 5px 45px;
+    padding: 10px 0px 5px 0px;
     align-self: flex-start;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .option-text{
