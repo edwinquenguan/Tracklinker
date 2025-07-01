@@ -28,9 +28,12 @@
 
 /* Contenedor con todos los usuarios */
 .users-container{
+    display: flex;
+    flex-direction: column;
     height: 82%;
     width: 100%;
-    padding: 20px 14px 20px 14px;
+    padding: 0px 14px 20px 14px;
+    gap: 5px;
 }
 
 /* Paginación*/
@@ -68,6 +71,7 @@
 /* Texto dentro del botón */
 .button-text{
     font-size: 16px;
+    font-weight: 500;
 }
 
 /* Campo con datos del usuario */
@@ -77,7 +81,7 @@
     justify-content: space-between;
     background-color: #e2d6d6;
     border-radius: 16px;
-    padding: 28px 36px;
+    padding: 25px 36px;
 }
 
 /* Informacion del Usuario */
