@@ -1,0 +1,49 @@
+.main{
+    grid-area: main;
+}
+
+/* Primera seccion que contiene el nombre del modulo y el buscador */
+.top-section{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Nombre de la sección */
+.section-name{
+    height: 10%;
+    padding: 40px 0px 40px 40px;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+/* Tabla de productos */
+.products-table{
+    text-decoration: none;
+    height: 85%;
+    width: 100%;
+    border: #e2d6d6;
+}
+
+/* Textos dentro del header de la tabla */
+.header-text{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 14px;
+}
+
+/* Campo que ocupa cada producto */
+.product-field{
+    background-color: #e2d6d6;
+    text-align: center;
+    border-radius: 16px;
+}
+
+/* Botones */
+.product-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
