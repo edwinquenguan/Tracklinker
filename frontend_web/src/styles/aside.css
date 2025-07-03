@@ -9,7 +9,7 @@ aside{
 
 /* Seccion donde va el avatar del usuario, nombre y rol */
 .user-info{
-    padding: 30px 20px 20px 20px;
+    padding: 30px 20px 20px 45px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -21,6 +21,18 @@ aside{
     flex-direction: column;
 }
 
+/* Campo del avatar */
+.avatar-field{
+    width: 50px;
+    height: 50px;
+}
+
+/* Avatar */
+.avatar{
+    width: 100%;
+    height: 100%;
+}
+
 /* Secciones del menú */
 .first-section, .second-section{
     display: flex;
@@ -30,10 +42,11 @@ aside{
 }
 
 .user-rol, .user-name{
+    font-weight: 600;
     color: #5A6ACF;
 }
 
-
+/* Nombre del usuario */
 .user-name{
     margin: 10px 0px 0px 0px;
 }
@@ -47,23 +60,17 @@ aside{
     font-size: 15px;
 }
 
+/* Texto de la sección */
 .option-text{
     color: #A6ABC8;
     font-size: 16px;
 }
 
-/* Iconos del menu */
-.menu-icon{
+/**/
+.menu-icon-field, .menu-icon{
     width: 25px;
     height: 25px;
 }
-
-
-/* Subclase para los iconos del menu */
-.menu-icon:hover{
-    cursor: pointer;
-}
-
 
 /* Opciones del menu */
 .option{

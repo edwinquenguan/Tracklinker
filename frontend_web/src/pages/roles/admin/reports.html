@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informes</title>
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link rel="stylesheet" href="../../../styles/reports-main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú ubicado al lado -->
+        <aside id="aside">
+            <!-- Informacion Del Usuario -->
+            <section class="user-info">
+                <a href="../../info-user.html" class="avatar-field">
+                    <img src="../../../assets/images/aside/avatar.svg" alt="Foto de Perfil" class="avatar">
+                </a>
+                <!-- Texto dentro del informacion del usuario -->
+                <section class="user-info-text" href="../../info-user.html">
+                    <p class="user-name">
+                        <strong> Agustín Perez</strong>
+                    </p>
+                    <p class="user-rol"> Administrador </p>
+                </section>
+            </section>
+            <!-- Menú -->
+            <section class="menu">
+                <nav class="menu-sections">
+                    <!-- Primera Sección -->
+                    <section class="first-section">
+                        <p class="section-identificator">Menu</p>
+                        <!-- Lista De Opciones -->
+                        <ul>
+                            <li class="option">
+                                <a href="./home.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/home-icon.svg" alt="Icono del Panel de Control">
+                                </a>
+                                <a class="option-text" href="home.html">Inicio</a>
+                            </li>
+                            <li class="option">
+                                <a href="./dashboard.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/controlpanel-icon.svg" alt="Icono del Panel de Control">
+                                </a>
+                                <a class="option-text" href="dashboard.html">Panel De Control</a>
+                            </li>
+                            <li class="option">
+                                <a href="./users.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/users-icon.svg" alt="Icono de la seccion de usuarios">
+                                </a>
+                                <a class="option-text" href="users.html">Usuarios</a>
+                            </li>
+                            <li class="option">
+                                <a href="./products.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/products-icon.svg" alt="Icono de la seccion productos">
+                                </a>
+                                <a class="option-text" href="products.html">Productos</a>
+                            </li>
+                            <li class="option">
+                                <a href="./categories.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/categories-icon.svg" alt="Icono de la seccion categorias">
+                                </a>
+                                <a class="option-text" href="categories.html">Categorias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./subcategories.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/subcategories-icon.svg" alt="Icono de la seccion subcategorias">
+                                </a>
+                                <a class="option-text" href="subcategories.html">Subcategorias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./reports.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/reports-icon.svg" alt="Icono de la seccion informes">
+                                </a>
+                                <a class="option-text" href="reports.html">Informes</a>
+                            </li>
+                            <li class="option">
+                                <a href="./warranties.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/warrantys-icon.svg" alt="Icono de la seccion garantias">
+                                </a>
+                                <a class="option-text" href="warranties.html">Garantias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./supliers.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/supliers-icon.svg" alt="Icono de la seccion de proveedores">
+                                </a>
+                                <a class="option-text" href="supliers.html">Proveedores</a>
+                            </li>
+                            <li class="option">
+                                <a href="./transformations.html" class="menu-icon-field">
+                                    <img src="../../../assets/images/aside/transformations-icon.svg" alt="Icono modúlo Tranformaciones">
+                                </a>
+                                <a class="option-text" href="transformations.html">Transformaciones</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- Segunda Sección -->
+                    <section class="second-section">
+                        <p class="section-identificator"> Otros </p>
+                        <ul>
+                            <li class="option">
+                                <a href="./configuration.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/settings-icon.svg" alt="Icono de la seccion configuracion">
+                                </a>
+                                <a class="option-text" href="configuration.html">Configuracion</a>
+                            </li>
+                            <li class="option">
+                                <a href="./help.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/help-icon.svg" alt="Icono de la seccion ayuda">
+                                </a>
+                                <a class="option-text" href="help.html">Ayuda</a>
+                            </li>
+                            <li class="option">
+                                <a href="../../index.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/logout-icon.svg" alt="icono de cerrar sesion">
+                                </a>
+                                    <a class="option-text" href="../../index.html">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </section>
+        </aside>
+        <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
+        <header>
+            <!-- Barra De Búsqueda -->
+            <form role="search" class="search-bar">
+                <p class="search-text">Buscar</p>
+                <a href="#" class="search-icon-space">
+                    <img class="search-icon" src="../../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
+                </a>
+            </form>
+            <!-- Campana De Notificaciones -->
+            <a href="#">
+                <img class="bell" src="../../../assets/images/header/bell.svg" alt="Icono de notificaciones">
+            </a>
+            <button id="menu-button" class="menu-button">
+                <img src="../../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
+            </button>
+        </header>
+    </div>
+</body>
+</html>
