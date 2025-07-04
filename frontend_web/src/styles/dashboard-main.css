@@ -75,6 +75,7 @@ main{
 .chart-name{
     display: flex;
     justify-content: space-between;
+    font-weight: 500;
 }
 
 /* Botón que dice ver informe */
