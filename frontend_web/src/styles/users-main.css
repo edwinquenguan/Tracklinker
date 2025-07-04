@@ -63,7 +63,7 @@
     align-items: center;
     border-radius: 20px;
     border: 0;
-    background-color: #b2aaf4;
+    background-color: #bac4ff;
     padding: 5px 15px 5px 15px;
     gap: 8px;
 }
@@ -91,7 +91,7 @@
     align-items: center;
     gap: 17px;
 }
-
+/* Clase para agregar flex y un peso más fuerte a la fuente */
 .info{
     display: flex;
     align-items: center;
@@ -108,27 +108,33 @@
   font-size: 18px;
 }
 
-.button-image{
-    width: 28px;
-    height: 28px;
-}
-
+/* Contenedor de botones para interactuar con el usuario */
 .user-buttons{
     display: flex;
     gap: 22px;
 }
 
+/* Boton para ver más información, editar o eliminar usuario */
 .user-button{
     border: 0;
     background-color: #e2d6d6;
 }
 
-.active-page{
-    border-radius: 50%;
-    background-color: #b1aaf4dc;
-    padding: 8px 18px 8px 18px;
+/* Imagen de cada boton */
+.button-image{
+    width: 28px;
+    height: 28px;
 }
 
+/* Página en la que se encuentra */
+.active-page{
+    border-radius: 50%;
+    background-color: #bac4ff;
+    padding: 8px 18px 8px 18px;
+    color: #1431f1;
+}
+
+/* Página en la que no se encuentra */
 .inactive-page{
     color: #000;
 }
