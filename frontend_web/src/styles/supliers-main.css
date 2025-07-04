@@ -1,0 +1,90 @@
+main{
+    grid-area: main;
+}
+
+/* Primera seccion que contiene el nombre del modulo*/
+.top-section{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Nombre de la sección */
+.section-name{
+    height: 10%;
+    padding: 40px 0px 40px 40px;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+/* Contenedor con todos los proveedores */
+.supliers-container{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 100%;
+    padding: 0px 14px 20px 14px;
+    gap: 5px;
+}
+
+/* Campo con datos del proveedor */
+.suplier-field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e2d6d6;
+    border-radius: 16px;
+    padding: 18px 35px;
+}
+
+/* Información del proveedor */
+.suplier-information{
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+/* Clase para agregar flex y un peso más fuerte a la fuente */
+.info{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+/* Nombre del Proveedor */
+.suplier-name{
+    font-size: 32px;
+    font-weight: 500;
+}
+
+/* Telefono */
+.phone{
+  font-size: 18px;
+}
+
+/* Informacion del proveedor*/
+.suplier-info{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+/* Botones de cada proveedor */
+.suplier-buttons{
+    display: flex;
+    gap: 22px;
+}
+
+.suplier-button{
+    border: 0;
+    background-color: #e2d6d6;
+}
+
+/* Imagen de cada boton */
+.button-image{
+    width: 28px;
+    height: 28px;
+}
