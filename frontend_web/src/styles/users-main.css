@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
     padding: 0px 15px 0px 15px;
-    border-radius: 15px;
+    border-radius: 20px;
     border: 0;
     background-color: #ede8e9;
 }
@@ -61,7 +61,7 @@
 .add-user-button{
     display: flex;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 20px;
     border: 0;
     background-color: #b2aaf4;
     padding: 5px 15px 5px 15px;
