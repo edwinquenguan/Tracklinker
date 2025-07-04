@@ -6,32 +6,53 @@ aside{
     flex-direction: column;
 }
 
-
 /* Seccion donde va el avatar del usuario, nombre y rol */
 .user-info{
-    margin-top: 20px;
-    padding: 20px 0px 10px 0px;
+    padding: 30px 20px 20px 40px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 15px;
 }
 
+/* Texto dentro de la informacion del usuario */
+.user-info-text{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Campo del avatar */
+.avatar-field{
+    width: 50px;
+    height: 50px;
+}
+
+/* Avatar */
+.avatar{
+    width: 100%;
+    height: 100%;
+}
+
+/* Nav que contiene las dos secciones */
+.menu-sections{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 /* Secciones del menú */
 .first-section, .second-section{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 40px;
 }
 
-
-
-
 .user-rol, .user-name{
+    font-weight: 600;
     color: #5A6ACF;
 }
 
-
+/* Nombre del usuario */
 .user-name{
     margin: 10px 0px 0px 0px;
 }
@@ -40,34 +61,39 @@ aside{
 /* Identificador de cada parte del menú como "menú" y "otros"*/
 .section-identificator{
     color: #9196b1;
-    padding: 10px 0px 5px 45px;
+    padding: 8px 5px;
     align-self: flex-start;
+    font-size: 15px;
 }
 
-
-a{
-    text-decoration: none;
+/* Texto de la sección */
+.option-text{
     color: #A6ABC8;
+    font-size: 16px;
 }
 
-
-/* Iconos del menu */
-.menu-icon{
+/**/
+.menu-icon-field, .menu-icon{
     width: 25px;
     height: 25px;
 }
 
-
-/* Subclase para los iconos del menu */
-.menu-icon:hover{
-    cursor: pointer;
-}
-
-
 /* Opciones del menu */
 .option{
-    padding: 18px 10px 10px 0px;
+    padding: 8px 10px 8px 10px;
     display: flex;
-    align-items: center;
+    align-content: center;
     gap: 15px;
+    border-radius: 15px
+}
+
+/* Sección en la que se encuentra el usuario */
+.active-section{
+    background-color: #3e57f8;
+    box-shadow: 0px 0px 32px -10px #344df6;
+}
+
+.active-section-text{
+    color: #ffffff;
+    font-weight: 600;
 }
