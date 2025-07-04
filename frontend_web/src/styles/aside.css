@@ -6,10 +6,9 @@ aside{
     flex-direction: column;
 }
 
-
 /* Seccion donde va el avatar del usuario, nombre y rol */
 .user-info{
-    padding: 30px 20px 20px 45px;
+    padding: 30px 20px 20px 40px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -33,12 +32,19 @@ aside{
     height: 100%;
 }
 
+/* Nav que contiene las dos secciones */
+.menu-sections{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 /* Secciones del menú */
 .first-section, .second-section{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 45px;
+    padding-left: 40px;
 }
 
 .user-rol, .user-name{
@@ -55,7 +61,7 @@ aside{
 /* Identificador de cada parte del menú como "menú" y "otros"*/
 .section-identificator{
     color: #9196b1;
-    padding: 10px 0px 5px 0px;
+    padding: 8px 5px;
     align-self: flex-start;
     font-size: 15px;
 }
@@ -74,8 +80,20 @@ aside{
 
 /* Opciones del menu */
 .option{
-    padding: 18px 10px 10px 0px;
+    padding: 8px 10px 8px 10px;
     display: flex;
     align-content: center;
     gap: 15px;
+    border-radius: 15px
+}
+
+/* Sección en la que se encuentra el usuario */
+.active-section{
+    background-color: #3e57f8;
+    box-shadow: 0px 0px 32px -10px #344df6;
+}
+
+.active-section-text{
+    color: #ffffff;
+    font-weight: 600;
 }
