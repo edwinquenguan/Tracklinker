@@ -124,12 +124,12 @@
         <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
         <header>
             <!-- Barra De Búsqueda -->
-            <form role="search" class="search-bar">
-                <p class="search-text">Buscar</p>
+            <section class="search-bar">
+                <input class="search-input" placeholder="Buscar">
                 <a href="#" class="search-icon-space">
                     <img class="search-icon" src="../../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
                 </a>
-            </form>
+            </section>
             <!-- Campana De Notificaciones -->
             <a href="#">
                 <img class="bell" src="../../../assets/images/header/bell.svg" alt="Icono de notificaciones">
@@ -146,8 +146,8 @@
                     Categorias
                 </p>
                 <!-- Barra De Búsqueda -->
-                <section class="search-bar">
-                    <input placeholder="Buscar" class="serach-input">
+                <section class="search-bar-table">
+                    <input placeholder="Buscar" class="search-input">
                         <a href="#" class="search-icon-space">
                             <img class="search-icon" src="../../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
                         </a>
@@ -155,182 +155,200 @@
                 </section>
             </section>
             <!-- Productos -->
-             <table class="products-table">
-                <!-- Titulos -->
-                 <thead>
-                    <tr>
-                        <th class="header-text">Fecha de Ingreso</th>
-                        <th class="header-text">Modelo</th>
-                        <th class="header-text">Serial</th>
-                        <th class="header-text">Proveedor</th>
-                        <th class="header-text">Tiempo de Garantia</th>
-                        <th class="header-text"></th>
-                    </tr>
-                 </thead>
-                <!-- Contenedor de los productos -->
-                 <tbody class="product-container">
-                    <!-- Primer Producto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Segundo Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Tercer Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Cuarto Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Quinto Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Sexto Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Septimo Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Octavo Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Noveno Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Decimo Porducto -->
-                    <tr class="product-field">
-                        <td>01/01/2000</td>
-                        <td>Monitor 24´</td>
-                        <td>104DAUH1</td>
-                        <td>ASUS</td>
-                        <td>12 Meses</td>
-                        <td class="product-buttons">
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto">
-                            </a>
-                            <a href="#" class="product-buttons">
-                                <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <section class="table-wrapper">
+                <table class="products-table">
+                    <!-- Titulos -->
+                    <thead>
+                        <tr>
+                            <th class="header-text">Fecha de Ingreso</th>
+                            <th class="header-text">Modelo</th>
+                            <th class="header-text">Serial</th>
+                            <th class="header-text">Proveedor</th>
+                            <th class="header-text">Tiempo de Garantia</th>
+                            <th class="header-text"></th>
+                        </tr>
+                    </thead>
+                    <!-- Contenedor de los productos -->
+                    <tbody class="product-container">
+                        <!-- Primer Producto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Segundo Porducto -->
+                        <tr class="product-field">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Tercer Porducto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Cuarto Porducto -->
+                        <tr class="product-field">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Quinto Porducto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Sexto Porducto -->
+                        <tr class="product-field">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Septimo Porducto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Octavo Porducto -->
+                        <tr class="product-field">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Noveno Porducto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Decimo Porducto -->
+                        <tr class="product-field">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Undecimo Porducto -->
+                        <tr class="product-field row-color">
+                            <td>01/01/2000</td>
+                            <td>Monitor 24´</td>
+                            <td>104DAUH1</td>
+                            <td>ASUS</td>
+                            <td>12 Meses</td>
+                            <td class="product-buttons">
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono para editar un producto" class="button-image">
+                                </a>
+                                <a href="#" class="product-button">
+                                    <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono para eliminar un producto" class="button-image">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
          </main>
     </div>
 </body>
