@@ -1,0 +1,80 @@
+/* Estilos globales para las modales */
+
+/* Modal */
+.modal{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111111bd;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+}
+
+/* Contenedor del modal */
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    gap: 6px;
+}
+
+/* Cabecera del modal */
+.modal-header{
+    width: 100%;
+    padding: 10px 5px 15px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Titulo del modal */
+.modal-title{
+    font-weight: 500;
+}
+
+/* Titulo de cada información */
+.modal-content-title{
+    font-weight: 600;
+}
+
+/* Botones Dentro del modal de informacion */
+.modal-buttons{
+    display: flex;
+    gap: 30px;
+    padding: 15px 0px 15px 0px;
+}
+
+.modal-info-button{
+    height: 30px;
+    width: 30px;
+}
+
+/* Propiedad para que el modal sea visible */
+.show-modal{
+    opacity: 1;
+    pointer-events: unset;
+}
+
+
+/* Formulario dentro de la modal */
+.modal-form{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Entradas de texto del formulario */
+.modal-form input{
+    font-family: 'Poppins', monospace;
+    padding: 8px 7px;
+    border-radius: 5px;
+    border: 1px solid #e2d6d6;
+}
