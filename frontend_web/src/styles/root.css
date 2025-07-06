@@ -18,3 +18,8 @@ body{
 a{
     text-decoration: none;
 }
+
+/* Puntero a los botones */
+button{
+    cursor: pointer;
+}
