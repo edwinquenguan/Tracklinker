@@ -106,3 +106,17 @@
     border-radius: 5px;
     border: 1px solid #e2d6d6;
 }
+
+/* Icono "X" para cerrar el modal */
+.close-modal-icon{
+    height: 24px;
+    width: 24px;
+}
+
+/* Icono de "✔" para confirmar */
+.confirm-icon{
+    border: 0;
+    background-color: #ffffff;
+    width: 30px;
+    height: 30px;
+}
