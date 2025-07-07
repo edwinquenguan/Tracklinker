@@ -14,6 +14,7 @@ header{
     display: none;
 }
 
+/* Entrada de texto */
 .search-input{
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
@@ -22,6 +23,11 @@ header{
     border: 0;
     outline: none;
     padding: 0px 0px 0px 20px;
+    color: #000;
+}
+
+/* Texto Buscar que esta dentro del input */
+.search-input:placeholder{
     color: #9196b1;
 }
 
