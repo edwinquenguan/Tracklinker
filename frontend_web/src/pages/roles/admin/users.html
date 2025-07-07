@@ -124,12 +124,12 @@
         <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
         <header>
             <!-- Barra De Búsqueda -->
-            <form role="search" class="search-bar">
-                <p class="search-text">Buscar</p>
+            <section class="search-bar">
+                <input class="search-input" placeholder="Buscar">
                 <a href="#" class="search-icon-space">
                     <img class="search-icon" src="../../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
                 </a>
-            </form>
+            </section>
             <!-- Campana De Notificaciones -->
             <a href="#">
                 <img class="bell" src="../../../assets/images/header/bell.svg" alt="Icono de notificaciones">
@@ -147,13 +147,13 @@
                 </p>
                 <!-- Botones de Añadir usuario y filtro -->
                 <div class="user-top-buttons">
-                    <button class="filter-button">
+                    <button class="filter-button" data-open="modal1">
                         <img src="../../../assets/images/main/users/filter-icon.svg" alt="Icono de filtrar">
                         <p class="button-text">
                             Filtrar
                         </p>
                     </button>
-                    <button class="add-user-button">
+                    <button class="add-user-button" data-open="modal2">
                         <img src="../../../assets/images/main/users/add-user-icon.svg" alt="Icono de Añadir usuario">
                         <p class="button-text">
                             Añadir Usuario
@@ -182,19 +182,18 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
-
                 </section>
 
                 <!-- Segundo Usuario -->
@@ -216,15 +215,15 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
@@ -249,15 +248,15 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
@@ -282,15 +281,15 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
@@ -315,15 +314,15 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
@@ -348,15 +347,15 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
@@ -380,20 +379,19 @@
                     </section>
                     <section class="user-buttons">
                         <!-- Más informacion del usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal3">
                             <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
                         </button>
                         <!-- Editar la informacion de usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal4">
                             <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
                         </button>
                         <!-- Eliminar Usuario -->
-                        <button class="user-button">
+                        <button class="user-button" data-open="modal5">
                             <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
                         </button>
                     </section>
                 </section>
-            </section>
             <!-- Números de páginas que aparecen en la parte inferior -->
             <section class="pages">
                 <a href="./users.html" class="active-page">
@@ -404,7 +402,155 @@
                 </a>
             </section>
         </main>
+
+        <!-- Modales--> 
+        <!-- Modal para el filtro -->
+        <section class="modal" id="modal1">
+            <section class="filter-modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Filtrar
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <nav class="filter-menu">
+                    <ul>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="#">
+                                Ordenar de A-Z
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar de Z-A
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar por Rol
+                            </a>
+                        </p>
+                    </ul>
+                </nav>
+            </section>
+        </section>
+
+        <!-- Modal para agregar usuario -->
+         <section class="modal" id="modal2">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Agregar Usuario
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal2">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+            </section>
+         </section>
+
+        <!-- Modal para más informacion -->
+        <section class="modal" id="modal3">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal3">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <p class="modal-content-title">
+                    Nombre
+                </p>
+                <p>
+                    Agustín Saúl Perez Lorca
+                </p>
+                <p class="modal-content-title">
+                    Rol
+                </p>
+                <p>
+                    Administrador
+                </p>
+                <p class="modal-content-title">
+                    Número
+                </p>
+                <p>
+                    3002526637
+                </p>
+                <p class="modal-content-title">
+                    Correo
+                </p>
+                <p>
+                    agustinlorca@gmail.com
+                </p>
+                <section class="modal-buttons">
+                    <!-- Editar la informacion de usuario -->
+                    <a href="#" class="modal-info-button">
+                        <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                    </a>
+                    <!-- Eliminar Usuario -->
+                    <a href="#" class="modal-info-button">
+                        <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                    </a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para editar información -->
+        <section class="modal" id="modal4">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Editar Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon" data-close="modal4">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="name">Nombre</label>
+                    <input type="text" placeholder="Agustín Saúl Perez Lorca">
+                    <label for="number">Número</label>
+                    <input type="number" placeholder="3002526637">
+                    <label for="email">Correo</label>
+                    <input type="email" placeholder="agustinlorca@gmail.com">
+                </form>
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal4">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para elimiar usuario -->
+        <section class="modal" id="modal5">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Alerta
+                    </p>
+                    <a href="#" class="close-modal-icon" data-close="modal5">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <p class="modal-content">
+                    ¿Quieres eliminar este usuario?
+                </p>
+                <section class="modal-buttons">
+                    <button class="modal-button" data-close="modal5">
+                        Cancelar
+                    </button>
+                    <button class="modal-button-confirm" data-close="modal5">
+                        Confirmar
+                    </button>
+                </section>
+            </section>
+        </section>
     </div>
-    <script src="../../../scripts/aside-toogle.js"></script>
+    <script src="../../../scripts/modal.js"></script>
 </body>
 </html>
