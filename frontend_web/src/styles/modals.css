@@ -50,12 +50,40 @@
 .modal-buttons{
     display: flex;
     gap: 30px;
-    padding: 15px 0px 15px 0px;
+    padding: 30px 0px 15px 0px;
 }
 
+/* Iconos de los botones del modal de más información */
 .modal-info-button{
     height: 30px;
     width: 30px;
+}
+
+.modal-button{
+    font-family: 'Poppins', monospace;
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-weight: 500;
+    border: 0;
+    transition: box-shadow .3s;
+}
+
+.modal-button-confirm{
+    font-family: 'Poppins', monospace;
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-weight: 500;
+    border: 0;
+    color: #ffffff;
+    background-color: #3e57f8;
+    transition: box-shadow .3s;
+}
+
+.modal-button:hover{
+    box-shadow: 0px 0px 32px -5px  gray;    
+}
+.modal-button-confirm:hover{
+    box-shadow: 0px 0px 32px 1px  gray; 
 }
 
 /* Propiedad para que el modal sea visible */
