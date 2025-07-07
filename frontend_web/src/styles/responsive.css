@@ -1,36 +1,20 @@
 /* Adaptabilidad a cualquier tipo de pantalla */
 
 /* Movil */
-@media (width <= 480px) {
+@media (width <= 750px) {
     .container{
         grid-template-areas:
-        "header header header"
-        "main main main"
-        "main main main"
+        "header"
+        "main"
+        "aside"
         ;
-    }
-
-    aside{
-        display: none;
-    }
-
-    .menu-button{
-        display: block;
-    }
-
-    .show-aside{
-        display: block;
+        grid-template-columns: 1fr;
+        grid-template-rows: 5% 85% 10%;
     }
 }
 
 
 /* Tablet */
-@media (width <= 768px){
-    .container{
-        grid-template-areas:
-        "header header"
-        "main main aside"
-        "main main aside"
-        ;
-    }
+@media (width <= 1100px){
+    
 }
