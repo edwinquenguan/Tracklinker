@@ -40,6 +40,10 @@ main{
     border: 0;
     outline: none;
     padding: 0px 0px 0px 20px;
+    color: #000;
+}
+
+.search-input:placeholder{
     color: #9196b1;
 }
 
