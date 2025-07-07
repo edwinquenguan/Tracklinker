@@ -98,3 +98,20 @@ main{
 .second-image-chart{
     padding: 30px 200px 30px 200px;
 }
+
+@media(width <= 600px){
+    
+    .charts-container{
+        grid-template-areas: 
+        "chart1"
+        "chart2"
+        "chart3"
+        "chart4";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .chart1, .chart2, .chart3, .chart4{
+        height: 25px;
+    }
+}
