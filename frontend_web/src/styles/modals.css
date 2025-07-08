@@ -117,3 +117,22 @@
     width: 30px;
     height: 30px;
 }
+
+/* Contenedor modal filtro */
+.filter-modal-container{
+    padding: 0px 15px 0px 15px;
+    border-radius: 20px;
+    background-color: #ede8e9;
+}
+
+/* Menú de opciones */
+.filter-menu{
+    padding: 5px 5px 15px;
+}
+
+/* Opcion */
+.filter-option{
+    padding: 10px 5px;
+    color: #000;
+}
+
