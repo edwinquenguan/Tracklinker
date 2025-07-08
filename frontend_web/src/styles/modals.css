@@ -81,7 +81,7 @@
     box-shadow: 0px 0px 32px -5px  gray;    
 }
 .modal-button-confirm:hover{
-    box-shadow: 0px 0px 32px 1px  gray; 
+    box-shadow: 0px 0px 32px 1px  gray;
 }
 
 /* Propiedad para que el modal sea visible */
@@ -102,6 +102,13 @@
     padding: 8px 7px;
     border-radius: 5px;
     border: 1px solid #e2d6d6;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Icono "X" para cerrar el modal */
