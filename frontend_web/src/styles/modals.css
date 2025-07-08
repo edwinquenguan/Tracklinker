@@ -60,7 +60,6 @@
 }
 
 .modal-button{
-    font-family: 'Poppins', monospace;
     padding: 10px 20px;
     border-radius: 7px;
     font-weight: 500;
@@ -69,7 +68,6 @@
 }
 
 .modal-button-confirm{
-    font-family: 'Poppins', monospace;
     padding: 10px 20px;
     border-radius: 7px;
     font-weight: 500;
@@ -101,7 +99,6 @@
 
 /* Entradas de texto del formulario */
 .modal-form input{
-    font-family: 'Poppins', monospace;
     padding: 8px 7px;
     border-radius: 5px;
     border: 1px solid #e2d6d6;

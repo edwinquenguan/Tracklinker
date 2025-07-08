@@ -29,7 +29,6 @@ main{
 
 /* Botón para añadir producto */
 .add-product-button{
-    font-family: 'Poppins', sans-serif;
     display: flex;
     align-items: center;
     gap: 7px;
@@ -54,7 +53,6 @@ main{
 
 /* Entrada de texto buscador */
 .search-input{
-    font-family: 'Poppins', sans-serif;
     font-size: 15px;
     height: 100%;
     width: 90%;
@@ -135,7 +133,6 @@ main{
 }
 
 .scanner-button{
-    font-family: 'Poppins', monospace;
     padding: 10px 20px;
     border-radius: 7px;
     font-weight: 500;
