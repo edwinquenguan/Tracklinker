@@ -24,3 +24,8 @@ button{
     font-family: 'Poppins', monospace;
     cursor: pointer;
 }
+
+/* Entradas de texto */
+input{
+    font-family: 'Poppins', monospace;
+}
