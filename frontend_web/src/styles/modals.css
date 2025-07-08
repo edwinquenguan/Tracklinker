@@ -136,3 +136,8 @@
     color: #000;
 }
 
+select{
+    padding: 8px 7px;
+    border-radius: 5px;
+    border: 1px solid #e2d6d6;
+}
