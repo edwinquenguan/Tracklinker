@@ -1,0 +1,91 @@
+main{
+    grid-area: main;
+}
+
+
+/* Sección que contiene su nombre y dos botones */
+.top-section{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Nombre de la sección */
+.section-name{
+    height: 10%;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+
+/* Contenedor con todos los usuarios */
+.sections-container{
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 0px 90px;
+    height: 85%;
+    width: 100%;
+    padding: 82px 200px 200px 100px;
+    justify-content: center;
+}
+
+
+/* Secciones */
+.users,
+.products,
+.categories,
+.subcategories,
+.reports,
+.warrantys,
+.supliers,
+.transformations{
+    height: 160px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center  ;
+}
+
+
+/* Tarjeta de cada sección */
+.card-section{
+    height: 120px;
+    width: 100%;
+    background-color: #e6e1e1;
+    border-radius: 10px;
+    transition: box-shadow .3s;
+}
+
+/* Estilo que se aplica al tener el cursor encima */
+.card-section:hover{
+    box-shadow: 0px 0px 32px 3px #d2cece;
+}
+
+
+/* Iconos de cada sección */
+.module-icon{
+    width: 100%;
+    height: 100%;
+    padding: 35px;
+}
+
+
+/* Nombre del modúlo */
+.module-name{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 16px;
+    transition: font-size .3s;
+}
+
+
+.module-name:hover{
+    font-size: 18px;
+}
