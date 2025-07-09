@@ -138,6 +138,510 @@
                 <img src="../../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
             </button>
         </header>
+        <!-- Contenido Principal de la página -->
+        <main>
+            <section class="top-section">
+                <p class="section-name">
+                    Informes
+                </p>
+            </section>
+            <!-- Menú de opciones -->
+            <section class="sections-container">
+                <!-- Usuarios -->
+                <a class="users" href="#" data-open="modal1">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/users-icon.svg" alt="Icono modúlo Usuarios" class="module-icon">
+                    </section>
+                        <p class="module-name">
+                            Informe De Usuarios
+                        </p>
+                    </a>
+                <!-- Productos -->
+                <a class="products" href="#" data-open="modal3">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/products-icon.svg" alt="Icono modúlo Productos" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Productos
+                    </p>
+                </a>
+                <!-- Categorias -->
+                <a class="categories" href="#" data-open="modal5">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/categories-icon.svg" alt="Icono modúlo Categorias" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Categorias
+                    </p>
+                </a>
+                <!-- Subcategorias -->
+                <a class="subcategories" href="#" data-open="modal7">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/subcategories-icon.svg" alt="Icono modúlo Subcategorias" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Subcategorias
+                    </p>
+                </a>
+                <!-- Garantías -->
+                <a class="warrantys" href="#" data-open="modal9">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/warrantys-icon.svg" alt="Icono modúlo Garantías" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Garantías
+                    </p>
+                </a>
+                <!-- Proveedores -->
+                <a class="supliers" href="#" data-open="modal11">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/supliers-icon.svg" alt="Icono modúlo Proveedores" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Proveedores
+                    </p>
+                </a>
+                <!-- Tranformaciones -->
+                <a class="transformations" href="#" data-open="modal13">
+                    <section class="card-section">
+                        <img src="../../../assets/images/aside/transformations-icon.svg" alt="Icono modúlo Tranformaciones" class="module-icon">
+                    </section>
+                    <p class="module-name">
+                        Informe De Transformaciones
+                    </p>
+                </a>
+            </section>
+        </main>
+
+        <!-- Modales -->
+        <!-- Modal para crear informes de usuarios -->
+        <section class="modal" id="modal1">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Usuarios
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal2">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal1">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Usuarios -->
+        <section class="modal" id="modal2">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Usuarios
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal2">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal2">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal2">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Productos -->
+        <section class="modal" id="modal3">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Productos
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal3">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal4">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal3">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Productos -->
+        <section class="modal" id="modal4">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Productos
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal4">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal4">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal4">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Categorias -->
+        <section class="modal" id="modal5">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Categorías
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal5">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal6">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal5">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Categorías -->
+        <section class="modal" id="modal6">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Categorías
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal6">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal6">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal6">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Subcategorias -->
+        <section class="modal" id="modal7">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Subcategorías
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal7">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal8">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal7">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Subcategorías -->
+        <section class="modal" id="modal8">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Subcategorias
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal8">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal8">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal8">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Garantías -->
+        <section class="modal" id="modal9">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Garantías
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal9">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal10">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal9">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Garantías -->
+        <section class="modal" id="modal10">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Garantías
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal10">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal10">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal10">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Proveedores -->
+        <section class="modal" id="modal11">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Proveedores
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal11">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal12">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal11">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Proveedores -->
+        <section class="modal" id="modal12">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Proveedores
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal12">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal12">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal12">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para crear informes de Transformaciones -->
+        <section class="modal" id="modal13">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe De Transformaciones
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal13">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form class="modal-form">
+                    <label for="option">Quiero Un Informe de:</label>
+                    <select id="option" name="option">
+                        <option value="created">Creados entre las fechas</option>
+                        <option value="deleted">Eliminados entre las fechas</option>
+                        <option value="byrole">Existentes por Rol</option>
+                    </select>
+                    <label for="start-date">Fecha De Inicio</label>
+                    <input type="date">
+                    <label for="finish-date">Fecha De Finalización</label>
+                    <input type="date">
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-open="modal14">
+                        Crear
+                    </button>
+                    <button class="modal-button" data-close="modal13">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para ver el informe de Transformaciones -->
+        <section class="modal" id="modal14">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Informe de Transformaciones
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal14">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-pdf-view">
+                    <section class="pdf-container">
+                        <img src="" alt="" class="pdf-image">
+                    </section>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal14">
+                        Descargar
+                    </button>
+                    <button class="modal-button" data-close="modal14">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
+
     </div>
+    <script src="../../../scripts/modal.js"></script>
 </body>
 </html>
