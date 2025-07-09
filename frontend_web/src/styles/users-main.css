@@ -30,21 +30,11 @@ main{
 .users-container{
     display: flex;
     flex-direction: column;
-    height: 82%;
+    height: 90%;
     width: 100%;
     padding: 0px 14px 20px 14px;
     gap: 5px;
-}
-
-/* Paginación*/
-.pages{
-    height: 8%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    padding: 5px;
-    gap: 6px;
+    overflow-y: auto;
 }
 
 /* Botón de filtrar */
@@ -124,17 +114,4 @@ main{
 .button-image{
     width: 28px;
     height: 28px;
-}
-
-/* Página en la que se encuentra */
-.active-page{
-    border-radius: 50%;
-    background-color: #bac4ff;
-    padding: 8px 18px 8px 18px;
-    color: #1431f1;
-}
-
-/* Página en la que no se encuentra */
-.inactive-page{
-    color: #000;
 }
