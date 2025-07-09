@@ -11,20 +11,90 @@
     <div class="container">
         <section class="login-card">
             <img src="../assets/images/Logo.svg" alt="Icono del proyecto" class="logo">
-            <section class="user-name-field">
-                <label for="user-name" class="login-label"> Usuario </label>
-                <input type="text" placeholder="Usuario">
+            <form class="login-form">
+                <section class="user-name-field">
+                    <label for="user-name" class="login-label"> Usuario </label>
+                    <input type="text" placeholder="Usuario" required>
+                </section>
+                <section class="password-field">                
+                    <label for="password" class="login-label"> Contraseña </label>
+                    <input type="password" placeholder="Contraseña" required>
+                </section>
+                <section class="buttons-container">
+                    <a class="login-button" href="./roles/admin/home.html">
+                        Ingresar
+                    </a>
+                    <a class="recover-pass-button" href="#" data-open="modal3">
+                        Olvide Mi Contraseña
+                    </a>
+                </section>
+            </form>
+        </section>
+        <!-- Modales -->
+    
+        <!-- Modal Para Contraseña Incorrecta -->
+         <section class="modal background" id="modal1">
+            <section class="modal-container">
+                <section class="modal-header flex-end">
+                    <a href="">
+                        <img src="../assets/images/modal/close-icon.svg" data-close="modal1">
+                    </a>
+                </section>
+                <img src="../assets/images/modal/error-modal-image.svg" class="error-modal-image">
+                <section class="modal-error-text-container">
+                    <p class="modal-error-title">
+                       Contraseña Incorrecta 
+                    </p>
+                    <p>
+                        Verifique su Contraseña
+                    </p>
+                </section>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal1">
+                        Ok
+                    </button>
+                </section>
             </section>
-            <section class="password-field">                
-                <label for="password" class="login-label"> Contraseña </label>
-                <input type="password" placeholder="Contraseña">
-            </section>
-            <section class="button-field">
-                <a class="login-button" href="./roles/admin/home.html">
-                    Ingresar
-                </a>
+         </section>
+
+        <!-- Modal para Usuario no existente -->
+
+        <!-- Modal para recuperar contraseña -->
+        <section class="modal" id="modal3">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Recuperar Contraseña
+                    </p>
+                    <a href="#">
+                        <img src="../assets/images/modal/close-icon.svg" data-close="modal3">
+                    </a>
+                </section>
+                <p class="modal-body">
+                    Escriba su correo y le enviaremos un codigo de recuperación
+                </p>
+                <form class="modal-form">
+                    <label for="email">Correo</label>
+                    <section class="email-section">
+                        <input type="email" required>
+                        <button class="modal-button-confirm">
+                            Enviar Código
+                        </button>
+                    </section>
+                    <label for="code">Código</label>
+                    <input type="text" maxlength="6" required>
+                </form>
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal3">
+                        Confirmar
+                    </button>
+                    <button class="modal-button" data-close="modal3">
+                        Cancelar
+                    </button>
+                </section>
             </section>
         </section>
     </div>
+     <script src="../scripts/modal.js"></script>
 </body>
 </html>
