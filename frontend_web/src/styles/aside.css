@@ -1,7 +1,7 @@
 /* Menú lateral de opciones y informacion del usuario */
 aside{
     grid-area: aside;
-    background-color: #F1F2F7;
+    background-color: #e5e7ecec;
     display: flex;
     flex-direction: column;
 }
