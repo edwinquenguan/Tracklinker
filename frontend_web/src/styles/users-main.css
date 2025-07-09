@@ -59,6 +59,27 @@ main{
     gap: 8px;
 }
 
+/* Barra de búsqueda */
+.search-bar-users{
+    padding: 5px;
+    border: 1px solid #d2cece ;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Entrada de texto buscador */
+.search-input{
+    font-size: 15px;
+    height: 100%;
+    width: 90%;
+    border: 0;
+    outline: none;
+    padding: 0px 0px 0px 20px;
+    color: #000;
+}
+
 /* Texto dentro del botón */
 .button-text{
     font-size: 16px;
