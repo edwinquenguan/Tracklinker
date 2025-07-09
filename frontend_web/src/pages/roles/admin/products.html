@@ -147,14 +147,18 @@
                 </p>
                 <section class="second-top-container">
                     <!-- Botón para agregar producto -->
-                    <section class="add-product-section">
-                        <button class="add-product-button" data-open="modal2">
-                            <img src="../../../assets/images/main/products/add-product-icon.svg">
-                            <p>
-                                Añadir Producto
-                            </p>
-                        </button>
-                    </section>
+                    <button class="add-product-primary-button" data-open="modal1">
+                        <img src="../../../assets/images/main/products/barcode-scanner-icon.svg">
+                        <p>
+                            Añadir Producto
+                        </p>
+                    </button>
+                    <button class="add-product-button" data-open="modal2">
+                        <img src="../../../assets/images/main/products/add-product-icon.svg">
+                        <p>
+                            Añadir Producto
+                        </p>
+                    </button>
                     <!-- Barra De Búsqueda -->
                     <section class="search-bar-table">
                         <input placeholder="Buscar" class="search-input">
@@ -362,7 +366,27 @@
             </section>
          </main>
         <!-- Modales--> 
-        <!-- Modal para agregar producto -->
+
+        <!-- Modal para agregar producto mediante código de barras -->
+        <section class="modal" id="modal1">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Agregar Producto
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal1">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+         </section>
+
+        <!-- Modal para agregar producto por formulario -->
          <section class="modal" id="modal2">
             <section class="modal-container">
                 <section class="modal-header">
@@ -382,11 +406,6 @@
                     <input type="text">
                     <label for="warranty-period">Tiempo de Garantía</label>
                     <input type="text">
-                    <br>
-                    <label for="scanner"> O hacerlo mediante codigo de barras</label>
-                    <button class="scanner-button" data-close="modal2">
-                        <img src="../../../assets/images/main/products/barcode-scanner-icon.svg">
-                    </button>
                 </form>
                 <section class="modal-buttons">
                     <button class="confirm-icon" data-close="modal2">
