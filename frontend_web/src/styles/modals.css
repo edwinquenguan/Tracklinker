@@ -46,6 +46,26 @@
     font-weight: 600;
 }
 
+/* Contenedor del titulo y el texto de una modal de error */
+.modal-error-text-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+/* Titulo de Algún error com contraseña incorrecta */
+.modal-error-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* Imagen para cada modal de error */
+.error-modal-image{
+    height: 150px;
+    width: 150px;
+}
+
 /* Botones Dentro del modal de informacion */
 .modal-buttons{
     display: flex;
@@ -59,6 +79,7 @@
     width: 30px;
 }
 
+/* Clase global para cualquier botón */
 .modal-button{
     padding: 10px 20px;
     border-radius: 7px;
@@ -67,6 +88,7 @@
     transition: box-shadow .3s;
 }
 
+/* Botón para confirmar */
 .modal-button-confirm{
     padding: 10px 20px;
     border-radius: 7px;
