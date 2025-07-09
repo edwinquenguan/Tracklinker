@@ -1,6 +1,7 @@
 /* Importar valores predeterminados */
 @import url('root.css');
 @import url('responsive.css');
+@import url('modals.css');
 
 /* Container */
 .container{
@@ -43,26 +44,69 @@
 input{
     border-radius: 8px;
     border: 0;
-    padding: 12px 16px;
+    padding: 12px 70px 12px 20px;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 input::placeholder{
     color: #B3B3B3;
-    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
 }
 
-/* Campo del boton de login */
-.button-field{
-    padding: 44px 0px 0px 0px;
+/* Campo de cada boton */
+.buttons-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    gap: 10px;
 }
 
 /* Boton de ingreso */
 .login-button{
-    padding: 10px 16px;
-    cursor: pointer;
+    padding: 13px 110px;
     border-radius: 8px;
-    background-color: #4252B7;
+    background-color: #4e5fd1;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
     font-size: 14px;
+    font-weight: 500;
+    transition: box-shadow .3s;
+}
+
+.login-button:hover{
+    background-color: #344df6;
+    box-shadow: 0px 0px 32px -10px #344df6;
+}
+
+.recover-pass-button{
+    padding: 13px 65px;
+    border-radius: 8px;
+    background-color: #d0d1dabb;
+    color: #424040;
+    font-weight: 500;
+    font-size: 14px;
+    transition: box-shadow .3s;
+}
+
+.recover-pass-button:hover{
+    background-color: #bfc0ca;
+    box-shadow: 0px 0px 32px -8px #8e8f94;
+}
+
+/* Fondo casi transparente para algunos modales */
+.background{
+    background-color: #00000028;
+}
+
+/* Cambio del justify content para modales de error que no tienen título */
+.flex-end{
+    justify-content: flex-end;
+}
+
+/* Sección donde se digita el correo y se envia el código en la modal */
+.email-section{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
