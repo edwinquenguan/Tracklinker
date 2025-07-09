@@ -54,6 +54,24 @@
     gap: 15px;
 }
 
+/* Estilos para el container de la modal de la vista previa del informe */
+.modal-pdf-view{
+    width: 100%;
+}
+
+/* Contenedor de la imágen del pdf*/
+.pdf-container{
+    width: 100%;
+    padding: 0px 50px;
+}
+
+/* Imágen de ejemplo del pdf */
+.pdf-image{
+    width: 100%;
+    height: 100%;
+    border:1px solid #000;
+}
+
 /* Titulo de Algún error com contraseña incorrecta */
 .modal-error-title{
     font-size: 20px;
