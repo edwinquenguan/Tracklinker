@@ -392,15 +392,38 @@
                         </button>
                     </section>
                 </section>
-            <!-- Números de páginas que aparecen en la parte inferior -->
-            <section class="pages">
-                <a href="./users.html" class="active-page">
-                    1
-                </a>
-                <a href="./users2.html" class="inactive-page">
-                    2
-                </a>
-            </section>
+                <!-- Octavo Usuario -->
+                <!-- Campo donde esta la informacion del usuario y los botones * REUTILIZADO *-->
+                <section class="user-field">
+                    <section class="user-information">
+                        <!-- Nombre del usuario -->
+                        <p class="info username">
+                            Agustín Saúl Perez Lorca
+                        </p>
+                        <p class="info phone">
+                            <img src="../../../assets/images/main/users/phone-icon.svg" alt="Icono de telefono">
+                            3002526637
+                        </p>
+                        <p class="info role">
+                            <img src="../../../assets/images/main/users/rol-icon.svg" alt="Icono de rol">
+                            Administrador
+                        </p>
+                    </section>
+                    <section class="user-buttons">
+                        <!-- Más informacion del usuario -->
+                        <button class="user-button" data-open="modal3">
+                            <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                        </button>
+                        <!-- Editar la informacion de usuario -->
+                        <button class="user-button" data-open="modal4">
+                            <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                        </button>
+                        <!-- Eliminar Usuario -->
+                        <button class="user-button" data-open="modal5">
+                            <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                        </button>
+                    </section>
+                </section>
         </main>
 
         <!-- Modales--> 
@@ -559,11 +582,11 @@
                 </p>
                 <!-- Botones -->
                 <section class="modal-buttons">
-                    <button class="modal-button" data-close="modal5">
-                        Cancelar
-                    </button>
                     <button class="modal-button-confirm" data-close="modal5">
                         Confirmar
+                    </button>
+                    <button class="modal-button" data-close="modal5">
+                        Cancelar
                     </button>
                 </section>
             </section>
