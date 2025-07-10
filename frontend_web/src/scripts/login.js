@@ -29,13 +29,9 @@ form.addEventListener("submit", function (e) {
   } else if (user === technicalUser && pass == technicalPass){
     window.location.href = '../pages/roles/tecnico/home.html';
   }else {
-    showModal();
+    modalError.classList.add('show-modal');
   }
 });
-
-function showModal() {
-  modalError.classList.add('show-modal');
-}
 
 closeModalIcon.addEventListener("click",  () => {
   modalError.classList.remove('show-modal');
