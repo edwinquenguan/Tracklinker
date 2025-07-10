@@ -1,0 +1,159 @@
+main{
+    grid-area: main;
+}
+
+
+/* Sección que contiene su nombre y dos botones */
+.top-section{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Nombre de la sección */
+.section-name{
+    height: 10%;
+    font-weight: 500;
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+
+/* Sección de los botones superiores */
+.top-buttons{
+    display: flex;
+    gap: 19px;
+    padding-right: 51px;
+}
+
+
+/* Botón de filtrar */
+.filter-button{
+    display: flex;
+    align-items: center;
+    padding: 0px 15px 0px 15px;
+    border-radius: 20px;
+    border: 0;
+    background-color: #ede8e9;
+    transition: box-shadow .3s;
+}
+
+.filter-button:hover{
+    box-shadow: 0px 0px 32px 1px #b3afb0;
+}
+
+/* Botón de añadir garantías */
+.add-warranty-button{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 0;
+    background-color: #bac4ff;
+    box-shadow: 0px 0px 32px -10px #344df6;
+    padding: 5px 15px 5px 15px;
+    gap: 8px;
+    transition: box-shadow .3s;
+}
+
+.add-warranty-button:hover{
+    box-shadow: 0px 0px 32px -5px #344df6;
+}
+
+/* Texto dentro de cada botón */
+.button-text{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Contenedor de las garantías */
+.warranties-container{
+    height: 90%;
+    width: 100%;
+    max-width: 1700px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0px 40px 40px 40px;
+}
+
+/* Tarjeta de cada garantía */
+.warranty-card{
+    width: 280px;
+    height: 340px;
+    background-color: #e3d8d8;
+    border-radius: 16px;
+    box-shadow: 0px 0px 32px -20px #0a0f30;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: box-shadow .3s;
+}
+
+.warranty-card:hover{
+    box-shadow: 0px 0px 32px -15px #0a0f30;
+}
+
+/* Número de garantía */
+.warranty-number{
+    padding: 0px 5px 10px 5px;
+    width: 100%;
+    color: #1c1c1c;
+    font-weight: 500;
+    font-size: 1.3rem;
+    border-bottom: .1px solid #000;
+}
+/* Botón de ver más */
+.warranty-card-buttons{
+    padding: 5px 0px 20px 0px;
+}
+
+/* Fecha de creacion de la garantía */
+.date-title{
+    font-weight: 600;
+}
+
+/* Titúlos como fecha de creación, Estado y Descripción */
+.title{
+    font-weight: 600;
+}
+
+/* Sección del estado de la garantia */
+.warranty-status{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status{
+    font-weight: 500;
+}
+
+/* Botón de ver más */
+.see-more-button{
+    padding: 5px 30px;
+    background-color: #4b56f9;
+    color: #ffffff;
+    border: 0;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 15px;
+    box-shadow: 0px 0px 32px -15px #0a0f30;
+    transition: background-color 0.3s ease;
+}
+
+.see-more-button:hover{
+    background-color: #314af1;
+    box-shadow: 0px 0px 32px -10px #0a0f30;
+}
+
+/* Color de letra de todos los anchors */
+a{
+    color: #000;
+}
