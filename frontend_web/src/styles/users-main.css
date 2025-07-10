@@ -66,7 +66,6 @@ main{
     transition: box-shadow .3s;
 }
 
-
 .add-user-button:hover{
     box-shadow: 0px 0px 32px -5px #344df6;
 }
