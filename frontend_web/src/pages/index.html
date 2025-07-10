@@ -11,19 +11,19 @@
     <div class="container">
         <section class="login-card">
             <img src="../assets/images/Logo.svg" alt="Icono del proyecto" class="logo">
-            <form class="login-form">
+            <form class="login-form" id="login-form">
                 <section class="user-name-field">
                     <label for="user-name" class="login-label"> Usuario </label>
-                    <input type="text" placeholder="Usuario" required>
+                    <input type="text" placeholder="Usuario" required id="user">
                 </section>
                 <section class="password-field">                
                     <label for="password" class="login-label"> Contraseña </label>
-                    <input type="password" placeholder="Contraseña" required>
+                    <input type="password" placeholder="Contraseña" required id="pass">
                 </section>
                 <section class="buttons-container">
-                    <a class="login-button" href="./roles/admin/home.html">
+                    <button class="login-button">
                         Ingresar
-                    </a>
+                    </button>
                     <a class="recover-pass-button" href="#" data-open="modal3">
                         Olvide Mi Contraseña
                     </a>
@@ -33,11 +33,11 @@
         <!-- Modales -->
     
         <!-- Modal Para Contraseña Incorrecta -->
-         <section class="modal background" id="modal1">
+         <section class="modal background" id="modal-error">
             <section class="modal-container">
                 <section class="modal-header flex-end">
                     <a href="">
-                        <img src="../assets/images/modal/close-icon.svg" data-close="modal1">
+                        <img src="../assets/images/modal/close-icon.svg" id="close-icon">
                     </a>
                 </section>
                 <img src="../assets/images/modal/error-modal-image.svg" class="error-modal-image">
@@ -50,14 +50,12 @@
                     </p>
                 </section>
                 <section class="modal-buttons">
-                    <button class="modal-button-confirm" data-close="modal1">
+                    <button class="modal-button-confirm" data-close="modal-error">
                         Ok
                     </button>
                 </section>
             </section>
          </section>
-
-        <!-- Modal para Usuario no existente -->
 
         <!-- Modal para recuperar contraseña -->
         <section class="modal" id="modal3">
@@ -96,5 +94,6 @@
         </section>
     </div>
      <script src="../scripts/modal.js"></script>
+     <script src="../scripts/login.js"></script>
 </body>
 </html>
