@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="WB DataDic" />
-    <meta name="description" content="db-tracklinker Data Dictionary." />
-    <title>db-tracklinker Data Dictionary</title>
+    <meta name="description" content="mydb Data Dictionary." />
+    <title>mydb Data Dictionary</title>
     <style type="text/css">
     table{
         width: 100%;
@@ -51,9 +51,9 @@
 </head>
 <body>
 <div id="title-sect">
-<h1>db-tracklinker<br> Data Dictionay</h1>
+<h1>mydb<br> Data Dictionay</h1>
 <p>
-<em>2025-06-27</em>
+<em>2025-07-09</em>
 </p>
 <p class="proj-desc">
 <em></em>
@@ -61,20 +61,25 @@
 </div>
 <h2>Alphabetic Index</h2>
 <ul>
-<li><a href='#CATEGORIAS'>CATEGORIAS</a></li>
-<li><a href='#CREDENCIALES'>CREDENCIALES</a></li>
-<li><a href='#DETALLES'>DETALLES</a></li>
-<li><a href='#GARANTIAS'>GARANTIAS</a></li>
-<li><a href='#PRODUCTOS'>PRODUCTOS</a></li>
-<li><a href='#PROVEEDORES'>PROVEEDORES</a></li>
-<li><a href='#ROL'>ROL</a></li>
-<li><a href='#SUBCATEGORIAS'>SUBCATEGORIAS</a></li>
-<li><a href='#TRANSFORMACIONES'>TRANSFORMACIONES</a></li>
-<li><a href='#USUARIOS'>USUARIOS</a></li>
-<li><a href='#VALIDACIONES'>VALIDACIONES</a></li>
+<li><a href='#CATEGORY'>CATEGORY</a></li>
+<li><a href='#CUSTOMERS'>CUSTOMERS</a></li>
+<li><a href='#INPUT_ORDER'>INPUT_ORDER</a></li>
+<li><a href='#OUTPUT_DETAILS'>OUTPUT_DETAILS</a></li>
+<li><a href='#OUTPUT_ORDER'>OUTPUT_ORDER</a></li>
+<li><a href='#PRODUCTS'>PRODUCTS</a></li>
+<li><a href='#PRODUCT_BRAND'>PRODUCT_BRAND</a></li>
+<li><a href='#PRODUCT_DETAILS'>PRODUCT_DETAILS</a></li>
+<li><a href='#PRODUCT_SERIALS'>PRODUCT_SERIALS</a></li>
+<li><a href='#ROLS'>ROLS</a></li>
+<li><a href='#SUBCATEGORY'>SUBCATEGORY</a></li>
+<li><a href='#SUPLIER'>SUPLIER</a></li>
+<li><a href='#TECHNICAL'>TECHNICAL</a></li>
+<li><a href='#USERS'>USERS</a></li>
+<li><a href='#WAREHAUSEMAN'>WAREHAUSEMAN</a></li>
+<li><a href='#WARRANTY_INCIDENTS'>WARRANTY_INCIDENTS</a></li>
 </ul>
-<table id='CATEGORIAS'>
-<caption>CATEGORIAS</caption>
+<table id='CATEGORY'>
+<caption>CATEGORY</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -103,21 +108,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>user_id</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
     <td>category_name</td>
-    <td>VARCHAR(50)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -128,8 +120,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='CREDENCIALES'>
-<caption>CREDENCIALES</caption>
+<table id='CUSTOMERS'>
+<caption>CUSTOMERS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -147,19 +139,6 @@
 <tr>
     <td>user_id</td>
     <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>user_password</td>
-    <td>VARCHAR(50)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -171,8 +150,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>user_email</td>
-    <td>VARCHAR(45)</td>
+    <td>out_order_id</td>
+    <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -183,21 +162,8 @@
     <td></td>
     <td></td>
 </tr>
-<tr>
-    <td>user_status</td>
-    <td>TINYINT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<table id='DETALLES'>
-<caption>DETALLES</caption>
+<table id='INPUT_ORDER'>
+<caption>INPUT_ORDER</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -213,7 +179,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>product_serial</td>
+    <td>input_order_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -221,13 +187,13 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
+    <td>&#10004;</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td>product_name</td>
-    <td>VARCHAR(45)</td>
+    <td> suplier_id</td>
+    <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -239,7 +205,101 @@
     <td></td>
 </tr>
 <tr>
-    <td>product_admmision_date</td>
+    <td>input_order_supplier</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>input_order_bill</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>input_order_date</td>
+    <td>DATE</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='OUTPUT_DETAILS'>
+<caption>OUTPUT_DETAILS</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>out_order_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_serial_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>output_details_id</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>out_product_garanty</td>
     <td>DATE</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -252,8 +312,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>product_price</td>
-    <td>FLOAT</td>
+    <td>product_transformation</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -264,21 +324,8 @@
     <td></td>
     <td></td>
 </tr>
-<tr>
-    <td>product_amount</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<table id='GARANTIAS'>
-<caption>GARANTIAS</caption>
+<table id='OUTPUT_ORDER'>
+<caption>OUTPUT_ORDER</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -294,7 +341,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>warranty_id</td>
+    <td>out_order_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -307,20 +354,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>id_product</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>warranty_creation_date</td>
+    <td>out_order_date</td>
     <td>DATE</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -333,8 +367,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>warranty_request_status</td>
-    <td>VARCHAR(45)</td>
+    <td>customer_requirements</td>
+    <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -345,8 +379,21 @@
     <td></td>
     <td></td>
 </tr>
-<table id='PRODUCTOS'>
-<caption>PRODUCTOS</caption>
+<tr>
+    <td>amount</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='PRODUCTS'>
+<caption>PRODUCTS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -362,7 +409,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>product_id</td>
+    <td>products_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -388,7 +435,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>supplier_id</td>
+    <td>product_details_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -401,7 +448,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>product_serial</td>
+    <td>product_stock</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -413,8 +460,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='PROVEEDORES'>
-<caption>PROVEEDORES</caption>
+<table id='PRODUCT_BRAND'>
+<caption>PRODUCT_BRAND</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -430,7 +477,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>supplier_id</td>
+    <td>product_brand_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -443,75 +490,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>supplier_name</td>
-    <td>VARCHAR(50)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>supplier_phone</td>
-    <td>VARCHAR(50)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>supplier_address</td>
-    <td>VARCHAR(80)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<table id='ROL'>
-<caption>ROL</caption>
-<tr><td colspan='11'></td></tr>
-<tr>
-    <th>Column name</th>
-    <th>DataType</th>
-    <th><abbr title='Primary Key'>PK</abbr></th>
-    <th><abbr title='Not Null'>NN</abbr></th>
-    <th><abbr title='Unique'>UQ</abbr></th>
-    <th><abbr title='Binary'>BIN</abbr></th>
-    <th><abbr title='Unsigned'>UN</abbr></th>
-    <th><abbr title='Zero Fill'>ZF</abbr></th>
-    <th><abbr title='Auto Increment'>AI</abbr></th>
-    <th>Default</th>
-    <th>Comment</th>
-</tr>
-<tr>
-    <td>rol_id</td>
-    <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>rol_name</td>
+    <td>product_brand_name</td>
     <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -523,8 +502,199 @@
     <td></td>
     <td></td>
 </tr>
-<table id='SUBCATEGORIAS'>
-<caption>SUBCATEGORIAS</caption>
+<table id='PRODUCT_DETAILS'>
+<caption>PRODUCT_DETAILS</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>product_details_id</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_brand_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>supplier_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_detail_model</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_detail_description</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='PRODUCT_SERIALS'>
+<caption>PRODUCT_SERIALS</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>product_serial_id</td>
+    <td>INT(20)</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>products_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>input_order_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_garanty_input</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='ROLS'>
+<caption>ROLS</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>rols_id</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>rols_name</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='SUBCATEGORY'>
+<caption>SUBCATEGORY</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -567,7 +737,7 @@
 </tr>
 <tr>
     <td>subcategory_name</td>
-    <td>VARCHAR(50)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -578,8 +748,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='TRANSFORMACIONES'>
-<caption>TRANSFORMACIONES</caption>
+<table id='SUPLIER'>
+<caption>SUPLIER</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -595,7 +765,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>transformation_id</td>
+    <td>supplier_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -608,8 +778,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>product_id</td>
-    <td>INT</td>
+    <td>suplier_name</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -621,8 +791,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>transfomation_request</td>
-    <td>VARCHAR(200)</td>
+    <td>suplier_address</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -634,8 +804,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>trasformation_request_date</td>
-    <td>DATE</td>
+    <td>suplier_email</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -646,8 +816,21 @@
     <td></td>
     <td></td>
 </tr>
-<table id='USUARIOS'>
-<caption>USUARIOS</caption>
+<tr>
+    <td>suplier_phone</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='TECHNICAL'>
+<caption>TECHNICAL</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -665,18 +848,18 @@
 <tr>
     <td>user_id</td>
     <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td>rol_id</td>
+    <td>warranty_incidents_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -688,47 +871,8 @@
     <td></td>
     <td></td>
 </tr>
-<tr>
-    <td>user_name</td>
-    <td>VARCHAR(45)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>user_surname</td>
-    <td>VARCHAR(45)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>user_phone</td>
-    <td>VARCHAR(45)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<table id='VALIDACIONES'>
-<caption>VALIDACIONES</caption>
+<table id='USERS'>
+<caption>USERS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -744,20 +888,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>validation_id</td>
-    <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>transformation_id</td>
+    <td>rols_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -770,8 +901,21 @@
     <td></td>
 </tr>
 <tr>
-    <td>validation_observations</td>
-    <td>VARCHAR(80)</td>
+    <td>user_id</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>user_full_name</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -783,7 +927,234 @@
     <td></td>
 </tr>
 <tr>
-    <td>validation_finish_date</td>
+    <td>users_phone</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>users_email</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>user_address</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>user_password</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>user_date</td>
+    <td>DATE</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='WAREHAUSEMAN'>
+<caption>WAREHAUSEMAN</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>users_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>input_order_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='WARRANTY_INCIDENTS'>
+<caption>WARRANTY_INCIDENTS</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>warranty_incidents_id</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>product_serials_id</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_customer</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_phone</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_address</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_description</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_link_attachments</td>
+    <td>VARCHAR(100)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_city</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>warranty_date</td>
     <td>DATE</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
