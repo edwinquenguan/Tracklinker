@@ -140,13 +140,7 @@
                     Productos
                 </p>
                 <section class="second-top-container">
-                    <!-- Botón para agregar producto -->
-                    <button class="add-product-primary-button" data-open="modal1">
-                        <img src="../../../assets/images/main/products/barcode-scanner-icon.svg">
-                        <p>
-                            Añadir Producto
-                        </p>
-                    </button>
+
                     <button class="add-product-button" data-open="modal2">
                         <img src="../../../assets/images/main/products/add-product-icon.svg">
                         <p>
@@ -361,25 +355,6 @@
          </main>
         <!-- Modales--> 
 
-        <!-- Modal para agregar producto mediante código de barras -->
-        <section class="modal" id="modal1">
-            <section class="modal-container">
-                <section class="modal-header">
-                    <p class="modal-title">
-                        Agregar Producto
-                    </p>
-                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
-                        <img src="../../../assets/images/modal/close-icon.svg">
-                    </a>
-                </section>
-                <section class="modal-buttons">
-                    <button class="confirm-icon" data-close="modal1">
-                        <img src="../../../assets/images/modal/check-icon.svg">
-                    </button>
-                </section>
-            </section>
-         </section>
-
         <!-- Modal para agregar producto por formulario -->
          <section class="modal" id="modal2">
             <section class="modal-container">
@@ -401,6 +376,10 @@
                     <label for="warranty-period">Tiempo de Garantía</label>
                     <input type="text">
                 </form>
+                <label for="barcode-reader">O scannee el código de barras </label>
+                <button class="modal-button" data-close="modal2">
+                    <img src="../../../assets/images/main/products/barcode-reader-icon.svg">
+                </button>
                 <section class="modal-buttons">
                     <button class="confirm-icon" data-close="modal2">
                         <img src="../../../assets/images/modal/check-icon.svg">
