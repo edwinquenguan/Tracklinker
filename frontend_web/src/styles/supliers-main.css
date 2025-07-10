@@ -120,12 +120,14 @@ main{
     display: flex;
     align-items: center;
     font-weight: 500;
+    color: #000;
 }
 
 /* Nombre del Proveedor */
 .suplier-name{
     font-size: 32px;
     font-weight: 500;
+    color: #000;
 }
 
 /* Telefono */
@@ -143,7 +145,7 @@ main{
 /* Botones de cada proveedor */
 .suplier-buttons{
     display: flex;
-    gap: 22px;
+    align-items: center;
 }
 
 .suplier-button{
