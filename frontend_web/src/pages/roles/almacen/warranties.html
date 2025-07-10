@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantias</title>
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link rel="stylesheet" href="../../../styles/warranties-main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú ubicado al lado -->
+        <aside id="aside">
+            <!-- Informacion Del Usuario -->
+            <section class="user-info">
+                <a href="#" class="avatar-field" data-open="modal15">
+                    <img src="../../../assets/images/aside/avatar.svg" alt="Foto de Perfil" class="avatar">
+                </a>
+                <!-- Texto dentro del informacion del usuario -->
+                <section class="user-info-text">
+                    <p class="user-name">
+                        <strong> Stiven Casas </strong>
+                    </p>
+                    <p class="user-rol"> Almacén </p>
+                </section>
+            </section>
+            <!-- Menú -->
+            <section class="menu">
+                <nav class="menu-sections">
+                    <!-- Primera Sección -->
+                    <section class="first-section">
+                        <p class="section-identificator">Menu</p>
+                        <!-- Lista De Opciones -->
+                        <ul>
+                            <li class="option">
+                                <a href="./home.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/home-icon.svg" alt="Icono del Panel de Control">
+                                </a>
+                                <a class="option-text" href="home.html">Inicio</a>
+                            </li>
+                            <li class="option">
+                                <a href="./products.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/products-icon.svg" alt="Icono de la seccion productos">
+                                </a>
+                                <a class="option-text" href="products.html">Productos</a>
+                            </li>
+                            <li class="option">
+                                <a href="./categories.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/categories-icon.svg" alt="Icono de la seccion categorias">
+                                </a>
+                                <a class="option-text" href="categories.html">Categorias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./subcategories.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/subcategories-icon.svg" alt="Icono de la seccion subcategorias">
+                                </a>
+                                <a class="option-text" href="subcategories.html">Subcategorias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./reports.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/reports-icon.svg" alt="Icono de la seccion informes">
+                                </a>
+                                <a class="option-text" href="reports.html">Informes</a>
+                            </li>
+                            <li class="option active-section">
+                                <a href="./warranties.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/active-section/warranties-icon.svg" alt="Icono de la seccion garantias">
+                                </a>
+                                <a class="option-text active-section-text" href="warranties.html">Garantias</a>
+                            </li>
+                            <li class="option">
+                                <a href="./supliers.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/supliers-icon.svg" alt="Icono de la seccion de proveedores">
+                                </a>
+                                <a class="option-text" href="supliers.html">Proveedores</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <!-- Segunda Sección -->
+                    <section class="second-section">
+                        <p class="section-identificator"> Otros </p>
+                        <ul>
+                            <li class="option">
+                                <a href="./help.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/help-icon.svg" alt="Icono de la seccion ayuda">
+                                </a>
+                                <a class="option-text" href="help.html">Ayuda</a>
+                            </li>
+                            <li class="option">
+                                <a href="../../index.html" class="menu-icon-field">
+                                    <img class="menu-icon" src="../../../assets/images/aside/logout-icon.svg" alt="icono de cerrar sesion">
+                                </a>
+                                    <a class="option-text" href="../../index.html">Cerrar Sesión</a>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </section>
+        </aside>
+        <!-- Cabecera que contiene el buscador y la campana de notificaciones -->
+        <header>
+            <!-- Barra De Búsqueda -->
+            <section class="search-bar">
+                <input class="search-input" placeholder="Buscar">
+                <a href="#" class="search-icon-space">
+                    <img class="search-icon" src="../../../assets/images/header/search-icon.svg" alt="Lupa Para Buscar">
+                </a>
+            </section>
+            <!-- Campana De Notificaciones -->
+            <a href="#">
+                <img class="bell" src="../../../assets/images/header/bell.svg" alt="Icono de notificaciones">
+            </a>
+            <button id="menu-button" class="menu-button">
+                <img src="../../../assets/images/header/menubar-icon.svg" alt="Icono de menu de Opciones">
+            </button>
+        </header>
+        <!-- Contenido principal de la página -->
+        <main>
+            <section class="top-section">
+                <p class="section-name">
+                    Garantías
+                </p>
+                <!-- Botones de Añadir usuario y filtro -->
+                <div class="top-buttons">
+                    <button class="filter-button" data-open="modal1">
+                        <img src="../../../assets/images/main/users/filter-icon.svg" alt="Icono de filtrar">
+                        <p class="button-text">
+                            Filtrar
+                        </p>
+                    </button>
+                    <button class="add-warranty-button" data-open="modal2">
+                        <img src="../../../assets/images/main/warranties/add-warranty-icon.svg" alt="Icono de crear garantía">
+                        <p class="button-text">
+                            Crear Garantía
+                        </p>
+                    </button>
+                </div>
+            </section>
+            <section class="warranties-container">
+                <!-- Primera Garantía -->
+                <section class="warranty-card" data-open="modal3">
+                    <p class="warranty-number">
+                        Garantia #1
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/incomplete-icon.svg">
+                        <p class="status">
+                            Sin Iniciar
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Segunda Garantía-->
+                <section class="warranty-card" data-open="modal3">
+                    <p class="warranty-number">
+                        Garantia #2
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/incomplete-icon.svg">
+                        <p class="status">
+                            Sin iniciar
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Tercera Garantía -->
+                <section class="warranty-card" data-open="modal3">
+                    <p class="warranty-number">
+                        Garantia #3
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/incomplete-icon.svg">
+                        <p class="status">
+                            Sin iniciar
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Cuarta Garantía -->
+                <section class="warranty-card" data-open="modal3">
+                    <p class="warranty-number">
+                        Garantia #4
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/incomplete-icon.svg">
+                        <p class="status">
+                            Sin iniciar
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Quinta Garantía -->
+                <section class="warranty-card" data-open="modal3">
+                    <p class="warranty-number">
+                        Garantia #5
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/incomplete-icon.svg">
+                        <p class="status">
+                            Sin iniciar
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Sexta Garantía -->
+                <section class="warranty-card" data-open="modal4">
+                    <p class="warranty-number">
+                        Garantia #6
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/inprocess-icon.svg">
+                        <p class="status">
+                            En Proceso
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Septima Garantía -->
+                <section class="warranty-card" data-open="modal4">
+                    <p class="warranty-number">
+                        Garantia #7
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/inprocess-icon.svg">
+                        <p class="status">
+                            En Proceso
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Octava Garantía -->
+                <section class="warranty-card" data-open="modal4">
+                    <p class="warranty-number">
+                        Garantia #8
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/inprocess-icon.svg">
+                        <p class="status">
+                            En Proceso
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Novena Garantía -->
+                <section class="warranty-card" data-open="modal5">
+                    <p class="warranty-number">
+                        Garantia #9
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/complete-icon.svg">
+                        <p class="status">
+                            Completada
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+
+                <!-- Decima Garantía -->
+                <section class="warranty-card" data-open="modal5">
+                    <p class="warranty-number">
+                        Garantia #10
+                    </p>
+                    <section class="warranty-description">
+                        <p class="title">
+                            Requerimiento
+                        </p>
+                        <p class="description-text">
+                            Cambio de pantalla y aumento de memoria ram
+                        </p>
+                    </section>
+                    <section class="warranty-creation-date">
+                        <p class="title">
+                            Fecha de Creación
+                        </p>
+                        <p class="date">
+                            12/05/2025
+                        </p>
+                    </section>
+                    <p class="title">
+                        Estado
+                    </p>
+                    <section class="warranty-status">
+                        <img src="../../../assets/images/main/warranties/complete-icon.svg">
+                        <p class="status">
+                            Completada
+                        </p>
+                    </section>
+                    <section class="warranty-card-buttons">
+                        <button class="see-more-button">
+                            Ver Más
+                        </button>
+                    </section>
+                </section>
+            </section>
+        </main>
+        <!-- Modales -->
+        
+        <!-- Modal para el filtro -->
+        <section class="modal" id="modal1">
+            <section class="filter-modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Filtrar
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <nav class="filter-menu">
+                    <ul>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="#">
+                                Ordenar de A-Z
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar de Z-A
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar por Rol
+                            </a>
+                        </p>
+                    </ul>
+                </nav>
+            </section>
+        </section>
+
+        <!-- Modal para crear garantía -->
+        <section class="modal" id="modal2">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Crear Garantía
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal2">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <!-- Fomrulario -->
+                <form action="" class="modal-form">
+                    <label for="name">Nombre Completo del Cliente</label>
+                    <input type="text">
+                    <label for="surname">Requerimiento</label>
+                    <input type="text">
+                    <label for="number">Número de teléfono</label>
+                    <input type="number">
+                    <label for="city">Ciudad donde está ubicado el producto</label>
+                    <select id="city" name="city">
+                        <option value="Bogota">Bogotá</option>
+                        <option value="Soacha">Soacha</option>
+                        <option value="Medellin">Medellín</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Pereira">Pereira</option>
+                        <option value="Cartagena">Cartagena</option>
+                    </select>
+                    <label for="address">Dirección</label>
+                    <input type="text">
+                </form>
+                <!-- Icono de confimación -->
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal2">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+        </section>
+        
+        <!-- Modal para más informacion de garantía sin iniciar -->
+        <section class="modal" id="modal3">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal3">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-body">
+                    <p class="modal-content-title">
+                        Requerimiento
+                    </p>
+                    <p>
+                        Cambiar pantalla del dispositivo y agregar un memoria ram de 8gb
+                    </p>
+                    <p class="modal-content-title">
+                        Serial Del Producto
+                    </p>
+                    <p>
+                        104DAUH1
+                    </p>
+                    <p class="modal-content-title">
+                        Nombre Del Cliente
+                    </p>
+                    <p>
+                        I.E Los Ángeles
+                    </p>
+                    <p class="modal-content-title">
+                        Número
+                    </p>
+                    <p>
+                        3002526637
+                    </p>
+                    <p class="modal-content-title">
+                        Correo
+                    </p>
+                    <p>
+                        agustinlorca@gmail.com
+                    </p>
+                    <p class="modal-content-title">
+                        Ciudad Donde Se Encuentra
+                    </p>
+                    <p>
+                        Pereira
+                    </p>
+                    <p class="modal-content-title">
+                        Dirección
+                    </p>
+                    <p>
+                        KR 40 CL 124 # 19-451
+                    </p>
+                    <p class="modal-content-title">
+                        Observación
+                    </p>
+                    <p>
+                        Avisar con 30 minutos de anticipación su llegada al lugar
+                    </p>
+                </section>
+                <section class="modal-buttons">
+                    <!-- Editar la informacion de usuario -->
+                    <a href="#" class="modal-button-confirm" data-close="modal3">
+                        Salir
+                    </a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para más informacion de garantía en proceso -->
+        <section class="modal" id="modal4">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal4">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-body">
+                    <p class="modal-content-title">
+                        Requerimiento
+                    </p>
+                    <p>
+                        Cambiar pantalla del dispositivo y agregar un memoria ram de 8gb
+                    </p>
+                    <p class="modal-content-title">
+                        Serial Del Producto
+                    </p>
+                    <p>
+                        104DAUH1
+                    </p>
+                    <p class="modal-content-title">
+                        Nombre Del Cliente
+                    </p>
+                    <p>
+                        I.E Los Ángeles
+                    </p>
+                    <p class="modal-content-title">
+                        Número
+                    </p>
+                    <p>
+                        3002526637
+                    </p>
+                    <p class="modal-content-title">
+                        Correo
+                    </p>
+                    <p>
+                        agustinlorca@gmail.com
+                    </p>
+                    <p class="modal-content-title">
+                        Ciudad Donde Se Encuentra
+                    </p>
+                    <p>
+                        Pereira
+                    </p>
+                    <p class="modal-content-title">
+                        Dirección
+                    </p>
+                    <p>
+                        KR 40 CL 124 # 19-451
+                    </p>
+                    <p class="modal-content-title">
+                        Observación
+                    </p>
+                    <p>
+                        Avisar con 30 minutos de anticipación su llegada al lugar
+                    </p>
+                </section>
+                <section class="modal-buttons">
+                    <!-- Salir -->
+                    <a href="#" class="modal-button-confirm" data-close="modal4">
+                        Salir
+                    </a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para más informacion de garantía completada -->
+        <section class="modal" id="modal5">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon" data-close="modal5">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="modal-body">
+                    <p class="modal-content-title">
+                        Fecha de Finalización
+                    </p>
+                    <p>
+                        08/07/2025
+                    </p>
+                    <p class="modal-content-title">
+                        Empleado que la realizo
+                    </p>
+                    <p>
+                        Agustín Saúl Perez Lorca
+                    </p>
+                    <p class="modal-content-title">
+                        Requerimiento
+                    </p>
+                    <p>
+                        Cambiar pantalla del dispositivo y agregar un memoria ram de 8gb
+                    </p>
+                    <p class="modal-content-title">
+                        Serial Del Producto
+                    </p>
+                    <p>
+                        104DAUH1
+                    </p>
+                    <p class="modal-content-title">
+                        Nombre Del Cliente
+                    </p>
+                    <p>
+                        I.E Los Ángeles
+                    </p>
+                    <p class="modal-content-title">
+                        Número
+                    </p>
+                    <p>
+                        3002526637
+                    </p>
+                    <p class="modal-content-title">
+                        Correo
+                    </p>
+                    <p>
+                        agustinlorca@gmail.com
+                    </p>
+                    <p class="modal-content-title">
+                        Ciudad Donde Se Encuentra
+                    </p>
+                    <p>
+                        Pereira
+                    </p>
+                    <p class="modal-content-title">
+                        Dirección
+                    </p>
+                    <p>
+                        KR 40 CL 124 # 19-451
+                    </p>
+                    <p class="modal-content-title">
+                        Observación
+                    </p>
+                    <p>
+                        Avisar con 30 minutos de anticipación su llegada al lugar
+                    </p>
+                </section>
+                <section class="modal-buttons">
+                    <!-- Salir -->
+                    <a href="#" class="modal-button-confirm" data-close="modal5">
+                        Salir
+                    </a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modales para el aside -->
+        <!-- Modal para configuración -->
+        <section class="modal" id="modal15">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Configuración
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal15">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <section class="user-config-main">
+                    <nav class="user-config-nav">
+                        <ul class="user-config-nav-list">
+                            <li class="active-option">
+                                <a href="#" data-open="modal15" class="active-option-text">
+                                    Usuario
+                                </a>
+                            </li>
+                            <li class="user-config-nav-option">
+                                <a href="#" data-open="modal17" class="user-nav-option-text">
+                                    Más Informacion     
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <section class="user-config-body">
+                        <img src="../../../assets/images/aside/avatar.svg">
+                        <section class="user-config-info">
+                            <section class="user-email-field">
+                                <p class="name-field">
+                                    Correo
+                                </p>
+                                <p>
+                                    stivencasas23@gmail.com
+                                </p>
+                            </section>
+                            <section class="user-name-field">
+                                <p class="name-field">
+                                    Nombre
+                                </p>
+                                <p>
+                                    Stiven Arnulfo Casas
+                                </p>
+                            </section>
+                        </section>
+                        <section class="modal-buttons flex-column">
+                            <button class="modal-button-confirm" data-open="modal16">
+                                Cambiar contraseña
+                            </button>
+                            <a class="modal-button" href="../../index.html">
+                                Cerrar Sesión
+                            </a>
+                        </section>
+                    </section>
+                </section>
+            </section>
+         </section>
+         <!-- Modal para cambio de contraseña -->
+         <section class="modal" id="modal16">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Cambiar Contraseña
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal16">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <form action="" class="modal-form">
+                    <label for="serial">Contraseña Actual</label>
+                    <input type="password">
+                    <label for="model">Nueva Contraseña</label>
+                    <input type="password">
+                    <label for="">Repita La Contraseña</label>
+                    <input type="password">
+                </form>
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal16">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+         </section>
+        <!-- Modal para más información -->
+         <section class="modal" id="modal17">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Información
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal17">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <p>
+                    Desarrollado Por:
+                    <br>
+                    Juan Alvarez
+                    <br>
+                    Rigoberto Vargas
+                    <br>
+                    Edwin Quenguan
+                    <br>
+                    Michael Galindo
+                    <br>
+                    Anderson Medina
+                </p>
+                <section class="repository">
+                    <a href="https://github.com/DevJuan001/Tracklinker" class="repository-field">
+                        <p>
+                            Repositorio De Github
+                        </p>
+                        <img src="../../../assets/images/modal/github_icon.svg" class="github-icon">
+                    </a>
+                </section>
+            </section>
+         </section>
+
+    </div>
+    <script src="../../../scripts/modal.js"></script>
+    <script src="../../../scripts/user-menu-toggle.js"></script>
+</body>
+</html>
