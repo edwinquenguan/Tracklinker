@@ -38,11 +38,15 @@ main{
     border-radius: 20px;
     border: 0;
     background-color: #ede8e9;
+    transition: box-shadow .3s;
 }
 
+.filter-button:hover{
+    box-shadow: 0px 0px 32px 1px #b3afb0;
+}
 
-/* Botón de añadir usuarios */
-.add-user-button{
+/* Botón de añadir garantías */
+.add-warranty-button{
     display: flex;
     align-items: center;
     border-radius: 20px;
@@ -51,8 +55,12 @@ main{
     box-shadow: 0px 0px 32px -10px #344df6;
     padding: 5px 15px 5px 15px;
     gap: 8px;
+    transition: box-shadow .3s;
 }
 
+.add-warranty-button:hover{
+    box-shadow: 0px 0px 32px -5px #344df6;
+}
 
 /* Texto dentro de cada botón */
 .button-text{
@@ -60,7 +68,6 @@ main{
     font-size: 16px;
     font-weight: 500;
 }
-
 
 /* Contenedor de las garantías */
 .warranties-container{
@@ -72,7 +79,6 @@ main{
     gap: 20px;
     padding: 0px 40px 40px 40px;
 }
-
 
 /* Tarjeta de cada garantía */
 .warranty-card{
@@ -95,7 +101,6 @@ main{
     box-shadow: 0px 0px 32px -15px #0a0f30;
 }
 
-
 /* Número de garantía */
 .warranty-number{
     padding: 0px 5px 10px 5px;
@@ -110,18 +115,15 @@ main{
     padding: 5px 0px 20px 0px;
 }
 
-
 /* Fecha de creacion de la garantía */
 .date-title{
     font-weight: 600;
 }
 
-
 /* Titúlos como fecha de creación, Estado y Descripción */
 .title{
     font-weight: 600;
 }
-
 
 /* Sección del estado de la garantia */
 .warranty-status{
@@ -130,11 +132,9 @@ main{
     gap: 8px;
 }
 
-
 .status{
     font-weight: 500;
 }
-
 
 /* Botón de ver más */
 .see-more-button{
@@ -148,7 +148,6 @@ main{
     box-shadow: 0px 0px 32px -15px #0a0f30;
     transition: background-color 0.3s ease;
 }
-
 
 .see-more-button:hover{
     background-color: #314af1;
