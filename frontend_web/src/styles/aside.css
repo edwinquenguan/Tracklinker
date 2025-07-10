@@ -254,17 +254,25 @@ aside{
 }
 
 .repository{
-    padding: 8px 20px;
-    border-radius: 16px;
-    background-color: #344df6;
+    display: flex;
+    align-items: center;
+    padding: 20px;
 }
 
 .repository-field{
+    background-color: #000000;
+    padding: 10px 20px;
+    border-radius: 16px;
     display: flex;
     gap: 8px;
     color: #ffffff;
 }
 
+
+.github-icon{
+    width: 30px;
+    height: 30px;
+}
 
 /* Responsive */
 /* Tablet */
