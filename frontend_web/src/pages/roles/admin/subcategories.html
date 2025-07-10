@@ -138,6 +138,26 @@
                 <p class="section-name">
                     Subcategorias
                 </p>
+                <div class="category-top-buttons">
+                    <button class="filter-button" data-open="modal1">
+                        <img src="../../../assets/images/main/users/filter-icon.svg" alt="Icono de filtrar">
+                        <p class="button-text">
+                            Filtrar
+                        </p>
+                    </button>
+                    <button class="add-category-button" data-open="modal2">
+                        <img src="../../../assets/images/main/users/add-user-icon.svg">
+                        <p class="button-text">
+                            Añadir Subcategoria
+                        </p>
+                    </button>
+                    <section class="search-bar-categories">
+                        <input type="text" placeholder="Buscar" class="search-input">
+                        <a href="#" class="search-icon-space">
+                            <img src="../../../assets/images/header/search-icon.svg" class="search-icon">
+                        </a>
+                    </section>
+                </div>
             </section>
             <section class="subcategories-container">
                 <!-- Campo donde esta la subcategoria -->
@@ -146,25 +166,172 @@
                     <section class="subcategories-information">
                         <!-- Nombre de la categoria -->
                         <p class="subcategory-name">
-                            Subcategoria
+                            Computadores Portatiles
                         </p>
                     </section>
                     <section class="subcategories-buttons">
                         <!-- Más informacion del usuario -->
                         <button class="subcategory-button">
-                            <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image">
+                            <img src="../../../assets/images/main/users/more-info-icon.svg" alt="Icono de mas informacion" class="button-image" data-open="modal3">
                         </button>
                         <!-- Editar la informacion de usuario -->
                         <button class="subcategory-button">
-                            <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                            <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image" data-open="modal4">
                         </button>
                         <!-- Eliminar Usuario -->
                         <button class="subcategory-button">
-                            <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                            <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image" data-open="modal5">
                         </button>
                     </section>
             </section>
         </main>
+
+                <!-- Modal para el filtro -->
+        <section class="modal" id="modal1">
+            <section class="filter-modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Filtrar
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal1">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <nav class="filter-menu">
+                    <ul>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="#">
+                                Ordenar de A-Z
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar de Z-A
+                            </a>
+                        </p>
+                        <p class="filter-option" data-close="modal1">
+                            <a href="">
+                                Ordenar por creadas las últimas 24 horas
+                            </a>
+                        </p>
+                    </ul>
+                </nav>
+            </section>
+        </section>
+
+        <!-- Modal para agregar subcategoria -->
+        <section class="modal" id="modal2">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Añadir Subcategoria
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal2">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <!-- Fomrulario -->
+                <form action="" class="modal-form">
+                    <label for="name">Nombre</label>
+                    <input type="text">
+                </form>
+                <!-- Icono de confimación -->
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal2">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+        </section>
+        <!-- Modal para más información de la categoría -->
+        <section class="modal" id="modal3">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Más Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon close-modal" data-close="modal3">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <p class="modal-content-title">
+                    Nombre
+                </p>
+                <p>
+                    Computadores Portatiles
+                </p>
+                <p class="modal-content-title">
+                    Fecha De Creación
+                </p>
+                <p>
+                    01/01/2025
+                </p>
+                <p class="modal-content-title">
+
+                </p>
+                <section class="modal-buttons">
+                    <!-- Editar la informacion de la subcategoría -->
+                    <a href="#" class="modal-info-button" data-open="modal2">
+                        <img src="../../../assets/images/main/users/edit-info-icon.svg" alt="Icono de editar informacion" class="button-image">
+                    </a>
+                    <!-- Eliminar categoria -->
+                    <a href="#" class="modal-info-button" data-open="modal3">
+                        <img src="../../../assets/images/main/users/delete-user-icon.svg" alt="Icono de eliminar usuario" class="button-image">
+                    </a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para editar información -->
+        <section class="modal" id="modal4">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Editar Informacion
+                    </p>
+                    <a href="#" class="close-modal-icon" data-close="modal4">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <!-- Formulario -->
+                <form class="modal-form">
+                    <label for="name">Nombre</label>
+                    <input type="text" placeholder="Computadores Portatiles">
+                </form>
+                <!-- Icono de confirmación -->
+                <section class="modal-buttons">
+                    <button class="confirm-icon" data-close="modal4">
+                        <img src="../../../assets/images/modal/check-icon.svg">
+                    </button>
+                </section>
+            </section>
+        </section>
+
+        <!-- Modal para eliminar subcategoría -->
+        <section class="modal" id="modal5">
+            <section class="modal-container">
+                <section class="modal-header">
+                    <p class="modal-title">
+                        Alerta
+                    </p>
+                    <a href="#" class="close-modal-icon" data-close="modal5">
+                        <img src="../../../assets/images/modal/close-icon.svg">
+                    </a>
+                </section>
+                <p>
+                    ¿Quieres eliminar esta Subcategoría?
+                </p>
+                <!-- Botones -->
+                <section class="modal-buttons">
+                    <button class="modal-button-confirm" data-close="modal5">
+                        Confirmar
+                    </button>
+                    <button class="modal-button" data-close="modal5">
+                        Cancelar
+                    </button>
+                </section>
+            </section>
+        </section>
    
         <!-- Modales para el aside -->
         <!-- Modal para configuración -->

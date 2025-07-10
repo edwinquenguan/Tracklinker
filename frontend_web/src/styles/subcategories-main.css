@@ -11,6 +11,13 @@ main{
     justify-content: space-between;
 }
 
+/* Sección de los botones */
+.category-top-buttons{
+    display: flex;
+    gap: 19px;
+    padding-right: 51px;
+}
+
 /* Nombre de la sección */
 .section-name{
     height: 10%;
@@ -61,4 +68,64 @@ main{
 .button-image{
     width: 28px;
     height: 28px;
+}
+
+/* Botón de filtrar */
+.filter-button{
+    display: flex;
+    align-items: center;
+    padding: 0px 15px 0px 15px;
+    border-radius: 20px;
+    border: 0;
+    background-color: #ede8e9;
+    box-shadow: 0px 0px 32px -5px #b3afb0;
+    transition: box-shadow .3s;
+}
+
+.filter-button:hover{
+    box-shadow: 0px 0px 32px 1px #b3afb0;
+}
+
+/* Botón de añadir categorias */
+.add-category-button{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 0;
+    background-color: #bac4ff;
+    box-shadow: 0px 0px 32px -10px #344df6;
+    padding: 5px 15px 5px 15px;
+    gap: 8px;
+    transition: box-shadow .3s;
+}
+
+.add-category-button:hover{
+    box-shadow: 0px 0px 32px -5px #344df6;
+}
+
+/* Barra de búsqueda */
+.search-bar-categories{
+    padding: 5px;
+    border: 1px solid #d2cece ;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Entrada de texto buscador */
+.search-input{
+    font-size: 15px;
+    height: 100%;
+    width: 90%;
+    border: 0;
+    outline: none;
+    padding: 0px 0px 0px 20px;
+    color: #000;
+}
+
+/* Texto dentro del botón */
+.button-text{
+    font-size: 16px;
+    font-weight: 500;
 }
