@@ -13,7 +13,7 @@
         <aside id="aside">
             <!-- Informacion Del Usuario -->
             <section class="user-info">
-                <a href="../../info-user.html" class="avatar-field">
+                <a href="#" class="avatar-field" data-open="modal15">
                     <img src="../../../assets/images/aside/avatar.svg" alt="Foto de Perfil" class="avatar">
                 </a>
                 <!-- Texto dentro del informacion del usuario -->
@@ -219,6 +219,129 @@
                 </a>
             </section>
         </main>
+        
+            <!-- Modales para el aside -->
+            <!-- Modal para configuración -->
+            <section class="modal" id="modal15">
+                <section class="modal-container">
+                    <section class="modal-header">
+                        <p class="modal-title">
+                            Configuración
+                        </p>
+                        <a href="#" class="close-modal-icon close-modal" data-close="modal15">
+                            <img src="../../../assets/images/modal/close-icon.svg">
+                        </a>
+                    </section>
+                    <section class="user-config-main">
+                        <nav class="user-config-nav">
+                            <ul class="user-config-nav-list">
+                                <li class="active-option">
+                                    <a href="#" data-open="modal15" class="active-option-text">
+                                        Usuario
+                                    </a>
+                                </li>
+                                <li class="user-config-nav-option">
+                                    <a href="#" data-open="modal17" class="user-nav-option-text">
+                                        Más Informacion     
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <section class="user-config-body">
+                            <img src="../../../assets/images/aside/avatar.svg">
+                            <section class="user-config-info">
+                                <section class="user-email-field">
+                                    <p class="name-field">
+                                        Correo
+                                    </p>
+                                    <p>
+                                        agustinlorca@gmail.com
+                                    </p>
+                                </section>
+                                <section class="user-name-field">
+                                    <p class="name-field">
+                                        Nombre
+                                    </p>
+                                    <p>
+                                        Agustín Perez Lorca
+                                    </p>
+                                </section>
+                            </section>
+                            <section class="modal-buttons flex-column">
+                                <button class="modal-button-confirm" data-open="modal16">
+                                    Cambiar contraseña
+                                </button>
+                                <a class="modal-button" href="../../index.html">
+                                    Cerrar Sesión
+                                </a>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+             </section>
+             <!-- Modal para cambio de contraseña -->
+             <section class="modal" id="modal16">
+                <section class="modal-container">
+                    <section class="modal-header">
+                        <p class="modal-title">
+                            Cambiar Contraseña
+                        </p>
+                        <a href="#" class="close-modal-icon close-modal" data-close="modal16">
+                            <img src="../../../assets/images/modal/close-icon.svg">
+                        </a>
+                    </section>
+                    <form action="" class="modal-form">
+                        <label for="serial">Contraseña Actual</label>
+                        <input type="password">
+                        <label for="model">Nueva Contraseña</label>
+                        <input type="password">
+                        <label for="">Repita La Contraseña</label>
+                        <input type="password">
+                    </form>
+                    <section class="modal-buttons">
+                        <button class="confirm-icon" data-close="modal16">
+                            <img src="../../../assets/images/modal/check-icon.svg">
+                        </button>
+                    </section>
+                </section>
+             </section>
+            <!-- Modal para más información -->
+             <section class="modal" id="modal17">
+                <section class="modal-container">
+                    <section class="modal-header">
+                        <p class="modal-title">
+                            Más Información
+                        </p>
+                        <a href="#" class="close-modal-icon close-modal" data-close="modal17">
+                            <img src="../../../assets/images/modal/close-icon.svg">
+                        </a>
+                    </section>
+                    <p>
+                        Desarrollado Por:
+                        <br>
+                        Juan Alvarez
+                        <br>
+                        Rigoberto Vargas
+                        <br>
+                        Edwin Quenguan
+                        <br>
+                        Michael Galindo
+                        <br>
+                        Anderson Medina
+                    </p>
+                    <section class="repository">
+                        <a href="https://github.com/DevJuan001/Tracklinker" class="repository-field">
+                            <p>
+                                Repositorio De Github
+                            </p>
+                            <img src="../../../assets/images/modal/open-link-icon.svg">
+                        </a>
+                    </section>
+                </section>
+             </section>
     </div>
+
+    <script src="../../../scripts/modal.js"></script>
+    <script src="../../../scripts/user-menu-toggle.js"></script>
 </body>
 </html>
