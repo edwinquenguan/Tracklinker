@@ -6,7 +6,7 @@ USE DB_TRACKLINKER;
 -- -----------------------------------------------------
 -- Table ROLS
 -- -----------------------------------------------------
-CREATE TABLE ROLS (
+CREATE TABLE ROLES (
   rol_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada rol, llave primaria (INT, Not null))',
   rol_name VARCHAR(45) NOT NULL COMMENT 'Nombre de cada rol, De caracter obligatorio para poder clasificar cada rol (Varchar (45), Not null)',
   PRIMARY KEY (rol_id),
