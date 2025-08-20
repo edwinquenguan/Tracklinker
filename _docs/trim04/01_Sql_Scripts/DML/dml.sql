@@ -71,127 +71,99 @@
 --        INSERT INTO __ VALUES ( __ , __ ) : ------------------------------------------ --
 -- ------------------------------------------------------------------------------------- --
 INSERT INTO ROLES VALUES 
-(null, 'admin'),
-(null, 'almacen'),
-(null, 'tecnico'),
-(null, 'cliente');
+(null, 'Admin'),
+(null, 'Almacen'),
+(null, 'Tecnico'),
+(null, 'Cliente');
 
-INSERT INTO USUARIOS VALUES 
-(1, 'admin-1', 'Albeiro', 'Ramos', 'profealbeiro2020@gmail.com');
 
-INSERT INTO USUARIOS VALUES 
-(1, 'admin-2', 'Pepito', 'Perez', 'pepito@gmail.com'),
-(3, 'customer-1', 'Marinita', 'García', 'marinita@gmail.com'),
-(3, 'customer-2', 'Jorge', 'Campos', 'jorge@gmail.com'),
-(3, 'customer-3', 'Ricardo', 'Quevedo', 'ricardo@gmail.com'),
-(3, 'customer-4', 'José Miguel', 'Ríos', 'jose@gmail.com'),
-(4, 'seller-1', 'Jesús', 'Briceño', 'jesus@gmail.com'),
-(4, 'seller-2', 'Alfonso', 'Camacho', 'alfonso@gmail.com');
+INSERT INTO USERS VALUES 
+(1, null, 'Albeiro', 'Ramos', 'Villalba','3001112223', 'profealbeiro2020@gmail.com', 'KR 12 NO 20-245', sha1'12345', '2023-04-10');
 
-INSERT INTO USUARIOS VALUES 
-(2, 'person-1', 'Ezequiel', 'Pantoja', 'ezequiel@gmail.com'),
-(2, 'person-2', 'Camilo', 'Céspedes', 'camilo@gmail.com');
 
-INSERT INTO CREDENCIALES VALUES
-('admin-1', '../../img/usuario.png', 123456, "2022-06-11", sha1('12345'), 1),
-('customer-1', '../../img/usuario.png', 456789, "2022-07-12", sha1('12345'), 1),
-('seller-1', '../../img/usuario.png', 987654, "2022-08-13", sha1('12345'), 1),
-('seller-2', '../../img/usuario.png', 852963, "2022-08-28", sha1('12345'), 0),
-('customer-2', '../../img/usuario.png', 654321, "2022-08-28", sha1('12345'), 1),
-('customer-3', '../../img/usuario.png', 333333, "2022-09-15", sha1('12345'), 0),
-('customer-4', '../../img/usuario.png', 444444, "2022-09-16", sha1('12345'), 0);
+INSERT INTO USERS VALUES 
+(1, null, 'Juan', 'Pérez', 'García', '3004567890', 'juan.perez1@example.com', 'Calle 123 #45-67', 'hash_password_1', '2025-08-20'),
+(2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
+(3, null, 'Carlos', 'Ramírez', 'Torres', '3229876543', 'carlos.ramirez45@example.com', 'Av. Siempre Viva 742', 'hash_password_3', '2025-08-18'),
+(4, null, 'Ana', 'Torres', 'Martínez', '3008765432', 'ana.torres12@example.com', 'Calle 50 #10-25', 'hash_password_4', '2025-08-17'),
+(4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', 'hash_password_5', '2025-08-16');
 
-INSERT INTO MENSAJES VALUES
-('person-1', '2022-08-15', 'Solicitud de Información', 'Quisiera saber sobre... '),
-('seller-1', '2022-08-27', 'Reunión Vendedores', 'El próximo fin de semana...'),
-('person-2', '2022-08-27', 'Productos a crédito', 'Qué papeles piden para...'),
-('admin-1', '2022-08-31', 'Mantenimiento Sistema', 'Se informa a los usuarios...'),
-('customer-1', '2022-09-01', 'No tengo el producto', 'Aun no llega el producto'),
-('customer-1', '2022-10-02', 'Devolución Dinero', 'Aun no llega el producto'),
-('seller-2', '2022-10-02', 'Reunión por Cumpleaños', 'El próximo 6 de Octubre...');
 
-INSERT INTO VENDEDORES VALUES
-('seller-1', 1500000.00),
-('seller-2', 1800000.00);
+INSERT INTO OUTPUT_ORDERS VALUES
+(null, '2025-05-20', 'Agregar un modúlo más de 8 gb de ram y agregar disco duro nvme M2 de 256gb', '100000'),
 
-INSERT INTO CLIENTES VALUES
-('customer-1', '2005-05-05'),
-('customer-2', '1983-04-1'),
-('customer-3', '1981-05-16'),
-('customer-4', '2007-08-20');
 
-INSERT INTO CATEGORIAS VALUES 
-(null, 'Mercado'),
-(null, 'Alimentos'),
-(null, 'Bebidas'),
-(null, 'Aseo');
+INSERT INTO CUSTOMERS VALUES
+(4, '2005-05-05'),
+(5, '1983-04-1');
 
-INSERT INTO PRODUCTOS VALUES 
-(1, 'prod-1', 'Papa', 950.03, 1.00, 'libra', 10),
-(1, 'prod-2', 'Zanahoria', 630.33, 1.00, 'libra', 10),
-(1, 'prod-3', 'Tomate', 750.55, 1.00, 'libra', 10),
-(2, 'prod-4', 'Arroz', 2500.00, 500.00, 'gramos', 10),
-(2, 'prod-5', 'aceite', 10500.00, 1.00, 'litro', 10),
-(2, 'prod-6', 'Lentejas', 3500.00, 1000.00, 'gramos', 10),
-(3, 'prod-7', 'Agua', 3000.00, 1.50, 'litro', 10),
-(3, 'prod-8', 'Gaseosa', 3500.00, 2.50, 'litro', 10),
-(3, 'prod-9', 'Cerveza', 2500.00, 1.00, 'botella', 10),
-(4, 'prod-10', 'Jabón Baño', 1200.00, 285.00, 'gramos', 10),
-(4, 'prod-11', 'Jabón Ropa', 12000.00, 1000.00, 'gramos', 10),
-(4, 'prod-12', 'Shampoo', 18500.00, 750.00, 'mililitros', 10);
 
-INSERT INTO PEDIDOS VALUES
-('customer-1','pedido-1','2022-10-13','Bogotá','Av Siempre Viva',
-	23850.90,4531.67,28382.57,'entregado'),
-('customer-2','pedido-2','2022-10-14','Cali','Calle 3 con 4',
-	3500.00,665.00,4165.00,'enviado'),
-('customer-1','pedido-3','2022-10-14','Bogotá','Carrera 5 con 7',
-	6952.85,1321.04,8273.89,'debe'),
-('customer-2','pedido-4','2022-10-15','Cali','Calle 2 con 8',
-	46100.00,8759.00,54859.00,'cotización'),
-('customer-1','pedido-5','2022-11-02','Medellín','Tv 8 con 15',
-	74000.00,14060.00,88060.00,'entregado');
+INSERT INTO SUPLIERS VALUES
+(null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112'),
+(null, 'Servicios Industriales', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
+(null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562');
 
-INSERT INTO LISTA_PRODUCTOS_PEDIDOS VALUES
-('pedido-1', 'prod-1', 3),
-('pedido-1', 'prod-5', 2),
-('pedido-2', 'prod-6', 1),
-('pedido-3', 'prod-2', 5),
-('pedido-3', 'prod-1', 4),
-('pedido-4', 'prod-10', 3),
-('pedido-4', 'prod-11', 2),
-('pedido-4', 'prod-6', 1),
-('pedido-4', 'prod-7', 5),
-('pedido-5', 'prod-12', 4);
 
-INSERT INTO VENDEDORES_PEDIDOS VALUES
-('seller-1', 'pedido-1'),
-('seller-2', 'pedido-4');
+INSERT INTO INPUT_ORDERS VALUES
+(null, 1, '2022-09-17', '', 'INP00001', '2024-05-05'),
+(null, 2, '2022-09-18', '', 'INP00002', '2024-05-05'),
+(null, 3, '2022-09-18', '', 'INP00002', '2024-05-05');
 
-INSERT INTO COMPRAS VALUES
-('ABC-115', '2022-09-17', 31500, 'img-factura-ABC-115'),
-('ABC-116', '2022-09-18', 39160, 'img-factura-ABC-116');
 
-INSERT INTO LISTA_PRODUCTOS_COMPRADOS VALUES
-('ABC-115', 'prod-1', 900, 5),
-('ABC-115', 'prod-3', 700, 10),
-('ABC-115', 'prod-6', 3000, 2),
-('ABC-115', 'prod-9', 2000, 7),
-('ABC-116', 'prod-1', 920, 3),
-('ABC-116', 'prod-4', 2200, 7),
-('ABC-116', 'prod-8', 3000, 7);
+INSERT INTO CATEGORIES VALUES 
+(null, 'Computadores'),
+(null, 'Televisores'),
+(null, 'Monitores'),
+(null, 'Impresoras'),
+(null, 'Cámaras'),
+(null, 'Servidores'),
+(null, 'Soportes');
+
+
+INSERT INTO SUBCATEGORIES VALUES 
+(null, 1, 'Portatiles'),
+(null, 2, 'All in one');
+
+
+INSERT INTO PRODUCT_BRANDS VALUES
+(null, 'Lenovo'),
+(null, 'Asus'),
+(null, 'HP');
+
+
+INSERT INTO PRODUCT_DETAILS VALUES
+(null, 1, 3, '', ''),
+(null, 2, 1, '', ''),
+(null, 3, 2, '', '');
+
+
+INSERT INTO PRODUCTS VALUES 
+(null, 1, 1, 50),
+(null, 2, 2, 40),
+(null, 3, 3, 20),
+(null, 1, 1, 30),
+(null, 2, 2, 8),
+(null, 3, 3, 1),
+(null, 1, 1, 5),
+(null, 2, 2, 20);
+
+
+INSERT INTO PRODUCT_SERIALS VALUES
+(null, 1, 2, '12 Meses'),
+(null, 2, 2, '6 Meses'),
+(null, 3, 2, '24 Meses');
 
 -- ------------------------------------------------------------------------------------- --
 -- 1.1.2. Datos Incorrectos ------------------------------------------------------------ --
 --        INSERT INTO __ VALUES ( __ , __ ) : ------------------------------------------ --
 -- ------------------------------------------------------------------------------------- --
-INSERT INTO USUARIOS VALUES 
+INSERT INTO USERS VALUES 
 (5, 'customer-5', 'Alejandra', 'Martínez', 'alejandra@gmail.com');
 
-INSERT INTO USUARIOS VALUES 
+INSERT INTO USERS VALUES 
 (3, 'customer-1', 'Wilson', 'Cifuentes', 'wilson@gmail.com');
 
-INSERT INTO USUARIOS VALUES 
+INSERT INTO USERS VALUES 
 (4, 'seller-3', 'Marina', 'Roncancio', 'marinita@gmail.com');
 
 INSERT INTO MENSAJES VALUES
@@ -209,7 +181,7 @@ INSERT INTO CREDENCIALES VALUES
 INSERT INTO VENDEDORES_PEDIDOS VALUES
 ('seller-1', 'pedido-4');
 
-INSERT INTO CLIENTES VALUES
+INSERT INTO CUSTOMERS VALUES
 ('seller-4', '2005-05-05');
 
 -- ------------------------------------------------------------------------------------- --
@@ -217,19 +189,19 @@ INSERT INTO CLIENTES VALUES
 --      UPDATE __ SET __ = __ WHERE __ = __ : ------------------------------------------ --
 -- ------------------------------------------------------------------------------------- --
 UPDATE ROLES SET 
-nombre_rol = 'person'
-WHERE codigo_rol = 2;
+rol_name = 'person'
+WHERE rol_id = 2;
 
-UPDATE USUARIOS SET 
-codigo_user = 'admin-3'
-WHERE codigo_user = 'admin-2';
+UPDATE USERS SET 
+user_id = 'admin-3'
+WHERE user_id = 'admin-2';
 
 -- ------------------------------------------------------------------------------------- --
 -- 1.3. Eliminar. ---------------------------------------------------------------------- --
 --      DELETE FROM __ WHERE __ = __ : ------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-DELETE FROM USUARIOS 
-WHERE codigo_user = 'admin-2';
+DELETE FROM USERS 
+WHERE user_id = '2';
 
 
 /* ************************************************************************************* */
@@ -242,31 +214,34 @@ WHERE codigo_user = 'admin-2';
 --      SELECT * FROM __ : ------------------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
 SELECT * FROM ROLES;
-SELECT * FROM USUARIOS;
-SELECT * FROM CREDENCIALES;
-SELECT * FROM MENSAJES;
-SELECT * FROM VENDEDORES;
-SELECT * FROM CLIENTES;
-SELECT * FROM CATEGORIAS;
-SELECT * FROM PRODUCTOS;
-SELECT * FROM PEDIDOS;
-SELECT * FROM LISTA_PRODUCTOS_PEDIDOS;
-SELECT * FROM VENDEDORES_PEDIDOS;
-SELECT * FROM COMPRAS;
-SELECT * FROM LISTA_PRODUCTOS_COMPRADOS;
+SELECT * FROM USERS;
+SELECT * FROM CATEGORIES;
+SELECT * FROM SUBCATEGORIES;
+SELECT * FROM SUPLIERS;
+SELECT * FROM CUSTOMERS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM PRODUCT_BRANDS;
+SELECT * FROM PRODUCT_DETAILS;
+SELECT * FROM PRODUCT_SERIALS;
+SELECT * FROM OUTPUT_DETAILS;
+SELECT * FROM OUTPUT_ORDERS;
+SELECT * FROM INPUT_ORDERS;
+SELECT * FROM WARRANTY_INCIDENTS;
+SELECT * FROM TECHNICAL;
+SELECT * FROM WAREHAUSEMAN;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.2. Específicas. ------------------------------------------------------------------- --
 --      SELECT __ , __ FROM __ : ------------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_user, correo_user, codigo_rol FROM USUARIOS;
+SELECT user_id, user_email, rol_id FROM USERS;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.3. Con Criterios. ----------------------------------------------------------------- --
 --      SELECT __ , __ FROM __ WHERE __ = __ : ----------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_rol, codigo_user, correo_user FROM USUARIOS
-WHERE codigo_rol = 3;
+SELECT rol_id, user_id, user_email FROM USERS
+WHERE rol_id = 3;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.4. Con Operadores Lógicos. -------------------------------------------------------- --
@@ -277,8 +252,8 @@ WHERE codigo_rol = 3;
 -- 2.4.1. O [OR] . --------------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ OR __ = __ : ---------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_rol, codigo_user, correo_user FROM USUARIOS 
-WHERE codigo_rol = 2 OR codigo_rol = 3;
+SELECT rol_id, user_id, user_email FROM USERS 
+WHERE rol_id = 2 OR rol_id = 3;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.4.2. Y [AND] . -------------------------------------------------------------------- --
@@ -303,31 +278,31 @@ WHERE ciudad_pedido NOT IN ('Bogotá');
 -- 2.5.1. Diferente [<>] . ------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ <> __ : -------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE precio_producto <> 3500;
+SELECT * FROM PRODUCTS WHERE product_stock <> 3500;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.5.2. Menor que [<] . -------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ < __ : --------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE precio_producto < 3500;
+SELECT * FROM PRODUCTS WHERE product_stock < 3500;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.5.3. Mayor que [>] . -------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ > __ : --------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE precio_producto > 3500;
+SELECT * FROM PRODUCTS WHERE product_stock > 3500;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.5.4. Menor o igual que [<=] . ----------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ > __ : --------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE precio_producto <= 3500;
+SELECT * FROM PRODUCTS WHERE product_stock <= 3500;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.5.5. Mayor o igual que [>=] . ----------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ > __ : --------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE precio_producto >= 3500;
+SELECT * FROM PRODUCTS WHERE product_stock >= 3500;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.6. Con otros Operadores. ---------------------------------------------------------- --
@@ -338,9 +313,9 @@ SELECT * FROM PRODUCTOS WHERE precio_producto >= 3500;
 -- 2.6.1. Comodín [LIKE '_%'] . -------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ LIKE '_%' : ---------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS WHERE nombre_producto LIKE 'j%';
+SELECT * FROM PRODUCTS_BRANDS WHERE  LIKE 'j%';
 
-SELECT * FROM PRODUCTOS WHERE nombre_producto LIKE '_a%';
+SELECT * FROM PRODUCTS_BRANDS WHERE  LIKE '_a%';
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.6.2. Entre [BETWEEN] . ------------------------------------------------------------ --
@@ -356,8 +331,8 @@ WHERE fecha_ingreso_cred >= '2022-08-01' AND fecha_ingreso_cred <= '2022-08-31';
 -- 2.6.3. Lista [IN ( __ )] . ---------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ IN( __ , __ ) : ------------------------------ --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS 
-WHERE unidad_producto IN (1,500);
+SELECT * FROM PRODUCTS 
+WHERE product_stock IN (1,500);
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.7. Ordenadas. --------------------------------------------------------------------- --
@@ -368,41 +343,41 @@ WHERE unidad_producto IN (1,500);
 -- 2.7.1. Ascendente [ASC] . ----------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ ASC; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS 
-WHERE codigo_categoria = 2 
-ORDER BY codigo_categoria;
+SELECT * FROM SUBCATEGORIES 
+WHERE category_id = 2 
+ORDER BY category_id;
 
-SELECT * FROM PRODUCTOS
-WHERE codigo_categoria = 2 OR codigo_categoria = 3 
-ORDER BY codigo_categoria ASC;
+SELECT * FROM SUBCATEGORIES
+WHERE category_id = 2 OR category_id = 3 
+ORDER BY category_id ASC;
 
-SELECT * FROM PRODUCTOS
-WHERE codigo_categoria = 2 OR codigo_categoria = 3 
-ORDER BY precio_producto ASC;
+SELECT * FROM SUBCATEGORIES
+WHERE category_id = 2 OR category_id = 3 
+ORDER BY product_stock ASC;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.7.2. Descendente [DESC] . --------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ DES; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS 
-WHERE codigo_categoria = 2 
-ORDER BY codigo_categoria DESC;
+SELECT * FROM PRODUCTS 
+WHERE subcategory_id = 2 
+ORDER BY subcategory_id DESC;
 
-SELECT * FROM PRODUCTOS
-WHERE codigo_categoria = 2 OR codigo_categoria = 3 
-ORDER BY codigo_categoria DESC;
+SELECT * FROM PRODUCTS
+WHERE subcategory_id = 2 OR subcategory_id = 3 
+ORDER BY subcategory_id DESC;
 
-SELECT * FROM PRODUCTOS
-WHERE codigo_categoria = 2 OR codigo_categoria = 3 
-ORDER BY precio_producto DESC;
+SELECT * FROM PRODUCTS
+WHERE subcategory_id = 2 OR subcategory_id = 3 
+ORDER BY product_stock DESC;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.7.3. Combinadas . ----------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ DES; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTOS 
-WHERE codigo_categoria = 2 OR codigo_categoria = 3 
-ORDER BY codigo_categoria ASC, precio_producto DESC;
+SELECT * FROM PRODUCTS 
+WHERE subcategory_id = 2 OR subcategory_id = 3 
+ORDER BY subcategory_id ASC, product_stock DESC;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.8. Calculadas con Funciones. ------------------------------------------------------ --
@@ -525,14 +500,14 @@ ORDER BY cant_pedidos DESC;
 -- 2.11. Calculadas con Operadores. ---------------------------------------------------- --
 --        SELECT __ , __ , __*0.19 AS __ FROM __ : ------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, precio_producto, precio_producto * 0.19 
-FROM PRODUCTOS;
+SELECT nombre_producto, product_stock, product_stock * 0.19 
+FROM PRODUCTS;
 
-SELECT nombre_producto, precio_producto, precio_producto * 0.19 AS iva_producto 
-FROM PRODUCTOS;
+SELECT nombre_producto, product_stock, product_stock * 0.19 AS iva_producto 
+FROM PRODUCTS;
 
-SELECT nombre_producto, precio_producto, ROUND(precio_producto*0.19,2) AS iva_producto 
-FROM PRODUCTOS;
+SELECT nombre_producto, product_stock, ROUND(product_stock*0.19,2) AS iva_producto 
+FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.12. Calculadas con Fechas. -------------------------------------------------------- --
@@ -543,17 +518,17 @@ FROM PRODUCTOS;
 -- 2.12.1. Fecha Actual. --------------------------------------------------------------- --
 --         SELECT __ , __ , NOW() AS __ FROM __ : -------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, precio_producto, NOW() FROM PRODUCTOS;
+SELECT nombre_producto, product_stock, NOW() FROM PRODUCTS;
 
-SELECT nombre_producto, precio_producto, NOW() AS fecha_actual FROM PRODUCTOS;
+SELECT nombre_producto, product_stock, NOW() AS fecha_actual FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.12.2. Formato de Fecha. ----------------------------------------------------------- --
 --         SELECT __ , __ , DATE_FORMAT(NOW(), '%Y-%m-%d') AS __ FROM __ : ------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, precio_producto, 
+SELECT nombre_producto, product_stock, 
 DATE_FORMAT(NOW(),'%Y-%m-%d') AS fecha_actual 
-FROM PRODUCTOS;
+FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.12.3. Diferencia Fechas. ---------------------------------------------------------- --
@@ -576,7 +551,7 @@ FROM CREDENCIALES;
 /* ---------------------------- INSERT INTO, UPDATE, DELETE ---------------------------- */
 /* ************************************************************************************* */
 
-INSERT INTO USUARIOS VALUES 
+INSERT INTO USERS VALUES 
 (1, 'admin-2', 'Pepito', 'Perez', 'pepito@gmail.com');
 
 INSERT INTO MENSAJES VALUES
