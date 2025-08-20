@@ -33,7 +33,7 @@ CREATE TABLE USERS (
   UNIQUE INDEX users_id_UNIQUE (user_id ASC),
   CONSTRAINT fk_rol_user
     FOREIGN KEY (rol_id)
-    REFERENCES rols (rol_id)
+    REFERENCES ROLES (rol_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
