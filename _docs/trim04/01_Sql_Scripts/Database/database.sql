@@ -74,15 +74,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table SUPLIER
+-- Table SUPLIERS
 -- -----------------------------------------------------
 CREATE TABLE SUPLIERS (
-  suplier_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada proveedor, llave primaria (INT, Not null)',
-  suplier_name VARCHAR(45) NOT NULL COMMENT 'Nombre del proveedor (VARCHAR, Not null)',
-  suplier_address VARCHAR(45) NOT NULL COMMENT 'Dirección del proveedor (VARCHAR, Not null)',
-  suplier_email VARCHAR(45) NOT NULL COMMENT 'Correo electronico del proveedor (VARCHAR, Not null)',
-  suplier_phone VARCHAR(45) NOT NULL COMMENT 'Número de teléfono del proveedor (VARCHAR, Not null)',
-  PRIMARY KEY (suplier_id))
+  supplier_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada proveedor, llave primaria (INT, Not null)',
+  supplier_name VARCHAR(45) NOT NULL COMMENT 'Nombre del proveedor (VARCHAR, Not null)',
+  supplier_city VARCHAR(50) NOT NULL COMMENT 'Ciudad donde esta ubicado el proveedor (VARCHAR, Not null)',
+  supplier_address VARCHAR(45) NOT NULL COMMENT 'Dirección del proveedor (VARCHAR, Not null)',
+  supplier_email VARCHAR(45) NOT NULL COMMENT 'Correo electronico del proveedor (VARCHAR, Not null)',
+  supplier_phone VARCHAR(45) NOT NULL COMMENT 'Número de teléfono del proveedor (VARCHAR, Not null)',
+  PRIMARY KEY (supplier_id))
 ENGINE = InnoDB;
 
 
@@ -91,16 +92,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE INPUT_ORDERS (
   input_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único autogenerado para órdenes de entrada (PK). Clave primaria autoincremental. Requerido para todas las transacciones (NOT NULL, UNIQUE).',
-  suplier_id INT NOT NULL COMMENT 'Identificador del proveedor asociado a la orden. not null ',
-  input_order_supplier VARCHAR(100) NOT NULL COMMENT 'Dato complementario a suplier_id. que contiene código/nombre comercial del proveedor (NOT NULL). ',
+  supplier_id INT NOT NULL COMMENT 'Identificador del proveedor asociado a la orden. not null ',
+  input_order_supplier VARCHAR(100) NOT NULL COMMENT 'Dato complementario a supplier_id. que contiene código/nombre comercial del proveedor (NOT NULL). ',
   input_order_bill INT NOT NULL COMMENT 'Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).',
   input_order_date DATE NOT NULL COMMENT 'Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema',
   PRIMARY KEY (input_order_id, input_order_bill),
   UNIQUE INDEX idINPUT_ORDER_UNIQUE (input_order_id ASC),
-  INDEX fk_input_order_suplier_idx ( suplier_id ASC),
-  CONSTRAINT fk_input_order_suplier
-    FOREIGN KEY ( suplier_id)
-    REFERENCES SUPLIERS (suplier_id)
+  INDEX fk_input_order_supplier_idx ( supplier_id ASC),
+  CONSTRAINT fk_input_order_supplier
+    FOREIGN KEY ( supplier_id)
+    REFERENCES SUPLIERS (supplier_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -152,12 +153,12 @@ ENGINE = InnoDB;
 CREATE TABLE PRODUCT_DETAILS (
   product_details_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)',
   product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
-  suplier_id INT NOT NULL COMMENT 'Identificador autogenerado de cada proveedor, Sirve para relacionar los proveedores con las ordenes de salida y demás (INT, Not null)',
+  supplier_id INT NOT NULL COMMENT 'Identificador autogenerado de cada proveedor, Sirve para relacionar los proveedores con las ordenes de salida y demás (INT, Not null)',
   product_detail_model VARCHAR(45) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
-  product_detail_description VARCHAR(100) NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
+  product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
   PRIMARY KEY (product_details_id),
   INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
-  INDEX fk_product_detail_supplier (suplier_id ASC),
+  INDEX fk_product_detail_supplier (supplier_id ASC),
   CONSTRAINT fk_product_details_product_brand
     FOREIGN KEY (product_brand_id)
     REFERENCES PRODUCT_BRANDS (product_brand_id)
