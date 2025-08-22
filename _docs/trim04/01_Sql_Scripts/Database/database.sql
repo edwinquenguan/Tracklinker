@@ -196,11 +196,11 @@ ENGINE = InnoDB;
 -- Table PRODUCT_SERIALS
 -- -----------------------------------------------------
 CREATE TABLE PRODUCT_SERIALS (
-  product_serial_id INT(20) NOT NULL UNIQUE COMMENT 'Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)',
+  product_serial VARCHAR(50) NOT NULL UNIQUE COMMENT 'Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)',
   products_id INT NOT NULL COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
   input_order_id INT NOT NULL COMMENT 'Identificador de cada orden de entrada, Esta se relaciona en esta tabla para establecer fechas o facturas en las cuales se hizo el ingreso del producto (INT, Not null)',
   product_garanty_input VARCHAR(100) NOT NULL COMMENT 'Garantía del producto dada por el proveedor, este indica el tiempo de garantía actual, esta puede disminuir con el pasar del tiempo',
-  PRIMARY KEY (product_serial_id),
+  PRIMARY KEY (product_serial),
   INDEX fk_product_serial_input_order_idx (input_order_id ASC),
   INDEX fk_product_serial_products_idx (products_id ASC),
   CONSTRAINT fk_product_serial_input_order
@@ -221,11 +221,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE OUTPUT_DETAILS (
   out_order_id INT NOT NULL COMMENT 'Identificador de orden de salida, Clave única que identifica cada orden de salida registrada en el sistema. Esta orden agrupa una o varias salidas de productos desde el almacén, ya sea por venta, traslado, devolución o cualquier otro movimiento logístico.\n',
-  product_serial_id INT NOT NULL COMMENT '\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.',
+  product_serial VARCHAR(50) NOT NULL COMMENT '\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.',
   output_details_id INT NOT NULL AUTO_INCREMENT COMMENT ' Identificador de detalle de salida\n,  Clave primaria única que identifica cada registro individual en la tabla de detalles de salida. Este identificador se genera automáticamente por el sistema en orden secuencial y no puede ser nulo. Se utiliza para distinguir y rastrear cada línea o componente dentro de una orden de salida.',
   out_product_garanty DATE NOT NULL COMMENT 'Garantía del producto en salida\n\nIndica si el producto entregado o despachado cuenta con garantía activa o especifica el período de garantía ofrecido. Este campo es obligatorio, ya que permite hacer seguimiento a las condiciones de postventa o soporte del producto.',
   product_transformation VARCHAR(45) NOT NULL COMMENT 'Transformación del producto\n.\nIndica si el producto ha sido sometido a algún tipo de transformación antes de su salida del inventario. Esto puede incluir procesos como ensamblaje, personalización, reempaque, reparación, entre otros. El campo es obligatorio, ya que influye en el seguimiento de procesos logísticos y de control de calidad.',
-  UNIQUE INDEX idOUTPUT_DETAILS_UNIQUE (product_serial_id ASC),
+  UNIQUE INDEX idOUTPUT_DETAILS_UNIQUE (product_serial ASC),
   INDEX fk_output_details_output_oder_idx (out_order_id ASC),
   PRIMARY KEY (output_details_id),
   CONSTRAINT fk_output_details_output_oder
@@ -234,8 +234,8 @@ CREATE TABLE OUTPUT_DETAILS (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_output_details_product_serials
-    FOREIGN KEY (product_serial_id)
-    REFERENCES PRODUCT_SERIALS (product_serial_id)
+    FOREIGN KEY (product_serial)
+    REFERENCES PRODUCT_SERIALS (product_serial)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -246,20 +246,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE WARRANTY_INCIDENTS (
   warranty_incidents_id INT NOT NULL AUTO_INCREMENT COMMENT'Identificador único y autoincremental para los incidentes de garantía registrados en el sistema.',
-  product_serials_id INT NOT NULL COMMENT' Identificador autoincremental para cada número de serie registrado.',
+  product_serial VARCHAR(50) NOT NULL COMMENT' Identificador autoincremental para cada número de serie registrado.',
   warranty_customer VARCHAR(45) NOT NULL COMMENT' Almacena la información de los clientes con garantías, incluyendo los detalles del producto y la fecha de expiración.',
   warranty_phone VARCHAR(45) NOT NULL COMMENT'Número de contacto principal para la gestión de la garantía.',
   warranty_address VARCHAR(45) NOT NULL COMMENT' Dirección del cliente para la gestión de la garantía.',
   warranty_description VARCHAR(100) NOT NULL COMMENT'Descripción detallada del problema o incidente reportado por el cliente.',
   warranty_link_attachments VARCHAR(100) NOT NULL COMMENT'Campo que contiene la URL o el path a los archivos adjuntos (imágenes, documentos) de la garantía, como facturas o fotos del producto.',
   warranty_city VARCHAR(45) NOT NULL COMMENT'Nombre de la ciudad del cliente. Utilizado para determinar la ubicación geográfica y asignar el caso a un centro de servicio local.' ,
-  warranty_date DATE NOT NULL COMMENT'Fecha y hora en que se reportó el incidente de garantía al sistema.' ,
+  warranty_date DATE NOT NULL COMMENT 'Fecha y hora en que se reportó el incidente de garantía al sistema.' ,
+  warranty_status INT NOT NULL DEFAULT 0 COMMENT 'Estado actual de la garantía , 0 = Sin Completar, 1 = En Proceso, 2 = Sin Completar, Al momento de ingresar la garantia nueva se le da un estado de 0 o Sin completar',
   PRIMARY KEY (warranty_incidents_id),
   UNIQUE INDEX warranty_incidents_id_UNIQUE (warranty_incidents_id ASC),
-  INDEX fk_warranty_incidents_output_details_idx (product_serials_id ASC),
+  INDEX fk_warranty_incidents_output_details_idx (product_serial ASC),
   CONSTRAINT fk_warranty_incidents_output_details
-    FOREIGN KEY (product_serials_id)
-    REFERENCES OUTPUT_DETAILS (product_serial_id)
+    FOREIGN KEY (product_serial)
+    REFERENCES OUTPUT_DETAILS (product_serial)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
