@@ -10,3 +10,25 @@
     grid-template-columns: 15% 85%;
     grid-template-rows: 6% 94%;
 }
+
+/* Responsive */
+/* Movil */
+@media (width <= 800px) {
+    .container{
+        grid-template-areas:
+        "header"
+        "main"
+        "aside"
+        ;
+        grid-template-columns: 1fr;
+        grid-template-rows: 5% 85% 10%;
+    }
+}
+
+/* Portatil */
+@media (width <= 1300px){
+    .container{
+        grid-template-columns: 12% 88%;
+    }
+    
+}
