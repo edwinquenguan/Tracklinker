@@ -23,11 +23,11 @@ form.addEventListener("submit", function (e) {
   const pass = document.getElementById("pass").value.trim();
 
   if (user === adminUser && pass === adminPass) {
-    window.location.href = "../pages/roles/admin/home.html";
+    window.location.href = "../src/pages/roles/admin/home.html";
   } else if (user === warehouseUser && pass === warehousePass){
-    window.location.href = '../pages/roles/almacen/home.html';
+    window.location.href = '../src/pages/roles/almacen/home.html';
   } else if (user === technicalUser && pass == technicalPass){
-    window.location.href = '../pages/roles/tecnico/home.html';
+    window.location.href = '../src/pages/roles/tecnico/home.html';
   }else {
     modalError.classList.add('show-modal');
   }
