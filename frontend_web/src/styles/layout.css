@@ -13,14 +13,14 @@
 
 /* Responsive */
 /* Movil */
-@media (width <= 800px) {
+@media (width <= 800px){
     .container{
         grid-template-areas:
         "header"
         "main"
         "aside"
         ;
-        grid-template-columns: 1fr;
+        grid-template-columns: 100% !important;
         grid-template-rows: 5% 85% 10%;
     }
 }
