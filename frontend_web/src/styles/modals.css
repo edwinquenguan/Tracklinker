@@ -117,6 +117,7 @@
     transition: box-shadow .3s;
 }
 
+/* Clase que se le agrega a los botones normales y de confirmación cuanto tiene el cursor encima */
 .modal-button:hover, .modal-button-confirm:hover{
     box-shadow: 0px 0px 32px -5px #a7a5a5;    
 }
@@ -126,7 +127,6 @@
     opacity: 1;
     pointer-events: unset;
 }
-
 
 /* Formulario dentro de la modal */
 .modal-form{
@@ -142,6 +142,7 @@
     border: 1px solid #e2d6d6;
 }
 
+/* Cuerpo de la modal */
 .modal-body{
     display: flex;
     flex-direction: column;
@@ -175,12 +176,13 @@
     padding: 5px 5px 15px;
 }
 
-/* Opcion */
+/* Opciones que contiene el filtro */
 .filter-option{
     padding: 10px 5px;
     color: #000;
 }
 
+/* Estilos para cuando se despliega un menú con opciones */
 select{
     padding: 8px 7px;
     border-radius: 5px;
