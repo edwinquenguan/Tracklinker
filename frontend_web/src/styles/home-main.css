@@ -7,21 +7,15 @@ main{
 .welcome{
     height: 15%;
     display: flex;
-    padding: 82px 30px 30px 60px;
-    gap: 8px;
+    padding: 82px 30px 30px 70px;
+    gap: 12px;
     color: #1F384C;
     align-items: center;
 }
 
 /* Texto de bienvenida */
-.welcome-text{
+.welcome-text, .name{
     font-size: 46px;
-    font-weight: 500;
-}
-
-/* Nombre del usuario */
-.name{
-    font-size: 42px;
     font-weight: 500;
 }
 
@@ -37,14 +31,7 @@ main{
 }
 
 /* Secciones */
-.users,
-.products, 
-.categories, 
-.subcategories, 
-.reports, 
-.warrantys,
-.supliers,
-.transformations{
+.home-section{
     height: 160px;
     width: 120px;
     display: flex;
@@ -52,17 +39,21 @@ main{
     align-items: center;
 }
 
+.home-section:hover .module-name{
+    transform: scale(1.1);
+}
+
 /* Tarjeta de cada sección */
 .card-section{
     height: 120px;
     width: 100%;
-    background-color: #e6e1e1;
+    background-color: #f3eef5;
     border-radius: 10px;
     transition: box-shadow .3s;
 }
 
 .card-section:hover{
-    box-shadow: 0px 0px 32px 3px  rgb(163, 163, 163);
+    box-shadow: 0px 0px 32px 3px  #f3eef5;
 }
 
 /* Iconos de cada sección */
@@ -74,16 +65,13 @@ main{
 
 /* Nombre del modúlo */
 .module-name{
+    display: inline-block;
     text-decoration: none;
     color: #000;
     font-weight: 500;
     font-size: 16px;
     padding-top: 16px;
-    transition: font-size .3s;
-}
-
-.module-name:hover{
-    font-size: 18px;
+    transition: transform .3s ease;
 }
 
 /* Responsive */
