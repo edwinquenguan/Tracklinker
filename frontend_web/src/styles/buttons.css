@@ -1,0 +1,47 @@
+/* Botón del filtro */
+.filter-button{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: 0;
+    background-color: #ede8e9;
+    box-shadow: 0px 0px 32px -5px #c7c5c6;
+    padding: 5px 15px 5px 15px;
+    gap: 8px;
+    transition: box-shadow .3s; 
+}
+
+/* Clase que se aplica al tener el cursor encima */
+.filter-button:hover{
+    box-shadow: 0px 0px 32px 8px #c7c5c6;
+}
+
+/* Botón para agregar */
+.add-button{
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 5px 15px;
+    gap: 8px;
+    background-color: #1a1919;
+    box-shadow: 0px 0px 32px -12px #000000;
+    border: 0;
+    border-radius: 20px;
+    transition: box-shadow .3s;
+}
+
+/* Clase que se aplica al tener el cursor encima*/
+.add-button:hover{
+    box-shadow: 0px 0px 32px -5px #000000;
+}
+
+/* Clase para el icono dentro del botón para agregar */
+.add-button img{
+    filter: brightness(0) invert(1);
+}
+
+/* Texto dentro del botón de agregar */
+.add-button p{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 15px;
+}
