@@ -85,7 +85,7 @@ main{
     display: flex;
     gap: 22px;
 }
-
+/* Clase para cada botón */
 .category-button{
     border: 0;
     background-color: #f3eef5;
