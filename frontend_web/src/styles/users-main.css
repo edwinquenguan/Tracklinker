@@ -58,12 +58,6 @@ main{
     color: #000;
 }
 
-/* Texto dentro del botón */
-.button-text{
-    font-size: 16px;
-    font-weight: 500;
-}
-
 /* Campo con datos del usuario */
 .user-field{
     display: flex;

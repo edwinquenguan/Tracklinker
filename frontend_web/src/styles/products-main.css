@@ -27,44 +27,6 @@ main{
     gap: 20px;
 }
 
-/* Botón de añadir producto con codigo de barras */
-.add-product-primary-button{
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 5px 15px;
-    border: 0;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #ede8e9;
-    box-shadow: 0px 0px 32px -1px #b3afb0;
-    transition: box-shadow .3s;
-}
-
-.add-product-primary-button:hover{
-    box-shadow: 0px 0px 32px 3px #b3afb0;
-}
-
-/* Botón para añadir producto */
-.add-product-button{
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 5px 15px;
-    border: 0;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #bac4ff;
-    box-shadow: 0px 0px 32px -10px #344df6;
-    transition: box-shadow .3s;
-}
-
-.add-product-button:hover{
-    box-shadow: 0px 0px 32px -5px #344df6;
-}
-
 /* Barra de búsqueda de la tabla */
 .search-bar-table{
     padding: 5px;

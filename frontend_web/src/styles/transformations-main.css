@@ -28,39 +28,6 @@ main{
     padding-right: 51px;
 }
 
-
-/* Botón de filtrar */
-.filter-button{
-    display: flex;
-    align-items: center;
-    padding: 0px 15px 0px 15px;
-    border-radius: 20px;
-    border: 0;
-    background-color: #ede8e9;
-    transition: box-shadow .3s;
-}
-
-.filter-button:hover{
-    box-shadow: 0px 0px 32px 1px #b3afb0;
-}
-
-/* Botón de añadir garantías */
-.add-warranty-button{
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    border: 0;
-    background-color: #bac4ff;
-    box-shadow: 0px 0px 32px -10px #344df6;
-    padding: 5px 15px 5px 15px;
-    gap: 8px;
-    transition: box-shadow .3s;
-}
-
-.add-warranty-button:hover{
-    box-shadow: 0px 0px 32px -5px #344df6;
-}
-
 /* Texto dentro de cada botón */
 .button-text{
     font-family: 'Poppins', sans-serif;

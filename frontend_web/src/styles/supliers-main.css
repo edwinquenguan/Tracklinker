@@ -81,12 +81,6 @@ main{
     color: #000;
 }
 
-/* Texto dentro del botón */
-.button-text{
-    font-size: 16px;
-    font-weight: 500;
-}
-
 /* Contenedor con todos los proveedores */
 .supliers-container{
     display: flex;
@@ -146,16 +140,11 @@ main{
 .suplier-buttons{
     display: flex;
     align-items: center;
+    gap: 22px;
 }
 
 .suplier-button{
     border: 0;
-    width: 28px;
-    height: 28px;
-}
-
-/* Imagen de cada boton */
-.button-image{
     width: 28px;
     height: 28px;
 }
