@@ -21,6 +21,7 @@ main{
     padding-left: 40px;
 }
 
+/* Segundo contenedor de arriba */
 .second-top-container{
     display: flex;
     align-items: center;
@@ -48,6 +49,7 @@ main{
     color: #000;
 }
 
+/* Estilos para el texto dentro de la barra de búsqueda */
 .search-input:placeholder{
     color: #9196b1;
 }
@@ -116,7 +118,7 @@ main{
     width: 30px;
     height: 30px;
 }
-
+/* Botón de scanner */
 .scanner-button{
     padding: 10px 20px;
     border-radius: 7px;
@@ -124,7 +126,7 @@ main{
     border: 0;
     transition: box-shadow .3s;
 }
-
+/* Clase que se le agrega botón de scanner cuanto tiene el cursor encima */
 .scanner-button:hover{
     box-shadow: 0px 0px 32px 2px  gray;    
 }

@@ -54,6 +54,7 @@ main{
     transition: box-shadow .3s;
 }
 
+/* Clase que se le agrega al card cuanto tiene el cursor encima */
 .warranty-card:hover{
     box-shadow: 0px 0px 32px -15px #38383b;
 }
@@ -89,6 +90,7 @@ main{
     gap: 8px;
 }
 
+/* Clase para aumentar el tamaño del texto de la garantía */
 .status{
     font-weight: 500;
 }
@@ -106,6 +108,7 @@ main{
     transition: background-color 0.3s ease;
 }
 
+/* Clase que se le agrega al botón cuanto tiene el cursor encima */
 .see-more-button:hover{
     background-color: #314af1;
     box-shadow: 0px 0px 32px -10px #0a0f30;

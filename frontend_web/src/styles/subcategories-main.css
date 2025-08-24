@@ -59,6 +59,7 @@ main{
     gap: 22px;
 }
 
+/* Clase para cada botón */
 .subcategory-button{
     border: 0;
     background-color: #f3eef5;

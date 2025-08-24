@@ -63,6 +63,7 @@ main{
     transition: box-shadow .3s;
 }
 
+/* Clase que se le agrega al card cuanto tiene el cursor encima */
 .warranty-card:hover{
     box-shadow: 0px 0px 32px -15px #0a0f30;
 }
@@ -76,6 +77,7 @@ main{
     font-size: 1.3rem;
     border-bottom: .1px solid #000;
 }
+
 /* Botón de ver más */
 .warranty-card-buttons{
     padding: 5px 0px 20px 0px;
@@ -98,6 +100,7 @@ main{
     gap: 8px;
 }
 
+/* Aumento de fuente al texto que dice el estado de la trasnformación */
 .status{
     font-weight: 500;
 }
