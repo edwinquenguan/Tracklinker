@@ -30,6 +30,7 @@
     padding: 0px 183px 0px 183px;
 }
 
+/* Campos donde el usuario escribe su correo y su contraseña */
 .user-name-field, .password-field{
     display: flex;
     flex-direction: column;
@@ -49,6 +50,7 @@ input{
     font-size: 15px;
 }
 
+/* Clase para los textos que hay dentro de los campos */
 input::placeholder{
     color: #B3B3B3;
     font-size: 15px;
@@ -74,11 +76,13 @@ input::placeholder{
     transition: box-shadow .3s;
 }
 
+/* Clase que se le agrega al botón de ingresar cuanto tiene el cursor encima */
 .login-button:hover{
     background-color: #344df6;
     box-shadow: 0px 0px 32px -10px #344df6;
 }
 
+/* Botón de recuperar contraseña */
 .recover-pass-button{
     padding: 13px 65px;
     border-radius: 8px;
@@ -89,6 +93,7 @@ input::placeholder{
     transition: box-shadow .3s;
 }
 
+/* Clase que se le agrega boón de recuperar cuanto tiene el cursor encima */
 .recover-pass-button:hover{
     background-color: #bfc0ca;
     box-shadow: 0px 0px 32px -8px #8e8f94;
