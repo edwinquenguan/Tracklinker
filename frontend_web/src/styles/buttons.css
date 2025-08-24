@@ -6,7 +6,7 @@
     border: 0;
     background-color: #ede8e9;
     box-shadow: 0px 0px 32px -5px #c7c5c6;
-    padding: 5px 15px 5px 15px;
+    padding: 10px 15px;
     gap: 8px;
     transition: box-shadow .3s; 
 }
@@ -20,7 +20,7 @@
 .add-button{
     display: flex;
     align-items: center;
-    padding: 5px 15px 5px 15px;
+    padding: 10px 15px;
     gap: 8px;
     background-color: #1a1919;
     box-shadow: 0px 0px 32px -12px #000000;
@@ -44,4 +44,10 @@
     color: #ffffff;
     font-weight: 500;
     font-size: 15px;
+}
+
+/* Texto dentro del botón */
+.button-text{
+    font-size: 16px;
+    font-weight: 500;
 }
