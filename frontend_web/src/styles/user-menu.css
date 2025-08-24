@@ -1,0 +1,92 @@
+/* Estilos para el menú que se despliega al toca el avatar del usuario */
+/* Contenido principal del menú */
+.user-config-main{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Barra de navegación del usuario */
+.user-config-nav{
+    padding: 10px 20px;
+    border-right: 1px solid #e3e4eb;
+}
+
+/* Lista dentro del la barra de navegación del user menu*/
+.user-config-nav-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Opciones dentro de la lista */
+.user-config-nav-option{
+    display: flex;
+    gap: 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color .3s, box-shadow .3s;
+}
+
+/* Estilo que se aplica a cada opción del menú al tener el cursor encima */
+.user-config-nav-option:hover{
+    background-color: #edeef3;
+    box-shadow: 0px 0px 32px -5px #f0f1f3;
+}
+
+/* Icono de cada opción del menú*/
+.user-config-nav-option img{
+    filter: grayscale(100%) brightness(0);
+}
+
+/* Texto de cada opción del menú */
+.user-nav-option-text{
+    color: #000000;
+}
+
+/* Cuerpo del menú donde va el avatar, nombre y correo */
+.user-config-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+/* Imagen o Avatar del usuario dentro del menú */
+.user-config-body img{
+    height: 100px;
+    width: 100px;
+}
+
+/* Contenedor de los campos de información, Contiene el campo del nombre y del correo */
+.user-config-info{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Campo para el nombre del usuario */
+.name-field{
+    color: #9196b1;
+}
+
+/* Campo para el correo del usuario */
+.user-email-field{
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+    border-radius: 16px;
+    border: 1px #9196b1 solid;
+}
+
+/* Campo donde esta el nombre del usuario */
+.user-name-field{
+    display: flex;
+    gap: 20px;
+    padding: 10px 60px 10px 20px;
+    border-radius: 16px;
+    border: 1px #9196b1 solid;
+}
