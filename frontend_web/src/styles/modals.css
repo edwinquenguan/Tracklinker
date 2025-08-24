@@ -30,7 +30,7 @@
 /* Cabecera del modal */
 .modal-header{
     width: 100%;
-    padding: 10px 5px 15px 5px;
+    padding: 10px 10px 15px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -117,11 +117,8 @@
     transition: box-shadow .3s;
 }
 
-.modal-button:hover{
-    box-shadow: 0px 0px 32px -5px  gray;    
-}
-.modal-button-confirm:hover{
-    box-shadow: 0px 0px 32px 1px  gray;
+.modal-button:hover, .modal-button-confirm:hover{
+    box-shadow: 0px 0px 32px -5px #a7a5a5;    
 }
 
 /* Propiedad para que el modal sea visible */
@@ -135,6 +132,7 @@
 .modal-form{
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 /* Entradas de texto del formulario */
