@@ -188,3 +188,26 @@ select{
     border-radius: 5px;
     border: 1px solid #e2d6d6;
 }
+
+/* Sección del botón de github */
+.repository{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Campo donde esta el contenido del botón de github*/
+.repository-field{
+    background-color: #000000;
+    padding: 10px 20px;
+    border-radius: 16px;
+    display: flex;
+    gap: 8px;
+    color: #ffffff;
+}
+
+/* Icono de Github */
+.github-icon{
+    width: 30px;
+    height: 30px;
+}
