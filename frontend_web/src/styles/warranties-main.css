@@ -84,9 +84,9 @@ main{
 .warranty-card{
     width: 280px;
     height: 340px;
-    background-color: #e3d8d8;
+    background-color: #f3eef5;
     border-radius: 16px;
-    box-shadow: 0px 0px 32px -20px #0a0f30;
+    box-shadow: 0px 0px 32px -20px #38383b;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -98,7 +98,7 @@ main{
 }
 
 .warranty-card:hover{
-    box-shadow: 0px 0px 32px -15px #0a0f30;
+    box-shadow: 0px 0px 32px -15px #38383b;
 }
 
 /* Número de garantía */

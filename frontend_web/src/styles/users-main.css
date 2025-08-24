@@ -102,7 +102,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #e2d6d6;
+    background-color: #f3eef5;
     border-radius: 16px;
     padding: 25px 36px;
 }
@@ -139,7 +139,7 @@ main{
 /* Boton para ver más información, editar o eliminar usuario */
 .user-button{
     border: 0;
-    background-color: #e2d6d6;
+    background-color: #f3eef5;
 }
 
 /* Imagen de cada boton */
