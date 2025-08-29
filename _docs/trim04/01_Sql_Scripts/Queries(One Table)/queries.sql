@@ -53,15 +53,15 @@ WHERE rol_id = 2 OR rol_id = 3;
 -- 2.4.2. Y [AND] . -------------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ AND __ = __ : --------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_pedido, codigo_customer, ciudad_pedido, total_pr_pedido FROM PEDIDOS 
-WHERE ciudad_pedido = 'Bogotá' AND estado_pedido = 'entregado';
+SELECT products_id, product_stock, product_details_id, subcategory_id FROM PRODUCTS 
+WHERE product_stock = 10 AND subcategory_id = 1;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.4.3. NO [NOT] . ------------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ AND __ = __ : --------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_pedido, codigo_customer, ciudad_pedido FROM PEDIDOS 
-WHERE ciudad_pedido NOT IN ('Bogotá');
+SELECT products_id, subcategory_id, product_details_id, product_stock FROM PRODUCTS 
+WHERE product_stock NOT IN 40;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.5. Con Operadores de Comparación. --------------------------------------- --
@@ -115,11 +115,11 @@ SELECT * FROM PRODUCTS_BRANDS WHERE  LIKE '_a%';
 -- 2.6.2. Entre [BETWEEN] . ------------------------------------------------------------ --
 --        SELECT __ , __ FROM __ WHERE __ BETWEEN __ AND __ : -------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM CREDENCIALES 
-WHERE fecha_ingreso_cred BETWEEN '2022-08-01' AND '2022-08-31';
+SELECT * FROM USERS 
+WHERE user_date BETWEEN '2022-08-01' AND '2022-08-31';
 
-SELECT * FROM CREDENCIALES 
-WHERE fecha_ingreso_cred >= '2022-08-01' AND fecha_ingreso_cred <= '2022-08-31';
+SELECT * FROM USERS 
+WHERE user_date >= '2022-08-01' AND user_date <= '2022-08-31';
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.6.3. Lista [IN ( __ )] . ---------------------------------------------------------- --
@@ -132,15 +132,13 @@ WHERE product_stock IN (1,500);
 -- 2.7. Ordenadas. --------------------------------------------------------------------- --
 --      ORDER BY, ASC, DESC : ---------------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-
+SELECT * FROM SUBCATEGORIES 
+WHERE category_id = 2 
+ORDER BY category_id;
 -- ------------------------------------------------------------------------------------- --
 -- 2.7.1. Ascendente [ASC] . ----------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ ASC; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM SUBCATEGORIES 
-WHERE category_id = 2 
-ORDER BY category_id;
-
 SELECT * FROM SUBCATEGORIES
 WHERE category_id = 2 OR category_id = 3 
 ORDER BY category_id ASC;
@@ -182,122 +180,122 @@ ORDER BY subcategory_id ASC, product_stock DESC;
 -- 2.8.1. Suma [SUM()] . --------------------------------------------------------------- --
 --        SELECT __ , SUM( __ ) FROM __ GROUP BY __ : ---------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT SUM(total_pr_pedido) FROM PEDIDOS;
+SELECT SUM(total_pr_pedido) FROM PRODUCTS;
 
-SELECT codigo_customer, SUM(total_pr_pedido) FROM PEDIDOS 
-WHERE codigo_customer = 'customer-1';
+SELECT user_id, SUM(total_pr_pedido) FROM CUSTOMERS 
+WHERE user_id = 4;
 
-SELECT codigo_customer, SUM(total_pr_pedido) FROM PEDIDOS 
-GROUP BY codigo_customer;
+SELECT user_id, SUM(total_pr_pedido) FROM CUSTOMERS 
+GROUP BY user_id;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.8.2. Promedio [AVG()] . ----------------------------------------------------------- --
 --        SELECT __ , AVG( __ ) FROM __ GROUP BY __ : ---------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_customer, AVG(total_pr_pedido) FROM PEDIDOS 
-WHERE codigo_customer = 'customer-1';
+SELECT user_id, AVG(total_pr_pedido) FROM CUSTOMERS 
+WHERE user_id = 4;
 
-SELECT codigo_customer, AVG(total_pr_pedido) FROM PEDIDOS 
-GROUP BY codigo_customer;
+SELECT user_id, AVG(total_pr_pedido) FROM CUSTOMERS 
+GROUP BY user_id;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.8.3. Máximo [MAX()] . ------------------------------------------------------------- --
 --        SELECT __ , MAX( __ ) FROM __ GROUP BY __ : -------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_customer, MAX(total_pr_pedido) FROM PEDIDOS 
-WHERE codigo_customer = 'customer-1';
+SELECT user_id, MAX(total_pr_pedido) FROM CUSTOMERS 
+WHERE user_id = 4;
 
-SELECT codigo_customer, MAX(total_pr_pedido) FROM PEDIDOS 
-GROUP BY codigo_customer;
+SELECT user_id, MAX(total_pr_pedido) FROM CUSTOMERS 
+GROUP BY user_id;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.8.4. Mínimo [MIN()] . ------------------------------------------------------------- --
 --        SELECT __ , MIN( __ ) FROM __ GROUP BY __ : -------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_customer, MIN(total_pr_pedido) FROM PEDIDOS 
-WHERE codigo_customer = 'customer-1';
+SELECT user_id, MIN(total_pr_pedido) FROM CUSTOMERS 
+WHERE user_id = 4;
 
-SELECT codigo_customer, MIN(total_pr_pedido) FROM PEDIDOS 
-GROUP BY codigo_customer;
+SELECT user_id, MIN(total_pr_pedido) FROM CUSTOMERS 
+GROUP BY user_id;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.8.5. Conteo [COUNT()] . ----------------------------------------------------------- --
 --        SELECT __ , COUT( __ ) FROM __ GROUP BY __ : --------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT ciudad_pedido, COUNT(codigo_pedido) FROM PEDIDOS 
-WHERE ciudad_pedido = 'Bogotá';
+SELECT ciudad_pedido, COUNT(products_id) subcategory_i, product_stockd Pproduct_details_id 
+WHERE productstockedido = 40;
 
-SELECT ciudad_pedido, COUNT(codigo_pedido) FROM PEDIDOS 
-GROUP BY ciudad_pedido;
+SELECT ciudad_pedido, COUNT(products_id) subcate, product_stockgory_id productstockils_id 
+40;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.9. Calculadas con Alias. ---------------------------------------------------------- --
 --      SELECT __ , FUN( __ ) AS __ : -------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT SUM(total_pr_pedido) AS suma_pedidos FROM PEDIDOS;
+SELECT SUM(total_pr_pedido) AS suma_PRODUCTS FROM PRODUCTS;
 
-SELECT codigo_customer, SUM(total_pr_pedido) AS suma_pedidos
-FROM PEDIDOS 
-GROUP BY codigo_customer
-ORDER BY suma_pedidos ASC;
+SELECT user_id, SUM(total_pr_pedido) AS suma_PRODUCTS
+FROM PRODUCTS 
+GROUP BY user_id
+ORDER BY suma_PRODUCTS ASC;
 
-SELECT codigo_customer, AVG(total_pr_pedido) AS promedio_pedidos
-FROM PEDIDOS 
-GROUP BY codigo_customer
-ORDER BY promedio_pedidos DESC;
+SELECT user_id, AVG(total_pr_pedido) AS promedio_PRODUCTS
+FROM PRODUCTS 
+GROUP BY user_id
+ORDER BY promedio_PRODUCTS DESC;
 
-SELECT codigo_customer, MAX(total_pr_pedido) AS maximo_pedido
-FROM PEDIDOS 
-GROUP BY codigo_customer
+SELECT user_id, MAX(total_pr_pedido) AS maximo_pedido
+FROM PRODUCTS 
+GROUP BY user_id
 ORDER BY maximo_pedido DESC;
 
-SELECT codigo_customer, MIN(total_pr_pedido) AS minimo_pedido
-FROM PEDIDOS 
-GROUP BY codigo_customer
+SELECT user_id, MIN(total_pr_pedido) AS minimo_pedido
+FROM PRODUCTS 
+GROUP BY user_id
 ORDER BY minimo_pedido ASC;
 
-SELECT ciudad_pedido, COUNT(codigo_pedido) cant_pedidos
-FROM PEDIDOS 
-GROUP BY ciudad_pedido
-ORDER BY cant_pedidos DESC;
+SELECT ciudad_pedido, COUNT(products_id) subcategory_id
+Fproduct_details_id PRODUCTS 
+G, product_stockROUP BY productstock_pedido
+40RODUCTS DESC;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.10. Calculadas Condicionantes. ---------------------------------------------------- --
 --      SELECT __ , FUN( __ ) AS __ FROM __ GROUP BY __ HAVING __ = __ OR __ = __ : ---- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_customer, estado_pedido, SUM(total_pr_pedido) AS suma_pedidos
-FROM PEDIDOS 
-GROUP BY estado_pedido HAVING codigo_customer='customer-1' AND estado_pedido='entregado' 
-ORDER BY suma_pedidos ASC;
+SELECT user_id, estado_pedido, SUM(total_pr_pedido) AS suma_PRODUCTS
+FROM PRODUCTS 
+GROUP BY estado_pedido HAVING user_id=4 AND estado_pedido='entregado' 
+ORDER BY suma_PRODUCTS ASC;
 
-SELECT codigo_customer, estado_pedido, AVG(total_pr_pedido) AS promedio_pedidos
-FROM PEDIDOS 
-GROUP BY estado_pedido HAVING codigo_customer='customer-1' AND estado_pedido='entregado' 
-ORDER BY promedio_pedidos ASC;
+SELECT user_id, estado_pedido, AVG(total_pr_pedido) AS promedio_PRODUCTS
+FROM PRODUCTS 
+GROUP BY estado_pedido HAVING user_id=4 AND estado_pedido='entregado' 
+ORDER BY promedio_PRODUCTS ASC;
 
-SELECT codigo_customer, estado_pedido, MAX(total_pr_pedido) AS maximo_pedido
-FROM PEDIDOS 
-GROUP BY estado_pedido HAVING codigo_customer='customer-1' AND estado_pedido='entregado' 
+SELECT user_id, estado_pedido, MAX(total_pr_pedido) AS maximo_pedido
+FROM PRODUCTS 
+GROUP BY estado_pedido HAVING user_id=4 AND estado_pedido='entregado' 
 ORDER BY maximo_pedido ASC;
 
-SELECT codigo_customer, estado_pedido, MIN(total_pr_pedido) AS minimo_pedido
-FROM PEDIDOS 
-GROUP BY estado_pedido HAVING codigo_customer='customer-1' AND estado_pedido='entregado' 
+SELECT user_id, estado_pedido, MIN(total_pr_pedido) AS minimo_pedido
+FROM PRODUCTS 
+GROUP BY estado_pedido HAVING user_id=4 AND estado_pedido='entregado' 
 ORDER BY minimo_pedido ASC;
 
-SELECT ciudad_pedido, COUNT(codigo_pedido) AS cant_pedidos
-FROM PEDIDOS 
-GROUP BY ciudad_pedido HAVING ciudad_pedido = "Medellín" OR ciudad_pedido = "Cali"
-ORDER BY cant_pedidos DESC;
+SELECT ciudad_pedido, COUNT(products_id) subcategory_id cproduct_details_id
+FROM PRODUCTS 
+GROUP BY ciudad_, product_stockpedido HAVING ciudad_pedido = "Medellín" OR ciudad_pedido = "productstock"
+ORDER 40;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.11. Calculadas con Operadores. ---------------------------------------------------- --
 --        SELECT __ , __ , __*0.19 AS __ FROM __ : ------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, product_stock, product_stock * 0.19 
+SELECT nombre_producto, product_stock * 0.19 
 FROM PRODUCTS;
 
-SELECT nombre_producto, product_stock, product_stock * 0.19 AS iva_producto 
+SELECT nombre_producto, product_stock * 0.19 AS iva_producto 
 FROM PRODUCTS;
 
 SELECT nombre_producto, product_stock, ROUND(product_stock*0.19,2) AS iva_producto 
@@ -331,46 +329,10 @@ FROM PRODUCTS;
 --         TIMESTAMPDIFF(DAY, __ , NOW()) AS __ , -------------------------------------- --
 --         FROM __ : ------------------------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT codigo_cred, estado_cred, fecha_ingreso_cred,
+SELECT codigo_cred, estado_cred, user_date,
 DATE_FORMAT(NOW(),'%Y-%m-%d') AS fecha_actual,
-TIMESTAMPDIFF(YEAR, fecha_ingreso_cred, NOW()) AS años_transcurridos,
-TIMESTAMPDIFF(MONTH, fecha_ingreso_cred, NOW()) AS meses_transcurridos, 
-TIMESTAMPDIFF(DAY, fecha_ingreso_cred, NOW()) - 
-TIMESTAMPDIFF(MONTH, fecha_ingreso_cred, NOW()) * 30 AS dias_transcurridos
-FROM CREDENCIALES;
-
-
-/* ************************************************************************************* */
-/* -------------------------- 3. CONSULTAS DE ACCIÓN [Final] --------------------------- */
-/* ---------------------------- INSERT INTO, UPDATE, DELETE ---------------------------- */
-/* ************************************************************************************* */
-
-INSERT INTO USERS VALUES 
-(1, 'admin-2', 'Pepito', 'Perez', 'pepito@gmail.com');
-
-INSERT INTO MENSAJES VALUES
-('admin-2',DATE_FORMAT(NOW(),'%Y-%m-%d'),'Mantenimiento Sistema','Se informa a los ...');
-
-INSERT INTO CREDENCIALES VALUES
-('admin-2', 213456, DATE_FORMAT(NOW(),'%Y-%m-%d'), sha1('12345'), 1);
-
-INSERT INTO PEDIDOS VALUES
-('customer-2','pedido-6',DATE_FORMAT(NOW(),'%Y-%m-%d'),'Medellín','Av Rogeles',
-	10000.00, total_pl_pedido * 0.19, iva_pedido + total_pl_pedido, 'entregado');
-
-
-/* ************************************************************************************* */
-/* ------------------------------------------------------------------------------------- */
-/* ----------------------------------- BIBLIOGRAFÍA ------------------------------------ */
-/* ------------------------------------------------------------------------------------- */
-/* ************************************************************************************* */
-
--- ------------------------------------------------------------------------------------- --
--- Tutoriales de Programación ya. (s.f.). MySQL ya. Recuperado el 15 de Mayo de 2022,    --
---      de https://www.tutorialesprogramacionya.com/mysqlya/                             --
--- ------------------------------------------------------------------------------------- --
--- Pildoras Informáticas. (16 de Julio de 2015). Curso SQL.                              --
---      Recuperado el 16 de Abril de 2022, de [Archivo de Vídeo]                         --
---      https://www.youtube.com/playlist?list=PLU8oAlHdN5Bmx-LChV4K3MbHrpZKefNwn         --
---      página web                                                                       --
--- ------------------------------------------------------------------------------------- --
+TIMESTAMPDIFF(YEAR, user_date, NOW()) AS años_transcurridos,
+TIMESTAMPDIFF(MONTH, user_date, NOW()) AS meses_transcurridos, 
+TIMESTAMPDIFF(DAY, user_date, NOW()) - 
+TIMESTAMPDIFF(MONTH, user_date, NOW()) * 30 AS dias_transcurridos
+FROM USERS;
