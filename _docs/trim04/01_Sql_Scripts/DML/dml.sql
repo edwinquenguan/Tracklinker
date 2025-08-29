@@ -78,7 +78,7 @@ INSERT INTO ROLES VALUES
 
 
 INSERT INTO USERS VALUES 
-(1, null, 'Albeiro', 'Ramos', 'Villalba','3001112223', 'profealbeiro2020@gmail.com', 'KR 12 NO 20-245', sha1'12345', '2023-04-10');
+(1, null, 'Albeiro', 'Ramos', 'Villalba','3001112223', 'profealbeiro2020@gmail.com', 'KR 12 NO 20-245', sha1('12345'), '2023-04-10');
 
 
 INSERT INTO USERS VALUES 
@@ -86,25 +86,38 @@ INSERT INTO USERS VALUES
 (2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
 (3, null, 'Carlos', 'Ramírez', 'Torres', '3229876543', 'carlos.ramirez45@example.com', 'Av. Siempre Viva 742', 'hash_password_3', '2025-08-18'),
 (4, null, 'Ana', 'Torres', 'Martínez', '3008765432', 'ana.torres12@example.com', 'Calle 50 #10-25', 'hash_password_4', '2025-08-17'),
-(4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', 'hash_password_5', '2025-08-16');
-
-
+(4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', 'hash_password_5', '2025-08-16'),
+(4, null, 'juan', 'perez', 'lopez', '3151234567', 'juanperez@gmail.com', 'juanp89', '5678', '1998-05-21'),
+(4, null, 'ana', 'gomez', 'martinez', '3109876543', 'anagomez@yahoo.com', 'ana_g', '1234', '1995-12-10'),
+(4, null, 'carlos', 'ruiz', 'garcia', '3123456789', 'carlosr@hotmail.com', 'carlosr23', '8765', '2000-03-15'),
+(4, null, 'laura', 'jimenez', 'rodriguez', '3198765432', 'laurajim@gmail.com', 'lauraj', '4321', '1999-07-30'),
+(4, null, 'pedro', 'torres', 'castillo', '3134567890', 'pedrotorres@mail.com', 'pedrot', '9876', '2001-11-22'),
+(4, null, 'sofia', 'fernandez', 'mendez', '3145678901', 'sofiaf@hotmail.com', 'sofiaf1', '3456', '1997-08-14'),
+(4, null, 'luis', 'alvarez', 'ortiz', '3167890123', 'luisalvarez@gmail.com', 'luisalv', '6543', '1996-09-05'),
+(4, null, 'martha', 'vargas', 'ramos', '3178901234', 'marthav@yahoo.com', 'marthav', '7890', '2003-02-17'),
+(4, null, 'andres', 'castro', 'morales', '3189012345', 'andrescastro@mail.com', 'andresc', '2345', '1994-06-09'),
+(4, null, 'veronica', 'medina', 'salazar', '3190123456', 'veronicam@gmail.com', 'veronicam', '6789', '1993-04-25'),
+(4, null, 'javier', 'sanchez', 'hernandez', '3101234567', 'javiers@yahoo.com', 'javiers', '3456', '2002-01-13'),
+(4, null, 'laura', 'diaz', 'vazquez', '3112345678', 'lauradiaz@gmail.com', 'laurad', '5678', '1995-10-02'),
+(4, null, 'miguel', 'rojas', 'castro', '3123456789', 'miguelr@mail.com', 'miguelr', '4321', '1998-03-27'),
+(4, null, 'elena', 'martinez', 'sosa', '3134567890', 'elenam@hotmail.com', 'elenam', '1234', '2000-12-19');
+     
 INSERT INTO OUTPUT_ORDERS VALUES
-(NULL, '2025-03-24', 'Disco, ram', '3'),
-(NULL, '2025-05-22', 'ram, programas', '4'),
-(NULL, '2025-01-10', 'SSD, almacenamiento', '5'),
-(NULL, '2025-07-15', 'Tarjeta gráfica, NVIDIA', '6'),
-(NULL, '2025-09-30', 'Procesador, Intel', '7'),
-(NULL, '2025-04-18', 'Monitor, 24 pulgadas', '8'),
-(NULL, '2025-08-21', 'Teclado, mecánico', '9'),
-(NULL, '2025-06-12', 'Ratón, inalámbrico', '10'),
-(NULL, '2025-02-28', 'Fuente de poder, 600W', '11'),
-(NULL, '2025-11-05', 'Memoria RAM, 16GB', '12'),
-(NULL, '2025-12-12', 'Placa madre, ASUS', '13'),
-(NULL, '2025-10-09', 'Disco duro, 1TB', '14'),
-(NULL, '2025-03-01', 'Auriculares, Bluetooth', '15'),
-(NULL, '2025-05-15', 'Webcam, HD', '16'),
-(NULL, '2025-07-07', 'Impresora, láser', '17');
+(null, '2025-03-24', 'Disco, ram', '3'),
+(null, '2025-05-22', 'ram, programas', '4'),
+(null, '2025-01-10', 'SSD, almacenamiento', '5'),
+(null, '2025-07-15', 'Tarjeta gráfica, NVIDIA', '6'),
+(null, '2025-09-30', 'Procesador, Intel', '7'),
+(null, '2025-04-18', 'Monitor, 24 pulgadas', '8'),
+(null, '2025-08-21', 'Teclado, mecánico', '9'),
+(null, '2025-06-12', 'Ratón, inalámbrico', '10'),
+(null, '2025-02-28', 'Fuente de poder, 600W', '11'),
+(null, '2025-11-05', 'Memoria RAM, 16GB', '12'),
+(null, '2025-12-12', 'Placa madre, ASUS', '13'),
+(null, '2025-10-09', 'Disco duro, 1TB', '14'),
+(null, '2025-03-01', 'Auriculares, Bluetooth', '15'),
+(null, '2025-05-15', 'Webcam, HD', '16'),
+(null, '2025-07-07', 'Impresora, láser', '17');
 
 INSERT INTO CUSTOMERS VALUES
 (3, 1),
