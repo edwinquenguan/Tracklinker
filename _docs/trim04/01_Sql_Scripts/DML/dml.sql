@@ -90,12 +90,38 @@ INSERT INTO USERS VALUES
 
 
 INSERT INTO OUTPUT_ORDERS VALUES
-(null, '2025-05-20', 'Agregar un modúlo más de 8 gb de ram y agregar disco duro nvme M2 de 256gb', '100000'),
-
+(NULL, '2025-03-24', 'Disco, ram', '3'),
+(NULL, '2025-05-22', 'ram, programas', '4'),
+(NULL, '2025-01-10', 'SSD, almacenamiento', '5'),
+(NULL, '2025-07-15', 'Tarjeta gráfica, NVIDIA', '6'),
+(NULL, '2025-09-30', 'Procesador, Intel', '7'),
+(NULL, '2025-04-18', 'Monitor, 24 pulgadas', '8'),
+(NULL, '2025-08-21', 'Teclado, mecánico', '9'),
+(NULL, '2025-06-12', 'Ratón, inalámbrico', '10'),
+(NULL, '2025-02-28', 'Fuente de poder, 600W', '11'),
+(NULL, '2025-11-05', 'Memoria RAM, 16GB', '12'),
+(NULL, '2025-12-12', 'Placa madre, ASUS', '13'),
+(NULL, '2025-10-09', 'Disco duro, 1TB', '14'),
+(NULL, '2025-03-01', 'Auriculares, Bluetooth', '15'),
+(NULL, '2025-05-15', 'Webcam, HD', '16'),
+(NULL, '2025-07-07', 'Impresora, láser', '17');
 
 INSERT INTO CUSTOMERS VALUES
-(4, '2005-05-05'),
-(5, '1983-04-1');
+(3, 1),
+(4, 2),
+(5, 3),
+(6, 4),
+(7, 5),
+(8, 6),
+(9, 7),
+(10, 8),
+(11, 9),
+(12, 10),
+(13, 11),
+(14, 12),
+(15, 13),
+(16, 14),
+(17, 15);
 
 
 INSERT INTO SUPLIERS VALUES
@@ -126,26 +152,70 @@ INSERT INTO SUBCATEGORIES VALUES
 
 
 INSERT INTO PRODUCT_BRANDS VALUES
-(null, 'Lenovo'),
-(null, 'Asus'),
-(null, 'HP');
+(NULL, 'Zebra'),
+(NULL, 'Canon'),
+(NULL, 'Epson'),
+(NULL, 'Hp'),
+(NULL, 'Makita'),
+(NULL, 'LG'),
+(NULL, 'Samsung'),
+(NULL, 'Lenovo'),
+(NULL, 'Asus'),
+(NULL, 'Panasonic'),
+(NULL, 'Ricoh'),
+(NULL, 'Genius'),
+(NULL, 'Challenger'),
+(NULL, 'WESTERN DIGITAL WD'),
+(NULL, 'Kioxia'),
+(NULL, 'Kingston'),
+(NULL, 'Sony'),
+(NULL, 'Crucial');
 
 
 INSERT INTO PRODUCT_DETAILS VALUES
-(null, 1, 3, '', ''),
-(null, 2, 1, '', ''),
-(null, 3, 2, '', '');
+(NULL, 1, 'HP 110', 'Impresora térmica compacta para etiquetas'),
+(NULL, 1, 'Zebra ZD420', 'Impresora térmica para puntos de venta'),
+(NULL, 1, 'Epson TM-T20', 'Impresora térmica rápida y eficiente'),
+(NULL, 2, 'Epson L3150', 'Multifuncional con sistema de tinta continua'),
+(NULL, 2, 'Canon G2010', 'Impresora continua con escáner'),
+(NULL, 2, 'HP Ink Tank 415', 'Impresora con tinta recargable inalámbrica'),
+(NULL, 3, 'LaserJet Pro M15w', 'Impresora láser compacta y rápida'),
+(NULL, 3, 'Brother HL-L2350DW', 'Impresora láser monocromo'),
+(NULL, 3, 'Samsung Xpress M2020W', 'Impresora láser inalámbrica'),
+(NULL, 4, 'QLED 55Q60A', 'Smart TV Samsung de 55" con resolución 4K'),
+(NULL, 4, 'Bravia XR-55A80K', 'Sony Smart TV OLED 55" 4K'),
+(NULL, 5, 'LED TV 43LM6370', 'LG TV LED 43" Full HD'),
+(NULL, 6, 'OLED TV 65C1', 'TV OLED LG 65" 4K UHD'),
+(NULL, 7, 'Logitech M185', 'Mouse inalámbrico con receptor USB'),
+(NULL, 8, 'Razer DeathAdder V2', 'Mouse gamer ergonómico con sensor óptico'),
+(NULL, 9, 'Microsoft Basic Optical Mouse', 'Mouse USB económico y confiable'),
+(NULL, 10, 'Corsair K95 RGB', 'Teclado mecánico retroiluminado con macros'),
+(NULL, 11, 'Logitech K380', 'Teclado inalámbrico compacto'),
+(NULL, 12, 'Microsoft 600', 'Teclado de membrana silencioso'),
+(NULL, 13, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0');
 
 
 INSERT INTO PRODUCTS VALUES 
-(null, 1, 1, 50),
-(null, 2, 2, 40),
-(null, 3, 3, 20),
-(null, 1, 1, 30),
-(null, 2, 2, 8),
-(null, 3, 3, 1),
-(null, 1, 1, 5),
-(null, 2, 2, 20);
+(NULL, 1, 1, 35),    -- HP 110
+(NULL, 1, 2, 50),    -- Zebra ZD420
+(NULL, 1, 3, 28),    -- Epson TM-T20
+(NULL, 2, 4, 40),    -- Epson L3150
+(NULL, 2, 5, 33),    -- Canon G2010
+(NULL,2, 6, 45),    -- HP Ink Tank 415
+(NULL,3, 7, 20),    -- LaserJet Pro
+(NULL,3, 8, 18),    -- Brother HL
+(NULL,3, 9, 25),    -- Samsung Xpress
+(NULL,4, 10, 15),   -- QLED Samsung
+(NULL,4, 11, 12),   -- Bravia Sony
+(NULL,5, 12, 14),   -- LG LED
+(NULL,6, 13, 11),   -- LG OLED
+(NULL,7, 14, 60),   -- Mouse Logitech
+(NULL,8, 15, 52),   -- Razer Mouse
+(NULL,9, 16, 44),   -- Microsoft Mouse
+(NULL,10, 17, 10),  -- Corsair K95
+(NULL,11, 18, 16),  -- Logitech K380
+(NULL,12, 19, 21),  -- Microsoft Keyboard
+(NULL,13, 20, 30);  -- WD Passport
 
 
 INSERT INTO PRODUCT_SERIALS VALUES
