@@ -201,21 +201,21 @@ INSERT INTO PRODUCTS VALUES
 (NULL, 1, 3, 28),    -- Epson TM-T20
 (NULL, 2, 4, 40),    -- Epson L3150
 (NULL, 2, 5, 33),    -- Canon G2010
-(NULL,2, 6, 45),    -- HP Ink Tank 415
-(NULL,3, 7, 20),    -- LaserJet Pro
-(NULL,3, 8, 18),    -- Brother HL
-(NULL,3, 9, 25),    -- Samsung Xpress
-(NULL,4, 10, 15),   -- QLED Samsung
-(NULL,4, 11, 12),   -- Bravia Sony
-(NULL,5, 12, 14),   -- LG LED
-(NULL,6, 13, 11),   -- LG OLED
-(NULL,7, 14, 60),   -- Mouse Logitech
-(NULL,8, 15, 52),   -- Razer Mouse
-(NULL,9, 16, 44),   -- Microsoft Mouse
-(NULL,10, 17, 10),  -- Corsair K95
-(NULL,11, 18, 16),  -- Logitech K380
-(NULL,12, 19, 21),  -- Microsoft Keyboard
-(NULL,13, 20, 30);  -- WD Passport
+(NULL, 2, 6, 45),    -- HP Ink Tank 415
+(NULL, 3, 7, 20),    -- LaserJet Pro
+(NULL, 3, 8, 18),    -- Brother HL
+(NULL, 3, 9, 25),    -- Samsung Xpress
+(NULL, 4, 10, 15),   -- QLED Samsung
+(NULL, 4, 11, 12),   -- Bravia Sony
+(NULL, 5, 12, 14),   -- LG LED
+(NULL, 6, 13, 11),   -- LG OLED
+(NULL, 7, 14, 60),   -- Mouse Logitech
+(NULL, 8, 15, 52),   -- Razer Mouse
+(NULL, 9, 16, 44),   -- Microsoft Mouse
+(NULL, 10, 17, 10),  -- Corsair K95
+(NULL, 11, 18, 16),  -- Logitech K380
+(NULL, 12, 19, 21),  -- Microsoft Keyboard
+(NULL, 13, 20, 30);  -- WD Passport
 
 
 INSERT INTO PRODUCT_SERIALS VALUES
@@ -236,19 +236,19 @@ INSERT INTO USERS VALUES
 INSERT INTO USERS VALUES 
 (4, 'seller-3', 'Marina', 'Roncancio', 'marinita@gmail.com');
 
-INSERT INTO MENSAJES VALUES
+INSERT INTO CUSTOMERS VALUES
 ('person-3', '2022-08-15', 'Solicitud de Información', 'Quisiera saber sobre... ');
 
-INSERT INTO CREDENCIALES VALUES
+INSERT INTO SUPLIERS VALUES
 ('admin-1', 666555, '2022-09-25', sha1('45678'), 1);
 
-INSERT INTO CREDENCIALES VALUES
+INSERT INTO SUPLIERS VALUES
 ('admin-2', 987654, "2022-06-11", sha1('12345'), 1);
 
-INSERT INTO CREDENCIALES VALUES 
+INSERT INTO SUPLIERS VALUES 
 ('person-1', 666555, '2022-09-25', sha1('45678'), 1);
 
-INSERT INTO VENDEDORES_PEDIDOS VALUES
+INSERT INTO TECHNICAL VALUES
 ('seller-1', 'pedido-4');
 
 INSERT INTO CUSTOMERS VALUES
@@ -259,16 +259,16 @@ INSERT INTO CUSTOMERS VALUES
 --      UPDATE __ SET __ = __ WHERE __ = __ : ------------------------------------------ --
 -- ------------------------------------------------------------------------------------- --
 UPDATE ROLES SET 
-rol_name = 'person'
+rol_name = 'Persona'
 WHERE rol_id = 2;
 
 UPDATE USERS SET 
-user_id = 'admin-3'
-WHERE user_id = 'admin-2';
+user_name = 'Miguel'
+WHERE user_id = 5;
 
 -- ------------------------------------------------------------------------------------- --
 -- 1.3. Eliminar. ---------------------------------------------------------------------- --
 --      DELETE FROM __ WHERE __ = __ : ------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
 DELETE FROM USERS 
-WHERE user_id = '2';
+WHERE user_id = 2;
