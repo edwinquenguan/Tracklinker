@@ -153,12 +153,10 @@ ENGINE = InnoDB;
 CREATE TABLE PRODUCT_DETAILS (
   product_details_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)',
   product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
-  supplier_id INT NOT NULL COMMENT 'Identificador autogenerado de cada proveedor, Sirve para relacionar los proveedores con las ordenes de salida y demás (INT, Not null)',
   product_detail_model VARCHAR(45) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
   product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
   PRIMARY KEY (product_details_id),
   INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
-  INDEX fk_product_detail_supplier (supplier_id ASC),
   CONSTRAINT fk_product_details_product_brand
     FOREIGN KEY (product_brand_id)
     REFERENCES PRODUCT_BRANDS (product_brand_id)
@@ -171,12 +169,12 @@ ENGINE = InnoDB;
 -- Table PRODUCTS
 -- -----------------------------------------------------
 CREATE TABLE PRODUCTS (
-  products_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
+  product_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
   subcategory_id INT NOT NULL COMMENT 'Identificador de cada Subcategoria, Este campo sirve para relacionar los productos con las subcategorias y poder clasificarlos según el grupo que los agrupe (INT, Not null)',
   product_details_id INT NOT NULL COMMENT 'Identificador de detalles del producto\n.\nIdentificador único que referencia un conjunto específico de detalles asociados a un producto, como sus especificaciones técnicas, presentación, lote, ubicación, estado o características adicionales. Este campo es obligatorio para asegurar la trazabilidad y correcta asociación con los productos registrados.',
   product_stock INT NOT NULL COMMENT 'Stock del producto.\nIndica la cantidad actual disponible de un producto en el inventario. Este valor se actualiza con cada entrada y salida de mercancía, y es fundamental para la gestión de existencias, control de inventario y toma de decisiones operativas. Es un campo obligatorio para evitar registros sin control de stock.',
-  PRIMARY KEY (products_id),
-  UNIQUE INDEX idPRODUCTS_UNIQUE (products_id ASC),
+  PRIMARY KEY (product_id),
+  UNIQUE INDEX idPRODUCTS_UNIQUE (product_id ASC),
   INDEX fk_products_subcategory_idx (subcategory_id ASC),
   INDEX fk_products_product_details_idx (product_details_id ASC),
   CONSTRAINT fk_products_subcategory
@@ -197,20 +195,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE PRODUCT_SERIALS (
   product_serial VARCHAR(50) NOT NULL UNIQUE COMMENT 'Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)',
-  products_id INT NOT NULL COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
+  product_id INT NOT NULL COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
   input_order_id INT NOT NULL COMMENT 'Identificador de cada orden de entrada, Esta se relaciona en esta tabla para establecer fechas o facturas en las cuales se hizo el ingreso del producto (INT, Not null)',
   product_garanty_input VARCHAR(100) NOT NULL COMMENT 'Garantía del producto dada por el proveedor, este indica el tiempo de garantía actual, esta puede disminuir con el pasar del tiempo',
   PRIMARY KEY (product_serial),
   INDEX fk_product_serial_input_order_idx (input_order_id ASC),
-  INDEX fk_product_serial_products_idx (products_id ASC),
+  INDEX fk_product_serial_product_idx (product_id ASC),
   CONSTRAINT fk_product_serial_input_order
     FOREIGN KEY (input_order_id)
     REFERENCES INPUT_ORDERS (input_order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT fk_product_serial_products
-    FOREIGN KEY (products_id)
-    REFERENCES PRODUCTS (products_id)
+    FOREIGN KEY (product_id)
+    REFERENCES PRODUCTS (product_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
