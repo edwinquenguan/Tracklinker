@@ -38,6 +38,33 @@ CREATE TABLE USERS (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table PRODUCT_BRAND
+-- -----------------------------------------------------
+CREATE TABLE PRODUCT_BRANDS (
+  product_brand_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de marca de producto\n.\nClave primaria única que identifica cada marca registrada en el sistema. Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes.',
+  product_brand_name VARCHAR(45) NOT NULL COMMENT 'Nombre de la marca del producto\n.\nNombre oficial o comercial de la marca asociada a un producto. Este campo permite identificar y categorizar los productos por su fabricante, proveedor o casa comercial. Es obligatorio para asegurar que cada marca registrada tenga un nombre definido.',
+  PRIMARY KEY (product_brand_id),
+  UNIQUE INDEX product_brand_id_UNIQUE (product_brand_id ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table PRODUCT_DETAILS
+-- -----------------------------------------------------
+CREATE TABLE PRODUCT_DETAILS (
+  product_details_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)',
+  product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
+  product_detail_model VARCHAR(45) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
+  product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
+  PRIMARY KEY (product_details_id),
+  INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
+  CONSTRAINT fk_product_details_product_brand
+    FOREIGN KEY (product_brand_id)
+    REFERENCES PRODUCT_BRANDS (product_brand_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table OUTPUT_ORDER
@@ -45,10 +72,15 @@ ENGINE = InnoDB;
 CREATE TABLE OUTPUT_ORDERS (
   out_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado de las ordenes de salida (INT, Not null)',
   out_order_date DATE NOT NULL COMMENT 'Fecha de creación de la orden de salida, se usa para manejar control de las salidas (DATE, Not null)',
-  customer_requirements VARCHAR(100) NOT NULL COMMENT 'Requerimientos del cliente\n.\nCampo que registra las solicitudes, condiciones especiales o instrucciones específicas dadas por el cliente en relación con el pedido o la entrega del producto. Puede incluir información como empaques personalizados, fechas de entrega, condiciones de transporte, etiquetado especial, entre otros. Ya que asegura que las necesidades del cliente sean consideradas en el proceso logístico.',
+  product_details_id INT NOT NULL COMMENT 'Requerimientos del cliente\n.\nCampo que registra las solicitudes, condiciones especiales o instrucciones específicas dadas por el cliente en relación con el pedido o la entrega del producto. Puede incluir información como empaques personalizados, fechas de entrega, condiciones de transporte, etiquetado especial, entre otros. Ya que asegura que las necesidades del cliente sean consideradas en el proceso logístico.',
   amount INT NOT NULL COMMENT 'Cantidad\n\nRepresenta la cantidad asociada a un producto, transacción o movimiento. Su significado puede variar según el contexto del sistema (por ejemplo, unidades de producto, valor monetario o volumen físico), por lo tanto, debe estar claramente definido en cada caso de uso. Este campo es obligatorio.',
   PRIMARY KEY (out_order_id),
-  UNIQUE INDEX idOUTPUT_ORDER_UNIQUE (out_order_id ASC))
+  INDEX fk_output_orders_product_details_idx (product_details_id ASC),
+  CONSTRAINT fk_output_orders_product_details
+    FOREIGN KEY (product_details_id)
+    REFERENCES PRODUCT_DETAILS (product_details_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -74,9 +106,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table SUPLIERS
+-- Table SUPPLIERS
 -- -----------------------------------------------------
-CREATE TABLE SUPLIERS (
+CREATE TABLE SUPPLIERS (
   supplier_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada proveedor, llave primaria (INT, Not null)',
   supplier_name VARCHAR(45) NOT NULL COMMENT 'Nombre del proveedor (VARCHAR, Not null)',
   supplier_city VARCHAR(50) NOT NULL COMMENT 'Ciudad donde esta ubicado el proveedor (VARCHAR, Not null)',
@@ -94,14 +126,14 @@ CREATE TABLE INPUT_ORDERS (
   input_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único autogenerado para órdenes de entrada (PK). Clave primaria autoincremental. Requerido para todas las transacciones (NOT NULL, UNIQUE).',
   supplier_id INT NOT NULL COMMENT 'Identificador del proveedor asociado a la orden. not null ',
   input_order_supplier VARCHAR(100) NOT NULL COMMENT 'Dato complementario a supplier_id. que contiene código/nombre comercial del proveedor (NOT NULL). ',
-  input_order_bill INT NOT NULL COMMENT 'Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).',
+  input_order_bill VARCHAR(255) NOT NULL COMMENT 'Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).',
   input_order_date DATE NOT NULL COMMENT 'Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema',
   PRIMARY KEY (input_order_id, input_order_bill),
   UNIQUE INDEX idINPUT_ORDER_UNIQUE (input_order_id ASC),
   INDEX fk_input_order_supplier_idx ( supplier_id ASC),
   CONSTRAINT fk_input_order_supplier
     FOREIGN KEY ( supplier_id)
-    REFERENCES SUPLIERS (supplier_id)
+    REFERENCES SUPPLIERS (supplier_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -137,35 +169,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table PRODUCT_BRAND
--- -----------------------------------------------------
-CREATE TABLE PRODUCT_BRANDS (
-  product_brand_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de marca de producto\n.\nClave primaria única que identifica cada marca registrada en el sistema. Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes.',
-  product_brand_name VARCHAR(45) NOT NULL COMMENT 'Nombre de la marca del producto\n.\nNombre oficial o comercial de la marca asociada a un producto. Este campo permite identificar y categorizar los productos por su fabricante, proveedor o casa comercial. Es obligatorio para asegurar que cada marca registrada tenga un nombre definido.',
-  PRIMARY KEY (product_brand_id),
-  UNIQUE INDEX product_brand_id_UNIQUE (product_brand_id ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table PRODUCT_DETAILS
--- -----------------------------------------------------
-CREATE TABLE PRODUCT_DETAILS (
-  product_details_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)',
-  product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
-  product_detail_model VARCHAR(45) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
-  product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
-  PRIMARY KEY (product_details_id),
-  INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
-  CONSTRAINT fk_product_details_product_brand
-    FOREIGN KEY (product_brand_id)
-    REFERENCES PRODUCT_BRANDS (product_brand_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table PRODUCTS
 -- -----------------------------------------------------
 CREATE TABLE PRODUCTS (
@@ -194,10 +197,10 @@ ENGINE = InnoDB;
 -- Table PRODUCT_SERIALS
 -- -----------------------------------------------------
 CREATE TABLE PRODUCT_SERIALS (
-  product_serial VARCHAR(50) NOT NULL UNIQUE COMMENT 'Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)',
+  product_serial VARCHAR(255) NOT NULL UNIQUE COMMENT 'Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)',
   product_id INT NOT NULL COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
   input_order_id INT NOT NULL COMMENT 'Identificador de cada orden de entrada, Esta se relaciona en esta tabla para establecer fechas o facturas en las cuales se hizo el ingreso del producto (INT, Not null)',
-  product_garanty_input VARCHAR(100) NOT NULL COMMENT 'Garantía del producto dada por el proveedor, este indica el tiempo de garantía actual, esta puede disminuir con el pasar del tiempo',
+  product_garanty_input DATE NOT NULL COMMENT 'Garantía del producto dada por el proveedor, este indica el tiempo de garantía actual, esta puede disminuir con el pasar del tiempo',
   PRIMARY KEY (product_serial),
   INDEX fk_product_serial_input_order_idx (input_order_id ASC),
   INDEX fk_product_serial_product_idx (product_id ASC),
@@ -222,7 +225,7 @@ CREATE TABLE OUTPUT_DETAILS (
   product_serial VARCHAR(50) NOT NULL COMMENT '\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.',
   output_details_id INT NOT NULL AUTO_INCREMENT COMMENT ' Identificador de detalle de salida\n,  Clave primaria única que identifica cada registro individual en la tabla de detalles de salida. Este identificador se genera automáticamente por el sistema en orden secuencial y no puede ser nulo. Se utiliza para distinguir y rastrear cada línea o componente dentro de una orden de salida.',
   out_product_garanty DATE NOT NULL COMMENT 'Garantía del producto en salida\n\nIndica si el producto entregado o despachado cuenta con garantía activa o especifica el período de garantía ofrecido. Este campo es obligatorio, ya que permite hacer seguimiento a las condiciones de postventa o soporte del producto.',
-  product_transformation VARCHAR(45) NOT NULL COMMENT 'Transformación del producto\n.\nIndica si el producto ha sido sometido a algún tipo de transformación antes de su salida del inventario. Esto puede incluir procesos como ensamblaje, personalización, reempaque, reparación, entre otros. El campo es obligatorio, ya que influye en el seguimiento de procesos logísticos y de control de calidad.',
+  product_transformation VARCHAR(255) NOT NULL COMMENT 'Transformación del producto\n.\nIndica si el producto ha sido sometido a algún tipo de transformación antes de su salida del inventario. Esto puede incluir procesos como ensamblaje, personalización, reempaque, reparación, entre otros. El campo es obligatorio, ya que influye en el seguimiento de procesos logísticos y de control de calidad.',
   UNIQUE INDEX idOUTPUT_DETAILS_UNIQUE (product_serial ASC),
   INDEX fk_output_details_output_oder_idx (out_order_id ASC),
   PRIMARY KEY (output_details_id),
@@ -244,7 +247,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE WARRANTY_INCIDENTS (
   warranty_incidents_id INT NOT NULL AUTO_INCREMENT COMMENT'Identificador único y autoincremental para los incidentes de garantía registrados en el sistema.',
-  product_serial VARCHAR(50) NOT NULL COMMENT' Identificador autoincremental para cada número de serie registrado.',
+  product_serial VARCHAR(255) NOT NULL COMMENT' Identificador autoincremental para cada número de serie registrado.',
   warranty_customer VARCHAR(45) NOT NULL COMMENT' Almacena la información de los clientes con garantías, incluyendo los detalles del producto y la fecha de expiración.',
   warranty_phone VARCHAR(45) NOT NULL COMMENT'Número de contacto principal para la gestión de la garantía.',
   warranty_address VARCHAR(45) NOT NULL COMMENT' Dirección del cliente para la gestión de la garantía.',
