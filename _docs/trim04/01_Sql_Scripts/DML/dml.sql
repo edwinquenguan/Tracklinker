@@ -84,8 +84,9 @@ INSERT INTO USERS VALUES
 INSERT INTO USERS VALUES 
 (1, null, 'Juan', 'Pérez', 'García', '3004567890', 'juan.perez1@example.com', 'Calle 123 #45-67', 'hash_password_1', '2025-08-20'),
 (2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
+(2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
 (3, null, 'Carlos', 'Ramírez', 'Torres', '3229876543', 'carlos.ramirez45@example.com', 'Av. Siempre Viva 742', 'hash_password_3', '2025-08-18'),
-(4, null, 'Ana', 'Torres', 'Martínez', '3008765432', 'ana.torres12@example.com', 'Calle 50 #10-25', 'hash_password_4', '2025-08-17'),
+(3, null, 'Ana', 'Torres', 'Martínez', '3008765432', 'ana.torres12@example.com', 'Calle 50 #10-25', 'hash_password_4', '2025-08-17'),
 (4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', 'hash_password_5', '2025-08-16'),
 (4, null, 'juan', 'perez', 'lopez', '3151234567', 'juanperez@gmail.com', 'juanp89', '5678', '1998-05-21'),
 (4, null, 'ana', 'gomez', 'martinez', '3109876543', 'anagomez@yahoo.com', 'ana_g', '1234', '1995-12-10'),
@@ -120,33 +121,30 @@ INSERT INTO OUTPUT_ORDERS VALUES
 (null, '2025-07-07', 'Impresora, láser', '17');
 
 INSERT INTO CUSTOMERS VALUES
-(3, 1),
-(4, 2),
-(5, 3),
-(6, 4),
-(7, 5),
-(8, 6),
-(9, 7),
-(10, 8),
-(11, 9),
-(12, 10),
-(13, 11),
-(14, 12),
-(15, 13),
-(16, 14),
-(17, 15);
+(6, 1),
+(7, 2),
+(8, 3),
+(9, 4),
+(10, 5),
+(11, 6),
+(12, 7),
+(13, 8),
+(14, 9),
+(15, 10),
+(16, 11),
+(17, 12);
 
 
-INSERT INTO SUPLIERS VALUES
+INSERT INTO SUPPLIERS VALUES
 (null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112'),
-(null, 'Servicios Industriales', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
+(null, 'Servicios Industriales', 'Miami', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
 (null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562');
 
 
 INSERT INTO INPUT_ORDERS VALUES
-(null, 1, '2022-09-17', '', 'INP00001', '2024-05-05'),
-(null, 2, '2022-09-18', '', 'INP00002', '2024-05-05'),
-(null, 3, '2022-09-18', '', 'INP00002', '2024-05-05');
+(null, 1, 'Asus', 'INP00001', '2024-05-05'),
+(null, 2, 'Industriales', 'INP00002', '2024-05-05'),
+(null, 3, 'Lenovo', 'INP00002', '2024-05-05');
 
 
 INSERT INTO CATEGORIES VALUES 
@@ -161,8 +159,35 @@ INSERT INTO CATEGORIES VALUES
 
 INSERT INTO SUBCATEGORIES VALUES 
 (null, 1, 'Portatiles'),
-(null, 2, 'All in one');
-
+(null, 2, 'All in one'),
+(null, 1, 'Torres'),
+(null, 2, 'LCD'),
+(null, 2, 'LED'),
+(null, 2, 'OLED'),
+(null, 2, 'QLED'),
+(null, 3, 'TN'),
+(null, 3, 'VA'),
+(null, 3, 'IPS'),
+(null, 3, 'OLED'),
+(null, 4, 'Impresora a color'),
+(null, 4, 'Impresora a laser'),
+(null, 4, 'Impresora de tanques'),
+(null, 4, 'Impresora a térmica'),
+(null, 5, 'Camaras sin espejo'),
+(null, 5, 'Camaras a réflex digitales'),
+(null, 5, 'Camaras a compactas'),
+(null, 5, 'Camaras de accion'),
+(null, 5, 'Camaras de Instantáneas'),
+(null, 5, 'Camaras de Teléfonos móviles'),
+(null, 5, 'Camaras de Formato medio y gran formato'),
+(null, 6, 'Servidores de Archivos'),
+(null, 6, 'Servidores de torre'),
+(null, 6, 'Servidores de rack'),
+(null, 6, 'Servidores de blade'),
+(null, 6, 'Servidores de miniatura'),
+(null, 6, 'Servidores de Ultra densos'),
+(null, 7, 'Soportes de articulados'),
+(null, 7, 'Soporte de Fijos');
 
 INSERT INTO PRODUCT_BRANDS VALUES
 (NULL, 'Zebra'),
@@ -199,43 +224,51 @@ INSERT INTO PRODUCT_DETAILS VALUES
 (NULL, 4, 'Bravia XR-55A80K', 'Sony Smart TV OLED 55" 4K'),
 (NULL, 5, 'LED TV 43LM6370', 'LG TV LED 43" Full HD'),
 (NULL, 6, 'OLED TV 65C1', 'TV OLED LG 65" 4K UHD'),
-(NULL, 7, 'Logitech M185', 'Mouse inalámbrico con receptor USB'),
-(NULL, 8, 'Razer DeathAdder V2', 'Mouse gamer ergonómico con sensor óptico'),
-(NULL, 9, 'Microsoft Basic Optical Mouse', 'Mouse USB económico y confiable'),
-(NULL, 10, 'Corsair K95 RGB', 'Teclado mecánico retroiluminado con macros'),
-(NULL, 11, 'Logitech K380', 'Teclado inalámbrico compacto'),
-(NULL, 12, 'Microsoft 600', 'Teclado de membrana silencioso'),
 (NULL, 13, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0');
 
 
 INSERT INTO PRODUCTS VALUES 
-(NULL, 1, 1, 35),    -- HP 110
-(NULL, 1, 2, 50),    -- Zebra ZD420
-(NULL, 1, 3, 28),    -- Epson TM-T20
-(NULL, 2, 4, 40),    -- Epson L3150
-(NULL, 2, 5, 33),    -- Canon G2010
-(NULL, 2, 6, 45),    -- HP Ink Tank 415
-(NULL, 3, 7, 20),    -- LaserJet Pro
-(NULL, 3, 8, 18),    -- Brother HL
-(NULL, 3, 9, 25),    -- Samsung Xpress
-(NULL, 4, 10, 15),   -- QLED Samsung
-(NULL, 4, 11, 12),   -- Bravia Sony
+(NULL, 15, 1, 35),    -- HP 110
+(NULL, 15, 2, 50),    -- Zebra ZD420
+(NULL, 15, 3, 28),    -- Epson TM-T20
+(NULL, 12, 4, 40),    -- Epson L3150
+(NULL, 12, 5, 33),    -- Canon G2010
+(NULL, 12, 6, 45),    -- HP Ink Tank 415
+(NULL, 13, 7, 20),    -- LaserJet Pro
+(NULL, 13, 8, 18),    -- Brother HL
+(NULL, 13, 9, 25),    -- Samsung Xpress
+(NULL, 7, 10, 15),   -- QLED Samsung
+(NULL, 6, 11, 12),   -- Bravia Sony
 (NULL, 5, 12, 14),   -- LG LED
-(NULL, 6, 13, 11),   -- LG OLED
-(NULL, 7, 14, 60),   -- Mouse Logitech
-(NULL, 8, 15, 52),   -- Razer Mouse
-(NULL, 9, 16, 44),   -- Microsoft Mouse
-(NULL, 10, 17, 10),  -- Corsair K95
-(NULL, 11, 18, 16),  -- Logitech K380
-(NULL, 12, 19, 21),  -- Microsoft Keyboard
-(NULL, 13, 20, 30);  -- WD Passport
+(NULL, 6, 13, 11);   -- LG OLED
 
 
 INSERT INTO PRODUCT_SERIALS VALUES
-(null, 1, 2, '12 Meses'),
-(null, 2, 2, '6 Meses'),
-(null, 3, 2, '24 Meses');
+(1, 'QTYC1123122', 1, '12 Meses'),
+(2, 'QTYC2123123', 2, '6 Meses'),
+(3, 'QTYC3123123', 3, '24 Meses');
 
+
+INSERT INTO OUTPUT_DETAILS VALUES
+(1, 'QTYC1123122', 1, '2028-12-29', 'No necesita');
+
+INSERT INTO WARRANTY_INCIDENTS VALUES
+(null, 'QTYC1123122', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', null, '2025-08-15'),
+(null, 'QTYC2123123', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0002', 'Miami', '2025-08-20', null, '2025-08-15');
+
+INSERT INTO OUTPUT_DETAILS VALUES
+(1, 'QTYC1123122', null, '2028-12-29', 'No necesita');
+
+INSERT INTO WARRANTY_INCIDENTS VALUES
+(null, 'QTYC1123122', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 0);
+
+INSERT INTO TECHNICAL VALUES
+(4, 1);
+
+INSERT INTO WAREHAUSEMAN VALUES
+(2, 1),
+(2, 2),
+(3, 3);
 -- ------------------------------------------------------------------------------------- --
 -- 1.1.2. Datos Incorrectos ------------------------------------------------------------ --
 --        INSERT INTO __ VALUES ( __ , __ ) : ------------------------------------------ --
@@ -252,13 +285,13 @@ INSERT INTO USERS VALUES
 INSERT INTO CUSTOMERS VALUES
 ('person-3', '2022-08-15', 'Solicitud de Información', 'Quisiera saber sobre... ');
 
-INSERT INTO SUPLIERS VALUES
+INSERT INTO SUPPLIERS VALUES
 ('admin-1', 666555, '2022-09-25', sha1('45678'), 1);
 
-INSERT INTO SUPLIERS VALUES
+INSERT INTO SUPPLIERS VALUES
 ('admin-2', 987654, "2022-06-11", sha1('12345'), 1);
 
-INSERT INTO SUPLIERS VALUES 
+INSERT INTO SUPPLIERS VALUES 
 ('person-1', 666555, '2022-09-25', sha1('45678'), 1);
 
 INSERT INTO TECHNICAL VALUES
