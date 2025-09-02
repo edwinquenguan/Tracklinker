@@ -85,8 +85,18 @@ INSERT INTO USERS VALUES
 (1, null, 'Juan', 'Pérez', 'García', '3004567890', 'juan.perez1@example.com', 'Calle 123 #45-67', 'hash_password_1', '2025-08-20'),
 (2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
 (2, null, 'María', 'López', 'Rodríguez', '3112345678', 'maria.lopez23@example.com', 'Carrera 10 #20-30', 'hash_password_2', '2025-08-19'),
+(2, null, 'Carlos', 'García', 'Moreno', '3101112233', 'carlos.garcia@example.com', 'Calle 45 #12-30', 'hash_password_18', '2025-08-20'),
+(2, null, 'Andrea', 'López', 'Pérez', '3124445566', 'andrea.lopez@example.com', 'Carrera 20 #5-18', 'hash_password_19', '2025-08-21'),
+(2, null, 'Felipe', 'Ramírez', 'Torres', '3157778899', 'felipe.ramirez@example.com', 'Av. Siempre Viva 742', 'hash_password_20', '2025-08-22'),
+(2, null, 'Paola', 'Martínez', 'Guzmán', '3163334455', 'paola.martinez@example.com', 'Transv. 56 #34-90', 'hash_password_21', '2025-08-23'),
+(2, null, 'Jorge', 'Hernández', 'Suárez', '3176667788', 'jorge.hernandez@example.com', 'Cl. 100 #45-12', 'hash_password_22', '2025-08-24'),
 (3, null, 'Carlos', 'Ramírez', 'Torres', '3229876543', 'carlos.ramirez45@example.com', 'Av. Siempre Viva 742', 'hash_password_3', '2025-08-18'),
 (3, null, 'Ana', 'Torres', 'Martínez', '3008765432', 'ana.torres12@example.com', 'Calle 50 #10-25', 'hash_password_4', '2025-08-17'),
+(3, null, 'Diana', 'Morales', 'Rincón', '3189990011', 'diana.morales@example.com', 'Bodega Central Km 7', 'hash_password_23', '2025-08-25'),
+(3, null, 'Ricardo', 'Suárez', 'Castaño', '3192223344', 'ricardo.suarez@example.com', 'Cl. 80 #10-55', 'hash_password_24', '2025-08-26'),
+(3, null, 'Lucía', 'Fernández', 'Quintero', '3205556677', 'lucia.fernandez@example.com', 'Carrera 15 #8-44', 'hash_password_25', '2025-08-27'),
+(3, null, 'Santiago', 'Rojas', 'Bedoya', '3218889900', 'santiago.rojas@example.com', 'Cl. 30 #22-18', 'hash_password_26', '2025-08-28'),
+(3, null, 'Valentina', 'Cárdenas', 'Prieto', '3221112233', 'valentina.cardenas@example.com', 'Zona Industrial 4', 'hash_password_27', '2025-08-29'),
 (4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', 'hash_password_5', '2025-08-16'),
 (4, null, 'juan', 'perez', 'lopez', '3151234567', 'juanperez@gmail.com', 'juanp89', '5678', '1998-05-21'),
 (4, null, 'ana', 'gomez', 'martinez', '3109876543', 'anagomez@yahoo.com', 'ana_g', '1234', '1995-12-10'),
@@ -234,7 +244,7 @@ INSERT INTO OUTPUT_ORDERS VALUES
 (null, '2025-10-09', 2, 14),
 (null, '2025-03-01', 7, 15),
 (null, '2025-05-15', 8, 16),
-(null, '2025-07-07', 9, 17);
+(null, '2025-07-07', 9, 17);    
 
 
 INSERT INTO CUSTOMERS VALUES
