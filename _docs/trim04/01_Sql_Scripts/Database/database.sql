@@ -8,7 +8,7 @@ USE DB_TRACKLINKER;
 -- -----------------------------------------------------
 CREATE TABLE ROLES (
   rol_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada rol, llave primaria (INT, Not null))',
-  rol_name VARCHAR(45) NOT NULL COMMENT 'Nombre de cada rol, De caracter obligatorio para poder clasificar cada rol (Varchar (45), Not null)',
+  rol_name VARCHAR(100) NOT NULL COMMENT 'Nombre de cada rol, De caracter obligatorio para poder clasificar cada rol (Varchar (45), Not null)',
   PRIMARY KEY (rol_id),
   UNIQUE INDEX rol_id_UNIQUE (rol_id ASC))
 ENGINE = InnoDB;
@@ -20,12 +20,12 @@ ENGINE = InnoDB;
 CREATE TABLE USERS (
   rol_id INT NOT NULL COMMENT 'Identificador autogenerado para cada rol (INT, Not null)',
   user_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada usuario, Llave primaria (INT, Not null)',
-  user_name VARCHAR(45) NOT NULL COMMENT ' (VARCHAR, Not null)',
-  user_first_surname VARCHAR(45) NOT NULL COMMENT 'Primer apellido del usuario, se separa el apellido en dos partes para que al momento de hacer búsquedas sea más sencillo encontrar el usuario (VARCHAR, Not null)',
-  user_second_surname VARCHAR(45) NOT NULL COMMENT 'Segundo apellido del usuario (VARCHAR, Not null)',
-  user_phone VARCHAR(45) NOT NULL COMMENT 'Número de teléfono del usuario (VARCHAR, Not null)',
-  user_email VARCHAR(45) NOT NULL COMMENT 'Correo electrónico del usuario (VARCHAR, Not null)',
-  user_address VARCHAR(45) NOT NULL COMMENT 'Dirección del usuario (VARCHAR, Not null)',
+  user_name VARCHAR(255) NOT NULL COMMENT ' (VARCHAR, Not null)',
+  user_first_surname VARCHAR(255) NOT NULL COMMENT 'Primer apellido del usuario, se separa el apellido en dos partes para que al momento de hacer búsquedas sea más sencillo encontrar el usuario (VARCHAR, Not null)',
+  user_second_surname VARCHAR(255) NOT NULL COMMENT 'Segundo apellido del usuario (VARCHAR, Not null)',
+  user_phone VARCHAR(255) NOT NULL COMMENT 'Número de teléfono del usuario (VARCHAR, Not null)',
+  user_email VARCHAR(255) NOT NULL COMMENT 'Correo electrónico del usuario (VARCHAR, Not null)',
+  user_address VARCHAR(255) NOT NULL COMMENT 'Dirección del usuario (VARCHAR, Not null)',
   user_password VARCHAR(255) NOT NULL COMMENT 'Contrasena del usuario, se debe almacenar hasheada para mayor seguridad (VARCHAR, Not null)',
   user_date DATE NOT NULL COMMENT 'Fecha de creación del usuario (DATE, Not null)',
   PRIMARY KEY (user_id),
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 CREATE TABLE PRODUCT_DETAILS (
   product_details_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)',
   product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
-  product_detail_model VARCHAR(45) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
+  product_detail_model VARCHAR(255) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
   product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
   PRIMARY KEY (product_details_id),
   INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
@@ -110,11 +110,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE SUPPLIERS (
   supplier_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado para cada proveedor, llave primaria (INT, Not null)',
-  supplier_name VARCHAR(45) NOT NULL COMMENT 'Nombre del proveedor (VARCHAR, Not null)',
-  supplier_city VARCHAR(50) NOT NULL COMMENT 'Ciudad donde esta ubicado el proveedor (VARCHAR, Not null)',
-  supplier_address VARCHAR(45) NOT NULL COMMENT 'Dirección del proveedor (VARCHAR, Not null)',
-  supplier_email VARCHAR(45) NOT NULL COMMENT 'Correo electronico del proveedor (VARCHAR, Not null)',
-  supplier_phone VARCHAR(45) NOT NULL COMMENT 'Número de teléfono del proveedor (VARCHAR, Not null)',
+  supplier_name VARCHAR(255) NOT NULL COMMENT 'Nombre del proveedor (VARCHAR, Not null)',
+  supplier_city VARCHAR(255) NOT NULL COMMENT 'Ciudad donde esta ubicado el proveedor (VARCHAR, Not null)',
+  supplier_address VARCHAR(255) NOT NULL COMMENT 'Dirección del proveedor (VARCHAR, Not null)',
+  supplier_email VARCHAR(255) NOT NULL COMMENT 'Correo electronico del proveedor (VARCHAR, Not null)',
+  supplier_phone VARCHAR(255) NOT NULL COMMENT 'Número de teléfono del proveedor (VARCHAR, Not null)',
   PRIMARY KEY (supplier_id))
 ENGINE = InnoDB;
 
@@ -144,7 +144,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE CATEGORIES (
   category_id INT NOT NULL AUTO_INCREMENT COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
-  category_name VARCHAR(45) NOT NULL COMMENT 'Identificar y clasificar los productos tecnológicos en el sistema.',
+  category_name VARCHAR(100) NOT NULL COMMENT 'Identificar y clasificar los productos tecnológicos en el sistema.',
   UNIQUE INDEX category_id_UNIQUE (category_id ASC),
   PRIMARY KEY (category_id))
 ENGINE = InnoDB;
@@ -156,7 +156,7 @@ ENGINE = InnoDB;
 CREATE TABLE SUBCATEGORIES (
   subcategory_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado de cada subcategoria (INT, Not null)',
   category_id INT NOT NULL COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
-  subcategory_name VARCHAR(45) NOT NULL COMMENT 'Nombre de cada subcategoria (VARCHAR, Not null)',
+  subcategory_name VARCHAR(100) NOT NULL COMMENT 'Nombre de cada subcategoria (VARCHAR, Not null)',
   PRIMARY KEY (subcategory_id),
   UNIQUE INDEX subcategory_id_UNIQUE (subcategory_id ASC),
   INDEX fk_subcategory_category_idx (category_id ASC),
@@ -222,7 +222,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE OUTPUT_DETAILS (
   out_order_id INT NOT NULL COMMENT 'Identificador de orden de salida, Clave única que identifica cada orden de salida registrada en el sistema. Esta orden agrupa una o varias salidas de productos desde el almacén, ya sea por venta, traslado, devolución o cualquier otro movimiento logístico.\n',
-  product_serial VARCHAR(50) NOT NULL COMMENT '\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.',
+  product_serial VARCHAR(255) NOT NULL COMMENT '\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.',
   output_details_id INT NOT NULL AUTO_INCREMENT COMMENT ' Identificador de detalle de salida\n,  Clave primaria única que identifica cada registro individual en la tabla de detalles de salida. Este identificador se genera automáticamente por el sistema en orden secuencial y no puede ser nulo. Se utiliza para distinguir y rastrear cada línea o componente dentro de una orden de salida.',
   out_product_garanty DATE NOT NULL COMMENT 'Garantía del producto en salida\n\nIndica si el producto entregado o despachado cuenta con garantía activa o especifica el período de garantía ofrecido. Este campo es obligatorio, ya que permite hacer seguimiento a las condiciones de postventa o soporte del producto.',
   product_transformation VARCHAR(255) NOT NULL COMMENT 'Transformación del producto\n.\nIndica si el producto ha sido sometido a algún tipo de transformación antes de su salida del inventario. Esto puede incluir procesos como ensamblaje, personalización, reempaque, reparación, entre otros. El campo es obligatorio, ya que influye en el seguimiento de procesos logísticos y de control de calidad.',
@@ -248,12 +248,12 @@ ENGINE = InnoDB;
 CREATE TABLE WARRANTY_INCIDENTS (
   warranty_incidents_id INT NOT NULL AUTO_INCREMENT COMMENT'Identificador único y autoincremental para los incidentes de garantía registrados en el sistema.',
   product_serial VARCHAR(255) NOT NULL COMMENT' Identificador autoincremental para cada número de serie registrado.',
-  warranty_customer VARCHAR(45) NOT NULL COMMENT' Almacena la información de los clientes con garantías, incluyendo los detalles del producto y la fecha de expiración.',
-  warranty_phone VARCHAR(45) NOT NULL COMMENT'Número de contacto principal para la gestión de la garantía.',
-  warranty_address VARCHAR(45) NOT NULL COMMENT' Dirección del cliente para la gestión de la garantía.',
+  warranty_customer VARCHAR(100) NOT NULL COMMENT' Almacena la información de los clientes con garantías, incluyendo los detalles del producto y la fecha de expiración.',
+  warranty_phone VARCHAR(255) NOT NULL COMMENT'Número de contacto principal para la gestión de la garantía.',
+  warranty_address VARCHAR(255) NOT NULL COMMENT' Dirección del cliente para la gestión de la garantía.',
   warranty_description VARCHAR(100) NOT NULL COMMENT'Descripción detallada del problema o incidente reportado por el cliente.',
-  warranty_link_attachments VARCHAR(100) NOT NULL COMMENT'Campo que contiene la URL o el path a los archivos adjuntos (imágenes, documentos) de la garantía, como facturas o fotos del producto.',
-  warranty_city VARCHAR(45) NOT NULL COMMENT'Nombre de la ciudad del cliente. Utilizado para determinar la ubicación geográfica y asignar el caso a un centro de servicio local.' ,
+  warranty_link_attachments VARCHAR(255) NOT NULL COMMENT'Campo que contiene la URL o el path a los archivos adjuntos (imágenes, documentos) de la garantía, como facturas o fotos del producto.',
+  warranty_city VARCHAR(100) NOT NULL COMMENT'Nombre de la ciudad del cliente. Utilizado para determinar la ubicación geográfica y asignar el caso a un centro de servicio local.' ,
   warranty_date DATE NOT NULL COMMENT 'Fecha y hora en que se reportó el incidente de garantía al sistema.' ,
   warranty_status INT NOT NULL DEFAULT 0 COMMENT 'Estado actual de la garantía , 0 = Sin Completar, 1 = En Proceso, 2 = Sin Completar, Al momento de ingresar la garantia nueva se le da un estado de 0 o Sin completar',
   PRIMARY KEY (warranty_incidents_id),
