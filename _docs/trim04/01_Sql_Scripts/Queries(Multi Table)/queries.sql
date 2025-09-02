@@ -1,3 +1,4 @@
+/* ¿Cuáles son las categorías y sus subcategorías asociadas? */
 SELECT
     c.category_name,
     S.subcategory_name
@@ -5,6 +6,7 @@ SELECT
     INNER JOIN CATEGORIES AS c
     ON c.category_id = s.category_id;
 
+/* ¿Qué usuarios existen y cuál es el rol asignado a cada uno? */
 SELECT
     r.rol_name,
     u.user_name,
@@ -13,24 +15,23 @@ SELECT
     INNER JOIN ROLES AS r
     ON u.rol_id = r.rol_id;
 
-    SELECT
+/* ¿Qué transformaciones a solicitado cada usuario, con su dirección y los requerimientos del cliente? */
+SELECT
     u.user_id,
     u.user_name,
-    c.out_order_id,
     u.user_address,
-    customer_requirements
+    c.out_order_id
     FROM USERS AS u
     INNER JOIN CUSTOMERS AS c
     ON u.user_id = c.user_id
     INNER JOIN OUTPUT_ORDERS AS o
     ON c.out_order_id = o.out_order_id;
 
-    SELECT * FROM PRODUCTS;
-
+/* ¿Qué productos existen junto con su categoría, subcategoría, marca, modelo y descripción? */
 SELECT
     c.category_name,
     s.subcategory_name,
-    p.products_id,
+    p.product_id,
     pd.product_detail_model,
     pd.product_detail_description,
     pb.product_brand_name
