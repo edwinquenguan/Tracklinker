@@ -102,49 +102,6 @@ INSERT INTO USERS VALUES
 (4, null, 'laura', 'diaz', 'vazquez', '3112345678', 'lauradiaz@gmail.com', 'laurad', '5678', '1995-10-02'),
 (4, null, 'miguel', 'rojas', 'castro', '3123456789', 'miguelr@mail.com', 'miguelr', '4321', '1998-03-27'),
 (4, null, 'elena', 'martinez', 'sosa', '3134567890', 'elenam@hotmail.com', 'elenam', '1234', '2000-12-19');
-     
-INSERT INTO OUTPUT_ORDERS VALUES
-(null, '2025-03-24', 'Disco, ram', '3'),
-(null, '2025-05-22', 'ram, programas', '4'),
-(null, '2025-01-10', 'SSD, almacenamiento', '5'),
-(null, '2025-07-15', 'Tarjeta gráfica, NVIDIA', '6'),
-(null, '2025-09-30', 'Procesador, Intel', '7'),
-(null, '2025-04-18', 'Monitor, 24 pulgadas', '8'),
-(null, '2025-08-21', 'Teclado, mecánico', '9'),
-(null, '2025-06-12', 'Ratón, inalámbrico', '10'),
-(null, '2025-02-28', 'Fuente de poder, 600W', '11'),
-(null, '2025-11-05', 'Memoria RAM, 16GB', '12'),
-(null, '2025-12-12', 'Placa madre, ASUS', '13'),
-(null, '2025-10-09', 'Disco duro, 1TB', '14'),
-(null, '2025-03-01', 'Auriculares, Bluetooth', '15'),
-(null, '2025-05-15', 'Webcam, HD', '16'),
-(null, '2025-07-07', 'Impresora, láser', '17');
-
-INSERT INTO CUSTOMERS VALUES
-(6, 1),
-(7, 2),
-(8, 3),
-(9, 4),
-(10, 5),
-(11, 6),
-(12, 7),
-(13, 8),
-(14, 9),
-(15, 10),
-(16, 11),
-(17, 12);
-
-
-INSERT INTO SUPPLIERS VALUES
-(null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112'),
-(null, 'Servicios Industriales', 'Miami', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
-(null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562');
-
-
-INSERT INTO INPUT_ORDERS VALUES
-(null, 1, 'Asus', 'INP00001', '2024-05-05'),
-(null, 2, 'Industriales', 'INP00002', '2024-05-05'),
-(null, 3, 'Lenovo', 'INP00002', '2024-05-05');
 
 
 INSERT INTO CATEGORIES VALUES 
@@ -159,7 +116,7 @@ INSERT INTO CATEGORIES VALUES
 
 INSERT INTO SUBCATEGORIES VALUES 
 (null, 1, 'Portatiles'),
-(null, 2, 'All in one'),
+(null, 1, 'All in one'),
 (null, 1, 'Torres'),
 (null, 2, 'LCD'),
 (null, 2, 'LED'),
@@ -189,81 +146,123 @@ INSERT INTO SUBCATEGORIES VALUES
 (null, 7, 'Soportes de articulados'),
 (null, 7, 'Soporte de Fijos');
 
+
 INSERT INTO PRODUCT_BRANDS VALUES
-(NULL, 'Zebra'),
-(NULL, 'Canon'),
-(NULL, 'Epson'),
-(NULL, 'Hp'),
-(NULL, 'Makita'),
-(NULL, 'LG'),
-(NULL, 'Samsung'),
-(NULL, 'Lenovo'),
-(NULL, 'Asus'),
-(NULL, 'Panasonic'),
-(NULL, 'Ricoh'),
-(NULL, 'Genius'),
-(NULL, 'Challenger'),
-(NULL, 'WESTERN DIGITAL WD'),
-(NULL, 'Kioxia'),
-(NULL, 'Kingston'),
-(NULL, 'Sony'),
-(NULL, 'Crucial');
+(null, 'Zebra'),
+(null, 'Canon'),
+(null, 'Epson'),
+(null, 'Hp'),
+(null, 'Makita'),
+(null, 'LG'),
+(null, 'Samsung'),
+(null, 'Lenovo'),
+(null, 'Asus'),
+(null, 'Panasonic'),
+(null, 'Ricoh'),
+(null, 'Genius'),
+(null, 'Challenger'),
+(null, 'WESTERN DIGITAL WD'),
+(null, 'Kioxia'),
+(null, 'Kingston'),
+(null, 'Sony'),
+(null, 'Crucial');
 
 
 INSERT INTO PRODUCT_DETAILS VALUES
-(NULL, 1, 'HP 110', 'Impresora térmica compacta para etiquetas'),
-(NULL, 1, 'Zebra ZD420', 'Impresora térmica para puntos de venta'),
-(NULL, 1, 'Epson TM-T20', 'Impresora térmica rápida y eficiente'),
-(NULL, 2, 'Epson L3150', 'Multifuncional con sistema de tinta continua'),
-(NULL, 2, 'Canon G2010', 'Impresora continua con escáner'),
-(NULL, 2, 'HP Ink Tank 415', 'Impresora con tinta recargable inalámbrica'),
-(NULL, 3, 'LaserJet Pro M15w', 'Impresora láser compacta y rápida'),
-(NULL, 3, 'Brother HL-L2350DW', 'Impresora láser monocromo'),
-(NULL, 3, 'Samsung Xpress M2020W', 'Impresora láser inalámbrica'),
-(NULL, 4, 'QLED 55Q60A', 'Smart TV Samsung de 55" con resolución 4K'),
-(NULL, 4, 'Bravia XR-55A80K', 'Sony Smart TV OLED 55" 4K'),
-(NULL, 5, 'LED TV 43LM6370', 'LG TV LED 43" Full HD'),
-(NULL, 6, 'OLED TV 65C1', 'TV OLED LG 65" 4K UHD'),
-(NULL, 13, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0');
+(null, 1, 'HP 110', 'Impresora térmica compacta para etiquetas'),
+(null, 1, 'Zebra ZD420', 'Impresora térmica para puntos de venta'),
+(null, 1, 'Epson TM-T20', 'Impresora térmica rápida y eficiente'),
+(null, 2, 'Epson L3150', 'Multifuncional con sistema de tinta continua'),
+(null, 2, 'Canon G2010', 'Impresora continua con escáner'),
+(null, 2, 'HP Ink Tank 415', 'Impresora con tinta recargable inalámbrica'),
+(null, 3, 'LaserJet Pro M15w', 'Impresora láser compacta y rápida'),
+(null, 3, 'Brother HL-L2350DW', 'Impresora láser monocromo'),
+(null, 3, 'Samsung Xpress M2020W', 'Impresora láser inalámbrica'),
+(null, 4, 'QLED 55Q60A', 'Smart TV Samsung de 55" con resolución 4K'),
+(null, 4, 'Bravia XR-55A80K', 'Sony Smart TV OLED 55" 4K'),
+(null, 5, 'LED TV 43LM6370', 'LG TV LED 43" Full HD'),
+(null, 6, 'OLED TV 65C1', 'TV OLED LG 65" 4K UHD'),
+(null, 13, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0');
 
 
 INSERT INTO PRODUCTS VALUES 
-(NULL, 15, 1, 35),    -- HP 110
-(NULL, 15, 2, 50),    -- Zebra ZD420
-(NULL, 15, 3, 28),    -- Epson TM-T20
-(NULL, 12, 4, 40),    -- Epson L3150
-(NULL, 12, 5, 33),    -- Canon G2010
-(NULL, 12, 6, 45),    -- HP Ink Tank 415
-(NULL, 13, 7, 20),    -- LaserJet Pro
-(NULL, 13, 8, 18),    -- Brother HL
-(NULL, 13, 9, 25),    -- Samsung Xpress
-(NULL, 7, 10, 15),   -- QLED Samsung
-(NULL, 6, 11, 12),   -- Bravia Sony
-(NULL, 5, 12, 14),   -- LG LED
-(NULL, 6, 13, 11);   -- LG OLED
+(null, 15, 1, 35),    -- HP 110
+(null, 15, 2, 50),    -- Zebra ZD420
+(null, 15, 3, 35),    -- Epson TM-T20
+(null, 12, 4, 40),    -- Epson L3150
+(null, 12, 5, 33),    -- Canon G2010
+(null, 12, 6, 45),    -- HP Ink Tank 415
+(null, 13, 7, 20),    -- LaserJet Pro
+(null, 13, 8, 18),    -- Brother HL
+(null, 13, 9, 25),    -- Samsung Xpress
+(null, 7, 10, 15),   -- QLED Samsung
+(null, 6, 11, 35),   -- Bravia Sony
+(null, 5, 12, 14),   -- LG LED
+(null, 6, 13, 11);   -- LG OLED
+
+
+INSERT INTO SUPPLIERS VALUES
+(null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112'),
+(null, 'Servicios Industriales', 'Miami', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
+(null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562');
+
+
+INSERT INTO INPUT_ORDERS VALUES
+(null, 1, 'Asus', 'INP00001', '2024-05-05'),
+(null, 2, 'Industriales', 'INP00002', '2024-05-05'),
+(null, 3, 'Lenovo', 'INP00002', '2024-05-05');
 
 
 INSERT INTO PRODUCT_SERIALS VALUES
-(1, 'QTYC1123122', 1, '12 Meses'),
-(2, 'QTYC2123123', 2, '6 Meses'),
-(3, 'QTYC3123123', 3, '24 Meses');
+('QTYC1123122', 1, 1, '2027-08-25'),
+('QTYC2123123', 2, 1, '2027-08-20'),
+('QTYC3123123', 3, 1, '2027-08-20');
 
 
-INSERT INTO OUTPUT_DETAILS VALUES
-(1, 'QTYC1123122', 1, '2028-12-29', 'No necesita');
+INSERT INTO OUTPUT_ORDERS VALUES
+(null, '2025-03-24', 1, 3),
+(null, '2025-05-22', 2, 4),
+(null, '2025-01-10', 3, 5),
+(null, '2025-07-15', 1, 6),
+(null, '2025-09-30', 2, 7),
+(null, '2025-04-18', 2, 8),
+(null, '2025-08-21', 3, 9),
+(null, '2025-06-12', 5, 10),
+(null, '2025-02-28', 7, 11),
+(null, '2025-11-05', 8, 12),
+(null, '2025-12-12', 1, 13),
+(null, '2025-10-09', 2, 14),
+(null, '2025-03-01', 7, 15),
+(null, '2025-05-15', 8, 16),
+(null, '2025-07-07', 9, 17);
 
-INSERT INTO WARRANTY_INCIDENTS VALUES
-(null, 'QTYC1123122', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', null, '2025-08-15'),
-(null, 'QTYC2123123', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0002', 'Miami', '2025-08-20', null, '2025-08-15');
+
+INSERT INTO CUSTOMERS VALUES
+(6, 1),
+(7, 2),
+(8, 3),
+(9, 4),
+(10, 5),
+(11, 6),
+(12, 7),
+(13, 8),
+(14, 9),
+(15, 10),
+(16, 11),
+(17, 12);
+
 
 INSERT INTO OUTPUT_DETAILS VALUES
 (1, 'QTYC1123122', null, '2028-12-29', 'No necesita');
 
+
 INSERT INTO WARRANTY_INCIDENTS VALUES
+(null, 'QTYC1123122', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 0),
 (null, 'QTYC1123122', 'Ana Torres', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 0);
 
 INSERT INTO TECHNICAL VALUES
 (4, 1);
+
 
 INSERT INTO WAREHAUSEMAN VALUES
 (2, 1),
