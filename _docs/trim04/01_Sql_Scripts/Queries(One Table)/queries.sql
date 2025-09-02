@@ -11,7 +11,7 @@ SELECT * FROM ROLES;
 SELECT * FROM USERS;
 SELECT * FROM CATEGORIES;
 SELECT * FROM SUBCATEGORIES;
-SELECT * FROM SUPLIERS;
+SELECT * FROM SUPPLIERS;
 SELECT * FROM CUSTOMERS;
 SELECT * FROM PRODUCTS;
 SELECT * FROM PRODUCT_BRANDS;
@@ -53,8 +53,8 @@ WHERE rol_id = 2 OR rol_id = 3;
 -- 2.4.2. Y [AND] . -------------------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ AND __ = __ : --------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT products_id, product_stock, product_details_id, subcategory_id FROM PRODUCTS 
-WHERE product_stock = 10 AND subcategory_id = 1;
+SELECT product_id, product_stock, product_details_id, subcategory_id FROM PRODUCTS 
+WHERE product_stock = 35 AND subcategory_id = 15;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.4.3. NO [NOT] . ------------------------------------------------------------------- --
@@ -107,26 +107,26 @@ SELECT * FROM PRODUCTS WHERE product_stock >= 3500;
 -- 2.6.1. Comodín [LIKE '_%'] . -------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ LIKE '_%' : ---------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT * FROM PRODUCTS_BRANDS WHERE  LIKE 'j%';
+SELECT * FROM PRODUCT_BRANDS WHERE product_brand_name LIKE 's%';
 
-SELECT * FROM PRODUCTS_BRANDS WHERE  LIKE '_a%';
+SELECT * FROM PRODUCT_BRANDS WHERE product_brand_name LIKE 'a%';
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.6.2. Entre [BETWEEN] . ------------------------------------------------------------ --
 --        SELECT __ , __ FROM __ WHERE __ BETWEEN __ AND __ : -------------------------- --
 -- ------------------------------------------------------------------------------------- --
 SELECT * FROM USERS 
-WHERE user_date BETWEEN '2022-08-01' AND '2022-08-31';
+WHERE user_date BETWEEN '2025-08-01' AND '2025-08-31';
 
 SELECT * FROM USERS 
-WHERE user_date >= '2022-08-01' AND user_date <= '2022-08-31';
+WHERE user_date >= '2025-08-01' AND user_date <= '2025-08-31';
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.6.3. Lista [IN ( __ )] . ---------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ IN( __ , __ ) : ------------------------------ --
 -- ------------------------------------------------------------------------------------- --
 SELECT * FROM PRODUCTS 
-WHERE product_stock IN (1,500);
+WHERE product_stock IN (1,30);
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.7. Ordenadas. --------------------------------------------------------------------- --
@@ -145,22 +145,22 @@ ORDER BY category_id ASC;
 
 SELECT * FROM SUBCATEGORIES
 WHERE category_id = 2 OR category_id = 3 
-ORDER BY product_stock ASC;
+ORDER BY subcategory_id ASC;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.7.2. Descendente [DESC] . --------------------------------------------------------- --
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ DES; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
 SELECT * FROM PRODUCTS 
-WHERE subcategory_id = 2 
+WHERE subcategory_id = 15 
+ORDER BY product_stock DESC;
+
+SELECT * FROM PRODUCTS
+WHERE subcategory_id = 15 OR subcategory_id = 12 
 ORDER BY subcategory_id DESC;
 
 SELECT * FROM PRODUCTS
-WHERE subcategory_id = 2 OR subcategory_id = 3 
-ORDER BY subcategory_id DESC;
-
-SELECT * FROM PRODUCTS
-WHERE subcategory_id = 2 OR subcategory_id = 3 
+WHERE subcategory_id = 13 OR subcategory_id = 12
 ORDER BY product_stock DESC;
 
 -- ------------------------------------------------------------------------------------- --
@@ -168,7 +168,7 @@ ORDER BY product_stock DESC;
 --        SELECT __ , __ FROM __ WHERE __ = __ ORDER BY __ DES; : ---------------------- --
 -- ------------------------------------------------------------------------------------- --
 SELECT * FROM PRODUCTS 
-WHERE subcategory_id = 2 OR subcategory_id = 3 
+WHERE subcategory_id = 13 OR subcategory_id = 15 
 ORDER BY subcategory_id ASC, product_stock DESC;
 
 -- ------------------------------------------------------------------------------------- --
@@ -292,13 +292,13 @@ ORDER 40;
 -- 2.11. Calculadas con Operadores. ---------------------------------------------------- --
 --        SELECT __ , __ , __*0.19 AS __ FROM __ : ------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, product_stock * 0.19 
+SELECT product_id, product_stock * 0.19 
 FROM PRODUCTS;
 
-SELECT nombre_producto, product_stock * 0.19 AS iva_producto 
+SELECT product_id, product_stock * 0.19 AS product_tax 
 FROM PRODUCTS;
 
-SELECT nombre_producto, product_stock, ROUND(product_stock*0.19,2) AS iva_producto 
+SELECT product_id, product_stock, ROUND(product_stock*0.19,2) AS product_tax
 FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
@@ -310,16 +310,16 @@ FROM PRODUCTS;
 -- 2.12.1. Fecha Actual. --------------------------------------------------------------- --
 --         SELECT __ , __ , NOW() AS __ FROM __ : -------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, product_stock, NOW() FROM PRODUCTS;
+SELECT product_id, product_stock, NOW() FROM PRODUCTS;
 
-SELECT nombre_producto, product_stock, NOW() AS fecha_actual FROM PRODUCTS;
+SELECT product_id, product_stock, NOW() AS actual_date FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
 -- 2.12.2. Formato de Fecha. ----------------------------------------------------------- --
 --         SELECT __ , __ , DATE_FORMAT(NOW(), '%Y-%m-%d') AS __ FROM __ : ------------- --
 -- ------------------------------------------------------------------------------------- --
-SELECT nombre_producto, product_stock, 
-DATE_FORMAT(NOW(),'%Y-%m-%d') AS fecha_actual 
+SELECT product_id, product_stock, 
+DATE_FORMAT(NOW(),'%Y-%m-%d') AS actual_date 
 FROM PRODUCTS;
 
 -- ------------------------------------------------------------------------------------- --
@@ -330,7 +330,7 @@ FROM PRODUCTS;
 --         FROM __ : ------------------------------------------------------------------- --
 -- ------------------------------------------------------------------------------------- --
 SELECT codigo_cred, estado_cred, user_date,
-DATE_FORMAT(NOW(),'%Y-%m-%d') AS fecha_actual,
+DATE_FORMAT(NOW(),'%Y-%m-%d') AS actual_date,
 TIMESTAMPDIFF(YEAR, user_date, NOW()) AS años_transcurridos,
 TIMESTAMPDIFF(MONTH, user_date, NOW()) AS meses_transcurridos, 
 TIMESTAMPDIFF(DAY, user_date, NOW()) - 
