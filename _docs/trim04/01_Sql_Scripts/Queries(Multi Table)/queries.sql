@@ -70,27 +70,33 @@ SELECT
 /* ¿Qué clientes reportaron más de 2 incidentes de garantía en un mismo año? (CUSTOMERS, OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
 /* ¿Qué proveedores tuvieron más productos con incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
 /* ¿Qué clientes compraron más productos de la marca Dell y cuál fue el total gastado? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
+
 /* ¿Qué clientes nunca reportaron incidentes de garantía? (CUSTOMERS LEFT JOIN OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
 SELECT DISTINCT u.user_name
-FROM CUSTOMERS AS c
-INNER JOIN USERS AS u 
-
-ON c.user_id = u.user_id
-INNER JOIN OUTPUT_ORDERS AS oo ON c.out_order_id = oo.out_order_id
-INNER JOIN OUTPUT_DETAILS AS od
-
-ON oo.out_order_id = od.out_order_id
-INNER JOIN WARRANTY_INCIDENTS  AS wi ON od.product_serial = wi.product_serial
-WHERE wi.warranty_incidents_id IS NULL;
+    FROM CUSTOMERS AS c
+    INNER JOIN USERS AS u 
+    ON c.user_id = u.user_id
+    INNER JOIN OUTPUT_ORDERS AS oo ON c.out_order_id = oo.out_order_id
+    INNER JOIN OUTPUT_DETAILS AS od
+    ON oo.out_order_id = od.out_order_id
+    INNER JOIN WARRANTY_INCIDENTS  AS wi ON od.product_serial = wi.product_serial
+    WHERE wi.warranty_incidents_id IS NULL;
 /* ¿Qué proveedor tiene más diversidad de productos (por categorías)? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, PRODUCTS, SUBCATEGORIES, CATEGORIES) */
+
 /* ¿Qué encargado de almacén nunca participó en una orden de salida? (WAREHAUSEMAN LEFT JOIN OUTPUT_ORDERS) */
 SELECT DISTINCT u.user_name
-FROM WAREHAUSEMAN AS wm
-INNER JOIN USERS AS u ON wm.users_id = u.user_id INNER JOIN INPUT_ORDERS AS io ON wm.input_order_id = io.input_order_id
-INNER JOIN PRODUCT_SERIALS AS ps ON io.input_order_id = ps.input_order_id
-INNER JOIN OUTPUT_DETAILS AS od ON ps.product_serial = od.product_serial
-INNER JOIN OUTPUT_ORDERS AS oo ON od.out_order_id = oo.out_order_id
-WHERE oo.out_order_id IS NULL;
+    FROM WAREHAUSEMAN AS wm
+    INNER JOIN USERS AS u 
+    ON wm.users_id = u.user_id 
+    INNER JOIN INPUT_ORDERS AS io 
+    ON wm.input_order_id = io.input_order_id
+    INNER JOIN PRODUCT_SERIALS AS ps 
+    ON io.input_order_id = ps.input_order_id
+    INNER JOIN OUTPUT_DETAILS AS od 
+    ON ps.product_serial = od.product_serial
+    INNER JOIN OUTPUT_ORDERS AS oo 
+    ON od.out_order_id = oo.out_order_id
+    WHERE oo.out_order_id IS NULL;
 /* ¿Qué técnicos atendieron más de 10 incidentes en 2025? (TECHNICAL, WARRANTY_INCIDENTS) */
 /* ¿Qué proveedores no han vendido productos desde 2024? (SUPPLIERS, INPUT_ORDERS) */
 /* ¿Qué técnicos atendieron incidentes de más de 5 clientes distintos? (TECHNICAL, WARRANTY_INCIDENTS, CUSTOMERS) */
