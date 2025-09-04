@@ -115,6 +115,28 @@ SELECT
     WHERE oo.out_order_id = 1;
 
 /* ¿Qué clientes reportaron incidentes de garantía y qué producto estaba asociado? (WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS) */
+SELECT 
+    u.user_name,
+    wi.warranty_incidents_id,
+    pd.product_detail_model
+    FROM USERS AS u
+    INNER JOIN CUSTOMERS AS c
+    ON u.user_id = c.user_id
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON c.out_order_id = oo.out_order_id
+    INNER JOIN OUTPUT_DETAILS AS od
+    ON oo.out_order_id = od.out_order_id
+    INNER JOIN WARRANTY_INCIDENTS AS wi
+    ON od.product_serial = wi.product_serial
+    INNER JOIN PRODUCT_SERIALS AS ps
+    ON od.product_serial = ps.product_serial
+    INNER JOIN PRODUCTS AS p
+    ON ps.product_id = p.product_id
+    INNER JOIN PRODUCT_DETAILS AS pd
+    ON p.product_details_id = pd.product_details_id
+    ORDER BY wi.warranty_incidents_id ASC;
+
+
 /* ¿Qué técnicos resolvieron garantías de productos de la marca X? (TECHNICAL, USERS, WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
 /* ¿Qué empleados de almacén recibieron órdenes de entrada de un proveedor en particular? (USERS, WAREHAUSEMAN, INPUT_ORDERS, SUPPLIERS) */
 SELECT
