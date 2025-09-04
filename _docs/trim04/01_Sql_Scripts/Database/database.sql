@@ -125,7 +125,6 @@ ENGINE = InnoDB;
 CREATE TABLE INPUT_ORDERS (
   input_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único autogenerado para órdenes de entrada (PK). Clave primaria autoincremental. Requerido para todas las transacciones (NOT NULL, UNIQUE).',
   supplier_id INT NOT NULL COMMENT 'Identificador del proveedor asociado a la orden. not null ',
-  input_order_supplier VARCHAR(100) NOT NULL COMMENT 'Dato complementario a supplier_id. que contiene código/nombre comercial del proveedor (NOT NULL). ',
   input_order_bill VARCHAR(255) NOT NULL COMMENT 'Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).',
   input_order_date DATE NOT NULL COMMENT 'Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema',
   PRIMARY KEY (input_order_id, input_order_bill),
