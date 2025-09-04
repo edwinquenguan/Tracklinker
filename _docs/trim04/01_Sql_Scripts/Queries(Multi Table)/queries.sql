@@ -15,6 +15,16 @@ SELECT
     INNER JOIN ROLES AS r
     ON u.rol_id = r.rol_id;
 
+/* ¿Cúal es la marca de cada producto?*/
+SELECT 
+    pb.product_brand_name,
+    pd.product_detail_model
+    FROM PRODUCTS AS p
+    INNER JOIN PRODUCT_DETAILS AS pd
+    ON p.product_details_id = pd.product_details_id
+    INNER JOIN PRODUCT_BRANDS AS pb
+    ON pd.product_brand_id = pb.product_brand_id;
+
 /* ¿Qué transformaciones a solicitado cada usuario, con su dirección y los requerimientos del cliente? */
 SELECT
     u.user_id,
@@ -30,20 +40,29 @@ SELECT
 /* ¿Qué productos existen junto con su categoría, subcategoría, marca, modelo y descripción? */
 SELECT
     c.category_name,
-    s.subcategory_name,
+    sc.subcategory_name,
     p.product_id,
+    io.input_order_id,
     pd.product_detail_model,
     pd.product_detail_description,
-    pb.product_brand_name
-    FROM PRODUCTS AS p
+    pb.product_brand_name,
+    s.supplier_name
+    FROM SUPPLIERS AS s
+    INNER JOIN INPUT_ORDERS AS io
+    ON s.supplier_id = io.supplier_id
+    INNER JOIN PRODUCT_SERIALS AS ps
+    ON io.input_order_id = ps.input_order_id
+    INNER JOIN PRODUCTS AS p
+    ON ps.product_id = p.product_id
     INNER JOIN PRODUCT_DETAILS AS pd
     ON p.product_details_id = pd.product_details_id
-    INNER JOIN PRODUCT_BRANDS AS pb
+    INNER JOIN PRODUCT_BRANDS AS pb 
     ON pd.product_brand_id = pb.product_brand_id
-    INNER JOIN SUBCATEGORIES AS s
-    ON p.subcategory_id = s.subcategory_id
+    INNER JOIN SUBCATEGORIES AS sc
+    ON p.subcategory_id = sc.subcategory_id
     INNER JOIN CATEGORIES AS c
-    ON s.category_id = c.category_id;
+    ON sc.category_id = c.category_id
+    ORDER BY p.product_id ASC;
 
 /* ¿Qué productos tienen stock bajo (por ejemplo, menor a 5) y a qué categoría pertenecen? (PRODUCTS, SUBCATEGORIES, CATEGORIES) */
 SELECT
