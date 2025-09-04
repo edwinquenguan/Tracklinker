@@ -96,20 +96,23 @@ SELECT
     ON p.product_details_id = pd.product_details_id
     INNER JOIN PRODUCT_BRANDS AS pb 
     ON pd.product_brand_id = pb.product_brand_id
-    WHERE pb.product_brand_name = 'Dell';
+    WHERE pb.product_brand_name = 'Lenovo';
     
 /* ¿Qué proveedor entregó los productos que aparecen en una orden de salida específica? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, OUTPUT_ORDERS) */
-select *from CUSTOMERS;
 SELECT 
-    c.user_id,
+	s.supplier_name,
     oo.out_order_id,    
-    od.product_serial,
-    od.out_product_garanty
-	FROM OUTPUT_ORDERS AS oo
-    INNER JOIN CUSTOMERS AS c
-    ON oo.out_order_id=c.out_order_id
+    od.product_serial
+	FROM SUPPLIERS AS s
+    INNER JOIN INPUT_ORDERS AS io
+    ON s.supplier_id = io.supplier_id
+    INNER JOIN PRODUCT_SERIALS AS ps
+    ON io.input_order_id = ps.input_order_id
     INNER JOIN OUTPUT_DETAILS AS od
-    ON oo.out_order_id=od.out_order_id;
+    ON ps.product_serial = od.product_serial
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON od.out_order_id = oo.out_order_id
+    WHERE oo.out_order_id = 1;
 
 /* ¿Qué clientes reportaron incidentes de garantía y qué producto estaba asociado? (WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS) */
 /* ¿Qué técnicos resolvieron garantías de productos de la marca X? (TECHNICAL, USERS, WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
@@ -124,51 +127,44 @@ SELECT
     INNER JOIN INPUT_ORDERS AS io 
     ON wm.input_order_id = io.input_order_id
     INNER JOIN SUPPLIERS AS s 
-    ON io.supplier_id = s.supplier_id;
+    ON io.supplier_id = s.supplier_id
+    WHERE s.supplier_name = 'Mayorista';
 
 /* ¿Qué proveedor ha enviado más productos a través de órdenes de entrada? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS) */
 /* ¿Qué clientes realizaron más de 3 órdenes de salida en un mismo mes? (CUSTOMERS, OUTPUT_ORDERS) */
 SELECT DISTINCT
     u.user_name,
-    COUNT(c.out_order_id) AS outputs
+    COUNT(oo.out_order_id) AS Outputs
     FROM USERS AS u
     INNER JOIN CUSTOMERS AS c
     ON u.user_id = c.user_id
     INNER JOIN OUTPUT_ORDERS AS oo
     ON c.out_order_id = oo.out_order_id
-    WHERE oo.out_order_id BETWEEN '2025-06-01' AND '2025-05-31'
-    HAVING COUNT(c.out_order_id) >= 3;
+    WHERE oo.out_order_date BETWEEN '2025-01-01' AND '2025-05-31'
+    HAVING COUNT(oo.out_order_id) >= 3;
 
 /* ¿Qué clientes reportaron más de 2 incidentes de garantía en un mismo año? (CUSTOMERS, OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
-/* ¿Qué proveedores tuvieron más productos con incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
-/* ¿Qué clientes compraron más productos de la marca Dell y cuál fue el total gastado? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
-/* ¿Qué clientes nunca reportaron incidentes de garantía? (CUSTOMERS LEFT JOIN OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
-SELECT DISTINCT u.user_name
-    FROM CUSTOMERS AS c
-    INNER JOIN USERS AS u 
-    ON c.user_id = u.user_id
-    INNER JOIN OUTPUT_ORDERS AS oo ON c.out_order_id = oo.out_order_id
+SELECT 
+    u.user_name,
+    u.user_first_surname,
+    COUNT(wi.warranty_incidents_id) AS Warranties
+    FROM USERS AS u
+    INNER JOIN CUSTOMERS AS c
+    ON u.user_id = c.user_id
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON c.out_order_id = oo.out_order_id
     INNER JOIN OUTPUT_DETAILS AS od
     ON oo.out_order_id = od.out_order_id
-    INNER JOIN WARRANTY_INCIDENTS  AS wi ON od.product_serial = wi.product_serial
-    WHERE wi.warranty_incidents_id IS NULL;
+    INNER JOIN WARRANTY_INCIDENTS AS wi
+    ON od.product_serial = wi.product_serial
+    WHERE YEAR(wi.warranty_date) = 2025
+    GROUP BY u.user_id, u.user_name, u.user_first_surname
+    HAVING COUNT(wi.warranty_incidents_id) >= 2;
+
+/* ¿Qué proveedores tuvieron más productos con incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
+/* ¿Qué clientes compraron más productos de la marca Dell y cuál fue el total gastado? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
 /* ¿Qué proveedor tiene más diversidad de productos (por categorías)? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, PRODUCTS, SUBCATEGORIES, CATEGORIES) */
-/* ¿Qué encargado de almacén nunca participó en una orden de salida? (WAREHAUSEMAN LEFT JOIN OUTPUT_ORDERS) */
-SELECT DISTINCT
-    u.user_name
-    FROM WAREHAUSEMAN AS wm
-    INNER JOIN USERS AS u 
-    ON wm.users_id = u.user_id 
-    INNER JOIN INPUT_ORDERS AS io 
-    ON wm.input_order_id = io.input_order_id
-    INNER JOIN PRODUCT_SERIALS AS ps 
-    ON io.input_order_id = ps.input_order_id
-    INNER JOIN OUTPUT_DETAILS AS od 
-    ON ps.product_serial = od.product_serial
-    INNER JOIN OUTPUT_ORDERS AS oo 
-    ON od.out_order_id = oo.out_order_id
-    WHERE oo.out_order_id IS NULL;
-    
+
 /* ¿Qué técnicos atendieron más de 10 incidentes en 2025? (TECHNICAL, WARRANTY_INCIDENTS) */
 SELECT
 	u.user_name,
