@@ -79,7 +79,6 @@ SELECT
     ON pd.product_brand_id = pb.product_brand_id
     WHERE pb.product_brand_name = 'Dell';
     
-
 /* ¿Qué proveedor entregó los productos que aparecen en una orden de salida específica? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, OUTPUT_ORDERS) */
 /* ¿Qué clientes reportaron incidentes de garantía y qué producto estaba asociado? (WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS) */
 /* ¿Qué técnicos resolvieron garantías de productos de la marca X? (TECHNICAL, USERS, WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
@@ -98,10 +97,20 @@ SELECT
 
 /* ¿Qué proveedor ha enviado más productos a través de órdenes de entrada? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS) */
 /* ¿Qué clientes realizaron más de 3 órdenes de salida en un mismo mes? (CUSTOMERS, OUTPUT_ORDERS) */
+SELECT DISTINCT
+    u.user_name,
+    COUNT(c.out_order_id) AS outputs
+    FROM USERS AS u
+    INNER JOIN CUSTOMERS AS c
+    ON u.user_id = c.user_id
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON c.out_order_id = oo.out_order_id
+    WHERE oo.out_order_id BETWEEN '2025-06-01' AND '2025-05-31'
+    HAVING COUNT(c.out_order_id) >= 3;
+
 /* ¿Qué clientes reportaron más de 2 incidentes de garantía en un mismo año? (CUSTOMERS, OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
 /* ¿Qué proveedores tuvieron más productos con incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
 /* ¿Qué clientes compraron más productos de la marca Dell y cuál fue el total gastado? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
-
 /* ¿Qué clientes nunca reportaron incidentes de garantía? (CUSTOMERS LEFT JOIN OUTPUT_ORDERS, WARRANTY_INCIDENTS) */
 SELECT DISTINCT u.user_name
     FROM CUSTOMERS AS c
@@ -113,7 +122,6 @@ SELECT DISTINCT u.user_name
     INNER JOIN WARRANTY_INCIDENTS  AS wi ON od.product_serial = wi.product_serial
     WHERE wi.warranty_incidents_id IS NULL;
 /* ¿Qué proveedor tiene más diversidad de productos (por categorías)? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, PRODUCTS, SUBCATEGORIES, CATEGORIES) */
-
 /* ¿Qué encargado de almacén nunca participó en una orden de salida? (WAREHAUSEMAN LEFT JOIN OUTPUT_ORDERS) */
 SELECT DISTINCT
     u.user_name
@@ -130,7 +138,18 @@ SELECT DISTINCT
     ON od.out_order_id = oo.out_order_id
     WHERE oo.out_order_id IS NULL;
     
-/* ¿Qué técnicos atendieron más de 10 incidentes en 2025? (TECHNICAL, WARRANTY_INCIDENTS) */ .
+/* ¿Qué técnicos atendieron más de 10 incidentes en 2025? (TECHNICAL, WARRANTY_INCIDENTS) */
+SELECT
+	u.user_name,
+    COUNT(wi.warranty_incidents_id)
+    FROM USERS AS u
+    INNER JOIN TECHNICAL AS t
+    ON u.user_id = t.user_id
+    INNER JOIN WARRANTY_INCIDENTS AS wi
+    ON t.warranty_incidents_id = wi.warranty_incidents_id
+    WHERE wi.warranty_date BETWEEN '2025-01-01' AND '2025-12-31'
+    HAVING COUNT(wi.warranty_incidents_id) >= 10;
+
 /* ¿Qué proveedores no han ingresado productos desde 2024? (SUPPLIERS, INPUT_ORDERS) */
 SELECT
     s.supplier_name,
@@ -139,12 +158,25 @@ SELECT
     INNER JOIN INPUT_ORDERS AS io 
     ON s.supplier_id = io.supplier_id
     WHERE io.input_order_date < '2024-01-01';
-    
 
-
-
-
-/* ¿Qué técnicos atendieron incidentes de más de 5 clientes distintos? (TECHNICAL, WARRANTY_INCIDENTS, CUSTOMERS) */.
+/* ¿Qué técnicos atendieron incidentes de más de 5 clientes distintos? (TECHNICAL, WARRANTY_INCIDENTS, CUSTOMERS) */
+SELECT
+    u.user_name,
+    COUNT(c.user_id) AS Clientes
+    FROM USERS AS u
+    INNER JOIN TECHNICAL AS t
+    ON u.user_id = t.user_id
+    INNER JOIN WARRANTY_INCIDENTS AS wi
+    ON t.warranty_incidents_id = wi.warranty_incidents_id
+    INNER JOIN OUTPUT_DETAILS AS od
+    ON wi.product_serial = od.product_serial
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON od.out_order_id = oo.out_order_id
+    INNER JOIN CUSTOMERS AS c
+    ON oo.out_order_id = c.out_order_id
+    INNER JOIN USERS
+    ON u.user_id = c.user_id
+    HAVING COUNT(c.user_id) > 5;
 
 /* ¿Qué encargados de almacén registraron más de 50 productos en un solo día? (WAREHAUSEMAN, INPUT_ORDERS, PRODUCT_SERIALS) */
 SELECT
