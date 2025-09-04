@@ -62,6 +62,18 @@ SELECT
 
 /* ¿Qué proveedores abastecen productos de una marca específica? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
 /* ¿Qué proveedor entregó los productos que aparecen en una orden de salida específica? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, OUTPUT_ORDERS) */
+select *from CUSTOMERS;
+SELECT 
+    c.user_id,
+    oo.out_order_id,    
+    od.product_serial,
+    od.out_product_garanty
+	FROM OUTPUT_ORDERS AS oo
+    INNER JOIN CUSTOMERS AS c
+    ON oo.out_order_id=c.out_order_id
+    INNER JOIN OUTPUT_DETAILS AS od
+    ON oo.out_order_id=od.out_order_id;
+
 /* ¿Qué clientes reportaron incidentes de garantía y qué producto estaba asociado? (WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS) */
 /* ¿Qué técnicos resolvieron garantías de productos de la marca X? (TECHNICAL, USERS, WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
 /* ¿Qué empleados de almacén recibieron órdenes de entrada de un proveedor en particular? (USERS, WAREHAUSEMAN, INPUT_ORDERS, SUPPLIERS) */
