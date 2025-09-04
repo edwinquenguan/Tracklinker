@@ -137,7 +137,27 @@ SELECT
     ORDER BY wi.warranty_incidents_id ASC;
 
 
-/* ¿Qué técnicos resolvieron garantías de productos de la marca X? (TECHNICAL, USERS, WARRANTY_INCIDENTS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
+/* ¿Qué tecnicos tienen asignadas las incidencias de garantia y que producto esta asignado? */
+SELECT
+    u.user_name,
+    u.user_first_surname,
+    u.user_second_surname,
+    wi.warranty_incidents_id,
+    wi.product_serial,
+    pd.product_detail_description
+    FROM WARRANTY_INCIDENTS AS wi
+    INNER JOIN TECHNICAL AS t
+    ON wi.warranty_incidents_id = t.warranty_incidents_id
+    INNER JOIN USERS AS u
+    ON t.user_id = u.user_id
+    INNER JOIN OUTPUT_DETAILS AS od
+    ON wi.product_serial = od.product_serial
+    INNER JOIN PRODUCT_SERIALS AS ps
+    ON od.product_serial = ps.product_serial
+    INNER JOIN PRODUCTS AS p
+    ON ps.product_id = p.product_id
+    INNER JOIN PRODUCT_DETAILS AS pd
+    ON p.product_details_id = pd.product_details_id;
 /* ¿Qué empleados de almacén recibieron órdenes de entrada de un proveedor en particular? (USERS, WAREHAUSEMAN, INPUT_ORDERS, SUPPLIERS) */
 SELECT
     u.user_name,
