@@ -203,11 +203,47 @@ SELECT
     GROUP BY u.user_id, u.user_name, u.user_first_surname
     HAVING COUNT(wi.warranty_incidents_id) >= 2;
 
-/* ¿Qué proveedores tuvieron más productos con incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
-/* ¿Qué clientes compraron más productos de la marca Dell y cuál fue el total gastado? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
+/* ¿Qué proveedores tuvieron incidentes de garantía? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, OUTPUT_DETAILS, WARRANTY_INCIDENTS) */
+    SELECT
+    s.supplier_name,
+    w.warranty_incidents_id
+    
+        FROM WARRANTY_INCIDENTS AS w
+        INNER JOIN OUTPUT_DETAILS AS od
+        ON w.product_serial = od.product_serial
+        INNER JOIN PRODUCT_SERIALS AS ps 
+        ON od.product_serial = ps.product_serial
+        INNER JOIN INPUT_ORDERS AS io
+        ON ps.input_order_id = io.input_order_id
+        INNER JOIN SUPPLIERS AS S 
+        ON io.supplier_id = s.supplier_id;
+
+/* ¿Qué clientes compraron productos de la marca Dell? (CUSTOMERS, OUTPUT_ORDERS, OUTPUT_DETAILS, PRODUCT_SERIALS, PRODUCTS, PRODUCT_DETAILS, PRODUCT_BRANDS) */
+        SELECT
+        u.user_name,
+        u.user_first_surname
+        FROM USERS AS u
+        INNER JOIN CUSTOMERS AS c
+        ON u.user_id = c.user_id
+        INNER JOIN OUTPUT_ORDERS as oo
+        ON c.out_order_id = oo.out_order_id
+        INNER JOIN PRODUCT_DETAILS AS pd
+        ON oo.product_details_id = pd.product_details_id
+        INNER JOIN PRODUCT_BRANDS AS pb
+        ON pd.product_brand_id = pb.product_brand_id
+        WHERE pb.product_brand_name = 'zebra';
 /* ¿Qué proveedor tiene más diversidad de productos (por categorías)? (SUPPLIERS, INPUT_ORDERS, PRODUCT_SERIALS, PRODUCTS, SUBCATEGORIES, CATEGORIES) */
+SELECT
+s.suppliers_name,
+io.input_orders_id
+FROM suppliers AS s
+INNER JOIN input_orders AS io
+ON io.supplier_id = s.input_order_id
+INNER JOIN product_serials AS io 
+ON ps.
 
 /* ¿Qué técnicos atendieron más de 10 incidentes en 2025? (TECHNICAL, WARRANTY_INCIDENTS) */
+
 SELECT
 	u.user_name,
     COUNT(wi.warranty_incidents_id)
