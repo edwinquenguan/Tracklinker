@@ -2,16 +2,19 @@
 
 Sitio Web: https://tracklinker.vercel.app
 
-La funcionalidad de las carpetas dentro de Frontend Web Son:
+## Como contribuir
 
-Dentro de public:
-- Solamente se guarda lo relacionado a la landing page.
+1. Crea un fork del repositorio nuevamente y elimina el anterior para poder tener esta rama nueva
 
-Dentro de src:
-- Assets para recursos estaticos como imagenes, iconos o fuentes.
-- Components para fragmentos de html reutilizables como Header, Footer y otros.
-- Scripts para los archivos JavaScript que tienen Interacciones divididos por Funcionalidades.
-- Styles para guardar los estilos globales o modulos especificos como el estilo para las cards o etc.
-- Pages para guardar cada pagina o modulo como dashboard, categorias, informes y demás.
+2. Clona tu repositorio y abrelo en visual studio code
 
-Todo esto lo hacemos con el fin de mantener el codigo organizado y facilitar el trabajo en equipo
+3. Entra a la nueva rama "dev"
+
+4. Abre una nueva terminal y escribe estos comandos
+
+```bash
+cd frontend_web
+cd react_frontend
+npm install
+npm start
+
