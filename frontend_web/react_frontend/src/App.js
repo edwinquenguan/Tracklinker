@@ -17,7 +17,10 @@ function App() {
     <div className="w-screen h-screen">
       <BrowserRouter>
         <Routes>
-          {/* Página Principal que sería el login (toca hacerlo) como no lo he echo me manda al dashboard*/}
+          {/* Ruta no existente lo que haria es enviarlo al home */}
+          <Route path="*" element={<Navigate to={<DashboardPage />}/>} />
+
+          {/* Página Principal que sería el login (toca hacerlo) como no lo hemos echo los manda al dashboard*/}
           <Route path="/" element={<HomePage />} />
 
           {/* Página Panel de Control */}
