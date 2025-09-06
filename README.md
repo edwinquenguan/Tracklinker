@@ -9,7 +9,6 @@ Dentro de public:
 
 Dentro de src:
 - Assets para recursos estaticos como imagenes, iconos o fuentes.
-- Components para fragmentos de html reutilizables como Header, Footer y otros.
 - Scripts para los archivos JavaScript que tienen Interacciones divididos por Funcionalidades.
 - Styles para guardar los estilos globales o modulos especificos como el estilo para las cards o etc.
 - Pages para guardar cada pagina o modulo como dashboard, categorias, informes y demás.
@@ -17,7 +16,12 @@ Dentro de src:
 Todo esto lo hacemos con el fin de mantener el codigo organizado y facilitar el trabajo en equipo
 
 Desarrollado por:
+
 @MichaelGLindo
+
 @Andersoow
+
 @edwinquenguan
+
 @RigobertoVargasGaona
+
