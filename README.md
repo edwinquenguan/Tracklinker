@@ -15,3 +15,9 @@ Dentro de src:
 - Pages para guardar cada pagina o modulo como dashboard, categorias, informes y demás.
 
 Todo esto lo hacemos con el fin de mantener el codigo organizado y facilitar el trabajo en equipo
+
+Desarrollado por:
+@MichaelGLindo
+@Andersoow
+@edwinquenguan
+@RigobertoVargasGaona
