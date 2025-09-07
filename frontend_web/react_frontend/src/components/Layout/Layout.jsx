@@ -8,7 +8,7 @@ export default function Layout({children}){
         className="w-[100%] h-[100%] grid grid-cols-[15%_85%] grid-rows-[8%_92%]">
             <Aside />
             <Header />
-            <main>
+            <main className="p-8">
                 {children}
             </main>
         </div>
