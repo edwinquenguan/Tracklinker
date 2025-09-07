@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./public/Login";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
 import UsersPage from "./pages/UsersPage";
@@ -18,10 +19,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Ruta no existente lo que haria es enviarlo al home */}
-          <Route path="*" element={<Navigate to={<DashboardPage />}/>} />
+          <Route path="*" element={<Navigate to="/login"/>} />
+
+          { /* Página Login o de Inicio de Sesión */ }
+          <Route path="/login" element={<Login />} />
 
           {/* Página Principal que sería el login (toca hacerlo) como no lo hemos echo los manda al dashboard*/}
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
 
           {/* Página Panel de Control */}
           <Route path="/dashboard" element={<DashboardPage />} />
