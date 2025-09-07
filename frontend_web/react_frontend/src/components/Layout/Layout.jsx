@@ -5,7 +5,7 @@ export default function Layout({children}){
     return(
         // Container 
         <div 
-        className="w-[100%] h-[100%] grid grid-cols-[10%_90%] grid-rows-[15%_85%]">
+        className="w-[100%] h-[100%] grid grid-cols-[15%_85%] grid-rows-[8%_92%]">
             <Aside />
             <Header />
             <main>
