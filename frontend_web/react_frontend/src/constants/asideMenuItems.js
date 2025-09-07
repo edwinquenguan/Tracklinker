@@ -1,6 +1,13 @@
 // Aqui se almacenan constantes que su contenido son listas fijas y cosas que casi nunca cambian
 import { asideIcons } from "../assets/icons/asideIcons";
 
+export const avatarItem = {
+    name: "avatar",
+    path: "",
+    icon: asideIcons.avatarIcon,
+    alt: "Avatar Icon",
+}
+
 export const firstSectionItems = [
     { name:"Inicio", path:"/home", icon: asideIcons.homeIcon, alt:"a" },
     { name:"Panel De Control", path:"/dashboard", icon: asideIcons.dashboardIcon, alt:""},
