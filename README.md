@@ -4,7 +4,7 @@ Sitio Web: https://tracklinker.vercel.app
 
 ## Como contribuir
 
-1. Crea un fork del repositorio nuevamente y elimina el anterior para poder tener esta rama nueva
+1. Crea un fork del repositorio nuevamente y elimina el anterior para poder tener esta rama nueva, Si tienes un fork desde antes borralo y créalo nuevamente. 
 
 2. Clona tu repositorio y abrelo en visual studio code
 
