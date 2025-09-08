@@ -2,7 +2,7 @@ import { headerIcons } from "../assets/icons/headerIcons";
 
 export default function SearchBar(){
     return(
-        <div className="flex px-2 py-2 w-[40%] border border-gray-400 rounded-3xl">
+        <div className="flex px-2 py-2 w-[40%] border border-gray-300 rounded-3xl">
             <input 
             id="search-text"
             type="text" 
