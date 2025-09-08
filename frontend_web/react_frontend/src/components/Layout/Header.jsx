@@ -3,10 +3,10 @@ import SearchBar from "../SearchBar";
 
 export default function Header(){
     return(
-        <header className="flex justify-between content-center p-4 border-b-[1px]">
+        <header className="flex justify-between content-center p-[6px_20px_5px_150px] border-b-[1px]">
             <SearchBar />
             <button>
-                <img src={headerIcons.bellIcon} alt="" className="w-[23px] h-full" />
+                <img src={headerIcons.bellIcon} alt="" className="w-[23px] h-[23px]"/>
             </button>
         </header>
     );
