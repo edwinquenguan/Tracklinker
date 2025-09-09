@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="WB DataDic" />
-    <meta name="description" content="mydb Data Dictionary." />
-    <title>mydb Data Dictionary</title>
+    <meta name="description" content="DB_TRACKLINKER Data Dictionary." />
+    <title>DB_TRACKLINKER Data Dictionary</title>
     <style type="text/css">
     table{
         width: 100%;
@@ -51,9 +51,9 @@
 </head>
 <body>
 <div id="title-sect">
-<h1>mydb<br> Data Dictionay</h1>
+<h1>DB_TRACKLINKER<br> Data Dictionay</h1>
 <p>
-<em>2025-07-09</em>
+<em>2025-09-09</em>
 </p>
 <p class="proj-desc">
 <em></em>
@@ -61,25 +61,25 @@
 </div>
 <h2>Alphabetic Index</h2>
 <ul>
-<li><a href='#CATEGORY'>CATEGORY</a></li>
+<li><a href='#CATEGORIES'>CATEGORIES</a></li>
 <li><a href='#CUSTOMERS'>CUSTOMERS</a></li>
-<li><a href='#INPUT_ORDER'>INPUT_ORDER</a></li>
+<li><a href='#INPUT_ORDERS'>INPUT_ORDERS</a></li>
 <li><a href='#OUTPUT_DETAILS'>OUTPUT_DETAILS</a></li>
-<li><a href='#OUTPUT_ORDER'>OUTPUT_ORDER</a></li>
+<li><a href='#OUTPUT_ORDERS'>OUTPUT_ORDERS</a></li>
 <li><a href='#PRODUCTS'>PRODUCTS</a></li>
-<li><a href='#PRODUCT_BRAND'>PRODUCT_BRAND</a></li>
+<li><a href='#PRODUCT_BRANDS'>PRODUCT_BRANDS</a></li>
 <li><a href='#PRODUCT_DETAILS'>PRODUCT_DETAILS</a></li>
 <li><a href='#PRODUCT_SERIALS'>PRODUCT_SERIALS</a></li>
-<li><a href='#ROLS'>ROLS</a></li>
-<li><a href='#SUBCATEGORY'>SUBCATEGORY</a></li>
-<li><a href='#SUPLIER'>SUPLIER</a></li>
+<li><a href='#ROLES'>ROLES</a></li>
+<li><a href='#SUBCATEGORIES'>SUBCATEGORIES</a></li>
+<li><a href='#SUPPLIERS'>SUPPLIERS</a></li>
 <li><a href='#TECHNICAL'>TECHNICAL</a></li>
 <li><a href='#USERS'>USERS</a></li>
 <li><a href='#WAREHAUSEMAN'>WAREHAUSEMAN</a></li>
 <li><a href='#WARRANTY_INCIDENTS'>WARRANTY_INCIDENTS</a></li>
 </ul>
-<table id='CATEGORY'>
-<caption>CATEGORY</caption>
+<table id='CATEGORIES'>
+<caption>CATEGORIES</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -105,11 +105,11 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)</td>
 </tr>
 <tr>
     <td>category_name</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -118,7 +118,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificar y clasificar los productos tecnológicos en el sistema.</td>
 </tr>
 <table id='CUSTOMERS'>
 <caption>CUSTOMERS</caption>
@@ -147,7 +147,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identifica de forma única a cada cliente. Not null</td>
 </tr>
 <tr>
     <td>out_order_id</td>
@@ -160,10 +160,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único de orden externa (proveniente de sistemas partners). Not null</td>
 </tr>
-<table id='INPUT_ORDER'>
-<caption>INPUT_ORDER</caption>
+<table id='INPUT_ORDERS'>
+<caption>INPUT_ORDERS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -189,10 +189,10 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único autogenerado para órdenes de entrada (PK). Clave primaria autoincremental. Requerido para todas las transacciones (NOT NULL, UNIQUE).</td>
 </tr>
 <tr>
-    <td> suplier_id</td>
+    <td>supplier_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -202,25 +202,12 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>input_order_supplier</td>
-    <td>VARCHAR(100)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
+    <td>Identificador del proveedor asociado a la orden. not null </td>
 </tr>
 <tr>
     <td>input_order_bill</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
+    <td>VARCHAR(255)</td>
+    <td>&#10004;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -228,7 +215,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).</td>
 </tr>
 <tr>
     <td>input_order_date</td>
@@ -241,7 +228,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema</td>
 </tr>
 <table id='OUTPUT_DETAILS'>
 <caption>OUTPUT_DETAILS</caption>
@@ -270,11 +257,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de orden de salida, Clave única que identifica cada orden de salida registrada en el sistema. Esta orden agrupa una o varias salidas de productos desde el almacén, ya sea por venta, traslado, devolución o cualquier otro movimiento logístico.\n</td>
 </tr>
 <tr>
-    <td>product_serial_id</td>
-    <td>INT</td>
+    <td>product_serial</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -283,7 +270,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>\nIdentificador de serie del producto.\n Número de serie único asignado a cada unidad individual de producto. Este identificador permite rastrear un producto específico durante todo su ciclo de vida, desde la fabricación o adquisición hasta su salida o desecho. Es obligatorio y no puede repetirse entre productos.</td>
 </tr>
 <tr>
     <td>output_details_id</td>
@@ -296,7 +283,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td> Identificador de detalle de salida\n,  Clave primaria única que identifica cada registro individual en la tabla de detalles de salida. Este identificador se genera automáticamente por el sistema en orden secuencial y no puede ser nulo. Se utiliza para distinguir y rastrear cada línea o componente dentro de una orden de salida.</td>
 </tr>
 <tr>
     <td>out_product_garanty</td>
@@ -309,11 +296,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Garantía del producto en salida\n\nIndica si el producto entregado o despachado cuenta con garantía activa o especifica el período de garantía ofrecido. Este campo es obligatorio, ya que permite hacer seguimiento a las condiciones de postventa o soporte del producto.</td>
 </tr>
 <tr>
     <td>product_transformation</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -322,10 +309,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Transformación del producto\n.\nIndica si el producto ha sido sometido a algún tipo de transformación antes de su salida del inventario. Esto puede incluir procesos como ensamblaje, personalización, reempaque, reparación, entre otros. El campo es obligatorio, ya que influye en el seguimiento de procesos logísticos y de control de calidad.</td>
 </tr>
-<table id='OUTPUT_ORDER'>
-<caption>OUTPUT_ORDER</caption>
+<table id='OUTPUT_ORDERS'>
+<caption>OUTPUT_ORDERS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -351,7 +338,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado de las ordenes de salida (INT, Not null)</td>
 </tr>
 <tr>
     <td>out_order_date</td>
@@ -364,11 +351,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Fecha de creación de la orden de salida, se usa para manejar control de las salidas (DATE, Not null)</td>
 </tr>
 <tr>
-    <td>customer_requirements</td>
-    <td>VARCHAR(100)</td>
+    <td>product_details_id</td>
+    <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -377,7 +364,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Requerimientos del cliente\n.\nCampo que registra las solicitudes, condiciones especiales o instrucciones específicas dadas por el cliente en relación con el pedido o la entrega del producto. Puede incluir información como empaques personalizados, fechas de entrega, condiciones de transporte, etiquetado especial, entre otros. Ya que asegura que las necesidades del cliente sean consideradas en el proceso logístico.</td>
 </tr>
 <tr>
     <td>amount</td>
@@ -390,7 +377,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Cantidad\n\nRepresenta la cantidad asociada a un producto, transacción o movimiento. Su significado puede variar según el contexto del sistema (por ejemplo, unidades de producto, valor monetario o volumen físico), por lo tanto, debe estar claramente definido en cada caso de uso. Este campo es obligatorio.</td>
 </tr>
 <table id='PRODUCTS'>
 <caption>PRODUCTS</caption>
@@ -409,7 +396,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>products_id</td>
+    <td>product_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -419,7 +406,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)</td>
 </tr>
 <tr>
     <td>subcategory_id</td>
@@ -432,7 +419,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de cada Subcategoria, Este campo sirve para relacionar los productos con las subcategorias y poder clasificarlos según el grupo que los agrupe (INT, Not null)</td>
 </tr>
 <tr>
     <td>product_details_id</td>
@@ -445,7 +432,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de detalles del producto\n.\nIdentificador único que referencia un conjunto específico de detalles asociados a un producto, como sus especificaciones técnicas, presentación, lote, ubicación, estado o características adicionales. Este campo es obligatorio para asegurar la trazabilidad y correcta asociación con los productos registrados.</td>
 </tr>
 <tr>
     <td>product_stock</td>
@@ -458,10 +445,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Stock del producto.\nIndica la cantidad actual disponible de un producto en el inventario. Este valor se actualiza con cada entrada y salida de mercancía, y es fundamental para la gestión de existencias, control de inventario y toma de decisiones operativas. Es un campo obligatorio para evitar registros sin control de stock.</td>
 </tr>
-<table id='PRODUCT_BRAND'>
-<caption>PRODUCT_BRAND</caption>
+<table id='PRODUCT_BRANDS'>
+<caption>PRODUCT_BRANDS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -487,7 +474,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de marca de producto\n.\nClave primaria única que identifica cada marca registrada en el sistema. Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes.</td>
 </tr>
 <tr>
     <td>product_brand_name</td>
@@ -500,7 +487,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Nombre de la marca del producto\n.\nNombre oficial o comercial de la marca asociada a un producto. Este campo permite identificar y categorizar los productos por su fabricante, proveedor o casa comercial. Es obligatorio para asegurar que cada marca registrada tenga un nombre definido.</td>
 </tr>
 <table id='PRODUCT_DETAILS'>
 <caption>PRODUCT_DETAILS</caption>
@@ -529,7 +516,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de la lista de detalles del producto, llave primaria que identifica para lista de detalles (INT, Not null)</td>
 </tr>
 <tr>
     <td>product_brand_id</td>
@@ -542,24 +529,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>supplier_id</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
+    <td>Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)</td>
 </tr>
 <tr>
     <td>product_detail_model</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -568,11 +542,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)</td>
 </tr>
 <tr>
     <td>product_detail_description</td>
-    <td>VARCHAR(100)</td>
+    <td>TEXT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -581,7 +555,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)</td>
 </tr>
 <table id='PRODUCT_SERIALS'>
 <caption>PRODUCT_SERIALS</caption>
@@ -600,8 +574,8 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>product_serial_id</td>
-    <td>INT(20)</td>
+    <td>product_serial</td>
+    <td>VARCHAR(255)</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -610,10 +584,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único de cada serial, sirve para diferenciar cada producto y sus detalles (INT, Not null, Unique)</td>
 </tr>
 <tr>
-    <td>products_id</td>
+    <td>product_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -623,7 +597,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)</td>
 </tr>
 <tr>
     <td>input_order_id</td>
@@ -636,11 +610,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador de cada orden de entrada, Esta se relaciona en esta tabla para establecer fechas o facturas en las cuales se hizo el ingreso del producto (INT, Not null)</td>
 </tr>
 <tr>
     <td>product_garanty_input</td>
-    <td>VARCHAR(100)</td>
+    <td>DATE</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -649,10 +623,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Garantía del producto dada por el proveedor, este indica el tiempo de garantía actual, esta puede disminuir con el pasar del tiempo</td>
 </tr>
-<table id='ROLS'>
-<caption>ROLS</caption>
+<table id='ROLES'>
+<caption>ROLES</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -668,7 +642,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>rols_id</td>
+    <td>rol_id</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -678,11 +652,11 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado para cada rol, llave primaria (INT, Not null))</td>
 </tr>
 <tr>
-    <td>rols_name</td>
-    <td>VARCHAR(45)</td>
+    <td>rol_name</td>
+    <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -691,10 +665,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Nombre de cada rol, De caracter obligatorio para poder clasificar cada rol (Varchar (45), Not null)</td>
 </tr>
-<table id='SUBCATEGORY'>
-<caption>SUBCATEGORY</caption>
+<table id='SUBCATEGORIES'>
+<caption>SUBCATEGORIES</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -720,7 +694,7 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado de cada subcategoria (INT, Not null)</td>
 </tr>
 <tr>
     <td>category_id</td>
@@ -733,11 +707,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)</td>
 </tr>
 <tr>
     <td>subcategory_name</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -746,10 +720,10 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Nombre de cada subcategoria (VARCHAR, Not null)</td>
 </tr>
-<table id='SUPLIER'>
-<caption>SUPLIER</caption>
+<table id='SUPPLIERS'>
+<caption>SUPPLIERS</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -775,11 +749,11 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado para cada proveedor, llave primaria (INT, Not null)</td>
 </tr>
 <tr>
-    <td>suplier_name</td>
-    <td>VARCHAR(45)</td>
+    <td>supplier_name</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -788,11 +762,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Nombre del proveedor (VARCHAR, Not null)</td>
 </tr>
 <tr>
-    <td>suplier_address</td>
-    <td>VARCHAR(45)</td>
+    <td>supplier_city</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -801,11 +775,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Ciudad donde esta ubicado el proveedor (VARCHAR, Not null)</td>
 </tr>
 <tr>
-    <td>suplier_email</td>
-    <td>VARCHAR(45)</td>
+    <td>supplier_address</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -814,11 +788,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Dirección del proveedor (VARCHAR, Not null)</td>
 </tr>
 <tr>
-    <td>suplier_phone</td>
-    <td>VARCHAR(45)</td>
+    <td>supplier_email</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -827,7 +801,20 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
+    <td>Correo electronico del proveedor (VARCHAR, Not null)</td>
+</tr>
+<tr>
+    <td>supplier_phone</td>
+    <td>VARCHAR(255)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
     <td></td>
+    <td>Número de teléfono del proveedor (VARCHAR, Not null)</td>
 </tr>
 <table id='TECHNICAL'>
 <caption>TECHNICAL</caption>
@@ -856,7 +843,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único y primario del usuario. Esta columna se enlaza con la tabla de usuarios.</td>
 </tr>
 <tr>
     <td>warranty_incidents_id</td>
@@ -869,7 +856,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único para cada incidente de garantía.</td>
 </tr>
 <table id='USERS'>
 <caption>USERS</caption>
@@ -888,7 +875,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>rols_id</td>
+    <td>rol_id</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -898,7 +885,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado para cada rol (INT, Not null)</td>
 </tr>
 <tr>
     <td>user_id</td>
@@ -911,11 +898,11 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador autogenerado para cada usuario, Llave primaria (INT, Not null)</td>
 </tr>
 <tr>
-    <td>user_full_name</td>
-    <td>VARCHAR(45)</td>
+    <td>user_name</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -924,11 +911,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td> (VARCHAR, Not null)</td>
 </tr>
 <tr>
-    <td>users_phone</td>
-    <td>VARCHAR(45)</td>
+    <td>user_first_surname</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -937,11 +924,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Primer apellido del usuario, se separa el apellido en dos partes para que al momento de hacer búsquedas sea más sencillo encontrar el usuario (VARCHAR, Not null)</td>
 </tr>
 <tr>
-    <td>users_email</td>
-    <td>VARCHAR(45)</td>
+    <td>user_second_surname</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -950,11 +937,37 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
+    <td>Segundo apellido del usuario (VARCHAR, Not null)</td>
+</tr>
+<tr>
+    <td>user_phone</td>
+    <td>VARCHAR(255)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
     <td></td>
+    <td>Número de teléfono del usuario (VARCHAR, Not null)</td>
+</tr>
+<tr>
+    <td>user_email</td>
+    <td>VARCHAR(255)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Correo electrónico del usuario (VARCHAR, Not null)</td>
 </tr>
 <tr>
     <td>user_address</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -963,11 +976,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Dirección del usuario (VARCHAR, Not null)</td>
 </tr>
 <tr>
     <td>user_password</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -976,7 +989,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Contrasena del usuario, se debe almacenar hasheada para mayor seguridad (VARCHAR, Not null)</td>
 </tr>
 <tr>
     <td>user_date</td>
@@ -989,7 +1002,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Fecha de creación del usuario (DATE, Not null)</td>
 </tr>
 <table id='WAREHAUSEMAN'>
 <caption>WAREHAUSEMAN</caption>
@@ -1018,7 +1031,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>identificador unico para el usuario</td>
 </tr>
 <tr>
     <td>input_order_id</td>
@@ -1031,7 +1044,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>se utiliza para registrar la identificación de una orden (pedido) de compra de un cliente</td>
 </tr>
 <table id='WARRANTY_INCIDENTS'>
 <caption>WARRANTY_INCIDENTS</caption>
@@ -1060,11 +1073,11 @@
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td></td>
-    <td></td>
+    <td>Identificador único y autoincremental para los incidentes de garantía registrados en el sistema.</td>
 </tr>
 <tr>
-    <td>product_serials_id</td>
-    <td>INT</td>
+    <td>product_serial</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -1073,11 +1086,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td> Identificador autoincremental para cada número de serie registrado.</td>
 </tr>
 <tr>
     <td>warranty_customer</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -1086,11 +1099,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td> Almacena la información de los clientes con garantías, incluyendo los detalles del producto y la fecha de expiración.</td>
 </tr>
 <tr>
     <td>warranty_phone</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -1099,11 +1112,11 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Número de contacto principal para la gestión de la garantía.</td>
 </tr>
 <tr>
     <td>warranty_address</td>
-    <td>VARCHAR(45)</td>
+    <td>VARCHAR(255)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -1112,7 +1125,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td> Dirección del cliente para la gestión de la garantía.</td>
 </tr>
 <tr>
     <td>warranty_description</td>
@@ -1125,10 +1138,23 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Descripción detallada del problema o incidente reportado por el cliente.</td>
 </tr>
 <tr>
     <td>warranty_link_attachments</td>
+    <td>VARCHAR(255)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td>Campo que contiene la URL o el path a los archivos adjuntos (imágenes, documentos) de la garantía, como facturas o fotos del producto.</td>
+</tr>
+<tr>
+    <td>warranty_city</td>
     <td>VARCHAR(100)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -1138,20 +1164,7 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>warranty_city</td>
-    <td>VARCHAR(45)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
+    <td>Nombre de la ciudad del cliente. Utilizado para determinar la ubicación geográfica y asignar el caso a un centro de servicio local.</td>
 </tr>
 <tr>
     <td>warranty_date</td>
@@ -1164,7 +1177,20 @@
     <td>&nbsp;</td>
     <td class='attr'>&nbsp;</td>
     <td></td>
-    <td></td>
+    <td>Fecha y hora en que se reportó el incidente de garantía al sistema.</td>
+</tr>
+<tr>
+    <td>warranty_status</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td>0</td>
+    <td>Estado actual de la garantía , 0 = Sin Completar, 1 = En Proceso, 2 = Sin Completar, Al momento de ingresar la garantia nueva se le da un estado de 0 o Sin completar</td>
 </tr>
 </table>
 </body>
