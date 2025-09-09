@@ -18,7 +18,7 @@ export const firstSectionItems = [
     { name:"Informes", path:"/reports", icon: asideIcons.reportsIcon, alt:""},
     { name:"Garantías", path:"/warranties", icon: asideIcons.warrantiesIcon, alt:""},
     { name:"Proveedores", path:"/suppliers", icon: asideIcons.suppliersIcon, alt:""},
-    { name:"Transformaciones", path:"/transforms", icon: asideIcons.transformationsIcon, alt:""},
+    { name:"Transformaciones", path:"/transformations", icon: asideIcons.transformationsIcon, alt:""},
 ];
 
 export const secondSectionItems = [
