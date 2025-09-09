@@ -1,5 +1,5 @@
 import { headerIcons } from "../../assets/icons/headerIcons";
-import SearchBar from "../SearchBar";
+import SearchBar from "../ui/SearchBar";
 
 export default function Header(){
     return(
