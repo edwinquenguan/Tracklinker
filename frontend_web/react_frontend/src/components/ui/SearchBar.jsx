@@ -1,4 +1,4 @@
-import { headerIcons } from "../assets/icons/headerIcons";
+import { headerIcons } from "../../assets/icons/headerIcons";
 
 export default function SearchBar(){
     return(
