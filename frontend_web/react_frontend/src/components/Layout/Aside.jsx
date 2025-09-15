@@ -4,9 +4,9 @@ import { avatarItem, firstSectionItems, secondSectionItems } from "../../constan
 // Menú lateral principal de opciones
 export default function Aside(){
     return(
-        <aside className="row-span-2 pl-6 py-4 bg-[#e9e7e9]">
+        <aside className="row-span-2 px-5 py-5">
             {/* Primera Sección */}
-            <header className="flex min-w-max gap-3 py-3.5">
+            <header className="flex min-w-max gap-3 p-[1rem_1rem_0_0] justify-center items-center">
                 <button className="w-[50px] h-[50px]">
                     <img 
                     src={avatarItem.icon} 
@@ -19,11 +19,8 @@ export default function Aside(){
                 </section>
             </header>
             {/* Segunda Sección */}
-            <nav className="p-4 pl-0">
-                <p className="text-base py-1 pl-3 text-gray-500">
-                    Menú
-                </p>
-                <ul className="flex flex-col gap-[3px] p-1.5">
+            <nav className="p-3 pl-0">
+                <ul className="flex flex-col gap-[3px] p-1 overflow-hidden">
                     {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
                     {firstSectionItems.map((item, index) => (
                     <li 
@@ -44,11 +41,11 @@ export default function Aside(){
                 </ul>
             </nav>
             {/* Tercera Sección */}
-            <nav className="p-4 pl-0">
-                <p className="text-base py-1  pl-3 t text-gray-500">
+            <nav className="p-4 pt-6 pl-0">
+                <p className="text-base py-1 pl-3 text-gray-500">
                     Otros
                 </p>
-                <ul className="flex flex-col gap-[3px] p-1.5">
+                <ul className="flex flex-col gap-[3px] p-1">
                     {secondSectionItems.map((item, index) => (
                     <li 
                     key={index} 
