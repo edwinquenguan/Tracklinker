@@ -6,7 +6,7 @@ export default function Aside(){
     return(
         <aside className="row-span-2 pl-6 py-4 bg-[#e9e7e9]">
             {/* Primera Sección */}
-            <section className="flex min-w-max gap-3 py-3.5">
+            <header className="flex min-w-max gap-3 py-3.5">
                 <button className="w-[50px] h-[50px]">
                     <img 
                     src={avatarItem.icon} 
@@ -17,9 +17,9 @@ export default function Aside(){
                     <p className="font-bold"> Agustín Perez </p>
                     <p className="font-medium"> Administrador </p>
                 </section>
-            </section>
+            </header>
             {/* Segunda Sección */}
-            <section className="p-4 pl-0">
+            <nav className="p-4 pl-0">
                 <p className="text-base py-1 pl-3 text-gray-500">
                     Menú
                 </p>
@@ -42,9 +42,9 @@ export default function Aside(){
                     </li>
                     ))}
                 </ul>
-            </section>
+            </nav>
             {/* Tercera Sección */}
-            <section className="p-4 pl-0">
+            <nav className="p-4 pl-0">
                 <p className="text-base py-1  pl-3 t text-gray-500">
                     Otros
                 </p>
@@ -67,7 +67,7 @@ export default function Aside(){
                     </li>
                     ))}
                 </ul>
-            </section>
+            </nav>
         </aside>
     );
 }
