@@ -1,18 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "./public/Login";
-import HomePage from "./pages/HomePage";
-import DashboardPage from "./pages/DashboardPage";
-import UsersPage from "./pages/UsersPage";
-import ProductsPage from "./pages/ProductsPage";
-import CategoriesPage from "./pages/CategoriesPage";
-import SubcategoriesPage from "./pages/SubcategoriesPage";
-import ReportsPage from "./pages/UsersPage";
-import WarrantiesPage from "./pages/WarrantiesPage";
-import SuppliersPage from "./pages/SuppliersPage";
-import TransformationsPage from "./pages/TransformationsPage";
-import HelpPage from "./pages/HelpPage";
+import Login from "../public/Login";
+import HomePage from "../pages/HomePage";
+import DashboardPage from "../pages/DashboardPage";
+import UsersPage from "../pages/UsersPage";
+import ProductsPage from "../pages/ProductsPage";
+import CategoriesPage from "../pages/CategoriesPage";
+import SubcategoriesPage from "../pages/SubcategoriesPage";
+import ReportsPage from "../pages/UsersPage";
+import WarrantiesPage from "../pages/WarrantiesPage";
+import SuppliersPage from "../pages/SuppliersPage";
+import TransformationsPage from "../pages/TransformationsPage";
+import HelpPage from "../pages/HelpPage";
 
 export default function AppRouter() {
+    return(
     <Routes>
         {/* Ruta no existente lo que haria es enviarlo al login */}
         <Route path="*" element={<Navigate to="/login" />} />
@@ -53,4 +54,5 @@ export default function AppRouter() {
         {/* Página Ayuda */}
         <Route path="/help" element={<HelpPage />} />
     </Routes>
+    );
 }
