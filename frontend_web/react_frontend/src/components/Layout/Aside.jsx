@@ -22,16 +22,16 @@ export default function Aside(){
             <nav className="py-4">
                 <ul className="flex flex-col gap-[3px] overflow-hidden">
                     {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
-                    {firstSectionItems.map((item, index) => (
+                    {firstSectionItems.map((item) => (
                     <li 
-                    key={index} 
+                    key={item.name} 
                     className="rounded-xl hover:bg-gray-200 transition duration-400">
                         <NavLink
                             to={item.path}
                             className={({isActive}) =>
                                 isActive
-                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium"
-                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400"
+                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium shadow-[0px_0px_32px_-9px_#000000]"
+                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400 "
                             }
                         >
                             <img
