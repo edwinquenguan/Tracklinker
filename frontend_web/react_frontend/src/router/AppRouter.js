@@ -6,7 +6,7 @@ import UsersPage from "../pages/UsersPage";
 import ProductsPage from "../pages/ProductsPage";
 import CategoriesPage from "../pages/CategoriesPage";
 import SubcategoriesPage from "../pages/SubcategoriesPage";
-import ReportsPage from "../pages/UsersPage";
+import ReportsPage from "../pages/ReportsPage";
 import WarrantiesPage from "../pages/WarrantiesPage";
 import SuppliersPage from "../pages/SuppliersPage";
 import TransformationsPage from "../pages/TransformationsPage";
