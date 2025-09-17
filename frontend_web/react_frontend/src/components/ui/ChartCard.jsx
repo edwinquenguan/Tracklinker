@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function ChartCard({name, percentValue, metricValue, chart, rowSpan, colSpan, bgColor, textColor}){
     return(
         <section className={`row-span-${rowSpan} col-span-${colSpan} bg-${bgColor} text-${textColor}
@@ -6,6 +8,10 @@ export default function ChartCard({name, percentValue, metricValue, chart, rowSp
             <p className="text-xl font-bold">{metricValue}</p>
             <p>{percentValue}</p>
             <img src={chart} alt="" />
+            <NavLink
+            to="/reports">
+                See report
+            </NavLink>
         </section>
     );
 }
