@@ -19,29 +19,33 @@ export default function Aside(){
                 </section>
             </header>
             {/* Segunda Sección */}
-            <nav className="py-4 px-1">
+            <nav className="py-4">
                 <ul className="flex flex-col gap-[3px] overflow-hidden">
                     {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
                     {firstSectionItems.map((item, index) => (
                     <li 
                     key={index} 
-                    className="p-2.5 rounded-lg hover:bg-gray-200 transition duration-400">
+                    className="rounded-xl hover:bg-gray-200 transition duration-400">
                         <NavLink
                             to={item.path}
-                            className="flex gap-3.5 items-center justify-center xl:justify-start"
+                            className={({isActive}) =>
+                                isActive
+                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium"
+                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400"
+                            }
                         >
                             <img
                             src={item.icon}
                             alt={item.alt}
                             className="w-[25px] h-[25px]"/>
-                            <p className="hidden text-gray-400 text-base xl:block">{item.name}</p>
+                            <p className="hidden text-base xl:block">{item.name}</p>
                         </NavLink>
                     </li>
                     ))}
                 </ul>
             </nav>
             {/* Tercera Sección */}
-            <nav className="py-4 px-1">
+            <nav className="py-4 px-0">
                 <p className="text-base py-1 pl-3 text-gray-500">
                     Otros
                 </p>
@@ -49,10 +53,14 @@ export default function Aside(){
                     {secondSectionItems.map((item, index) => (
                     <li 
                     key={index} 
-                    className="p-2.5 rounded-lg hover:bg-gray-300 transition duration-300">
+                    className="rounded-lg hover:bg-gray-300 transition duration-300">
                         <NavLink
                             to={item.path}
-                            className="flex gap-3.5 items-center justify-center xl:justify-start"
+                            className={({isActive}) =>
+                                isActive
+                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium"
+                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400"
+                            }
                         >
                             <img 
                             src={item.icon} 
