@@ -1,7 +1,9 @@
-import Layout from "../components/Layout/Layout";
-import SearchBar from "../components/ui/SearchBar";
 import { users } from "../constants/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
+import Layout from "../components/Layout/Layout";
+//import SearchBar from "../components/ui/SearchBar";
+import CreateButton from "../components/ui/CreateButton";
+import FilterButton from "../components/ui/FilterButton";
 
 export default function UsersPage(){
     return(
@@ -10,14 +12,11 @@ export default function UsersPage(){
             <h1 className="font-medium"> Usuarios </h1>
             {/* Botones para agregar y filtrar usuarios */}
                 <section className="flex gap-4">
-                    <button className="flex items-center px-6 py-3 gap-2 bg-[#f3eef5] rounded-3xl">
-                        <img src={actionsIcons.filterIcon} alt="" className="w-6 h-6"/>
-                         <p className="text-base font-medium"> Filtrar </p> 
-                    </button>
-                    <button className="flex items-center px-6 py-3 bg-black rounded-3xl"> 
-                        <img src={usersIcons.addUserIcon} alt="" className="w-6 h-6"/>
-                        <p className="text-base text-white font-medium"> Agregar Usuario </p>
-                    </button>
+                    <FilterButton/>
+                    <CreateButton
+                    icon = {usersIcons.addUserIcon}
+                    text = {"Agregar Usuario"}
+                    />
                 </section>
             </section>
             {/* Contenedor de los usuarios */}
