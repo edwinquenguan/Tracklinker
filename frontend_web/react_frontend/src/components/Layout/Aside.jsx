@@ -58,7 +58,7 @@ export default function Aside(){
                             to={item.path}
                             className={({isActive}) =>
                                 isActive
-                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium"
+                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium shadow-[0px_0px_32px_-9px_#000000]"
                                 : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400"
                             }
                         >
