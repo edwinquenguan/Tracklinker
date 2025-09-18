@@ -13,11 +13,16 @@ module.exports = {
         activeOption: {
           from: { opacity: "0", transition:"background-color(#000000) .5s" },
           to: { opacity: "1", transition:"background-color(#FFFFFF) .5s" },
-        }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-5px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
       },
       animation: {
         aside: "aside 0.7s ease-out forwards",
         activeOption : "activeOption 0.5s ease-out",
+        slideIn: 'slideIn 0.5s ease-out',
       },
     },
   },
