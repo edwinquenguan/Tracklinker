@@ -31,6 +31,7 @@ import moreInfoIcon from "./main/actions/more-info-icon.svg";
 import editInfoIcon from "./main/actions/edit-info-icon.svg";
 import deleteIcon from "./main/actions/delete-user-icon.svg";
 import filterIcon from "./main/actions/filter-icon.svg";
+import addIcon from "./main/actions/add-icon.svg";
 
 
 export const dashboardIcons = {
@@ -63,6 +64,7 @@ export const actionsIcons = {
     editInfoIcon,
     deleteIcon,
     filterIcon,
+    addIcon,
 };
 
 export const warrantiesIcons = {
