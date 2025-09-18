@@ -14,13 +14,13 @@ export default function Aside(){
                     className="w-full h-full" />
                 </button>
                 <section className="hidden xl:block text-center">
-                    <p className="font-bold"> Agustín Perez </p>
-                    <p className="font-medium"> Administrador </p>
+                    <p className="font-medium"> Agustín Perez </p>
+                    <p className="font-normal"> Administrador </p>
                 </section>
             </header>
             {/* Segunda Sección */}
             <nav className="py-4">
-                <ul className="flex flex-col gap-[3px] overflow-hidden">
+                <ul className="flex flex-col gap-[3px]">
                     {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
                     {firstSectionItems.map((item) => (
                     <li 
@@ -29,10 +29,10 @@ export default function Aside(){
                         <NavLink
                             to={item.path}
                             className={({isActive}) => 
-                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased transition ease-out duration-300
+                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased rounded-2xl
                                 ${isActive
-                                ? "bg-black rounded-xl font-medium shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
-                                : "text-[#7e8088] dark:text-gray-500 font-medium"
+                                ? "bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-slideIn"
+                                : "text-[#7e8088] dark:text-gray-500 font-normal"
                             }`}
                         >
                             <img
@@ -58,9 +58,9 @@ export default function Aside(){
                         <NavLink
                             to={item.path}
                             className={({isActive}) => 
-                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased
+                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased rounded-2xl
                                 ${isActive
-                                ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
+                                ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-slideIn"
                                 : "text-gray-400 dark:text-gray-500"
                             }`}
                         >
