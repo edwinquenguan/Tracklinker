@@ -1,22 +1,16 @@
-import Layout from "../components/Layout/Layout";
-import CreateButton from "../components/ui/CreateButton";
-import FilterButton from "../components/ui/FilterButton";
 import { productsIcons, actionsIcons } from "../assets/icons/mainIcons";
 import { products } from "../data/products"
+import Layout from "../components/Layout/Layout";
+import TopSection from "../components/ui/TopSection";
 
 export default function ProductsPage(){
     return(
         <Layout>
-            <section className="flex items-center justify-between pb-3">
-            <h1 className="font-medium dark:text-white"> Productos </h1>
-                <section className="flex gap-4">
-                <FilterButton />
-                <CreateButton
-                icon = {productsIcons.addProductIcon }
-                text = {"Añadir Producto"}
-                />
-                </section>
-            </section>
+            <TopSection
+            sectionName={"Productos"}
+            addButtonIcon={productsIcons.addProductIcon}
+            addButtonText={"Agregar Producto"}
+            />
             {/* Contenedor de la tabla */}
             <section className="max-h-[850px] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
             dark:border-[#303033]">
