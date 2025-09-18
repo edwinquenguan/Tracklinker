@@ -1,11 +1,11 @@
-export default function WarrantyCard({warrantyId, warrantyRequirement, warratyCreateDate, warrantyStatusIcon, warrantyStatus}) {
+export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyCreateDate, warrantyStatusIcon, warrantyStatus}) {
     return(
         <div className="max-w-80 h-50 max-h-56 p-4 flex flex-col gap-2 rounded-xl shadow-gray-400 shadow-sm border">
             <span className="text-lg font-semibold dark:text-white">ID: {warrantyId}</span>
             <span className="text-lg font-medium">{warrantyRequirement}</span>
             <div className="flex gap-2 text-gray-600">
                 <span>Fecha de creación: </span>
-                <span>{warratyCreateDate}</span>
+                <span>{warrantyCreateDate}</span>
             </div>
             <div className="flex flex-col">
                 <span>Estado:</span>

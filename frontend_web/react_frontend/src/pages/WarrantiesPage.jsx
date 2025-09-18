@@ -18,7 +18,7 @@ export default function WarrantiesPage(){
                     <WarrantyCard
                     warrantyId={warranty.warrantyId}
                     warrantyRequirement={warranty.warrantyRequirement}
-                    warratyCreateDate={warranty.warrantyCreateDate}
+                    warrantyCreateDate={warranty.warrantyCreateDate}
                     warrantyStatusIcon={warrantiesIcons.inprocessIcon}
                     warrantyStatus={warranty.warrantyStatus}
                     />
