@@ -1,4 +1,4 @@
-import { users } from "../constants/users";
+import { users } from "../data/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Layout from "../components/Layout/Layout";
 //import SearchBar from "../components/ui/SearchBar";
