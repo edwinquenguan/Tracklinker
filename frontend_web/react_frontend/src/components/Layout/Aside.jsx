@@ -4,9 +4,9 @@ import { avatarItem, firstSectionItems, secondSectionItems } from "../../constan
 // Menú lateral principal de opciones
 export default function Aside(){
     return(
-        <aside className="row-span-2 px-5 py-5">
+        <aside className="row-span-2 px-5 py-5 dark:bg-black">
             {/* Primera Sección */}
-            <header className="flex min-w-max gap-3 p-[0_1rem] justify-center items-center">
+            <header className="flex min-w-max gap-3 p-[0_1rem] justify-center items-center dark:text-white">
                 <button className="w-[50px] h-[50px]">
                     <img 
                     src={avatarItem.icon} 
@@ -25,20 +25,21 @@ export default function Aside(){
                     {firstSectionItems.map((item) => (
                     <li 
                     key={item.name} 
-                    className="rounded-xl hover:bg-gray-200 transition duration-400">
+                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-[#444446]">
                         <NavLink
                             to={item.path}
-                            className={({isActive}) =>
-                                isActive
-                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium shadow-[0px_0px_32px_-9px_#000000]"
-                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400 "
-                            }
+                            className={({isActive}) => 
+                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased transition ease-out duration-300
+                                ${isActive
+                                ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
+                                : "dark:text-white text-gray-400"
+                            }`}
                         >
                             <img
                             src={item.icon}
                             alt={item.alt}
                             className="w-[25px] h-[25px]"/>
-                            <p className="hidden text-base xl:block">{item.name}</p>
+                            <span className="hidden text-base xl:block">{item.name}</span>
                         </NavLink>
                     </li>
                     ))}
@@ -50,24 +51,25 @@ export default function Aside(){
                     Otros
                 </p>
                 <ul className="flex flex-col gap-[3px]">
-                    {secondSectionItems.map((item, index) => (
+                    {secondSectionItems.map((item) => (
                     <li 
-                    key={index} 
-                    className="rounded-lg hover:bg-gray-300 transition duration-300">
+                    key={item.name} 
+                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-gray-950">
                         <NavLink
                             to={item.path}
-                            className={({isActive}) =>
-                                isActive
-                                ? "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start brightness-200 bg-black rounded-xl text-gray-400 font-medium shadow-[0px_0px_32px_-9px_#000000]"
-                                : "py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start text-gray-400"
-                            }
+                            className={({isActive}) => 
+                                `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased
+                                ${isActive
+                                ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
+                                : "dark:text-white text-gray-400"
+                            }`}
                         >
                             <img 
                             src={item.icon} 
                             alt={item.alt} 
                             className="w-[25px] h-[25px]"/>
                             <span 
-                            className="hidden text-gray-400 text-base xl:block">{item.name}</span>
+                            className="hidden text-base xl:block">{item.name}</span>
                         </NavLink>
                     </li>
                     ))}
