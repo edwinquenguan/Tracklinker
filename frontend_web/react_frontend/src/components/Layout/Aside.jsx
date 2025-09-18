@@ -25,7 +25,7 @@ export default function Aside(){
                     {firstSectionItems.map((item) => (
                     <li 
                     key={item.name} 
-                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-gray-950">
+                    className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-950">
                         <NavLink
                             to={item.path}
                             className={({isActive}) => 
@@ -54,7 +54,7 @@ export default function Aside(){
                     {secondSectionItems.map((item) => (
                     <li 
                     key={item.name} 
-                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-gray-950">
+                    className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-950">
                         <NavLink
                             to={item.path}
                             className={({isActive}) => 
