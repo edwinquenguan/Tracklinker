@@ -1,0 +1,17 @@
+export const suppliers = [
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+    { name: "Asus", phone: "200012341412", address: "KR 192 CL 190 # 13-123" },
+]
