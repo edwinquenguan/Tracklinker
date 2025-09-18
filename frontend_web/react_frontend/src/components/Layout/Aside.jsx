@@ -25,14 +25,14 @@ export default function Aside(){
                     {firstSectionItems.map((item) => (
                     <li 
                     key={item.name} 
-                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-[#444446]">
+                    className="rounded-xl hover:bg-gray-200 transition duration-400 dark:hover:bg-gray-950">
                         <NavLink
                             to={item.path}
                             className={({isActive}) => 
                                 `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased transition ease-out duration-300
                                 ${isActive
-                                ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
-                                : "dark:text-white text-gray-400"
+                                ? "bg-black rounded-xl font-medium shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
+                                : "text-[#7e8088] dark:text-gray-500 font-medium"
                             }`}
                         >
                             <img
@@ -61,7 +61,7 @@ export default function Aside(){
                                 `py-2.5 px-5 flex gap-3.5 items-center justify-center xl:justify-start subpixel-antialiased
                                 ${isActive
                                 ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black"
-                                : "dark:text-white text-gray-400"
+                                : "text-gray-400 dark:text-gray-500"
                             }`}
                         >
                             <img 
