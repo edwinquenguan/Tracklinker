@@ -1,0 +1,22 @@
+export default function WarrantyCard({warrantyId, warrantyRequirement, warratyCreateDate, warrantyStatusIcon, warrantyStatus}) {
+    return(
+        <div className="max-w-80 h-50 max-h-56 p-4 flex flex-col gap-2 rounded-xl shadow-gray-400 shadow-sm border">
+            <span className="text-lg font-semibold dark:text-white">ID: {warrantyId}</span>
+            <span className="text-lg font-medium">{warrantyRequirement}</span>
+            <div className="flex gap-2 text-gray-600">
+                <span>Fecha de creación: </span>
+                <span>{warratyCreateDate}</span>
+            </div>
+            <div className="flex flex-col">
+                <span>Estado:</span>
+                <div className="flex justify-between">
+                    <div className="flex items-center gap-2">
+                        <img src={warrantyStatusIcon} alt="" className="w-[20px] h-[20px]"/>
+                        <span>{warrantyStatus}</span>
+                    </div>
+                    <button className="py-2 px-5 text-sm bg-blue-950 text-white rounded-2xl outline-none"> Ver Más &gt; </button>
+                </div>
+            </div>
+        </div>
+    );
+}
