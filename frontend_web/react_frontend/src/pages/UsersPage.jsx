@@ -16,19 +16,19 @@ export default function UsersPage(){
             <ul className="min-h-[90%] max-w-full pt-3 overflow-x-auto overflow-y-auto">
                 {users.map((user) => (
                     // Usuarios   
-                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-xl">
+                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-xl shadow-md">
                             {/* Datos del Usuario */}
                             <article>
                                 <address className="flex gap-3 not-italic font-medium">
-                                <p className="text-2xl">{user.name} {user.firstSurname} {user.secondSurname}</p>
-                                <div className="flex items-center">
-                                    <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5" />
-                                    <p>{user.phone}</p>
-                                </div>
-                                <div className="flex items-center">
-                                    <img src={usersIcons.rolIcon} alt="" className="w-5 h-5" />
-                                    <p>{user.rol}</p>
-                                </div>
+                                    <p className="text-2xl">{user.name} {user.firstSurname} {user.secondSurname}</p>
+                                    <div className="flex items-center">
+                                        <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5" />
+                                        <p>{user.phone}</p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <img src={usersIcons.rolIcon} alt="" className="w-5 h-5" />
+                                        <p>{user.rol}</p>
+                                    </div>
                                 </address>
                             </article>
 
