@@ -1,24 +1,17 @@
 import { users } from "../data/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Layout from "../components/Layout/Layout";
+import TopSection from "../components/ui/TopSection";
 //import SearchBar from "../components/ui/SearchBar";
-import CreateButton from "../components/ui/CreateButton";
-import FilterButton from "../components/ui/FilterButton";
 
 export default function UsersPage(){
     return(
         <Layout>
-            <section className="flex items-center justify-between">
-            <h1 className="font-medium"> Usuarios </h1>
-            {/* Botones para agregar y filtrar usuarios */}
-                <section className="flex gap-4">
-                    <FilterButton/>
-                    <CreateButton
-                    icon = {usersIcons.addUserIcon}
-                    text = {"Agregar Usuario"}
-                    />
-                </section>
-            </section>
+            <TopSection
+            sectionName={"Usuarios"}
+            addButtonIcon={usersIcons.addUserIcon}
+            addButtonText={"Agregar Usuario"}
+            />
             {/* Contenedor de los usuarios */}
             <ul className="min-h-[90%] max-w-full pt-3 overflow-x-auto overflow-y-auto">
                 {users.map((user) => (
