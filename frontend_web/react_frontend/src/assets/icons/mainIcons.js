@@ -5,6 +5,10 @@ import firstChart from "./main/dashboard/first-chart.svg";
 import secondChart from "./main/dashboard/second-chart.svg";
 import thirdChart from "./main/dashboard/third-chart.svg";
 import fourthChart from "./main/dashboard/fourth-chart.svg";
+import barChart from "./main/dashboard/bar-chart.svg";
+import barChart2 from "./main/dashboard/bar-chart-2.svg";
+import waveChart from "./main/dashboard/wave-chart.svg";
+import waveChart2 from "./main/dashboard/wave-chart.jpg";
 import purpleCircle from "./main/dashboard/purple-circle.svg";
 import lightPurpleCircle from "./main/dashboard/light-purple-circle.svg";
 import grayCircle from "./main/dashboard/gray-circle.svg";
@@ -42,6 +46,10 @@ export const dashboardIcons = {
     secondChart,
     thirdChart,
     fourthChart,
+    barChart,
+    barChart2,
+    waveChart,
+    waveChart2,
     purpleCircle,
     lightPurpleCircle,
     grayCircle,
