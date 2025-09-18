@@ -11,7 +11,7 @@ export default function ActionCard(){
             className="flex flex-col h-40 w-32 place-items-center gap-2 transition duration-300
             hover:scale-[1.1]"
             >
-                <section className="h-32 w-32 rounded-xl bg-stone-200 content-center justify-items-center
+                <section className="h-32 w-32 rounded-xl bg-[#eae8eb] content-center justify-items-center
                 dark:bg-[#101012]">
                     <img src={item.icon} alt={item.alt} className="w-12 dark:brightness-[.2] dark:invert"/>
                 </section>
