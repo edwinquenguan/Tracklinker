@@ -25,7 +25,7 @@ export default function ProductsPage(){
 
                     {/* Cabecera de la tabla */}
                     <thead className="sticky p-5 top-0 bg-[#f3eef5] 
-                    dark:bg-black dark:text-white">
+                    dark:bg-black dark:text-gray-300">
                         <tr className="h-[50px] border-b border-gray-200 
                         dark:border-[#303033]">
                             <th className="font-medium text-start pl-4"> Fecha de Ingreso </th>
@@ -38,7 +38,7 @@ export default function ProductsPage(){
                     </thead>
 
                     {/* Contenido de la tabla */}
-                    <tbody className="font-normal dark:text-white">
+                    <tbody className="font-normal dark:text-gray-300">
                         {/* Productos */}
                         {products.map((product) => (
                             // Datos de cada producto
