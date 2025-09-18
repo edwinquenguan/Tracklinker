@@ -16,7 +16,8 @@ export default function UsersPage(){
             <ul className="max-h-[90%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
                 {users.map((user) => (
                     // Usuarios   
-                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] dark:bg-[#0f0f11] rounded-lg shadow-md">
+                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
+                        dark:bg-[#0f0f11] dark:hover:bg-[#212125]">
                             {/* Datos del Usuario */}
                             <article>
                                 <address className="flex gap-3 not-italic font-medium dark:text-white">
