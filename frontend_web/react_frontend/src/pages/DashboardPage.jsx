@@ -84,8 +84,8 @@ export default function DashBoardPage(){
                 name = {"Chart"}
                 metricValue = {"2.000"}
                 percentValue={"2.1%"}
-                chart={dashboardIcons.barChart}
-                imageSize={"w-full h-[90%]"}
+                chart={dashboardIcons.thirdChart}
+                imageSize={"w-full h-[90%] p-5"}
                 />
 
                 {/* Tercera fila de Gráficos */}
@@ -104,7 +104,7 @@ export default function DashBoardPage(){
                 name = {"Chart"}
                 metricValue = {"2.000"}
                 percentValue={"2.1%"}
-                chart={dashboardIcons.thirdChart}
+                chart={dashboardIcons.barChart}
                 imageSize={"w-full h-[80%]"}
                 />
 
