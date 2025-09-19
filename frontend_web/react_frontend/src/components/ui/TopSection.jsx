@@ -1,7 +1,7 @@
 import FilterButton from "./FilterButton";
 import CreateButton from "./CreateButton";
 
-export default function TopSection({sectionName, addButtonIcon, addButtonText, children}){
+export default function TopSection({sectionName, addButtonIcon, addButtonText, children, createOnClick}){
     return(
         <section className="flex items-center justify-between px-2 pb-3">
             <h1 className="font-medium">{sectionName}</h1>
@@ -11,6 +11,7 @@ export default function TopSection({sectionName, addButtonIcon, addButtonText, c
                 <CreateButton 
                 icon = {addButtonIcon}
                 text = {addButtonText}
+                onClick = {createOnClick}
                 />
             </section>
         </section>
