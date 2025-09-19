@@ -24,9 +24,8 @@ export default function Modal({ isOpen, title, children, onClose }) {
                 {/* Icono "x" para cerrar la modal */}
                 <button
                     onClick={onClose}
-                    className="text-gray-600 hover:text-gray-800 text-xl"
                 >
-                    <img src={modalIcons.closeIcon} alt="" className="invert brightness-200" />
+                    <img src={modalIcons.closeIcon} alt="" className="p-1.5 rounded-3xl invert brightness-200 transition duration-300 hover:bg-[#111111]" />
                 </button>
             </header>
         {/* Contenido principal de la modal o cuerpo de la modal */}
