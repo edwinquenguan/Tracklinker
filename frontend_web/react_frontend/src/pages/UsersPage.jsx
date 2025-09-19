@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { users } from "../data/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
-import Modal from "../components/ui/Modal";
-import FilterModal from "../components/ui/FilterModal";
+import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import TopSection from "../components/ui/TopSection";
 import FormField from "../components/ui/FormField";
