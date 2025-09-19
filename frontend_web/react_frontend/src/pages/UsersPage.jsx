@@ -104,6 +104,7 @@ export default function UsersPage(){
                     ? "Editar usuario"
                     : "Eliminar usuario"
                 }
+                type={modalType}
                 isOpen={isOpen}
                 onClose={() => {
                     closeModal()
