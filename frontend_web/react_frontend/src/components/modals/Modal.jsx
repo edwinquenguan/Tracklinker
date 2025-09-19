@@ -1,13 +1,18 @@
 import { modalIcons } from "../../assets/icons/modalIcons";
 
-export default function Modal({ isOpen, title, children, onClose }) {
+export default function Modal({ isOpen, title, children, onClose, type }) {
   return (
     <div 
-    className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0000002c]
-        ${isOpen 
-        ? "opacity-100" 
-        : "opacity-0 pointer-events-none"}
-    `}
+    className={
+        `fixed z-50 inset-0 bg-[#0000002c]
+            ${type === "filter"
+                        ? ""
+                        : "flex justify-center items-center"
+            }
+            ${isOpen 
+            ? "opacity-100" 
+            : "opacity-0 pointer-events-none"}
+        `}
     onClick={onClose}>
         {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
         <div 
