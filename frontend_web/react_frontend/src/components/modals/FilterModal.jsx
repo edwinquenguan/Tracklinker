@@ -1,6 +1,6 @@
 import { modalIcons } from "../../assets/icons/modalIcons";
 
-export default function FilterModal({title, isOpen, onClose,}){
+export default function FilterModal({title, isOpen, onClose, children}){
     return(
         <div 
             className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0000002c]
@@ -30,7 +30,7 @@ export default function FilterModal({title, isOpen, onClose,}){
                     </header>
                 {/* Contenido principal de la modal o cuerpo de la modal */}
                 <div>
-                    
+                    {children}
                 </div>
               </div>
             </div>
