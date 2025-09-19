@@ -6,9 +6,13 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        aside: {
-          from: { opacity: "0", transform: "translateX(-100%)"},
-          to: { opacity: "1", transform: "translateX(0%)"},
+        modalFadeIn: { 
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' } 
+        },
+        modalFadeOut: { 
+          '0%': { opacity: '1', transform: 'scale(1)' },
+          '100%': { opacity: '0', transform: 'scale(0.95)' } 
         },
         activeOption: {
           from: { opacity: "0", transition:"background-color(#000000) .5s" },
@@ -20,9 +24,10 @@ module.exports = {
         },
       },
       animation: {
-        aside: "aside 0.7s ease-out forwards",
         activeOption : "activeOption 0.5s ease-out",
         slideIn: 'slideIn 0.5s ease-out',
+        modalIn: 'modal-fade-in 0.7s ease-out forwards',
+        modalOut: 'modal-fade-out 0.25s ease-in forwards',
       },
     },
   },
