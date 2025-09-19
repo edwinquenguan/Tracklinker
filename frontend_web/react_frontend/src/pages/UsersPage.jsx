@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { users } from "../data/users";
-import { modalIcons } from "../assets/icons/modalIcons";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/ui/Modal";
+import FilterModal from "../components/ui/FilterModal";
 import Layout from "../components/Layout/Layout";
 import TopSection from "../components/ui/TopSection";
 import FormField from "../components/ui/FormField";
@@ -33,6 +33,10 @@ export default function UsersPage(){
             addButtonText={"Agregar Usuario"}
             createOnClick = {() =>{
                 openModal(null, "add")
+                setIsOpen(true)
+            }}
+            filterOnClick={() => {
+                openModal(null, "filter")
                 setIsOpen(true)
             }}
             >
@@ -90,7 +94,9 @@ export default function UsersPage(){
             {modalType && (
                 <Modal
                 title={
-                    modalType === "add"
+                    modalType === "filter"
+                    ? "Filtrar"
+                    : modalType === "add"
                     ? "Agregar Usuario"
                     : modalType === "info"
                     ? "Información del usuario"
@@ -104,6 +110,9 @@ export default function UsersPage(){
                     setIsOpen(false)
                 }}
                 >
+                {modalType === "filter" && (
+                    <FilterModal />
+                )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
                         <form action="" className="flex flex-col gap-1">
@@ -209,28 +218,28 @@ export default function UsersPage(){
                 {/* Modal para eliminar el usuario */}
                 {modalType === "delete" && (
                     <div className="flex flex-col justify-center items-center">
-                    <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.name}</span>?</p>
-                    
-                    {/* Botones */}
-                    <div className="flex pt-4 gap-5">
-                        <button 
-                        className="flex items-center gap-2 px-5 py-2 rounded-xl shadow-xl text-sm bg-red-600 text-white transition duration-300 hover:bg-red-700" 
-                        onClick={() =>{
-                            closeModal()
-                            setIsOpen(false)
-                        }}>
-                            <img src={actionsIcons.deleteIcon} alt="" className="w-[20px] h-[20px] invert" />
-                            Eliminar
-                        </button>
-                        <button
-                        className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                        onClick={() =>{
-                            closeModal()
-                            setIsOpen(false)
-                        }}>
-                            Cancelar
-                        </button>
-                    </div>
+                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.name}</span>?</p>
+                        
+                        {/* Botones */}
+                        <div className="flex pt-4 gap-5">
+                            <button 
+                            className="flex items-center gap-2 px-5 py-2 rounded-xl shadow-xl text-sm bg-red-600 text-white transition duration-300 hover:bg-red-700" 
+                            onClick={() =>{
+                                closeModal()
+                                setIsOpen(false)
+                            }}>
+                                <img src={actionsIcons.deleteIcon} alt="" className="w-[20px] h-[20px] invert" />
+                                Eliminar
+                            </button>
+                            <button
+                            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
+                            onClick={() =>{
+                                closeModal()
+                                setIsOpen(false)
+                            }}>
+                                Cancelar
+                            </button>
+                        </div>
                     </div>
                 )}
                 </Modal>
