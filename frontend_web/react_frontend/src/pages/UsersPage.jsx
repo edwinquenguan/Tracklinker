@@ -2,7 +2,6 @@ import { useState } from "react";
 import { users } from "../data/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
-import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import TopSection from "../components/ui/TopSection";
 import FormField from "../components/ui/FormField";
@@ -112,7 +111,9 @@ export default function UsersPage(){
                 }}
                 >
                 {modalType === "filter" && (
-                    <FilterModal />
+                    <select name="" id="">
+                        <option value=""></option>
+                    </select>
                 )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
