@@ -33,5 +33,4 @@ coverage/
 *.spec.js
 
 # Otros
-node_modules
 package-lock.json
