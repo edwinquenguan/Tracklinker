@@ -126,14 +126,14 @@ export default function UsersPage(){
 
                             <FormField
                             labelText={"Número"}
-                            placeholder={"Felipe"} 
-                            id={"name"}
+                            placeholder={"300012124"} 
+                            id={"phone"}
                             />
 
                             <FormField
                             labelText={"Dirección"}
-                            placeholder={"Felipe"} 
-                            id={"name"}
+                            placeholder={"KR 124 # 12-124"} 
+                            id={"address"}
                             />
                         </form>
 
