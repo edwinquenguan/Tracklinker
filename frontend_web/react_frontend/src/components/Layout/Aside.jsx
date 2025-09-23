@@ -4,7 +4,8 @@ import { avatarItem, firstSectionItems, secondSectionItems } from "../../constan
 // Menú lateral principal de opciones
 export default function Aside(){
     return(
-        <aside className="row-span-2 px-5 py-5 dark:bg-black">
+        <aside className="px-5 py-5 dark:bg-black
+        xl:row-span-2">
             {/* Primera Sección */}
             <header className="flex min-w-max gap-3 p-[0_1rem] justify-center items-center dark:text-white">
                 <button className="w-[50px] h-[50px]">
