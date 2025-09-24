@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { users } from "../data/users";
-import { getUsers } from "../services/users";
+import { getUsersWithRol } from "../services/getUsersWithRol";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
 import FilterModal from "../components/modals/FilterModal";
@@ -35,7 +35,7 @@ export default function UsersPage(){
         async function fetchUsers() {
             try {
                 setLoading(true)
-                const data = await getUsers();
+                const data = await getUsersWithRol();
                 setUsers(data);
             } catch (error) {
                 setError(error.message);
