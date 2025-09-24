@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { users } from "../data/users";
+import { useState, useEffect } from "react";
+// import { users } from "../data/users";
+import { getAllUsers } from "../services/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
 import Layout from "../components/Layout/Layout";
@@ -9,6 +10,10 @@ import SearchBar from "../components/ui/SearchBar";
 
 export default function UsersPage(){
     // Definir los estados y sus valores por defecto
+
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [selectedUser, setSelectedUser] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +28,24 @@ export default function UsersPage(){
         setSelectedUser(null);
         setModalType(null);
     };
+
+    useEffect(() => {
+        async function fetchUsers() {
+            try {
+                setLoading(true)
+                const data = await getAllUsers();
+                setUsers(data);
+            } catch (error) {
+                setError(error.message);
+            }
+        }
+
+    fetchUsers();
+    }, []);
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return(
         <Layout>
@@ -43,51 +66,53 @@ export default function UsersPage(){
             </ TopSection>
             
             {/* Contenedor de los usuarios */}
-            <ul className="max-h-[90%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
-                {users.map((user) => (
-                    // Usuarios   
-                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
-                        dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
-                        key={user.id}>
-                            {/* Datos del Usuario */}
-                            <article>
-                                <address className="flex gap-3 not-italic font-medium dark:text-white">
-                                    <p className="text-xl">{user.name} {user.firstSurname} {user.secondSurname}</p>
-                                    <div className="flex items-center">
-                                        <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5 dark:invert" />
-                                        <p>{user.phone}</p>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <img src={usersIcons.rolIcon} alt="" className="w-5 h-5 dark:invert" />
-                                        <p>{user.rol}</p>
-                                    </div>
-                                </address>
-                            </article>
+            <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+                <ul className="pt-3 flex flex-col gap-1">
+                    {users.map((user) => (
+                        // Usuarios   
+                            <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
+                            dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+                            key={user.user_id}>
+                                {/* Datos del Usuario */}
+                                <article>
+                                    <address className="flex gap-3 not-italic font-medium dark:text-white">
+                                        <p className="text-xl">{user.user_name} {user.user_first_surname} {user.user_second_surname}</p>
+                                        <div className="flex items-center">
+                                            <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5 dark:invert" />
+                                            <p>{user.user_phone}</p>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <img src={usersIcons.rolIcon} alt="" className="w-5 h-5 dark:invert" />
+                                            <p>{user.roles.rol_name}</p>
+                                        </div>
+                                    </address>
+                                </article>
 
-                            {/* Botones para interactuar con el usuario */}
-                            <nav className="flex gap-4 dark:invert">
-                                <button onClick={() => {
-                                    openModal(user, "info")
-                                    setIsOpen(true)
-                                }}> 
-                                    <img src={actionsIcons.moreInfoIcon} alt="" /> 
-                                </button>
-                                <button onClick={() => {
-                                    openModal(user, "edit")
-                                    setIsOpen(true)
+                                {/* Botones para interactuar con el usuario */}
+                                <nav className="flex gap-4 dark:invert">
+                                    <button onClick={() => {
+                                        openModal(user, "info")
+                                        setIsOpen(true)
                                     }}> 
-                                    <img src={actionsIcons.editInfoIcon} alt="" /> 
-                                </button>
-                                <button onClick={() => {
-                                    openModal(user, "delete")
-                                    setIsOpen(true)
-                                    }}> 
-                                    <img src={actionsIcons.deleteIcon} alt="" />
-                                </button>
-                            </nav>
-                        </li>
-                ))}
-            </ul>
+                                        <img src={actionsIcons.moreInfoIcon} alt="" /> 
+                                    </button>
+                                    <button onClick={() => {
+                                        openModal(user, "edit")
+                                        setIsOpen(true)
+                                        }}> 
+                                        <img src={actionsIcons.editInfoIcon} alt="" /> 
+                                    </button>
+                                    <button onClick={() => {
+                                        openModal(user, "delete")
+                                        setIsOpen(true)
+                                        }}> 
+                                        <img src={actionsIcons.deleteIcon} alt="" />
+                                    </button>
+                                </nav>
+                            </li>
+                    ))}
+                </ul>
+            </section>
 
             {/* Modales */}
             {modalType && (
@@ -161,10 +186,10 @@ export default function UsersPage(){
                 {/* Modal para mas información del usuario */}
                 {modalType === "info" && (
                     <div className="flex flex-col justify-center">
-                        <p><strong>Nombre:</strong> {selectedUser.name} {selectedUser.firstSurname} {selectedUser.secondSurname}</p>
                         <p><strong>Rol:</strong> {selectedUser.rol}</p>
-                        <p><strong>Teléfono:</strong> {selectedUser.phone}</p>
-                        <p><strong>Dirección:</strong> {selectedUser.address}</p>
+                        <p><strong>Nombre:</strong> {selectedUser.user_name} {selectedUser.user_first_surname} {selectedUser.user_second_surname}</p>
+                        <p><strong>Teléfono:</strong> {selectedUser.user_phone}</p>
+                        <p><strong>Dirección:</strong> {selectedUser.user_address}</p>
                         <p><strong>Fecha De Creación:</strong> {selectedUser.user_date}</p>
                     </div>
                 )}
@@ -175,22 +200,22 @@ export default function UsersPage(){
                     <form action="" className="flex flex-col gap-2">
                         <FormField
                         labelText={"Nombre"}
-                        placeholder={selectedUser.name}
+                        placeholder={selectedUser.user_name}
                         id={"name"}
                         />
                         <FormField
                         labelText={"Apellidos"}
-                        placeholder={`${selectedUser.firstSurname} ${selectedUser.secondSurname}`}
+                        placeholder={`${selectedUser.user_first_surname} ${selectedUser.user_second_surname}`}
                         id={"surname"}
                         />
                         <FormField
                         labelText={"Número"}
-                        placeholder={selectedUser.phone}
+                        placeholder={selectedUser.user_phone}
                         id={"phone"}
                         />
                         <FormField
                         labelText={"Dirección"}
-                        placeholder={selectedUser.address}
+                        placeholder={selectedUser.user_address}
                         id={"address"}
                         />
                     </form>
@@ -220,7 +245,7 @@ export default function UsersPage(){
                 {/* Modal para eliminar el usuario */}
                 {modalType === "delete" && (
                     <div className="flex flex-col justify-center items-center">
-                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.name}</span>?</p>
+                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.user_name}</span>?</p>
                         
                         {/* Botones */}
                         <div className="flex pt-4 gap-5">
