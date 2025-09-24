@@ -31,7 +31,7 @@ export default function FilterModal({onClose, children}) {
                 </button>
                 
                 <button 
-                className="px-3 py-3 rounded-lg text-sm font-medium bg-black text-white
+                className="px-5 py-3 rounded-lg text-sm font-medium bg-black text-white
                 dark:bg-white dark:text-black"
                 onClick={onClose}> 
                     Aplicar 
