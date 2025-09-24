@@ -1,4 +1,4 @@
-import avatarIcon from "./aside/avatar.svg";
+import avatarIcon from "./aside/avatar.webp";
 import homeIcon from "./aside/home-icon.svg";
 import dashboardIcon from "./aside/dashboard-icon.svg";
 import usersIcon from "./aside/users-icon.svg";
