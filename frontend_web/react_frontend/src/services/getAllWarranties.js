@@ -1,6 +1,6 @@
 import { supabase } from "../supabase/supabaseClient";
 
-export const getWarranties = async () => {
+export const getAllWarranties = async () => {
     try {
         // Consulta la tablas necesarias y trae todos los registros, los almacena en data y retorna data
         const { data, error } = await supabase

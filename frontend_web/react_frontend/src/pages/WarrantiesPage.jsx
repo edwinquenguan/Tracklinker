@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWarranties } from "../services/warranties";
+import { getAllWarranties } from "../services/getAllWarranties";
 import Layout from "../components/Layout/Layout";
 import WarrantyCard from "../components/ui/WarrantyCard";
 import TopSection from "../components/ui/TopSection";
@@ -16,7 +16,7 @@ export default function WarrantiesPage(){
         async function fetchWarranties() {
             try {
                 setLoading(true)
-                const data = await getWarranties();
+                const data = await getAllWarranties();
                 setWarranties(data);
             } catch (error) {
                 setError(error.message);
