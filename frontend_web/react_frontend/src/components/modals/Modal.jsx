@@ -6,7 +6,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
     className={
         `fixed z-50 inset-0 bg-[#0000002c]
             ${type === "filter"
-                        ? "flex justify-end items-start pr-[280px] pt-4"
+                        ? "flex justify-end items-start pr-[280px] pt-4 bg-[#0000000c]"
                         : "flex justify-center items-center"
             }
             ${isOpen 
@@ -16,10 +16,14 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
     onClick={onClose}>
         {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
         <div 
-        className={`bg-white rounded-xl shadow-lg w-[90%] max-w-xl p-6 relative
+        className={`bg-white rounded-xl shadow-lg w-[90%] p-6 relative
             ${isOpen 
             ? "animate-modalFadeIn" 
             : "animate-modalFadeOut"}
+            ${type === "filter" 
+                ? "max-w-sm"
+                : "max-w-xl"
+            }
         `}
         onClick={(e) => e.stopPropagation()}
         >
