@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAllSuppliers } from "../services/getAllSuppliers";
 import { actionsIcons } from "../assets/icons/mainIcons";
 import { usersIcons } from "../assets/icons/mainIcons";
-import { suppliers } from "../data/suppliers";
+//import { suppliers } from "../data/suppliers";
 import Modal from "../components/modals/Modal";
 import Layout from "../components/Layout/Layout";
-import FormField from "../components/ui/FormField"
+import FormField from "../components/ui/FormField";
 import TopSection from "../components/ui/TopSection";
 
 export default function SuppliersPage(){
     // Definir los estados y sus valores por defecto
+    const [suppliers, setSuppliers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [selectedSupplier, setSelectedSupplier] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+
+    // Esto llama a la función getAllSuppliers y espera a obtener data y los almacena en "data"
+    useEffect(() => {
+        async function fetchSuppliers() {
+                    try {
+                        setLoading(true)
+                        const data = await getAllSuppliers();
+                        setSuppliers(data);
+                    } catch (error) {
+                        setError(error.message);
+                    } finally {
+                        setLoading(false);
+                    }
+                }
+        
+            fetchSuppliers();
+            }, []);
+
+    if (loading) {
+        //const supplierField = document.getElementById("user-field");
+    }
+
+    
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     // Al momento de clickear un botón esto guarda la información del Proveedor y abre la modal que pertenece a ese botón
     const openModal = (supplier, type) => {
@@ -42,17 +72,20 @@ export default function SuppliersPage(){
             {/* Listado de proveedores */}
             <ul className="max-h-[95%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
                 {suppliers.map((supplier) => (    
-                    <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-xl shadow-md">
+                    <li 
+                    className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl shadow-md"
+                    hey={supplier.supplier_id}
+                    id="user-field">
                         <article className="flex">
                             <address className="flex gap-5 not-italic font-medium">
-                                <p className="text-2xl">{supplier.name}</p>
+                                <p className="text-[22px]">{supplier.supplier_name}</p>
                                 <div className="flex items-center">
                                     <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5" />
-                                    <p>{supplier.phone}</p>
+                                    <p>{supplier.supplier_phone}</p>
                                 </div>
                                 <div className="flex items-center">
                                     <img src={usersIcons.rolIcon} alt="" className="w-5 h-5" />
-                                    <p>{supplier.address}</p>
+                                    <p>{supplier.supplier_address}</p>
                                 </div>
                             </address>
                         </article>
@@ -153,11 +186,11 @@ export default function SuppliersPage(){
                 {/* Modal para mas información del Proveedor */}
                 {modalType === "info" && (
                     <div className="flex flex-col justify-center">
-                        <p><strong>Nombre:</strong> {selectedSupplier.name}</p>
-                        <p><strong>Ciudad:</strong> {selectedSupplier.city}</p>
-                        <p><strong>Teléfono:</strong> {selectedSupplier.phone}</p>
-                        <p><strong>Dirección:</strong> {selectedSupplier.address}</p>
-                        <p><strong>Fecha De Creación:</strong> {selectedSupplier.createAt}</p>
+                        <p><strong>Nombre:</strong> {selectedSupplier.supplier_name}</p>
+                        <p><strong>Ciudad:</strong> {selectedSupplier.supplier_city}</p>
+                        <p><strong>Teléfono:</strong> {selectedSupplier.supplier_phone}</p>
+                        <p><strong>Dirección:</strong> {selectedSupplier.supplier_address}</p>
+                        <p><strong>Fecha De Creación:</strong> {selectedSupplier.supplier_date}</p>
                     </div>
                 )}
 
