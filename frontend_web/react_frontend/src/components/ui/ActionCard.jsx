@@ -8,6 +8,7 @@ export default function ActionCard(){
             {items.map(item => (
             <NavLink
             to={item.path}
+            key={item.name}
             className="flex flex-col h-40 w-32 place-items-center gap-2 transition duration-300
             hover:scale-[1.1]"
             >
