@@ -1,16 +1,39 @@
-import { useState } from "react";
-import { categories } from "../data/categories";
+import { useState, useEffect } from "react";
+import { getAllCategories } from "../services/getAllCategories";
+// import { categories } from "../data/categories";
 import { actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import FormField from "../components/ui/FormField"
 import TopSection from "../components/ui/TopSection";
 
 export default function CategoriesPage(){
     // Definir los estados y sus valores por defecto
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        async function fetchCategories() {
+                    try {
+                        setLoading(true)
+                        const data = await getAllCategories();
+                        setCategories(data);
+                    } catch (error) {
+                        setError(error.message);
+                    }
+                }
+                
+                fetchCategories();
+        }, []);
+        
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     // Al momento de clickear un botón esto guarda la información del usuario y abre la modal que pertenece a ese botón
     const openModal = (category, type) => {
@@ -39,11 +62,14 @@ export default function CategoriesPage(){
             }}
             />
             {/* Listado de categorias */}
-                <ul className="min-h-[90%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
+            <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+                <ul className="pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
                 {categories.map((category) => (
                     // Categorias
-                        <li className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl">
-                            <span className="text-2xl font-medium">{category.name}</span>
+                        <li 
+                        className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl"
+                        key={category.category_id}>
+                            <span className="text-2xl font-medium">{category.category_name}</span>
                             {/* Botones para interactuar */}
                             <nav className="flex gap-4">
                                 <button onClick={() => {
@@ -68,6 +94,7 @@ export default function CategoriesPage(){
                         </li>
                 ))}
                 </ul>
+            </section>
                 
                 {/* Modales */}
                 {modalType && (
@@ -91,9 +118,14 @@ export default function CategoriesPage(){
                     }}
                     >
                     {modalType === "filter" && (
-                        <select name="" id="">
-                            <option value=""></option>
-                        </select>
+                        <FilterModal
+                        onClose={ () => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        >
+                        
+                        </FilterModal>
                     )}
                     {modalType === "add" && (
                         <div className="flex flex-col items-center">
@@ -129,8 +161,8 @@ export default function CategoriesPage(){
                     {/* Modal para mas información de la categoria */}
                     {modalType === "info" && (
                         <div className="flex flex-col justify-center">
-                            <p><strong>Nombre:</strong> {selectedCategory.name} </p>
-                            <p><strong>Creada:</strong> {selectedCategory.createAt}</p>
+                            <p><strong>Nombre:</strong> {selectedCategory.category_name} </p>
+                            <p><strong>Creada:</strong> {selectedCategory.category_date}</p>
                         </div>
                     )}
                     {/* Modal para editar la categoria */}
@@ -139,7 +171,7 @@ export default function CategoriesPage(){
                         <form action="" className="flex flex-col gap-2">
                             <FormField
                             labelText={"Nombre"}
-                            placeholder={selectedCategory.name}
+                            placeholder={selectedCategory.category_name}
                             id={"name"}
                             />
                         </form>
@@ -169,7 +201,7 @@ export default function CategoriesPage(){
                     {/* Modal para eliminar la categoria */}
                     {modalType === "delete" && (
                         <div className="flex flex-col justify-center items-center">
-                            <p>¿Seguro que deseas eliminar la Categoria <strong>{selectedCategory.name}</strong>?</p>
+                            <p>¿Seguro que deseas eliminar la Categoria <strong>{selectedCategory.category_name}</strong>?</p>
                             
                             {/* Botones */}
                             <div className="flex pt-4 gap-5">
