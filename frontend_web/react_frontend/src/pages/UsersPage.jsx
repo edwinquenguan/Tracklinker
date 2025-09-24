@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getUsers } from "../services/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import TopSection from "../components/ui/TopSection";
 import FormField from "../components/ui/FormField";
@@ -137,9 +138,14 @@ export default function UsersPage(){
                 }}
                 >
                 {modalType === "filter" && (
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
+                    <FilterModal
+                    onClose={ () => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    >
+                    
+                    </FilterModal>
                 )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
@@ -187,7 +193,7 @@ export default function UsersPage(){
                 {/* Modal para mas información del usuario */}
                 {modalType === "info" && (
                     <div className="flex flex-col justify-center">
-                        <p><strong>Rol:</strong> {selectedUser.rol}</p>
+                        <p><strong>Rol:</strong> {selectedUser.roles.rol_name}</p>
                         <p><strong>Nombre:</strong> {selectedUser.user_name} {selectedUser.user_first_surname} {selectedUser.user_second_surname}</p>
                         <p><strong>Teléfono:</strong> {selectedUser.user_phone}</p>
                         <p><strong>Dirección:</strong> {selectedUser.user_address}</p>
