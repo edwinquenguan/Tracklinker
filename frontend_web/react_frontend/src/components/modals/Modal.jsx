@@ -6,7 +6,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
     className={
         `fixed z-50 inset-0 bg-[#0000002c]
             ${type === "filter"
-                        ? "flex justify-end items-start pr-[280px] pt-4 bg-[#0000000c]"
+                        ? "flex justify-end items-start pr-[280px] pt-4 bg-[#00000013]"
                         : "flex justify-center items-center"
             }
             ${isOpen 
@@ -21,7 +21,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
             ? "animate-modalFadeIn" 
             : "animate-modalFadeOut"}
             ${type === "filter" 
-                ? "max-w-sm"
+                ? "max-w-sm border-2"
                 : "max-w-xl"
             }
         `}
