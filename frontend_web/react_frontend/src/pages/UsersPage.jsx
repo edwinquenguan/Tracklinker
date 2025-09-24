@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { users } from "../data/users";
-import { getAllUsers } from "../services/users";
+import { getUsers } from "../services/users";
 import { usersIcons, actionsIcons } from "../assets/icons/mainIcons";
 import Modal from "../components/modals/Modal";
 import Layout from "../components/Layout/Layout";
@@ -29,11 +29,12 @@ export default function UsersPage(){
         setModalType(null);
     };
 
+    // Esto llama a la función getAllUsers y espera a obtener toda los datos y los almacena en "data"
     useEffect(() => {
         async function fetchUsers() {
             try {
                 setLoading(true)
-                const data = await getAllUsers();
+                const data = await getUsers();
                 setUsers(data);
             } catch (error) {
                 setError(error.message);
