@@ -1,16 +1,41 @@
-import { useState } from "react";
-import { subcategories } from "../data/subcategories"
+import { useState, useEffect } from "react";
+// import { subcategories } from "../data/subcategories"
 import { actionsIcons } from "../assets/icons/mainIcons";
+import { asideIcons } from "../assets/icons/asideIcons";
+import { getSubcategoriesWithCategory } from "../services/getSubcategoriesWithCategory";
 import Layout from "../components/Layout/Layout";
 import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import FormField from "../components/ui/FormField"
 import TopSection from "../components/ui/TopSection";
 
 export default function SubcategoriesPage(){
     // Definir los estados y sus valores por defecto
+    const [subcategories, setSubcategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [selectedSubcategory, setSelectedSubcategory] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+
+     useEffect(() => {
+        async function fetchSubcategories() {
+                try {
+                    setLoading(true)
+                    const data = await getSubcategoriesWithCategory();
+                    setSubcategories(data);
+                    console.log(data)
+                } catch (error) {
+                    setError(error.message);
+                }
+            }
+            
+        fetchSubcategories();
+        }, []);
+            
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     // Al momento de clickear un botón esto guarda la información del usuario y abre la modal que pertenece a ese botón
     const openModal = (subcategory, type) => {
@@ -38,35 +63,45 @@ export default function SubcategoriesPage(){
             }}
             />
             {/* Listado de subcategorias */}
-                <ul className="min-h-[90%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
+            <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+                <ul className="pt-3 flex flex-col gap-1">
                 {subcategories.map((subcategory) => (
                     // Categorias
-                        <li className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl">
-                            <span className="text-2xl font-medium">{subcategory.name}</span>
+                        <li 
+                        key={subcategory.subcategory_id}
+                        className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl">
+                            <section className="flex gap-6">
+                                <span className="text-2xl font-medium">{subcategory.subcategory_name}</span>
+                                <div className="flex items-center gap-1 justify-center">
+                                    <img src={asideIcons.categoriesIcon} alt="" className="invert brightness-200" />
+                                    <span className="font-medium">{subcategory.categories.category_name}</span>
+                                </div>
+                            </section>
                             {/* Botones para interactuar */}
                             <nav className="flex gap-4">
                                 <button onClick={() => {
                                     openModal(subcategory, "info")
                                     setIsOpen(true)
-                                    }}> 
+                                    }}>
                                     <img src={actionsIcons.moreInfoIcon} alt="" /> 
                                 </button>
                                 <button onClick={() => {
                                     openModal(subcategory, "edit")
                                     setIsOpen(true)
-                                    }}> 
+                                    }}>
                                     <img src={actionsIcons.editInfoIcon} alt="" /> 
                                 </button>
                                 <button onClick={() => {
                                     openModal(subcategory, "delete")
                                     setIsOpen(true)
-                                    }}> 
+                                    }}>
                                     <img src={actionsIcons.deleteIcon} alt="" />
                                 </button>
                             </nav>
                         </li>
                 ))}
                 </ul>
+            </section>
                 
                 {/* Modales */}
                 {modalType && (
@@ -90,9 +125,14 @@ export default function SubcategoriesPage(){
                     }}
                     >
                     {modalType === "filter" && (
-                        <select name="" id="">
-                            <option value=""></option>
-                        </select>
+                        <FilterModal
+                        onClose={ () => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        >
+                        
+                        </FilterModal>
                     )}
                     {modalType === "add" && (
                         <div className="flex flex-col items-center">
@@ -128,9 +168,9 @@ export default function SubcategoriesPage(){
                     {/* Modal para mas información de la categoria */}
                     {modalType === "info" && (
                         <div className="flex flex-col justify-center">
-                            <p><strong>Creada:</strong> {selectedSubcategory.createAt}</p>
-                            <p><strong>Nombre:</strong> {selectedSubcategory.name} </p>
-                            <p><strong>Categoria a la que pertenece:</strong> {selectedSubcategory.category}</p>
+                            <p><strong>Creada:</strong> {selectedSubcategory.subcategory_date}</p>
+                            <p><strong>Nombre:</strong> {selectedSubcategory.subcategory_name} </p>
+                            <p><strong>Categoria a la que pertenece:</strong> {selectedSubcategory.categories.category_name}</p>
                         </div>
                     )}
                     {/* Modal para editar la categoria */}
@@ -139,7 +179,7 @@ export default function SubcategoriesPage(){
                         <form action="" className="flex flex-col gap-2">
                             <FormField
                             labelText={"Nombre"}
-                            placeholder={selectedSubcategory.name}
+                            placeholder={selectedSubcategory.subcategory_name}
                             id={"name"}
                             />
                         </form>
@@ -169,7 +209,7 @@ export default function SubcategoriesPage(){
                     {/* Modal para eliminar la categoria */}
                     {modalType === "delete" && (
                         <div className="flex flex-col justify-center items-center">
-                            <p>¿Seguro que deseas eliminar la Categoria <strong>{selectedSubcategory.name}</strong>?</p>
+                            <p>¿Seguro que deseas eliminar la Subcategoria <strong>{selectedSubcategory.subcategory_name}</strong>?</p>
                             
                             {/* Botones */}
                             <div className="flex pt-4 gap-5">
