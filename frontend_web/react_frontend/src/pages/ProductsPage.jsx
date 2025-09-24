@@ -1,16 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { productsIcons, actionsIcons } from "../assets/icons/mainIcons";
-import { products } from "../data/products"
+// import { products } from "../data/products"
 import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import FormField from "../components/ui/FormField";
 import TopSection from "../components/ui/TopSection";
+import { getProducts } from "../services/getProducts";
 
 export default function ProductsPage(){
     // Definir los estados y sus valores por defecto
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+            async function fetchProducts() {
+                        try {
+                            setLoading(true)
+                            const data = await getProducts();
+                            setProducts(data);
+                            console.log(data);
+                        } catch (error) {
+                            setError(error.message);
+                        } finally {
+                            setLoading(false);
+                        }
+                    }
+            
+                fetchProducts();
+                }, []);
+    
+        if (error) {
+            return <div>Error: {error}</div>;
+        }
 
     // Al momento de clickear un botón esto guarda la información del usuario y abre la modal que pertenece a ese botón
     const openModal = (product, type) => {
@@ -50,8 +76,9 @@ export default function ProductsPage(){
                         <tr className="h-[50px] border-b border-gray-200 
                         dark:border-[#303033]">
                             <th className="font-medium text-start pl-4"> Fecha de Ingreso </th>
-                            <th className="font-medium text-start"> Modelo </th>
                             <th className="font-medium text-start"> Serial </th>
+                            <th className="font-medium text-start"> Modelo </th>
+                            <th className="font-medium text-start"> Descripción </th>
                             <th className="font-medium text-start"> Marca </th>
                             <th className="font-medium text-start"> Tiempo de Garantia </th>
                             <th className="font-medium text-start"> </th>
@@ -64,13 +91,13 @@ export default function ProductsPage(){
                         {products.map((product) => (
                             // Datos de cada producto
                             <tr 
-                            key={product.serial}
+                            key={product.input_order_date}
                             className="h-[50px] overflow-x-auto overflow-y-auto transition duration-500
                             hover:bg-[#cdcacf] dark:hover:bg-[#101012]">
-                                <th className="font-normal text-start pl-4"> {product.input_date} </th>
-                                <th className="font-normal text-start"> {product.model} </th>
-                                <th className="font-normal text-start"> {product.serial} </th>
-                                <th className="font-normal text-start"> {product.brand} </th>
+                                <th className="font-normal text-start pl-4"> {product.input_order_date} </th>
+                                <th className="font-normal text-start"> {product.product_serials.products.product_details.product_detail_model} </th>
+                                <th className="font-normal text-start"> {product} </th>
+                                <th className="font-normal text-start"> {product.product_serials} </th>
                                 <th className="font-normal text-start"> {product.warranty} </th>
 
                                 {/* Botones */}
@@ -114,9 +141,14 @@ export default function ProductsPage(){
                 }}
                 >
                 {modalType === "filter" && (
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
+                    <FilterModal
+                     onClose={() => {
+                        closeModal()
+                        setIsOpen(false)
+                     }}
+                    >
+
+                    </FilterModal>
                 )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
