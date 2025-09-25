@@ -2,13 +2,15 @@ import { NavLink } from "react-router-dom";
 import { avatarItem, firstSectionItems, secondSectionItems } from "../../constants/asideMenuItems";
 
 // Menú lateral principal de opciones
-export default function Aside(){
+export default function Aside({avatarOnClick}){
     return(
         <aside className="px-5 py-5 dark:bg-black
         xl:row-span-2">
             {/* Primera Sección */}
             <header className="flex min-w-max gap-3 p-[0_1rem] justify-center items-center dark:text-white">
-                <button className="w-[50px] h-[50px]">
+                <button 
+                onClick={avatarOnClick}
+                className="w-[50px] h-[50px]">
                     <img 
                     src={avatarItem.icon} 
                     alt={avatarItem.alt} 
