@@ -196,6 +196,7 @@ export default function UsersPage(){
                         <p><strong>Rol:</strong> {selectedUser.roles.rol_name}</p>
                         <p><strong>Nombre:</strong> {selectedUser.user_name} {selectedUser.user_first_surname} {selectedUser.user_second_surname}</p>
                         <p><strong>Teléfono:</strong> {selectedUser.user_phone}</p>
+                        <p><strong>Correo:</strong> {selectedUser.user_email}</p>
                         <p><strong>Dirección:</strong> {selectedUser.user_address}</p>
                         <p><strong>Fecha De Creación:</strong> {selectedUser.user_date}</p>
                     </div>
