@@ -181,7 +181,12 @@ export default function ProductsPage(){
                 }}
                 >
                 {modalType === "user" &&(
-                    <ProfileModal/>
+                    <ProfileModal
+                    onClose={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    />
                 )}
                 {modalType === "filter" && (
                     <FilterModal
