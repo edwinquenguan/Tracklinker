@@ -17,11 +17,12 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
         {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
         <div 
         className={`bg-white rounded-xl shadow-lg w-[90%] p-6 relative
+            dark:bg-black dark:shadow-[0px_0px_0px_1px_#101012]
             ${isOpen 
             ? "animate-modalFadeIn" 
             : "animate-modalFadeOut"}
             ${type === "filter" 
-                ? "max-w-sm border-2"
+                ? "max-w-sm"
                 : "max-w-xl"
             }
         `}
@@ -29,12 +30,16 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
         >
             {/* Cabecera de la modal donde esta el titúlo y el icono para cerrarla */}
             <header className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-medium">{title}</h2>
+                <h2 className="text-lg font-medium dark:text-white">{title}</h2>
                 {/* Icono "x" para cerrar la modal */}
                 <button
                     onClick={onClose}
+                    className="p-1.5 rounded-3xl transition
+                     dark:hover:bg-[#c5c6ce27]"
                 >
-                    <img src={modalIcons.closeIcon} alt="" className="p-1.5 rounded-3xl invert brightness-200 transition duration-300 hover:bg-[#111111]" />
+                    <img src={modalIcons.closeIcon} alt="" className="invert brightness-200 transition duration-300 
+                    hover:bg-[#111111]
+                    dark:brightness-0 dark:hover:bg-transparent" />
                 </button>
             </header>
         {/* Contenido principal de la modal o cuerpo de la modal */}
