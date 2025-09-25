@@ -4,24 +4,29 @@ export const getProducts = async () => {
     try {
         // Consulta la tablas necesarias y trae todos los registros, los almacena en data y retorna data
         const { data, error } = await supabase
-                .from('input_orders')
+                .from('products')
                 .select(`
-                    input_order_date,
-                        product_serials(
-                        product_serial,
-                            products(
-                            product_id,
-                                product_details(
-                                product_details_id,
-                                product_detail_model,
-                                product_detail_description,
-                                product_brands(
-                                        product_brand_id,
-                                        product_brand_name
-                                    )
-                                )
-                            )
+                    *,
+                    subcategories (
+                    subcategory_name,
+                    categories (
+                        category_name
                         )
+                    ),
+                    product_details(
+                    product_detail_model,
+                    product_detail_description,
+                    product_brands(
+                        product_brand_name
+                        )
+                    ),
+                    product_serials(
+                    product_serial,
+                    product_garanty_input,
+                    input_orders(
+                        input_order_bill
+                        )
+                    )
                     `);
                     
         if (error) throw error;
