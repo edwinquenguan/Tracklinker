@@ -35,10 +35,10 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
                 <button
                     onClick={onClose}
                     className="p-1.5 rounded-3xl transition
+                    hover:bg-[#efedf0]
                      dark:hover:bg-[#c5c6ce27]"
                 >
-                    <img src={modalIcons.closeIcon} alt="" className="invert brightness-200 transition duration-300 
-                    hover:bg-[#111111]
+                    <img src={modalIcons.closeIcon} alt="" className="invert brightness-200 transition duration-300
                     dark:brightness-0 dark:hover:bg-transparent" />
                 </button>
             </header>
