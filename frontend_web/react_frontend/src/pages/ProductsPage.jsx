@@ -3,6 +3,7 @@ import { productsIcons, actionsIcons } from "../assets/icons/mainIcons";
 // import { products } from "../data/products"
 import Modal from "../components/modals/Modal";
 import FilterModal from "../components/modals/FilterModal";
+import ProfileModal from "../components/modals/ProfileModal";
 import Layout from "../components/Layout/Layout";
 import FormField from "../components/ui/FormField";
 import TopSection from "../components/ui/TopSection";
@@ -50,7 +51,12 @@ export default function ProductsPage(){
     };
 
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal(null, "user")
+            setIsOpen(true)
+        }} 
+        >
             <TopSection
             sectionName={"Productos"}
             addButtonIcon={productsIcons.addProductIcon}
@@ -65,23 +71,23 @@ export default function ProductsPage(){
             }}
             />
             {/* Contenedor de la tabla */}
-            <section className="max-h-[850px] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
+            <section className="max-h-[95%] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
             dark:border-[#303033]">
                 <table className="min-w-full min-h-full appearance-none border-collapse
                 dark:bg-black">
 
                     {/* Cabecera de la tabla */}
-                    <thead className="sticky p-5 top-0 bg-[#f3eef5] 
+                    <thead className="sticky top-0 bg-[#f3eef5] 
                     dark:bg-black dark:text-gray-300">
                         <tr className="h-[50px] border-b border-gray-200 
                         dark:border-[#303033]">
-                            <th className="font-medium text-start pl-4"> Fecha de Ingreso </th>
-                            <th className="font-medium text-start"> Serial </th>
-                            <th className="font-medium text-start"> Modelo </th>
-                            <th className="font-medium text-start"> Descripción </th>
-                            <th className="font-medium text-start"> Marca </th>
-                            <th className="font-medium text-start"> Tiempo de Garantia </th>
-                            <th className="font-medium text-start"> </th>
+                            <th className="font-medium text-start pl-2"> Fecha de Ingreso </th>
+                            <th className="font-medium text-start pl-2"> Serial </th>
+                            <th className="font-medium text-start pl-2"> Modelo </th>
+                            <th className="font-medium text-start pl-2"> Descripción </th>
+                            <th className="font-medium text-start pl-2"> Marca </th>
+                            <th className="font-medium text-start pl-2"> Tiempo de Garantia </th>
+                            <th className="font-medium text-start pl-2"> Acciones </th>
                         </tr>
                     </thead>
 
@@ -90,18 +96,50 @@ export default function ProductsPage(){
                         {/* Productos */}
                         {products.map((product) => (
                             // Datos de cada producto
-                            <tr 
-                            key={product.input_order_date}
+                            <tr
+                            key={product.product_details.product_brands.product_brand}
                             className="h-[50px] overflow-x-auto overflow-y-auto transition duration-500
-                            hover:bg-[#cdcacf] dark:hover:bg-[#101012]">
-                                <th className="font-normal text-start pl-4"> {product.input_order_date} </th>
-                                <th className="font-normal text-start"> {product.product_serials.products.product_details.product_detail_model} </th>
-                                <th className="font-normal text-start"> {product} </th>
-                                <th className="font-normal text-start"> {product.product_serials} </th>
-                                <th className="font-normal text-start"> {product.warranty} </th>
+                            hover:bg-[#cdcacf] hover:scale-[1.01]
+                            dark:hover:bg-[#101012]">
+                                
+                                {/* Fecha de ingreso */}
+                                <th className="font-normal text-start pl-6 text-sm
+                                xl:text-base">  
+                                    a
+                                </th>
+                                
+                                {/* Serial */}
+                                <th className="font-normal text-start pl-4 text-sm
+                                xl:text-base">
+                                    a 
+                                </th>
+                                
+                                {/* Modelo */}
+                                <th className="font-normal text-start pl-4 text-sm
+                                xl:text-base"> 
+                                    {product.product_details.product_detail_model} 
+                                </th>
+                                
+                                {/* Descripción */}
+                                <th className="font-normal text-start pl-4 text-sm
+                                xl:text-base"> 
+                                    {product.product_details.product_detail_description} 
+                                </th>
+
+                                {/* Marca */}
+                                <th className="font-normal text-start pl-4 text-sm
+                                xl:text-base">
+                                    {product.product_details.product_brands.product_brand_name} 
+                                </th>
+
+                                {/* Tiempo de garantía */}
+                                <th className="font-normal text-start pl-4 text-sm
+                                xl:text-base"> 
+                                    12 Meses 
+                                </th>
 
                                 {/* Botones */}
-                                <th className="flex min-h-[60px] items-center justify-center gap-3">
+                                <th className="flex min-h-[60px] items-center justify-center gap-5">
                                     <button onClick={() => {
                                     openModal(product, "edit")
                                     setIsOpen(true)
@@ -125,7 +163,9 @@ export default function ProductsPage(){
             {modalType && (
                 <Modal
                 title={
-                    modalType === "filter"
+                    modalType === "user"
+                    ? "Configuración"
+                    : modalType === "filter"
                     ? "Filtrar"
                     : modalType === "add"
                     ? "Agregar Producto"
@@ -140,6 +180,9 @@ export default function ProductsPage(){
                     setIsOpen(false)
                 }}
                 >
+                {modalType === "user" &&(
+                    <ProfileModal/>
+                )}
                 {modalType === "filter" && (
                     <FilterModal
                      onClose={() => {
