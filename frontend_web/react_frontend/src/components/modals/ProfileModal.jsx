@@ -3,7 +3,7 @@ import { asideIcons } from "../../assets/icons/asideIcons";
 export default function ProfileModal({onClose}) {
     return(
         <section className="flex gap-5">
-            <aside className= "w-36 pr-3 border-r">
+            <aside className= "w-36 pr-3 border-r border-[#3a3d43]">
                 {/* Lista de opciones */}
                 <ul className="flex flex-col gap-2">
                     <li>
@@ -31,29 +31,31 @@ export default function ProfileModal({onClose}) {
                     <img src={asideIcons.avatarIcon} alt="" className="h-20 w-20" />
                     <article className="flex flex-col items-center pt-5 gap-2">
                         <section className="flex flex-col items-center justify-center gap-1">
-                            <span className="font-medium"> Nombre </span>
-                            <span className="py-5 px-10 rounded-xl bg-[#efedf0]"> Agustín Perez García </span>
+                            <span className="dark:text-white"> Nombre </span>
+                            <span className="py-5 px-10 rounded-xl bg-[#efedf0] font-light
+                            dark:bg-[#202022] dark:text-white"> Agustín Perez García </span>
                         </section>
                         <section className="flex flex-col items-center justify-center gap-1">
-                            <span className="font-medium"> Correo Electrónico </span>
-                            <span className="p-5 rounded-xl bg-[#efedf0]"> juan.perez1@example.com </span>
+                            <span className="dark:text-white"> Correo Electrónico </span>
+                            <span className="p-5 rounded-xl bg-[#efedf0] font-light
+                            dark:bg-[#202022] dark:text-white"> juan.perez1@example.com </span>
                         </section>
                     </article>
                 </section>
                 {/* Botones */}
-                <section className="flex flex-col pt-5 gap-3">
+                <section className="flex flex-col pt-8 gap-3">
                     <button
                     onClick={onClose}
                     className="px-5 py-3 rounded-lg text-sm bg-black text-white transition
                     hover:text-gray-200
-                    dark:bg-white dark:text-black">
+                    dark:bg-[#2020226c] dark:text-white dark:hover:text-gray-800">
                         Cambiar Contraseña
                     </button>
                     <button
                     onClick={onClose}
-                    className="px-5 py-3 rounded-lg text-sm transition
+                    className="px-5 py-3 rounded-lg text-red-500 text-sm transition
                     hover:bg-[#efedf0]
-                    dark:text-white dark:hover:bg-[#2020226c]">
+                    dark:hover:bg-[#2020226c]">
                         Cerrar Sesión
                     </button>
                 </section>
