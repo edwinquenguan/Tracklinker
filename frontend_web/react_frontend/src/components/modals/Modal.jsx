@@ -25,6 +25,10 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
                 ? "max-w-sm"
                 : "max-w-xl"
             }
+            ${type === "user"
+                ? "max-w-2xl"
+                : ""
+            }
         `}
         onClick={(e) => e.stopPropagation()}
         >

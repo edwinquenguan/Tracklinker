@@ -3,20 +3,20 @@ import { asideIcons } from "../../assets/icons/asideIcons";
 export default function ProfileModal({onClose}) {
     return(
         <section className="flex gap-5">
-            <aside className= "w-36 pr-3 border-r border-[#3a3d43]">
+            <aside className= "w-40 pr-3 border-r border-[#3a3d43]">
                 {/* Lista de opciones */}
                 <ul className="flex flex-col gap-2">
                     <li>
                         <button
-                        className="flex items-center px-4 py-3 rounded-xl bg-black text-white gap-3
+                        className="flex items-center px-5 py-3 rounded-xl bg-black text-white gap-3
                         hover:text-gray-200
-                        dark:bg-white dark:text-black">
+                        dark:bg-white dark:text-black dark:hover:text-gray-700">
                             <img src={asideIcons.usersIcon} alt="" className="invert brightness-0 dark:brightness-200" />
                             <span> Usuario </span>
                         </button>
                     </li>
                     <li>
-                        <button className="flex p-3 gap-3 rounded-xl transition duration-300
+                        <button className="flex py-3 px-4 gap-3 rounded-xl transition duration-300
                         hover:bg-[#efedf0]
                         dark:text-white dark:hover:bg-[#202022]">
                             <img src={asideIcons.helpIcon} alt="" className="invert brightness-200 dark:brightness-0" />
