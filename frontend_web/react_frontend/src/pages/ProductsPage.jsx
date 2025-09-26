@@ -8,10 +8,14 @@ import Layout from "../components/Layout/Layout";
 import FormField from "../components/ui/FormField";
 import TopSection from "../components/ui/TopSection";
 import { getProducts } from "../services/getProducts";
+import { getAllCategories } from "../services/getAllCategories";
+import { getSubcategoriesWithCategory } from "../services/getSubcategoriesWithCategory";
 
 export default function ProductsPage(){
     // Definir los estados y sus valores por defecto
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [subcategories, setSubcategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
@@ -33,7 +37,29 @@ export default function ProductsPage(){
                     }
             
                 fetchProducts();
-                }, []);
+
+            async function fetchCategories(){
+                try {
+                    const categoryData = await getAllCategories();
+                    setCategories(categoryData);
+                    console.log(categoryData);
+                } catch (error) {
+                    setError(error.message);
+                }
+            }
+            fetchCategories();
+
+            async function fetchSubcategories(){
+                try {
+                    const subcategoryData = await getSubcategoriesWithCategory();
+                    setSubcategories(subcategoryData);
+                    console.log(subcategoryData);
+                } catch (error) {
+                    setError(error.message);
+                }
+            }
+            fetchSubcategories();
+        }, []);
     
         if (error) {
             return <div>Error: {error}</div>;
@@ -195,17 +221,35 @@ export default function ProductsPage(){
                         setIsOpen(false)
                      }}
                     >
-
+                        <section className="flex flex-col px-2 gap-1">
+                            <span className="text-sm font-medium dark:text-white">Ordenar por tiempo de garantía: </span>
+                            <select name="name-option" id="filter-name-option" className="p-2 rounded-lg border outline-none 
+                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
+                                <option value="a">  &lt; de 6 meses </option>
+                                <option value=""> &lt; de 12 Meses </option>
+                                <option value=""> &lt; de 18 Meses </option>
+                                <option value=""> &lt; de 24 Meses </option>
+                            </select>
+                        </section>
                     </FilterModal>
                 )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
                         <form action="" className="flex flex-col gap-1">
-                            <FormField
-                            labelText={"Nombre"}
-                            placeholder={"Portatil HP"} 
-                            id={"name"}
-                            />
+                            
+                            <span>Categoria</span>
+                            <select name="warranty" id="warranty" className="p-2 border outline-none">
+                                {categories.map((category) => (
+                                    <option value={category.category_name}> {category.category_name} </option>
+                                ))}
+                            </select>
+
+                            <span>Subcategoria</span>
+                            <select name="warranty" id="warranty" className="p-2 border outline-none max-w-56">
+                                {subcategories.map((subcategory) => (
+                                    <option value={subcategory.subcategory_name}> {subcategory.subcategory_name} </option>
+                                ))}
+                            </select>
 
                             <FormField
                             labelText={"Modelo"}
@@ -219,7 +263,7 @@ export default function ProductsPage(){
                             id={"serial"}
                             />
 
-                            <label htmlFor=""> Tiempo de Garantía</label>
+                            <span> Tiempo de Garantía</span>
                             <select name="warranty" id="warranty" className="p-2 border outline-none">
                                 <option value="a"> 6 Meses </option>
                                 <option value=""> 12 Meses </option>
@@ -246,7 +290,7 @@ export default function ProductsPage(){
                         {/* Botones */}
                         <div className="flex gap-2 pt-5">
                             <button 
-                                className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
+                                className="bg-black text-white px-5 py-3 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
                                 onClick={() =>{
                                     closeModal()
                                     setIsOpen(false)
@@ -254,7 +298,7 @@ export default function ProductsPage(){
                                     Confirmar
                             </button>
                             <button
-                                className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
+                                className="px-5 py-3 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
                                 onClick={() =>{
                                     closeModal()
                                     setIsOpen(false)
@@ -270,15 +314,15 @@ export default function ProductsPage(){
                     <form action="" className="flex flex-col gap-2">
                         <FormField
                         labelText={"Modelo"}
-                        placeholder={selectedProduct.model}
+                        placeholder={selectedProduct.product_details.product_detail_model}
                         id={"model"}
                         />
                         <FormField
                         labelText={"Marca"}
-                        placeholder={selectedProduct.brand}
+                        placeholder={selectedProduct.product_details.product_brands.product_brand_name}
                         id={"brand"}
                         />
-                        <label htmlFor=""> Tiempo de Garantía</label>
+                        <span htmlFor=""> Tiempo de Garantía</span>
                         <select name="warranty" id="warranty" className="p-2 border outline-none">
                             <option value="a"> 6 Meses </option>
                             <option value=""> 12 Meses </option>
