@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import { subcategories } from "../data/subcategories"
 import { actionsIcons } from "../assets/icons/mainIcons";
 import { asideIcons } from "../assets/icons/asideIcons";
+import { getAllCategories } from "../services/getAllCategories";
 import { getSubcategoriesWithCategory } from "../services/getSubcategoriesWithCategory";
 import Layout from "../components/Layout/Layout";
 import Modal from "../components/modals/Modal";
@@ -11,6 +12,7 @@ import TopSection from "../components/ui/TopSection";
 
 export default function SubcategoriesPage(){
     // Definir los estados y sus valores por defecto
+    const [categories, setCategories] = useState([])
     const [subcategories, setSubcategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -31,6 +33,18 @@ export default function SubcategoriesPage(){
             }
             
         fetchSubcategories();
+
+        async function fetchCategories() {
+            try {
+                const categorydata = await getAllCategories();
+                setCategories(categorydata);
+            } catch (error) {
+                setError(error.message)
+            }
+        }
+
+        fetchCategories();
+
         }, []);
             
     if (error) {
@@ -137,6 +151,12 @@ export default function SubcategoriesPage(){
                     {modalType === "add" && (
                         <div className="flex flex-col items-center">
                             <form action="" className="flex flex-col gap-1">
+                                <span>Categoria a la que pertenecera</span>
+                                <select name="categories" id="categories-menu" className="p-2 rounded-lg border outline-none">
+                                    {categories.map((category) => (
+                                        <option value={category.category_name}> {category.category_name} </option>
+                                    ))}
+                                </select>
                                 <FormField
                                 labelText={"Nombre"}
                                 placeholder={"Impresoras a color"} 
@@ -165,7 +185,7 @@ export default function SubcategoriesPage(){
                             </div>
                         </div>
                     )}
-                    {/* Modal para mas información de la categoria */}
+                    {/* Modal para mas información de la subcategoria */}
                     {modalType === "info" && (
                         <div className="flex flex-col justify-center">
                             <p><strong>Creada:</strong> {selectedSubcategory.subcategory_date}</p>
@@ -173,7 +193,7 @@ export default function SubcategoriesPage(){
                             <p><strong>Categoria a la que pertenece:</strong> {selectedSubcategory.categories.category_name}</p>
                         </div>
                     )}
-                    {/* Modal para editar la categoria */}
+                    {/* Modal para editar la subcategoria */}
                     {modalType === "edit" && 
                     <div className="flex flex-col items-center">
                         <form action="" className="flex flex-col gap-2">
@@ -206,7 +226,7 @@ export default function SubcategoriesPage(){
                     </div>
                     }
     
-                    {/* Modal para eliminar la categoria */}
+                    {/* Modal para eliminar la subcategoria */}
                     {modalType === "delete" && (
                         <div className="flex flex-col justify-center items-center">
                             <p>¿Seguro que deseas eliminar la Subcategoria <strong>{selectedSubcategory.subcategory_name}</strong>?</p>
