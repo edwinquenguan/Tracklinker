@@ -12,6 +12,8 @@ export default function FilterModal({onClose, children}) {
                 </select>
             </section>
 
+            {children}
+
             <section className="flex flex-col px-2 gap-1">
                 <span className="text-sm font-medium dark:text-white">Ordenar por Fecha de Creación: </span>
                 <div className="flex gap-2 justify-center">
@@ -21,8 +23,6 @@ export default function FilterModal({onClose, children}) {
                     dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
                 </div>
             </section>
-
-            {children}
 
         {/* Botones de aplicar y cancelar */}
             <section className="p-2 flex items-center justify-end gap-4">
