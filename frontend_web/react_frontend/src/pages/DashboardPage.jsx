@@ -1,16 +1,40 @@
+import { useState } from "react";
 import { dashboardIcons } from "../assets/icons/mainIcons";
+import { modalIcons } from "../assets/icons/modalIcons";
 import { actionsIcons } from "../assets/icons/mainIcons";
 import Layout from "../components/Layout/Layout";
+import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import ChartCard from "../components/ui/ChartCard";
 import TopSection from "../components/ui/TopSection";
 
 export default function DashBoardPage(){
+
+    const [modalType, setModalType] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = (type) => {
+        setModalType(type);
+    }
+
+    const closeModal = () => {
+        setModalType(null);
+    }
+
     return(
         <Layout>
             <TopSection 
             sectionName={"Panel De Control"}
             addButtonIcon={actionsIcons.uploadIcon}
             addButtonText={"Descargar"}
+            createOnClick={ () =>{
+                openModal("download")
+                setIsOpen(true)
+            }}
+            filterOnClick={() => {
+                openModal("filter")
+                setIsOpen(true)
+            }}
             />
             {/* Container de los gráficos */}
             <section className="grid max-h-[95%] p-2 transition duration-300 ease-in-out
@@ -109,6 +133,40 @@ export default function DashBoardPage(){
                 />
 
             </section>
+
+            {/* Modales */}
+            {modalType && (
+                <Modal
+                title={
+                    modalType === "filter"
+                    ? "Filter"
+                    : ""
+                }
+                type={modalType}
+                isOpen={isOpen}
+                onClose={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                >
+                {modalType === "filter" && (
+                    <FilterModal
+                        onClose={() => {
+                        closeModal()
+                        setIsOpen(false)
+                        }}
+                    >
+
+                    </FilterModal>
+                )}
+                {modalType === "download" && (
+                    <section className="flex items-center gap-5 dark:text-white">
+                        <img src={modalIcons.confirmIcon} alt="" className="w-10 h-10"/>
+                        <p className="font-medium">¡Descarga exitosa!</p>
+                    </section>
+                )}
+                </Modal>
+            )}
         </Layout>
     );
 }
