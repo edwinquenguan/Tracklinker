@@ -3,7 +3,7 @@ import { asideIcons } from "../../assets/icons/asideIcons";
 export default function ProfileModal({onClose}) {
     return(
         <section className="flex gap-5">
-            <aside className= "w-40 pr-3 border-r border-[#3a3d43]">
+            <aside className= "w-40 pr-3 border-r border-gray-300 dark:border-[#3a3d43]">
                 {/* Lista de opciones */}
                 <ul className="flex flex-col gap-2">
                     <li>
