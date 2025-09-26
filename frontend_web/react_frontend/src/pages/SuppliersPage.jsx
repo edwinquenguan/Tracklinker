@@ -4,6 +4,7 @@ import { actionsIcons } from "../assets/icons/mainIcons";
 import { usersIcons } from "../assets/icons/mainIcons";
 //import { suppliers } from "../data/suppliers";
 import Modal from "../components/modals/Modal";
+import FilterModal from "../components/modals/FilterModal";
 import Layout from "../components/Layout/Layout";
 import FormField from "../components/ui/FormField";
 import TopSection from "../components/ui/TopSection";
@@ -87,6 +88,10 @@ export default function SuppliersPage(){
                                     <img src={usersIcons.rolIcon} alt="" className="w-5 h-5" />
                                     <p>{supplier.supplier_address}</p>
                                 </div>
+                                <div className="flex items-center">
+                                    <img src={usersIcons.cityIcon} alt="" className="invert brightness-200" />
+                                    <p>{supplier.supplier_city}</p>
+                                </div>
                             </address>
                         </article>
                         {/* Botones para interactuar */}
@@ -136,9 +141,13 @@ export default function SuppliersPage(){
                 }}
                 >
                 {modalType === "filter" && (
-                    <select name="" id="">
-                        <option value=""></option>
-                    </select>
+                    <FilterModal
+                    onClose={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}>
+
+                    </FilterModal>
                 )}
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
@@ -147,6 +156,12 @@ export default function SuppliersPage(){
                             labelText={"Nombre"}
                             placeholder={"Lenovo"} 
                             id={"name"}
+                            />
+
+                            <FormField
+                            labelText={"Ciudad"}
+                            placeholder={"Miami"} 
+                            id={"city"}
                             />
 
                             <FormField
@@ -200,22 +215,22 @@ export default function SuppliersPage(){
                     <form action="" className="flex flex-col gap-2">
                         <FormField
                         labelText={"Nombre"}
-                        placeholder={selectedSupplier.name}
+                        placeholder={selectedSupplier.supplier_name}
                         id={"name"}
                         />
                         <FormField
                         labelText={"Ciudad"}
-                        placeholder={selectedSupplier.city}
+                        placeholder={selectedSupplier.supplier_city}
                         id={"city"}
                         />
                         <FormField
                         labelText={"Número"}
-                        placeholder={selectedSupplier.phone}
+                        placeholder={selectedSupplier.supplier_phone}
                         id={"phone"}
                         />
                         <FormField
                         labelText={"Dirección"}
-                        placeholder={selectedSupplier.address}
+                        placeholder={selectedSupplier.supplier_address}
                         id={"address"}
                         />
                     </form>
@@ -245,7 +260,7 @@ export default function SuppliersPage(){
                 {/* Modal para eliminar el Proveedor */}
                 {modalType === "delete" && (
                     <div className="flex flex-col justify-center items-center">
-                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedSupplier.name}</span>?</p>
+                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedSupplier.supplier_name}</span>?</p>
                         
                         {/* Botones */}
                         <div className="flex pt-4 gap-5">
