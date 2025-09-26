@@ -6,12 +6,14 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
     className={
         `fixed z-50 inset-0 bg-[#0000002c]
             ${type === "filter"
-                        ? "flex justify-end items-start pr-[280px] pt-4 bg-[#00000013]"
-                        : "flex justify-center items-center"
+                ? "flex justify-end items-start pr-[280px] pt-4 bg-[#00000013]"
+                : type === "download" 
+                ? "flex justify-end items-end p-4 bg-[#0000001e]"
+                : "flex items-center justify-center"
             }
             ${isOpen 
-            ? "opacity-100" 
-            : "opacity-0 pointer-events-none"}
+                ? "opacity-100" 
+                : "opacity-0 pointer-events-none"}
         `}
     onClick={onClose}>
         {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
@@ -23,11 +25,11 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
             : "animate-modalFadeOut"}
             ${type === "filter" 
                 ? "max-w-sm"
-                : "max-w-xl"
-            }
-            ${type === "user"
+                : type === "user" 
                 ? "max-w-2xl"
-                : ""
+                : type === "download"
+                ? "max-w-sm"
+                : "max-w-xl"
             }
         `}
         onClick={(e) => e.stopPropagation()}
