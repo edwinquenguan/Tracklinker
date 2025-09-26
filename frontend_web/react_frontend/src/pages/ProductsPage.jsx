@@ -125,7 +125,7 @@ export default function ProductsPage(){
                             <tr
                             key={product.product_details.product_brands.product_brand}
                             className="h-[50px] overflow-x-auto overflow-y-auto transition duration-500
-                            hover:bg-[#cdcacf] hover:scale-[1.01]
+                            hover:bg-[#cdcacf] hover:shadow-lg
                             dark:hover:bg-[#101012]">
                                 
                                 {/* Fecha de ingreso */}
