@@ -1,4 +1,4 @@
-export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyCreateDate, warrantyStatusIcon, warrantyStatus}) {
+export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyCreateDate, warrantyStatusIcon, warrantyStatus, onClick}) {
     return(
         <div className="max-w-80 h-50 max-h-56 p-4 flex flex-col gap-2 rounded-xl shadow-gray-400 shadow-sm border">
             <span className="text-lg font-semibold dark:text-white">ID: {warrantyId}</span>
@@ -14,7 +14,11 @@ export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyC
                         <img src={warrantyStatusIcon} alt="" className="w-[20px] h-[20px]"/>
                         <span>{warrantyStatus}</span>
                     </div>
-                    <button className="py-2 px-5 text-sm bg-blue-950 text-white rounded-2xl outline-none"> Ver Más &gt; </button>
+                    <button
+                    onClick={onClick} 
+                    className="py-2 px-5 text-sm bg-blue-950 text-white rounded-2xl outline-none"> 
+                        Ver Más &gt; 
+                    </button>
                 </div>
             </div>
         </div>
