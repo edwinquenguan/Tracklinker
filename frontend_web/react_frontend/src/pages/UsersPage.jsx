@@ -150,22 +150,40 @@ export default function UsersPage(){
                 {modalType === "add" && (
                     <div className="flex flex-col items-center">
                         <form action="" className="flex flex-col gap-1">
+                            <span>Rol</span>
+                            <select name="user_rol" id="user_rol_menu" className="p-2 border outline-none">
+                                <option value=""> Administrador </option>
+                                <option value=""> Almacén </option>
+                                <option value=""> Técnico </option>
+                            </select>
+
                             <FormField
-                            labelText={"Nombre"}
-                            placeholder={"Felipe"} 
+                            labelText={"Nombre Completo"}
+                            placeholder={"Felipe Contreras Aguilar"} 
                             id={"name"}
+                            autoComplete="name"
                             />
+
 
                             <FormField
                             labelText={"Número"}
                             placeholder={"300012124"} 
                             id={"phone"}
+                            autoComplete="tel"
+                            />
+
+                            <FormField
+                            labelText={"Email"}
+                            placeholder={"pepito@gmail.com"} 
+                            id={"email"}
+                            autoComplete="email"
                             />
 
                             <FormField
                             labelText={"Dirección"}
                             placeholder={"KR 124 # 12-124"} 
                             id={"address"}
+                            autoComplete="address"
                             />
                         </form>
 
@@ -222,6 +240,11 @@ export default function UsersPage(){
                         id={"phone"}
                         />
                         <FormField
+                        labelText={"Correo Electrónico"}
+                        placeholder={selectedUser.user_email}
+                        id={"email"}
+                        />
+                        <FormField
                         labelText={"Dirección"}
                         placeholder={selectedUser.user_address}
                         id={"address"}
@@ -253,7 +276,7 @@ export default function UsersPage(){
                 {/* Modal para eliminar el usuario */}
                 {modalType === "delete" && (
                     <div className="flex flex-col justify-center items-center">
-                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.user_name}</span>?</p>
+                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.user_name} {selectedUser.user_first_surname}</span>?</p>
                         
                         {/* Botones */}
                         <div className="flex pt-4 gap-5">
