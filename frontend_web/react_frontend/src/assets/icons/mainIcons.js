@@ -18,6 +18,7 @@ import addUserIcon from "./main/users/add-user-icon.svg";
 import addressIcon from "./main/users/address-icon.svg";
 import phoneIcon from "./main/users/phone-icon.svg";
 import rolIcon from "./main/users/rol-icon.svg";
+import cityIcon from "./main/users/city-icon.svg";
 
 /* Products Icons */
 import addProductIcon from "./main/products/add-product-icon.svg";
@@ -60,6 +61,7 @@ export const usersIcons = {
     addressIcon,
     phoneIcon,
     rolIcon,
+    cityIcon,
 };
 
 export const productsIcons = {
