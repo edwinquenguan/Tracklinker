@@ -3,7 +3,10 @@ import { items } from "../../constants/homeCards";
 
 export default function ActionCard(){
     return(
-        <section className="grid grid-cols-4 grid-rows-2 p-[100px_350px_200px_350px] min-h-full gap-[20px_12px] place-items-center">
+        <section className="min-h-full grid grid-cols-4 grid-rows-2 p-[100px_200px_200px_200px] gap-[20px_12px] place-items-center
+        xl:p-[100px_250px_200px_300px]
+        lg:p-[100px_150px_200px_150px]
+        md:p-[50px]">
             {/* Card de cada modulo */}
             {items.map(item => (
             <NavLink
