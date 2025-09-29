@@ -1,8 +1,8 @@
-import { actionsIcons, warrantiesIcons } from "../assets/icons/mainIcons"
-import { transformations } from "../data/transformations";
-import Layout from "../components/Layout/Layout";
-import TopSection from "../components/ui/TopSection";
-import TranformationCard from "../components/ui/TransformationCard";
+import { actionsIcons, warrantiesIcons } from "../../assets/icons/mainIcons"
+import { transformations } from "../../data/transformations";
+import Layout from "../../components/Layout/Layout";
+import TopSection from "../../components/ui/TopSection";
+import TranformationCard from "../../components/ui/TransformationCard";
 
 export default function TransformationsPage(){
     return(

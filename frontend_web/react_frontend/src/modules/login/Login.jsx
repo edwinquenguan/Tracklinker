@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { signUp, signOut, signIn, getUser } from "../services/authService";
+import { signUp, signOut, signIn, getUser } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
-import { loginIcons } from "../assets/icons/loginIcons";
+import { loginIcons } from "../../assets/icons/loginIcons";
 
 export default function Login(){
     const [email, setEmail] = useState("");

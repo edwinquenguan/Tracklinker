@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { getAllWarranties } from "../services/getAllWarranties";
-import { warrantiesIcons} from "../assets/icons/mainIcons";
-import Layout from "../components/Layout/Layout";
-import Modal from "../components/modals/Modal";
-import FilterModal from "../components/modals/FilterModal";
-import ProfileModal from "../components/modals/ProfileModal";
-import FormField from "../components/ui/FormField";
-import WarrantyCard from "../components/ui/WarrantyCard";
-import TopSection from "../components/ui/TopSection";
+import { getAllWarranties } from "../../services/getAllWarranties";
+import { warrantiesIcons} from "../../assets/icons/mainIcons";
+import Layout from "../../components/Layout/Layout";
+import Modal from "../../components/modals/Modal";
+import FilterModal from "../../components/modals/FilterModal";
+import ProfileModal from "../../components/modals/ProfileModal";
+import FormField from "../../components/ui/FormField";
+import WarrantyCard from "../../components/ui/WarrantyCard";
+import TopSection from "../../components/ui/TopSection";
 // import { warranties } from "../data/warranties";
 
 export default function WarrantiesPage(){

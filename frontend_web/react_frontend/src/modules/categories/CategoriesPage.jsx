@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { getAllCategories } from "../services/getAllCategories";
+import { getAllCategories } from "../../services/getAllCategories";
 // import { categories } from "../data/categories";
-import { actionsIcons } from "../assets/icons/mainIcons";
-import Modal from "../components/modals/Modal";
-import FilterModal from "../components/modals/FilterModal";
-import Layout from "../components/Layout/Layout";
-import FormField from "../components/ui/FormField"
-import TopSection from "../components/ui/TopSection";
+import { actionsIcons } from "../../assets/icons/mainIcons";
+import Modal from "../../components/modals/Modal";
+import FilterModal from "../../components/modals/FilterModal";
+import Layout from "../../components/Layout/Layout";
+import FormField from "../../components/ui/FormField"
+import TopSection from "../../components/ui/TopSection";
 
 export default function CategoriesPage(){
     // Definir los estados y sus valores por defecto

@@ -1,5 +1,5 @@
-import Layout from "../components/Layout/Layout";
-import ActionCard from "../components/ui/ActionCard";
+import Layout from "../../components/Layout/Layout";
+import ActionCard from "../../components/ui/ActionCard";
 
 export default function ReportsPage(){
     return(
