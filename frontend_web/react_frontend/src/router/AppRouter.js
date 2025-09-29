@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "../public/Login";
-import HomePage from "../pages/HomePage";
-import DashboardPage from "../pages/DashboardPage";
-import UsersPage from "../pages/UsersPage";
-import ProductsPage from "../pages/ProductsPage";
-import CategoriesPage from "../pages/CategoriesPage";
-import SubcategoriesPage from "../pages/SubcategoriesPage";
-import ReportsPage from "../pages/ReportsPage";
-import WarrantiesPage from "../pages/WarrantiesPage";
-import SuppliersPage from "../pages/SuppliersPage";
-import TransformationsPage from "../pages/TransformationsPage";
-import HelpPage from "../pages/HelpPage";
+import Login from "../modules/login/Login";
+import HomePage from "../modules/home/HomePage";
+import DashboardPage from "../modules/dashboard/DashboardPage";
+import UsersPage from "../modules/users/UsersPage";
+import ProductsPage from "../modules/products/ProductsPage";
+import CategoriesPage from "../modules/categories/CategoriesPage";
+import SubcategoriesPage from "../modules/subcategories/SubcategoriesPage";
+import ReportsPage from "../modules/reports/ReportsPage";
+import WarrantiesPage from "../modules/warranties/WarrantiesPage";
+import SuppliersPage from "../modules/suppliers/SuppliersPage";
+import TransformationsPage from "../modules/transformations/TransformationsPage";
+import HelpPage from "../modules/help/HelpPage";
 
 export default function AppRouter() {
     return(
