@@ -24,6 +24,7 @@ export const getProducts = async () => {
                     product_serial,
                     product_garanty_input,
                     input_orders(
+                        input_order_date,
                         input_order_bill
                         )
                     )
