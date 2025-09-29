@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { items } from "../../constants/homeCards";
+import { items } from "../../../constants/homeCards";
 
 export default function ActionCard(){
     return(

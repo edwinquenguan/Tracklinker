@@ -1,4 +1,4 @@
-import { asideIcons } from "../../assets/icons/asideIcons";
+import { asideIcons } from "../../../assets/icons/asideIcons";
 
 export default function ProfileModal({onClose}) {
     return(

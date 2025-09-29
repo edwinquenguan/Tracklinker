@@ -1,4 +1,4 @@
-import { modalIcons } from "../../assets/icons/modalIcons";
+import { modalIcons } from "../../../assets/icons/modalIcons";
 
 export default function Modal({ isOpen, title, children, onClose, type }) {
   return (

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { avatarItem, firstSectionItems, secondSectionItems } from "../../constants/asideMenuItems";
+import { avatarItem, firstSectionItems, secondSectionItems } from "../../../constants/asideMenuItems";
 
 // Menú lateral principal de opciones
 export default function Aside({avatarOnClick}){

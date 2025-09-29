@@ -1,4 +1,4 @@
-import { actionsIcons } from "../../assets/icons/mainIcons";
+import { actionsIcons } from "../../../assets/icons/mainIcons";
 
 export default function FilterButton({onClick}){
     return(
