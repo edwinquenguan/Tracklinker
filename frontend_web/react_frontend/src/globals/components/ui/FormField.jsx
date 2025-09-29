@@ -1,7 +1,7 @@
 export default function FormField({labelText, id, type = "text", placeholder, autoComplete = ""}) {
     return(
         <div className="flex flex-col items-center">
-            <label htmlFor={id} className="self-start dark:text-white">{labelText}</label>
+            <label htmlFor={id} className="self-start text-sm dark:text-white">{labelText}</label>
             <input type={type} 
             placeholder={placeholder} 
             id={id} 
