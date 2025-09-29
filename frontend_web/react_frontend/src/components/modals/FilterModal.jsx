@@ -1,6 +1,4 @@
-import FormField from "../ui/FormField";
-
-export default function FilterModal({onClose, children}) {
+export default function FilterModal({onClose, children, fieldName = "Creación"}) {
     return(
         <section className="flex flex-col gap-3">
             <section className="flex flex-col px-2 gap-1">
@@ -15,13 +13,20 @@ export default function FilterModal({onClose, children}) {
             {children}
 
             <section className="flex flex-col px-2 gap-1">
-                <span className="text-sm font-medium dark:text-white">Ordenar por Fecha de Creación: </span>
-                <div className="flex gap-2 justify-center">
+                <span className="text-sm font-medium dark:text-white">Ordenar por Fecha de {fieldName}: </span>
+                {/* Inputs para seleccionar las fechas */}
+                <section className="flex justify-between gap-1">
+                    <div>
+                        <span className="text-sm dark:text-white">Desde:</span>
+                        <input type="date" className="p-3 rounded-lg border text-sm outline-none
+                        dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
+                    </div>
+                    <div>
+                    <span className="text-sm dark:text-white">Hasta:</span>
                     <input type="date" className="p-3 rounded-lg border text-sm outline-none
                     dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
-                    <input type="date" className="p-3 rounded-lg border text-sm outline-none
-                    dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
-                </div>
+                    </div>
+                </section>
             </section>
 
         {/* Botones de aplicar y cancelar */}
