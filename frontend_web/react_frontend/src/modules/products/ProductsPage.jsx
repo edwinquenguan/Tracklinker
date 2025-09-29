@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { productsIcons, actionsIcons } from "../../assets/icons/mainIcons";
 // import { products } from "../data/products"
-import Modal from "../../components/modals/Modal";
-import FilterModal from "../../components/modals/FilterModal";
-import ProfileModal from "../../components/modals/ProfileModal";
-import Layout from "../../components/Layout/Layout";
-import FormField from "../../components/ui/FormField";
-import TopSection from "../../components/ui/TopSection";
+import Modal from "../../globals/components/modals/Modal";
+import FilterModal from "../../globals/components/modals/FilterModal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
+import Layout from "../../globals/components/Layout/Layout";
+import FormField from "../../globals/components/ui/FormField";
+import TopSection from "../../globals/components/ui/TopSection";
 import { getProducts } from "../../services/getProducts";
 import { getAllCategories } from "../../services/getAllCategories";
 import { getSubcategoriesWithCategory } from "../../services/getSubcategoriesWithCategory";

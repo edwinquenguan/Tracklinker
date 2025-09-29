@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 // import { users } from "../data/users";
 import { getUsersWithRol } from "../../services/getUsersWithRol";
 import { usersIcons, actionsIcons } from "../../assets/icons/mainIcons";
-import Modal from "../../components/modals/Modal";
-import FilterModal from "../../components/modals/FilterModal";
-import Layout from "../../components/Layout/Layout";
-import TopSection from "../../components/ui/TopSection";
-import FormField from "../../components/ui/FormField";
-import SearchBar from "../../components/ui/SearchBar";
+import Modal from "../../globals/components/modals/Modal";
+import FilterModal from "../../globals/components/modals/FilterModal";
+import Layout from "../../globals/components/Layout/Layout";
+import TopSection from "../../globals/components/ui/TopSection";
+import FormField from "../../globals/components/ui/FormField";
+import SearchBar from "../../globals/components/ui/SearchBar";
 
 export default function UsersPage(){
     // Definir los estados y sus valores por defecto

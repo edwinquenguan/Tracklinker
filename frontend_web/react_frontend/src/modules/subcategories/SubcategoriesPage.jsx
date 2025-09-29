@@ -4,11 +4,11 @@ import { actionsIcons } from "../../assets/icons/mainIcons";
 import { asideIcons } from "../../assets/icons/asideIcons";
 import { getAllCategories } from "../../services/getAllCategories";
 import { getSubcategoriesWithCategory } from "../../services/getSubcategoriesWithCategory";
-import Layout from "../../components/Layout/Layout";
-import Modal from "../../components/modals/Modal";
-import FilterModal from "../../components/modals/FilterModal";
-import FormField from "../../components/ui/FormField"
-import TopSection from "../../components/ui/TopSection";
+import Layout from "../../globals/components/Layout/Layout";
+import Modal from "../../globals/components/modals/Modal";
+import FilterModal from "../../globals/components/modals/FilterModal";
+import FormField from "../../globals/components/ui/FormField"
+import TopSection from "../../globals/components/ui/TopSection";
 
 export default function SubcategoriesPage(){
     // Definir los estados y sus valores por defecto

@@ -2,11 +2,11 @@ import { useState } from "react";
 import { dashboardIcons } from "../../assets/icons/mainIcons";
 import { modalIcons } from "../../assets/icons/modalIcons";
 import { actionsIcons } from "../../assets/icons/mainIcons";
-import Layout from "../../components/Layout/Layout";
-import Modal from "../../components/modals/Modal";
-import FilterModal from "../../components/modals/FilterModal";
-import ChartCard from "../../components/ui/ChartCard";
-import TopSection from "../../components/ui/TopSection";
+import Layout from "../../globals/components/Layout/Layout";
+import Modal from "../../globals/components/modals/Modal";
+import FilterModal from "../../globals/components/modals/FilterModal";
+import ChartCard from "../../globals/components/ui/ChartCard";
+import TopSection from "../../globals/components/ui/TopSection";
 
 export default function DashBoardPage(){
 

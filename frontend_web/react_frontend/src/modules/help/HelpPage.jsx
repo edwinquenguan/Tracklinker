@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../globals/components/Layout/Layout";
 
 export default function HelpPage(){
     return(
