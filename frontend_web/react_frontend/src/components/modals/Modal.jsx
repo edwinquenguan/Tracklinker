@@ -6,7 +6,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
     className={
         `fixed z-50 inset-0 bg-[#0000002c]
             ${type === "filter"
-                ? "flex justify-end items-start pr-[280px] pt-4 bg-[#00000013]"
+                ? "flex justify-end items-start pr-[260px] pt-4 bg-[#00000013]"
                 : type === "download" 
                 ? "flex justify-end items-end p-4 bg-[#0000001e]"
                 : "flex items-center justify-center"
