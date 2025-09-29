@@ -24,17 +24,17 @@ export default function ProductsPage(){
 
     useEffect(() => {
             async function fetchProducts() {
-                        try {
-                            setLoading(true)
-                            const data = await getProducts();
-                            setProducts(data);
-                            console.log(data);
-                        } catch (error) {
-                            setError(error.message);
-                        } finally {
-                            setLoading(false);
-                        }
-                    }
+                try {
+                    setLoading(true)
+                    const data = await getProducts();
+                    setProducts(data);
+                    console.log(data);
+                } catch (error) {
+                    setError(error.message);
+                } finally {
+                    setLoading(false);
+                }
+            }
             
                 fetchProducts();
 
@@ -239,10 +239,10 @@ export default function ProductsPage(){
                 {modalType === "filter" && (
                     <FilterModal
                     fieldName="Ingreso"
-                     onClose={() => {
+                    onClose={() => {
                         closeModal()
                         setIsOpen(false)
-                     }}
+                    }}
                     >
                         {/* Ordenar Por Subcategoria */}
                         <section className="flex flex-col px-2 gap-1">
