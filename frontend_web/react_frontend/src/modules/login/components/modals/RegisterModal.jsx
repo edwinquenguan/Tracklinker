@@ -1,4 +1,4 @@
-import FormField from "../../../globals/components/ui/FormField";
+import FormField from "../../../../globals/components/ui/FormField";
 
 export default function RegisterModal() {
     return(

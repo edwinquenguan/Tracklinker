@@ -1,5 +1,5 @@
-import FormField from "../../../globals/components/ui/FormField";
-import { loginIcons } from "../../../assets/icons/loginIcons";
+import FormField from "../../../../globals/components/ui/FormField";
+import { loginIcons } from "../../../../assets/icons/loginIcons";
 
 export default function RecordPasswordModal() {
     return(
