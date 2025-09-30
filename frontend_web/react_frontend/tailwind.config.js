@@ -30,7 +30,9 @@ module.exports = {
     'col-span-4',
     'col-span-5', 
     'col-span-6',
-    'flex-col'
+    'flex-col',
+    'bg-black',
+    'bg-red-600',
   ],
 };
 
