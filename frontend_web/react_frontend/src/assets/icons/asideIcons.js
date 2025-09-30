@@ -13,6 +13,7 @@ import warrantiesIcon from "./aside/warranties-icon.svg";
 import logoutIcon from "./aside/logout-icon.svg";
 import infoIcon from "./aside/more-info-icon.svg";
 import helpIcon from "./aside/help-icon.svg";
+import themesIcon from "./aside/themes-icon.svg";
 
 // Esta constante exporta los iconos del aside para usarlos en cualquier lugar 
 export const asideIcons = {
@@ -31,4 +32,5 @@ export const asideIcons = {
     logoutIcon,
     helpIcon,
     infoIcon,
+    themesIcon,
 };
