@@ -4,6 +4,10 @@ import { getUsersWithRol } from "../../services/getUsersWithRol";
 import { usersIcons, actionsIcons } from "../../assets/icons/mainIcons";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
+import SelectMenu from "../../globals/components/modals/SelectMenu";
+import ConfirmCancelButtons from "../../globals/components/modals/ConfirmCancelButtons";
+import ActionButtons from "../../globals/components/ui/ActionButtons";
 import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
 import FormField from "../../globals/components/ui/FormField";
@@ -50,7 +54,12 @@ export default function UsersPage(){
     }
 
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal(null, "user")
+            setIsOpen(true)
+        }}
+        >
             <TopSection
             sectionName={"Usuarios"}
             addButtonIcon={usersIcons.addUserIcon}
@@ -72,46 +81,46 @@ export default function UsersPage(){
                 <ul className="pt-3 flex flex-col gap-1">
                     {users.map((user) => (
                         // Usuarios   
-                            <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
-                            dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
-                            key={user.user_id}>
-                                {/* Datos del Usuario */}
-                                <article>
-                                    <address className="flex gap-3 not-italic font-medium dark:text-white">
-                                        <p className="text-xl">{user.user_name} {user.user_first_surname} {user.user_second_surname}</p>
-                                        <div className="flex items-center">
-                                            <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5 dark:invert" />
-                                            <p>{user.user_phone}</p>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <img src={usersIcons.rolIcon} alt="" className="w-5 h-5 dark:invert" />
-                                            <p>{user.roles.rol_name}</p>
-                                        </div>
-                                    </address>
-                                </article>
+                        <li className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
+                        dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+                        key={user.user_id}>
+                            {/* Datos del Usuario */}
+                            <article>
+                                <address className="flex gap-3 not-italic font-medium dark:text-white">
+                                    <p className="text-xl">{user.user_name} {user.user_first_surname} {user.user_second_surname}</p>
+                                    <div className="flex items-center">
+                                        <img src={usersIcons.phoneIcon} alt="" className="w-5 h-5 dark:invert" />
+                                        <p>{user.user_phone}</p>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <img src={usersIcons.rolIcon} alt="" className="w-5 h-5 dark:invert" />
+                                        <p>{user.roles.rol_name}</p>
+                                    </div>
+                                </address>
+                            </article>
 
-                                {/* Botones para interactuar con el usuario */}
-                                <nav className="flex gap-4 dark:invert">
+                            {/* Botones para interactuar con el usuario */}
+                            <nav className="flex gap-4">
+                                <ActionButtons
+                                editButtonOnClick={() => {
+                                    openModal(user, "edit")
+                                    setIsOpen(true)
+                                }}
+                                deleteButtonOnClick={() => {
+                                    openModal(user, "delete")
+                                    setIsOpen(true)
+                                }}
+                                >
+                                    {/* Botón de más información del usuario */}
                                     <button onClick={() => {
                                         openModal(user, "info")
                                         setIsOpen(true)
                                     }}> 
                                         <img src={actionsIcons.moreInfoIcon} alt="" /> 
                                     </button>
-                                    <button onClick={() => {
-                                        openModal(user, "edit")
-                                        setIsOpen(true)
-                                        }}> 
-                                        <img src={actionsIcons.editInfoIcon} alt="" /> 
-                                    </button>
-                                    <button onClick={() => {
-                                        openModal(user, "delete")
-                                        setIsOpen(true)
-                                        }}> 
-                                        <img src={actionsIcons.deleteIcon} alt="" />
-                                    </button>
-                                </nav>
-                            </li>
+                                </ActionButtons>
+                            </nav>
+                        </li>
                     ))}
                 </ul>
             </section>
@@ -120,7 +129,9 @@ export default function UsersPage(){
             {modalType && (
                 <Modal
                 title={
-                    modalType === "filter"
+                    modalType === "user"
+                    ? "Configuración"
+                    : modalType === "filter"
                     ? "Filtrar"
                     : modalType === "add"
                     ? "Agregar Usuario"
@@ -137,6 +148,14 @@ export default function UsersPage(){
                     setIsOpen(false)
                 }}
                 >
+                {modalType === "user" &&(
+                <ProfileModal
+                onClose={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                />
+                )}
                 {modalType === "filter" && (
                     <FilterModal
                     onClose={ () => {
@@ -148,81 +167,77 @@ export default function UsersPage(){
                     </FilterModal>
                 )}
                 {modalType === "add" && (
-                    <div className="flex flex-col items-center">
-                        <form action="" className="flex flex-col gap-1">
-                            <span>Rol</span>
-                            <select name="user_rol" id="user_rol_menu" className="p-2 border outline-none">
-                                <option value=""> Administrador </option>
-                                <option value=""> Almacén </option>
-                                <option value=""> Técnico </option>
-                            </select>
+                <section className="flex flex-col items-center">
+                    <form action="" className="flex flex-col gap-1">
+                        <SelectMenu
+                        id={"user_rol_menu"}
+                        name={"user_rol_menu"}
+                        spanText={"Rol"}
+                        >
+                            <option value="admin"> Administrador </option>
+                            <option value="almacen"> Almacén </option>
+                            <option value="tecnico"> Técnico </option>
+                        </SelectMenu>
 
-                            <FormField
-                            labelText={"Nombre Completo"}
-                            placeholder={"Felipe Contreras Aguilar"} 
-                            id={"name"}
-                            autoComplete="name"
-                            />
+                        <FormField
+                        labelText={"Nombre Completo"}
+                        placeholder={"Felipe Contreras Aguilar"} 
+                        id={"name"}
+                        autoComplete="name"
+                        />
 
+                        <FormField
+                        labelText={"Número"}
+                        placeholder={"300012124"} 
+                        id={"phone"}
+                        autoComplete="tel"
+                        />
 
-                            <FormField
-                            labelText={"Número"}
-                            placeholder={"300012124"} 
-                            id={"phone"}
-                            autoComplete="tel"
-                            />
+                        <FormField
+                        labelText={"Email"}
+                        placeholder={"pepito@gmail.com"} 
+                        id={"email"}
+                        autoComplete="email"
+                        />
 
-                            <FormField
-                            labelText={"Email"}
-                            placeholder={"pepito@gmail.com"} 
-                            id={"email"}
-                            autoComplete="email"
-                            />
+                        <FormField
+                        labelText={"Dirección"}
+                        placeholder={"KR 124 # 12-124"} 
+                        id={"address"}
+                        autoComplete="address"
+                        />
+                    </form>
 
-                            <FormField
-                            labelText={"Dirección"}
-                            placeholder={"KR 124 # 12-124"} 
-                            id={"address"}
-                            autoComplete="address"
-                            />
-                        </form>
-
-                        {/* Botones */}
-                        <div className="flex gap-2 pt-5">
-                            <button 
-                                className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Confirmar
-                            </button>
-                            <button
-                                className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Cancelar
-                            </button>
-                        </div>
-                    </div>
+                    {/* Botones */}
+                    <ConfirmCancelButtons
+                    confirmText={"Confirmar"}
+                    cancelText={"Cancelar"}
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    cancelButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    />
+                </section>
                 )}
                 {/* Modal para mas información del usuario */}
                 {modalType === "info" && (
-                    <div className="flex flex-col justify-center">
+                    <section className="flex flex-col justify-center dark:text-white">
                         <p><strong>Rol:</strong> {selectedUser.roles.rol_name}</p>
                         <p><strong>Nombre:</strong> {selectedUser.user_name} {selectedUser.user_first_surname} {selectedUser.user_second_surname}</p>
                         <p><strong>Teléfono:</strong> {selectedUser.user_phone}</p>
                         <p><strong>Correo:</strong> {selectedUser.user_email}</p>
                         <p><strong>Dirección:</strong> {selectedUser.user_address}</p>
                         <p><strong>Fecha De Creación:</strong> {selectedUser.user_date}</p>
-                    </div>
+                    </section>
                 )}
 
                 {/* Modal para editar el usuario */}
                 {modalType === "edit" && 
-                <div className="flex flex-col items-center">
+                <section className="flex flex-col items-center">
                     <form action="" className="flex flex-col gap-2">
                         <FormField
                         labelText={"Nombre"}
@@ -252,53 +267,42 @@ export default function UsersPage(){
                     </form>
 
                     {/* Botones */}
-                    <div className="flex gap-2 pt-5">
-                        <button 
-                            className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Confirmar
-                        </button>
-                        <button
-                            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Cancelar
-                        </button>
-                    </div>
-                </div>
+                    <ConfirmCancelButtons
+                    confirmText={"Confirmar"}
+                    cancelText={"Cancelar"}
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    cancelButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    />
+                </section>
                 }
 
                 {/* Modal para eliminar el usuario */}
                 {modalType === "delete" && (
-                    <div className="flex flex-col justify-center items-center">
-                        <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.user_name} {selectedUser.user_first_surname}</span>?</p>
-                        
-                        {/* Botones */}
-                        <div className="flex pt-4 gap-5">
-                            <button 
-                            className="flex items-center gap-2 px-5 py-2 rounded-xl shadow-xl text-sm bg-red-600 text-white transition duration-300 hover:bg-red-700" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                <img src={actionsIcons.deleteIcon} alt="" className="w-[20px] h-[20px] invert" />
-                                Eliminar
-                            </button>
-                            <button
-                            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
+                <section className="flex flex-col justify-center items-center dark:text-white">
+                    <p>¿Seguro que deseas eliminar a <span className="font-medium">{selectedUser.user_name} {selectedUser.user_first_surname}</span>?</p>
+                    
+                    {/* Botones */}
+                    <ConfirmCancelButtons
+                    confirmText={"Eliminar"}
+                    confirmBgColor="red-600"
+                    confirmDarkBgColor=""
+                    cancelText={"Cancelar"}
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    cancelButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    />
+                </section>
                 )}
                 </Modal>
             )}
