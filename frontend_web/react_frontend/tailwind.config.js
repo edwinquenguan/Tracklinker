@@ -33,6 +33,7 @@ module.exports = {
     'flex-col',
     'bg-black',
     'bg-red-600',
+    'w-64'
   ],
 };
 
