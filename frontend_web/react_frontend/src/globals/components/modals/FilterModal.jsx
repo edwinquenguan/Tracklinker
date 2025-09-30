@@ -1,14 +1,17 @@
+import SelectMenu from "../../../globals/components/modals/SelectMenu";
+import ConfirmCancelButtons from "./ConfirmCancelButtons";
+
 export default function FilterModal({onClose, children, fieldName = "Creación"}) {
     return(
         <section className="flex flex-col gap-3">
-            <section className="flex flex-col px-2 gap-1">
-                <span className="text-sm font-medium dark:text-white">Ordenar por Nombre: </span>
-                <select name="name-option" id="filter-name-option" className="p-2 rounded-lg border outline-none 
-                dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                    <option value="asc" className="">A - Z</option>
-                    <option value="desc">Z - A </option>
-                </select>
-            </section>
+            <SelectMenu
+            id={"order-by-name-menu"}
+            name={"order-by-name-menu"}
+            spanText={"Ordenar Por Nombre"}
+            >
+                <option value="asc">a - Z</option>
+                <option value="desc">Z - a</option>
+            </SelectMenu>
 
             {children}
 
@@ -18,33 +21,29 @@ export default function FilterModal({onClose, children, fieldName = "Creación"}
                 <section className="flex justify-between gap-1">
                     <div>
                         <span className="text-sm dark:text-white">Desde:</span>
-                        <input type="date" className="p-3 rounded-lg border text-sm outline-none
+                        <input
+                        id="start-date-input"
+                        type="date" 
+                        className="p-3 rounded-lg border text-sm outline-none
                         dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
                     </div>
                     <div>
                     <span className="text-sm dark:text-white">Hasta:</span>
-                    <input type="date" className="p-3 rounded-lg border text-sm outline-none
+                    <input
+                    id="finish-date-input"
+                    type="date" 
+                    className="p-3 rounded-lg border text-sm outline-none
                     dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"/>
                     </div>
                 </section>
             </section>
 
         {/* Botones de aplicar y cancelar */}
-            <section className="p-2 flex items-center justify-end gap-4">
-                <button 
-                className="px-4 py-3 rounded-lg text-sm bg-gray-200 font-medium transition
-                dark:text-white dark:bg-transparent dark:hover:bg-[#101012]"
-                onClick={onClose}> 
-                    Cancelar 
-                </button>
-                
-                <button 
-                className="px-5 py-3 rounded-lg text-sm font-medium bg-black text-white
-                dark:bg-white dark:text-black"
-                onClick={onClose}> 
-                    Aplicar 
-                </button>
-            </section>
+            <ConfirmCancelButtons 
+            confirmButtonOnClick={onClose}
+            confirmText="Aplicar"
+            cancelButtonOnClick={onClose}
+            />
         </section>
     );
 }
