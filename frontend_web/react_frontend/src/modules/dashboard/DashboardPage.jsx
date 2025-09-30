@@ -5,6 +5,7 @@ import { actionsIcons } from "../../assets/icons/mainIcons";
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
 import ChartCard from "../../globals/components/ui/ChartCard";
 import TopSection from "../../globals/components/ui/TopSection";
 
@@ -22,7 +23,11 @@ export default function DashBoardPage(){
     }
 
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal("user")
+            setIsOpen(true)
+        }}>
             <TopSection 
             sectionName={"Panel De Control"}
             addButtonIcon={actionsIcons.uploadIcon}
@@ -139,7 +144,9 @@ export default function DashBoardPage(){
                 <Modal
                 title={
                     modalType === "filter"
-                    ? "Filter"
+                    ? "Filtrar"
+                    : modalType === "user"
+                    ? "Configuración"
                     : ""
                 }
                 type={modalType}
@@ -149,6 +156,14 @@ export default function DashBoardPage(){
                     setIsOpen(false)
                 }}
                 >
+                {modalType === "user" &&(
+                <ProfileModal
+                onClose={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                />
+                )}
                 {modalType === "filter" && (
                     <FilterModal
                         onClose={() => {
