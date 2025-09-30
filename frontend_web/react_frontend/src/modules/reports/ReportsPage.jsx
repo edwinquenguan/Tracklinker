@@ -1,14 +1,114 @@
+import { useState } from "react";
+import { sections } from "./data/reportSections";
 import Layout from "../../globals/components/Layout/Layout";
-import ActionCard from "../../globals/components/ui/ActionCard";
+import ReportSectionCard from "./components/ReportSectionCard";
+import Modal from "../../globals/components/modals/Modal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ReportUsersModal from "./components/modals/ReportUsersModal";
+import ReportProductsModal from "./components/modals/ReportProductsModal";
+import ReportCategoriesModal from "./components/modals/ReportCategoriesModal";
+import ReportSubcategoriesModal from "./components/modals/ReportSubcategoriesModal";
+import ReportWarrantiesModal from "./components/modals/ReportWarrantiesModal";
+import ReportSuppliersModal from "./components/modals/ReportSuppliersModal";
+import ReportTranformationsModal from "./components/modals/ReportTranformationsModal";
 
 export default function ReportsPage(){
+
+    const [modalType, setModalType] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+     // Al momento de clickear un botón esto abre la modal que pertenece a ese botón
+     const openModal = (type) => {
+        setModalType(type);
+    };
+    // Y esto cierra la modal
+    const closeModal = () => {
+        setModalType(null);
+    }
+
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal("user")
+            setIsOpen(true)
+        }}>
             <h1 className="px-2 py-3 font-medium dark:text-white"> Informes </h1>
             {/* Contenedor de las cards */}
-            <section className="h-[90%] min-w-full">
-                <ActionCard/>
+            <section className="min-h-full grid grid-cols-4 grid-rows-2 p-[100px_200px_200px_200px] gap-[20px_12px] place-items-center
+            xl:p-[100px_250px_200px_300px]
+            lg:p-[100px_150px_200px_150px]
+            md:p-[50px]">
+                {sections.map((section) => (
+                    <ReportSectionCard
+                    sectionOnClick={() => {
+                        openModal(section.modalName);
+                        setIsOpen(true)
+                    }}
+                    sectionKey={section.name}
+                    sectionIcon={section.icon}
+                    sectionIconAlt={section.alt}
+                    sectionName={section.name}
+                    />
+                ))}
             </section>
+            {/* Modales */}
+            {modalType && (
+            <Modal
+            title={ 
+                modalType === "user"
+                ? "Configuración"
+                : modalType === "reportUsers"
+                ? "Reporte de Usuarios"
+                : modalType === "reportProducts"
+                ? "Reporte de Productos"
+                : modalType === "reportCategories"
+                ? "Reporte de Categorias"
+                : modalType === "reportSubcategories"
+                ? "Reporte de Subcategorias"
+                : modalType === "reportWarranties"
+                ? "Reporte de garantías"
+                : modalType === "reportSuppliers"
+                ? "Reporte de Proveedores"
+                : "Reporte de Tranformaciones"
+            }
+            type={modalType}
+            isOpen={isOpen}
+            onClose={() => {
+                closeModal()
+                setIsOpen(false)
+            }}
+            >
+            {modalType === "user" &&(
+            <ProfileModal
+            onClose={() => {
+                closeModal()
+                setIsOpen(false)
+            }}
+            />
+            )}
+                {modalType === "reportUsers" &&(
+                <ReportUsersModal />
+                )}
+                {modalType === "reportProducts" &&(
+                <ReportProductsModal />
+                )}
+                {modalType === "reportCategories" &&(
+                <ReportCategoriesModal />
+                )}
+                {modalType === "reportSubcategories" &&(
+                <ReportSubcategoriesModal />
+                )}
+                {modalType === "reportWarranties" &&(
+                <ReportWarrantiesModal />
+                )}
+                {modalType === "reportSuppliers" &&(
+                <ReportSuppliersModal />
+                )}
+                {modalType === "reportTranformations" &&(
+                <ReportTranformationsModal />
+                )}
+            </Modal>
+            )}
         </Layout>
     )
 }
