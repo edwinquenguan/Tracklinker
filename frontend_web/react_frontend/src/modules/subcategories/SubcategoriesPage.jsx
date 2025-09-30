@@ -7,7 +7,11 @@ import { getSubcategoriesWithCategory } from "../../services/getSubcategoriesWit
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
-import FormField from "../../globals/components/ui/FormField"
+import ProfileModal from "../../globals/components/modals/ProfileModal";
+import SelectMenu from "../../globals/components/modals/SelectMenu";
+import ConfirmCancelButtons from "../../globals/components/modals/ConfirmCancelButtons";
+import ActionButtons from "../../globals/components/ui/ActionButtons";
+import FormField from "../../globals/components/ui/FormField";
 import TopSection from "../../globals/components/ui/TopSection";
 
 export default function SubcategoriesPage(){
@@ -62,7 +66,11 @@ export default function SubcategoriesPage(){
         setModalType(null);
     }
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal(null, "user")
+            setIsOpen(true)
+        }}>
             <TopSection
             sectionName={"Subcategorias"}
             addButtonIcon={actionsIcons.addIcon}
@@ -83,35 +91,33 @@ export default function SubcategoriesPage(){
                     // Categorias
                         <li 
                         key={subcategory.subcategory_id}
-                        className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-xl">
+                        className="flex items-center justify-between p-4 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
+                        dark:bg-[#0f0f11] dark:hover:bg-[#212125] dark:text-white">
                             <section className="flex gap-6">
                                 <span className="text-2xl font-medium">{subcategory.subcategory_name}</span>
                                 <div className="flex items-center gap-1 justify-center">
-                                    <img src={asideIcons.categoriesIcon} alt="" className="invert brightness-200" />
+                                    <img src={asideIcons.categoriesIcon} alt="" className="invert brightness-200 dark:brightness-50" />
                                     <span className="font-medium">{subcategory.categories.category_name}</span>
                                 </div>
                             </section>
                             {/* Botones para interactuar */}
-                            <nav className="flex gap-4">
+                            <ActionButtons
+                            editButtonOnClick={() => {
+                                openModal(subcategory, "edit")
+                                setIsOpen(true)
+                            }}
+                            deleteButtonOnClick={() => {
+                                openModal(subcategory, "delete")
+                                setIsOpen(true)
+                            }}>
+                                {/* Botón de más información */}
                                 <button onClick={() => {
                                     openModal(subcategory, "info")
                                     setIsOpen(true)
                                     }}>
                                     <img src={actionsIcons.moreInfoIcon} alt="" /> 
                                 </button>
-                                <button onClick={() => {
-                                    openModal(subcategory, "edit")
-                                    setIsOpen(true)
-                                    }}>
-                                    <img src={actionsIcons.editInfoIcon} alt="" /> 
-                                </button>
-                                <button onClick={() => {
-                                    openModal(subcategory, "delete")
-                                    setIsOpen(true)
-                                    }}>
-                                    <img src={actionsIcons.deleteIcon} alt="" />
-                                </button>
-                            </nav>
+                            </ActionButtons>        
                         </li>
                 ))}
                 </ul>
@@ -121,7 +127,9 @@ export default function SubcategoriesPage(){
                 {modalType && (
                     <Modal
                     title={
-                        modalType === "filter"
+                        modalType === "user"
+                        ? "Configuración"
+                        : modalType === "filter"
                         ? "Filtrar"
                         : modalType === "add"
                         ? "Agregar Subcategoria"
@@ -138,64 +146,64 @@ export default function SubcategoriesPage(){
                         setIsOpen(false)
                     }}
                     >
+                    {modalType === "user" &&(
+                    <ProfileModal
+                    onClose={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    />
+                    )}
                     {modalType === "filter" && (
-                        <FilterModal
-                        onClose={ () => {
+                    <FilterModal
+                    onClose={ () => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    >
+                    
+                    </FilterModal>
+                    )}
+                    {modalType === "add" && (
+                    <section className="flex flex-col items-center">
+                        <form action="" className="flex flex-col gap-1">
+                            <SelectMenu
+                            spanText={"Categoria"}>
+                                {categories.map((category) => (
+                                    <option value={category.category_name}> {category.category_name} </option>
+                                ))}
+                            </SelectMenu>
+                            
+                            <FormField
+                            labelText={"Nombre"}
+                            placeholder={"Impresoras a color"} 
+                            id={"name"}
+                            />
+                        </form>
+
+                        {/* Botones */}
+                        <ConfirmCancelButtons
+                        confirmButtonOnClick={() => {
                             closeModal()
                             setIsOpen(false)
                         }}
-                        >
-                        
-                        </FilterModal>
-                    )}
-                    {modalType === "add" && (
-                        <div className="flex flex-col items-center">
-                            <form action="" className="flex flex-col gap-1">
-                                <span>Categoria a la que pertenecera</span>
-                                <select name="categories" id="categories-menu" className="p-2 rounded-lg border outline-none">
-                                    {categories.map((category) => (
-                                        <option value={category.category_name}> {category.category_name} </option>
-                                    ))}
-                                </select>
-                                <FormField
-                                labelText={"Nombre"}
-                                placeholder={"Impresoras a color"} 
-                                id={"name"}
-                                />
-                            </form>
-    
-                            {/* Botones */}
-                            <div className="flex gap-2 pt-5">
-                                <button 
-                                    className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                                    onClick={() =>{
-                                        closeModal()
-                                        setIsOpen(false)
-                                    }}>
-                                        Confirmar
-                                </button>
-                                <button
-                                    className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                                    onClick={() =>{
-                                        closeModal()
-                                        setIsOpen(false)
-                                    }}>
-                                        Cancelar
-                                </button>
-                            </div>
-                        </div>
+                        cancelButtonOnClick={() => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}/>
+                    </section>
                     )}
                     {/* Modal para mas información de la subcategoria */}
                     {modalType === "info" && (
-                        <div className="flex flex-col justify-center">
+                        <section className="flex flex-col justify-center dark:text-white">
                             <p><strong>Creada:</strong> {selectedSubcategory.subcategory_date}</p>
                             <p><strong>Nombre:</strong> {selectedSubcategory.subcategory_name} </p>
                             <p><strong>Categoria a la que pertenece:</strong> {selectedSubcategory.categories.category_name}</p>
-                        </div>
+                        </section>
                     )}
                     {/* Modal para editar la subcategoria */}
                     {modalType === "edit" && 
-                    <div className="flex flex-col items-center">
+                    <section className="flex flex-col items-center">
                         <form action="" className="flex flex-col gap-2">
                             <FormField
                             labelText={"Nombre"}
@@ -205,53 +213,41 @@ export default function SubcategoriesPage(){
                         </form>
     
                         {/* Botones */}
-                        <div className="flex gap-2 pt-5">
-                            <button 
-                                className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Confirmar
-                            </button>
-                            <button
-                                className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Cancelar
-                            </button>
-                        </div>
-                    </div>
+                        <ConfirmCancelButtons
+                        confirmText={"Confirmar"}
+                        cancelText={"Cancelar"}
+                        confirmButtonOnClick={() => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        cancelButtonOnClick={() => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        />
+                    </section>
                     }
     
                     {/* Modal para eliminar la subcategoria */}
                     {modalType === "delete" && (
-                        <div className="flex flex-col justify-center items-center">
-                            <p>¿Seguro que deseas eliminar la Subcategoria <strong>{selectedSubcategory.subcategory_name}</strong>?</p>
-                            
-                            {/* Botones */}
-                            <div className="flex pt-4 gap-5">
-                                <button 
-                                className="flex items-center gap-2 px-5 py-2 rounded-xl shadow-xl text-sm bg-red-600 text-white transition duration-300 hover:bg-red-700" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    <img src={actionsIcons.deleteIcon} alt="" className="w-[20px] h-[20px] invert" />
-                                    Eliminar
-                                </button>
-                                <button
-                                className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Cancelar
-                                </button>
-                            </div>
-                        </div>
+                    <section className="flex flex-col justify-center items-center dark:text-white">
+                        <p>¿Seguro que deseas eliminar la Subcategoria <strong>{selectedSubcategory.subcategory_name}</strong>?</p>
+                        
+                        {/* Botones */}
+                        <ConfirmCancelButtons
+                        confirmText={"Eliminar"}
+                        cancelText={"Cancelar"}
+                        confirmBgColor="red-600"
+                        confirmButtonOnClick={() => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        cancelButtonOnClick={() => {
+                            closeModal()
+                            setIsOpen(false)
+                        }}
+                        />
+                    </section>
                     )}
                     </Modal>
                 )}
