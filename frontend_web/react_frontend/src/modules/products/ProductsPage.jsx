@@ -4,6 +4,9 @@ import { productsIcons, actionsIcons } from "../../assets/icons/mainIcons";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
+import SelectMenu from "../../globals/components/modals/SelectMenu";
+import ConfirmCancelButtons from "../../globals/components/modals/ConfirmCancelButtons";
+import ActionButtons from "../../globals/components/ui/ActionButtons";
 import Layout from "../../globals/components/Layout/Layout";
 import FormField from "../../globals/components/ui/FormField";
 import TopSection from "../../globals/components/ui/TopSection";
@@ -186,19 +189,17 @@ export default function ProductsPage(){
                                 </th>
 
                                 {/* Botones */}
-                                <th className="flex min-h-[60px] items-center justify-center gap-5">
-                                    <button onClick={() => {
+                                <th className="flex h-14">
+                                    <ActionButtons
+                                    editButtonOnclick={() => {
                                         openModal(product, "edit")
                                         setIsOpen(true)
-                                    }}>
-                                        <img src={actionsIcons.editInfoIcon} alt="" className="dark:invert" />
-                                    </button>
-                                    <button onClick={() => {
+                                    }}
+                                    deleteButtonOnClick={() => {
                                         openModal(product, "delete")
                                         setIsOpen(true)
-                                    }}>
-                                        <img src={actionsIcons.deleteIcon} alt="" className="dark:invert" />
-                                    </button>
+                                    }}
+                                    />
                                 </th>
                             </tr>
                         ))}
@@ -237,145 +238,137 @@ export default function ProductsPage(){
                     />
                 )}
                 {modalType === "filter" && (
-                    <FilterModal
-                    fieldName="Ingreso"
-                    onClose={() => {
+                <FilterModal
+                fieldName="Ingreso"
+                onClose={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                >
+                    {/* Ordenar Por Categoría */}
+                    <SelectMenu
+                    id={"order-by-category-menu"}
+                    name={"order-by-category-menu"}
+                    spanText={"Ordenar Por Categoria"}>
+                            {categories.map((category) => (
+                                <option 
+                                key={category.category_id}
+                                value={category.category_name}> 
+                                    {category.category_name}
+                                </option>
+                            ))}
+                    </SelectMenu>
+                    {/* Ordenar Por Subcategoria */}
+                    <SelectMenu
+                    spanText={"Ordenar Por Subcategoria"}
+                    id={"order-by-subcategory-menu"}
+                    name={"order-by-subcategory-menu"}>
+                        {subcategories.map((subcategory) => (
+                            <option 
+                            key={subcategory.subcategory_id}
+                            value={subcategory.subcategory_name}> 
+                                {subcategory.subcategory_name}
+                            </option>
+                        ))}
+                    </SelectMenu>
+                    {/* Ordenar por Stock */}
+                    <SelectMenu
+                    spanText={"Ordenar Por Stock"}
+                    id={"order-by-stock-menu"}
+                    name={"order-by-stock-menu"}>
+                        <option value="minus of 20"> &lt; de 20 </option>
+                        <option value="minus of 50"> &lt; de 50 </option>
+                        <option value="minus of 100"> &lt; de 100 </option>
+                        <option value="more than 100"> &gt; de 100 </option>
+                    </SelectMenu>
+                    {/* Ordenar por Tiempo de Garantía */}
+                    <SelectMenu
+                    spanText={"Ordenar Por Tiempo De Garantía"}
+                    id={"order-by-warranty-menu"}
+                    name={"order-by-warranty-menu"}>
+                        <option value="minus of 6 months">  &lt; de 6 meses </option>
+                        <option value="minus of 12 months"> &lt; de 12 Meses </option>
+                        <option value="minus of 18 months"> &lt; de 18 Meses </option>
+                        <option value="minus of 24 months"> &lt; de 24 Meses </option>
+                    </SelectMenu>
+                </FilterModal>
+                )}
+                {modalType === "add" && (
+                <section className="flex flex-col items-center">
+                    <form action="" className="flex flex-col gap-1">
+                        <SelectMenu
+                        width={"64"}
+                        spanText={"Categoria"}>
+                            {categories.map((category) => (
+                                <option 
+                                key={category.category_id}
+                                value={category.category_name}> 
+                                    {category.category_name} 
+                                </option>
+                            ))}
+                        </SelectMenu>
+                        <SelectMenu
+                        width={"64"}
+                        spanText={"Subcategoria"}>
+                            {subcategories.map((subcategory) => (
+                                <option 
+                                key={subcategory.subcategory_id}
+                                value={subcategory.subcategory_name}> 
+                                    {subcategory.subcategory_name} 
+                                </option>
+                            ))}
+                        </SelectMenu>
+                        <FormField
+                        labelText={"Modelo"}
+                        placeholder={"Impresora HP z1455"} 
+                        id={"model"}
+                        />
+                        <FormField
+                        labelText={"Serial"}
+                        placeholder={"10KQ340"} 
+                        id={"serial"}
+                        />
+                        <SelectMenu
+                        width={"64"}
+                        spanText={"Tiempo De Garantía"}>
+                            <option value="a"> 6 Meses </option>
+                            <option value=""> 12 Meses </option>
+                            <option value=""> 18 Meses </option>
+                            <option value=""> 24 Meses </option>
+                        </SelectMenu>
+                        <div className="flex items-center justify-center p-3">
+                            <span className="dark:text-white">o</span>
+                        </div>
+                        {/* Botón de leer codigó de barras */}
+                        <section className="flex items-center justify-center">
+                            <button className="flex items-center py-2 px-4 gap-2 border rounded-lg transition duration-300 
+                            hover:bg-gray-300
+                            dark:bg-[#2020226c] dark:hover:bg-[#2c2c2e] dark:border-[#101012]"
+                            onClick={ () => {
+                                closeModal()
+                                setIsOpen(false)
+                            }}>
+                                <img src={productsIcons.barcodeIcon} alt="" className="dark:invert dark:brightness-0"/>
+                                <span className="text-sm dark:text-white">Leer código de barras</span>
+                            </button>
+                        </section>
+                    </form>
+
+                    {/* Botones */}
+                    <ConfirmCancelButtons 
+                    cancelButtonOnClick={() => {
                         closeModal()
                         setIsOpen(false)
                     }}
-                    >
-                        {/* Ordenar Por Subcategoria */}
-                        <section className="flex flex-col px-2 gap-1">
-                            <span className="text-sm font-medium dark:text-white">Ordenar Por Subcategoria</span>
-                            <select name="" id="" className="p-2 rounded-lg border outline-none
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                               {subcategories.map((subcategory) => (
-                                    <option 
-                                    key={subcategory.subcategory_id}
-                                    value={subcategory.subcategory_name}> 
-                                        {subcategory.subcategory_name}
-                                    </option>
-                                ))}
-                            </select>
-                        </section>
-                        {/* Ordenar por Stock */}
-                        <section className="flex flex-col px-2 gap-1">
-                            <span className="text-sm font-medium dark:text-white"> Ordenar Por Stock </span>
-                            <select name="stock-menu" id="stock-menu-options" className="p-2 rounded-lg border outline-none
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                                <option value="minus of 20"> &lt; de 20 </option>
-                                <option value="minus of 50"> &lt; de 50 </option>
-                                <option value="minus of 100"> &lt; de 100 </option>
-                                <option value="more than 100"> &gt; de 100 </option>
-                            </select>
-                        </section>
-                        {/* Ordenar por Tiempo de Garantía */}
-                        <section className="flex flex-col px-2 gap-1">
-                            <span className="text-sm font-medium dark:text-white">Ordenar por tiempo de garantía: </span>
-                            <select name="name-menu" id="filter-name-options" className="p-2 rounded-lg border outline-none 
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                                <option value="minus of 6 months">  &lt; de 6 meses </option>
-                                <option value="minus of 12 months"> &lt; de 12 Meses </option>
-                                <option value="minus of 18 months"> &lt; de 18 Meses </option>
-                                <option value="minus of 24 months"> &lt; de 24 Meses </option>
-                            </select>
-                        </section>
-                    </FilterModal>
-                )}
-                {modalType === "add" && (
-                    <div className="flex flex-col items-center">
-                        <form action="" className="flex flex-col gap-1">
-                            
-                            <span className="dark:text-white">Categoria</span>
-                            <select name="warranty" id="warranty" className="p-2 border outline-none
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                                {categories.map((category) => (
-                                    <option 
-                                    key={category.category_id}
-                                    value={category.category_name}> 
-                                        {category.category_name} 
-                                    </option>
-                                ))}
-                            </select>
-
-                            <span className="dark:text-white">Subcategoria</span>
-                            <select name="warranty" id="warranty" className="p-2 border outline-none max-w-56
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                                {subcategories.map((subcategory) => (
-                                    <option 
-                                    key={subcategory.subcategory_id}
-                                    value={subcategory.subcategory_name}> 
-                                        {subcategory.subcategory_name} 
-                                    </option>
-                                ))}
-                            </select>
-
-                            <FormField
-                            labelText={"Modelo"}
-                            placeholder={"Impresora HP z1455"} 
-                            id={"model"}
-                            />
-
-                            <FormField
-                            labelText={"Serial"}
-                            placeholder={"10KQ340"} 
-                            id={"serial"}
-                            />
-
-                            <span className="dark:text-white"> Tiempo de Garantía</span>
-                            <select name="warranty" id="warranty" className="p-2 border outline-none
-                            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white">
-                                <option value="a"> 6 Meses </option>
-                                <option value=""> 12 Meses </option>
-                                <option value=""> 18 Meses </option>
-                                <option value=""> 24 Meses </option>
-                            </select>
-                                <div className="flex items-center justify-center p-3">
-                                    <span className="dark:text-white">o</span>
-                                </div>
-
-                                <section className="flex items-center justify-center">
-                                    <button className="flex items-center py-2 px-4 gap-2 border rounded-lg transition duration-300 
-                                    hover:bg-gray-300
-                                    dark:bg-[#2020226c] dark:hover:bg-gray-700 dark:border-[#101012]"
-                                    onClick={ () => {
-                                        closeModal()
-                                        setIsOpen(false)
-                                    }}>
-                                        <img src={productsIcons.barcodeIcon} alt="" className="dark:invert dark:brightness-0"/>
-                                        <span className="text-sm dark:text-white">Leer código de barras</span>  
-                                    </button>
-                                </section>
-                        </form>
-
-                        {/* Botones */}
-                        <div className="flex gap-2 pt-5">
-                            <button 
-                                className="bg-black text-white px-5 py-3 rounded-xl shadow-xl text-sm transition duration-300 
-                                hover:text-gray-400
-                                dark:bg-white dark:text-black" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Confirmar
-                            </button>
-                            <button
-                                className="px-5 py-3 rounded-xl shadow-xl text-sm transition duration-300 
-                                hover:bg-gray-200
-                                dark:text-white dark:bg-transparent dark:hover:bg-[#101012]" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Cancelar
-                            </button>
-                        </div>
-                    </div>
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}/>
+                </section>
                 )}
                 {/* Modal para editar el producto */}
                 {modalType === "edit" && 
-                <div className="flex flex-col items-center">
+                <section className="flex flex-col items-center">
                     <form action="" className="flex flex-col gap-2">
                         <FormField
                         labelText={"Modelo"}
@@ -387,66 +380,50 @@ export default function ProductsPage(){
                         placeholder={selectedProduct.product_details.product_brands.product_brand_name}
                         id={"brand"}
                         />
-                        <span htmlFor=""> Tiempo de Garantía</span>
-                        <select name="warranty" id="warranty" className="p-2 border outline-none">
+                        <SelectMenu
+                        spanText={"Tiempo de garantía"}>
                             <option value="a"> 6 Meses </option>
                             <option value=""> 12 Meses </option>
                             <option value=""> 18 Meses </option>
                             <option value=""> 24 Meses </option>
-                        </select>
+                        </SelectMenu>
                     </form>
 
                     {/* Botones */}
-                    <div className="flex gap-2 pt-5">
-                        <button 
-                            className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Confirmar
-                        </button>
-                        <button
-                            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Cancelar
-                        </button>
-                    </div>
-                </div>
+                    <ConfirmCancelButtons 
+                    cancelButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}/>
+                </section>
                 }
 
                 {/* Modal para eliminar el producto */}
                 {modalType === "delete" && (
-                    <div className="flex flex-col justify-center items-center">
-                        <p>
-                            ¿Seguro que deseas eliminar este Producto llamado
-                            <strong> {selectedProduct.product_details.product_detail_model} </strong>?
-                        </p>
-                        
-                        {/* Botones */}
-                        <div className="flex pt-4 gap-5">
-                            <button 
-                            className="flex items-center gap-2 px-5 py-2 rounded-xl shadow-xl text-sm bg-red-600 text-white transition duration-300 hover:bg-red-700" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                <img src={actionsIcons.deleteIcon} alt="" className="w-[20px] h-[20px] invert" />
-                                Eliminar
-                            </button>
-                            <button
-                            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                            onClick={() =>{
-                                closeModal()
-                                setIsOpen(false)
-                            }}>
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
+                <section className="flex flex-col justify-center items-center">
+                    <p className="dark:text-white">
+                        ¿Seguro que deseas eliminar este Producto llamado
+                        <strong> {selectedProduct.product_details.product_detail_model} </strong>?
+                    </p>
+                    
+                    {/* Botones */}
+                    {/* Botones */}
+                    <ConfirmCancelButtons
+                    cancelButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}
+                    confirmText="Eliminar"
+                    confirmBgColor="red-600"
+                    confirmButtonOnClick={() => {
+                        closeModal()
+                        setIsOpen(false)
+                    }}/>
+                </section>
                 )}
                 </Modal>
             )}
