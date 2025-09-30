@@ -16,6 +16,14 @@ export default function ProfileModal({onClose}) {
                         </button>
                     </li>
                     <li>
+                        <button className="flex py-3 pl-4 pr-7 gap-3 rounded-xl transition duration-300
+                        hover:bg-[#efedf0]
+                        dark:text-white dark:hover:bg-[#202022]">
+                            <img src={asideIcons.themesIcon} alt="" className="brightness-200 dark:invert" />
+                            <span> Temas </span>
+                        </button>
+                    </li>
+                    <li>
                         <button className="flex py-3 px-4 gap-3 rounded-xl transition duration-300
                         hover:bg-[#efedf0]
                         dark:text-white dark:hover:bg-[#202022]">
