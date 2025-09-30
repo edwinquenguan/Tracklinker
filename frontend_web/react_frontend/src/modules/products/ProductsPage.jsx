@@ -191,7 +191,7 @@ export default function ProductsPage(){
                                 {/* Botones */}
                                 <th className="flex h-14">
                                     <ActionButtons
-                                    editButtonOnclick={() => {
+                                    editButtonOnClick={() => {
                                         openModal(product, "edit")
                                         setIsOpen(true)
                                     }}
