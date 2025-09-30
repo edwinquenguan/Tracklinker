@@ -112,6 +112,8 @@ export default function CategoriesPage(){
                         ? "Filtrar"
                         : modalType === "add"
                         ? "Agregar Categoria"
+                        : modalType === "user"
+                        ? "Configuración"
                         : modalType === "info"
                         ? "Información de la categoría"
                         : modalType === "edit"
