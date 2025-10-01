@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { items } from "./constants/homeSections";
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
-import ActionCard from "../../globals/components/ui/ActionCard";
+import ActionCard from "./components/ui/ActionCard";
 
 export default function HomePage(){
 
@@ -26,13 +27,23 @@ export default function HomePage(){
         }}>
             <h1 className="h-[10%] p-5 text-5xl font-medium dark:text-white"> Bienvenido, Agustín </h1>
             {/* Contenedor de las cards de los modúlos */}
-            <section className="h-[90%] min-w-full">
-                <ActionCard/>
+            <section className="min-h-full grid grid-cols-4 grid-rows-2 p-[100px_200px_200px_200px] gap-[20px_12px] place-items-center
+            xl:p-[100px_250px_250px_300px]
+            lg:p-[100px_150px_250px_150px]
+            md:p-[50px]">
+                {items.map((item) => (
+                    <ActionCard
+                    itemName={item.name}
+                    itemPath={item.path}
+                    itemIcon={item.icon}
+                    itemAlt={item.alt}
+                    />
+                ))}
             </section>
 
             {modalType && (
             <Modal
-            title={ 
+            title={
                 modalType === "user"
                 ? "Configuración"
                 : ""
