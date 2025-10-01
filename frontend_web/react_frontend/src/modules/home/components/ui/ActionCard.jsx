@@ -5,7 +5,7 @@ export default function ActionCard({itemName, itemPath, itemIcon, itemAlt}){
         <section>
             {/* Card de cada modulo */}
             <NavLink
-            to={itemName}
+            to={itemPath}
             key={itemName}
             className="flex flex-col h-40 w-32 place-items-center gap-2 transition duration-300
             hover:scale-[1.1]"
