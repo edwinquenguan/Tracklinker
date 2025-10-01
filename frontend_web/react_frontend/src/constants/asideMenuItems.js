@@ -10,7 +10,7 @@ export const avatarItem = {
 
 export const firstSectionItems = [
     { name:"Inicio", path:"/home", icon: asideIcons.homeIcon, alt:"a" },
-    { name:"Panel De Control", path:"/dashboard", icon: asideIcons.dashboardIcon, alt:""},
+    { name:"Panel", nameTwo: "De Control" ,  path:"/dashboard", icon: asideIcons.dashboardIcon, alt:""},
     { name:"Usuarios", path:"/users", icon: asideIcons.usersIcon, alt:""},
     { name:"Productos", path:"/products", icon: asideIcons.productsIcon, alt:""},
     { name:"Categorias", path:"/categories", icon: asideIcons.categoriesIcon, alt:""},
