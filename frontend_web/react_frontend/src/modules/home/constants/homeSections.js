@@ -1,4 +1,4 @@
-import { asideIcons } from "../assets/icons/asideIcons";
+import { asideIcons } from "../../../assets/icons/asideIcons";
 
 export const items = [
     { name:"Usuarios", path:"/users", icon: asideIcons.usersIcon, alt:""},
