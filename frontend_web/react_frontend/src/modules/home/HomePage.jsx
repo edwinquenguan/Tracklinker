@@ -30,7 +30,7 @@ export default function HomePage(){
             <section className="min-h-full grid grid-cols-4 grid-rows-2 p-[100px_200px_200px_200px] gap-[20px_12px] place-items-center
             xl:p-[100px_250px_250px_300px]
             lg:p-[100px_150px_250px_150px]
-            md:p-[50px]">
+            md:p-[80px_50px_150px_50px]">
                 {items.map((item) => (
                     <ActionCard
                     itemName={item.name}
