@@ -1,13 +1,17 @@
+// States
 import { useState } from "react";
+// Iconos
 import { dashboardIcons } from "../../assets/icons/mainIcons";
-import { modalIcons } from "../../assets/icons/modalIcons";
 import { actionsIcons } from "../../assets/icons/mainIcons";
+// Componentes
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
+import ChartCard from "./components/ui/ChartCard";
+import TopSection from "../../globals/components/ui/TopSection";
+// Modales
+import DownloadModal from "./components/modals/DownloadModal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
-import ChartCard from "../../globals/components/ui/ChartCard";
-import TopSection from "../../globals/components/ui/TopSection";
 
 export default function DashBoardPage(){
 
@@ -166,19 +170,14 @@ export default function DashBoardPage(){
                 )}
                 {modalType === "filter" && (
                     <FilterModal
-                        onClose={() => {
-                        closeModal()
-                        setIsOpen(false)
-                        }}
-                    >
-
-                    </FilterModal>
+                    onClose={() => {
+                    closeModal()
+                    setIsOpen(false)
+                    }}
+                    />
                 )}
                 {modalType === "download" && (
-                    <section className="flex items-center gap-5 dark:text-white">
-                        <img src={modalIcons.confirmIcon} alt="" className="w-10 h-10"/>
-                        <p className="font-medium">¡Descarga exitosa!</p>
-                    </section>
+                <DownloadModal />
                 )}
                 </Modal>
             )}
