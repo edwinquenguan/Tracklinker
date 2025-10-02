@@ -141,6 +141,7 @@ export default function Aside({avatarOnClick}){
                             className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-950">
                                 <NavLink
                                     to={item.path}
+                                    onClick={item.onClick}
                                     className={({isActive}) => 
                                         `w-20 h-14 py-2.5 px-5 flex gap-3.5 items-center justify-center subpixel-antialiased rounded-xl
                                         xl:justify-start xl:w-full xl:h-auto
