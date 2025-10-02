@@ -24,32 +24,32 @@ export default function SubcategoriesPage(){
     const [selectedSubcategory, setSelectedSubcategory] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
-     useEffect(() => {
-        async function fetchSubcategories() {
-                try {
-                    setLoading(true)
-                    const data = await getSubcategoriesWithCategory();
-                    setSubcategories(data);
-                    console.log(data)
-                } catch (error) {
-                    setError(error.message);
-                }
-            }
-            
-        fetchSubcategories();
-
-        async function fetchCategories() {
+    useEffect(() => {
+    async function fetchSubcategories() {
             try {
-                const categorydata = await getAllCategories();
-                setCategories(categorydata);
+                setLoading(true)
+                const data = await getSubcategoriesWithCategory();
+                setSubcategories(data);
+                console.log(data)
             } catch (error) {
-                setError(error.message)
+                setError(error.message);
             }
         }
+        
+    fetchSubcategories();
 
-        fetchCategories();
+    async function fetchCategories() {
+        try {
+            const categorydata = await getAllCategories();
+            setCategories(categorydata);
+        } catch (error) {
+            setError(error.message)
+        }
+    }
 
-        }, []);
+    fetchCategories();
+
+    }, []);
             
     if (error) {
         return <div>Error: {error}</div>;
