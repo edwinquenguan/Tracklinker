@@ -34,11 +34,20 @@ export default function ReportsPage(){
         }}>
             <h1 className="px-2 py-3 font-medium dark:text-white"> Informes </h1>
             {/* Contenedor de las cards */}
-            <section className="h-full grid grid-cols-3 grid-rows-3 px-3 py-4 gap-[20px_12px] place-items-center
+            <section className="
+            /* Layout Base */
+            h-full grid grid-cols-3 grid-rows-3 place-items-center
+
+            /* Espaciados */
+            gap-[20px_12px]
+
+            /* Responsive Paddings */
+            px-3 py-4
             xl:p-[100px_250px_250px_300px] xl:grid-cols-4 xl:grid-rows-2
             lg:p-[100px_150px_250px_150px]
             md:p-[50px_50px_200px_50px]
-            sm:p-[50px_50px_200px_50px]">
+            sm:p-[50px_50px_200px_50px]
+            ">
                 {sections.map((section) => (
                     <ReportSectionCard
                     sectionOnClick={() => {
@@ -52,6 +61,7 @@ export default function ReportsPage(){
                     />
                 ))}
             </section>
+
             {/* Modales */}
             {modalType && (
             <Modal
@@ -88,25 +98,81 @@ export default function ReportsPage(){
             />
             )}
                 {modalType === "reportUsers" &&(
-                <ReportUsersModal />
+                <ReportUsersModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
                 {modalType === "reportProducts" &&(
-                <ReportProductsModal />
+                <ReportProductsModal
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }} />
                 )}
                 {modalType === "reportCategories" &&(
-                <ReportCategoriesModal />
+                <ReportCategoriesModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
                 {modalType === "reportSubcategories" &&(
-                <ReportSubcategoriesModal />
+                <ReportSubcategoriesModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
                 {modalType === "reportWarranties" &&(
-                <ReportWarrantiesModal />
+                <ReportWarrantiesModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
                 {modalType === "reportSuppliers" &&(
-                <ReportSuppliersModal />
+                <ReportSuppliersModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
                 {modalType === "reportTranformations" &&(
-                <ReportTranformationsModal />
+                <ReportTranformationsModal 
+                cancelButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}
+                confirmButtonOnClick={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
             </Modal>
             )}
