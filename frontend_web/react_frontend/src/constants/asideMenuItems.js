@@ -15,11 +15,14 @@ export const firstSectionItems = [
     { name:"Productos", path:"/products", icon: asideIcons.productsIcon, alt:""},
     { name:"Categorias", path:"/categories", icon: asideIcons.categoriesIcon, alt:""},
     { name:"Subcategorias", path:"/subcategories", icon: asideIcons.subcategoriesIcon, alt:""},
+];
+
+export const extendedSectionItems    = [
     { name:"Informes", path:"/reports", icon: asideIcons.reportsIcon, alt:""},
     { name:"Garantías", path:"/warranties", icon: asideIcons.warrantiesIcon, alt:""},
     { name:"Proveedores", path:"/suppliers", icon: asideIcons.suppliersIcon, alt:""},
     { name:"Transformaciones", path:"/transformations", icon: asideIcons.transformationsIcon, alt:""},
-];
+]
 
 export const secondSectionItems = [
     { name:"Ayuda", path:"/help", icon: asideIcons.helpIcon, alt:"Icono dee la seccion de ayuda"},

@@ -3,7 +3,7 @@ import Aside from "./Aside";
 export default function Layout({avatarOnClick, children}){
     return(
         // Container 
-        <div className="w-full h-full grid grid-cols-1 grid-rows-[1fr_100px]
+        <div className="w-full h-full grid grid-cols-1 grid-rows-[1fr_80px]
         md:grid-cols-[120px_1fr] md:grid-rows-1
         xl:grid-cols-[270px_85%] xl:grid-rows-1
         ">
