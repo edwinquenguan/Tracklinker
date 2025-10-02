@@ -1,6 +1,6 @@
 export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyCreateDate, warrantyStatusIcon, warrantyStatus, onClick}) {
     return(
-        <div className="max-w-80 h-50 max-h-56 p-4 flex flex-col gap-2 rounded-xl shadow-gray-400 shadow-sm border">
+        <section className="w-72 h-50 max-h-72 p-4 flex flex-col gap-2 rounded-xl shadow-gray-400 shadow-sm border">
             <span className="text-lg font-semibold dark:text-white">ID: {warrantyId}</span>
             <span className="text-lg font-medium">{warrantyRequirement}</span>
             <div className="flex gap-2 text-gray-600">
@@ -21,6 +21,6 @@ export default function WarrantyCard({warrantyId, warrantyRequirement, warrantyC
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

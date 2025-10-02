@@ -1,55 +1,43 @@
-import { useEffect, useState } from "react";
-import { getAllWarranties } from "../../services/getAllWarranties";
+// Hooks
+import { useState } from "react";
+import { useWarranties } from "./hooks/useWarranties";
+// Iconos
 import { warrantiesIcons} from "../../assets/icons/mainIcons";
+// Componentes
 import Layout from "../../globals/components/Layout/Layout";
+import WarrantyCard from "./components/ui/WarrantyCard";
+import TopSection from "../../globals/components/ui/TopSection";
+// Modales
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
-import FormField from "../../globals/components/ui/FormField";
-import WarrantyCard from "../../globals/components/ui/WarrantyCard";
-import TopSection from "../../globals/components/ui/TopSection";
+import AddWarrantyModal from "./components/modals/AddWarrantyModal";
 // import { warranties } from "../data/warranties";
 
 export default function WarrantiesPage(){
-    const [warranties, setWarranties] = useState([]);
+    
+    const { warranties, error, loading } = useWarranties();
     const [selectedWarranty, setSelectedWarranty] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [modalType, setModalType] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
-    // Esto llama a la función getWarranties y espera a obtener toda los datos y los almacena en "data"
-    useEffect(() => {
-        async function fetchWarranties() {
-            try {
-                setLoading(true)
-                const data = await getAllWarranties();
-                setWarranties(data);
-                console.log(data)
-            } catch (error) {
-                setError(error.message);
-            }
-        }
-
-    fetchWarranties();
-    }, []);
 
     const openModal = (warranty, type) => {
         setSelectedWarranty(warranty);
         setModalType(type);
     };
-    // Y esto cierra la modal y quita los datos del usuario seleccionado
+    
     const closeModal = () => {
         setSelectedWarranty(null);
         setModalType(null);
     };
 
-    if(error) {
-
-    }
-
     return(
-        <Layout>
+        <Layout
+        avatarOnClick={ () => {
+            openModal(null, "user")
+            setIsOpen(true)
+        }}>
             <TopSection 
             sectionName={"Garantías"}
             addButtonIcon={warrantiesIcons.addWarrantyIcon}
@@ -84,7 +72,7 @@ export default function WarrantiesPage(){
             {modalType && (
                 <Modal
                 title={
-                    modalType === "filter"
+                    modalType === "user"
                     ? "Configuración"
                     : modalType === "filter"
                     ? "Filtrar"
@@ -120,57 +108,11 @@ export default function WarrantiesPage(){
                     </FilterModal>
                 )}
                 {modalType === "add" && (
-                    <div className="flex flex-col items-center">
-                        <form action="" className="flex flex-col gap-1">
-
-                            <FormField
-                            labelText={"Serial"}
-                            placeholder={"10KQ34012414"} 
-                            id={"serial"}
-                            />
-
-                            <FormField
-                            labelText={"Modelo"}
-                            placeholder={"10KQ3400"} 
-                            id={"model"}
-                            />
-
-                            <FormField
-                            labelText={"Nombre del Cliente"}
-                            placeholder={"Miguel Arnulfo Pérez"} 
-                            id={"customer"}
-                            />
-
-                            <span>Requerimiento</span>
-                            <input 
-                            type="text" 
-                            name="requirement" 
-                            id="requirement_input" 
-                            placeholder="Escribe aqui el requerimiento..."
-                            className="h-48 w-64 p-2 text-sm border rounded-lg text-clip"/>
-
-                        </form>
-
-                        {/* Botones */}
-                        <div className="flex gap-2 pt-5">
-                            <button 
-                                className="bg-black text-white px-5 py-3 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Confirmar
-                            </button>
-                            <button
-                                className="px-5 py-3 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200" 
-                                onClick={() =>{
-                                    closeModal()
-                                    setIsOpen(false)
-                                }}>
-                                    Cancelar
-                            </button>
-                        </div>
-                    </div>
+                <AddWarrantyModal 
+                onCloseModal={() => {
+                    closeModal()
+                    setIsOpen(false)
+                }}/>
                 )}
 
                 {modalType === "info" && (
