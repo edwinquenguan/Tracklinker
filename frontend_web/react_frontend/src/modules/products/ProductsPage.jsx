@@ -16,85 +16,97 @@ import EditProductModal from "./components/modals/EditProductModal";
 import ProductsFilterModal from "./components/modals/ProductsFilterModal";
 import DeleteProductModal from "./components/modals/DeleteProductModal";
 
-export default function ProductsPage(){
+export default function ProductsPage() {
+  const { products, loading, error } = useCatalog();
+  const { modalType, selectedProduct, isOpen, openModal, closeModal } =
+    useModal();
 
-    const { products, loading, error } = useCatalog();
-    const { modalType, selectedProduct, isOpen, openModal, closeModal } = useModal();
+  return (
+    <Layout
+      avatarOnClick={() => {
+        openModal(null, "user");
+      }}
+    >
+      <TopSection
+        sectionName={"Productos"}
+        addButtonIcon={productsIcons.addProductIcon}
+        addButtonText={"Agregar Producto"}
+        createOnClick={() => {
+          openModal(null, "add");
+        }}
+        filterOnClick={() => {
+          openModal(null, "filter");
+        }}
+      />
+      {/* Contenedor de la tabla */}
+      <section
+        className="max-h-[95%] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
+            dark:border-[#303033]"
+      >
+        <ProductsTable
+          products={products}
+          editButtonOnClick={(product) => {
+            openModal(product, "edit");
+          }}
+          deleteButtonOnClick={(product) => {
+            openModal(product, "delete");
+          }}
+        />
+      </section>
 
-    return(
-        <Layout
-        avatarOnClick={ () => {
-            openModal(null, "user")
-        }} 
-        >
-            <TopSection
-            sectionName={"Productos"}
-            addButtonIcon={productsIcons.addProductIcon}
-            addButtonText={"Agregar Producto"}
-            createOnClick={ () => {
-                openModal(null, "add")
-            }}
-            filterOnClick={ () => {
-                openModal(null, "filter")
-            }}
-            />
-            {/* Contenedor de la tabla */}
-            <section className="max-h-[95%] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
-            dark:border-[#303033]">
-                <ProductsTable
-                products={products} 
-                editButtonOnClick={(product) => {
-                    openModal(product, "edit")
-                }}
-                deleteButtonOnClick={(product) => {
-                    openModal(product, "delete")
-                }}/>
-            </section>
-
-            {/* Modales */}
-            {isOpen && (
-                <Modal
-                title={
-                    modalType === "user"
-                    ? "Configuración"
-                    : modalType === "filter"
-                    ? "Filtrar"
-                    : modalType === "add"
-                    ? "Agregar Producto"
-                    : modalType === "edit"
+      {/* Modales */}
+      {isOpen && (
+        <Modal
+          title={
+            modalType === "user"
+              ? "Configuración"
+              : modalType === "filter"
+                ? "Filtrar"
+                : modalType === "add"
+                  ? "Agregar Producto"
+                  : modalType === "edit"
                     ? "Editar Producto"
                     : "Eliminar Producto"
-                }
-                type={modalType}
-                isOpen={isOpen}
-                onClose={() => {
-                    closeModal()
-                }}
-                >
-                {modalType === "user" &&(
-                    <ProfileModal
-                    onClose={() => {
-                        closeModal()
-                    }}
-                    />
-                )}
-                {modalType === "filter" && (
-                    <ProductsFilterModal onCloseModal={closeModal} />
-                )}
-                {modalType === "add" && (
-                    <AddProductModal onCloseModal={closeModal} selectedProduct={selectedProduct} />
-                )}
-                {/* Modal para editar el producto */}
-                {modalType === "edit" && 
-                    <EditProductModal onCloseModal={closeModal} selectedProduct={selectedProduct} />
-                }
+          }
+          type={modalType}
+          isOpen={isOpen}
+          onClose={() => {
+            closeModal();
+          }}
+        >
+          {modalType === "user" && (
+            <ProfileModal
+              onClose={() => {
+                closeModal();
+              }}
+            />
+          )}
+          {modalType === "filter" && (
+            <ProductsFilterModal onCloseModal={closeModal} />
+          )}
+          {modalType === "add" && (
+            <AddProductModal
+              onCloseModal={closeModal}
+              selectedProduct={selectedProduct}
+            />
+          )}
+          {/* Modal para editar el producto */}
+          {modalType === "edit" && (
+            <EditProductModal
+              onCloseModal={closeModal}
+              selectedProduct={selectedProduct}
+            />
+          )}
 
-                {/* Modal para eliminar el producto */}
-                {modalType === "delete" && (
-                    <DeleteProductModal onCloseModal={closeModal} selectedProduct={selectedProduct} />
-                )}
-                </Modal>
-            )}
-        </Layout>
-    )
+          {/* Modal para eliminar el producto */}
+          {modalType === "delete" && (
+            <DeleteProductModal
+              onCloseModal={closeModal}
+              selectedProduct={selectedProduct}
+            />
+          )}
+        </Modal>
+      )}
+    </Layout>
+  );
 }

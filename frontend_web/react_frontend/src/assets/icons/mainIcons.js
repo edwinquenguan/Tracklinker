@@ -37,51 +37,50 @@ import editInfoIcon from "./main/actions/edit-info-icon.svg";
 import deleteIcon from "./main/actions/delete-user-icon.svg";
 import filterIcon from "./main/actions/filter-icon.svg";
 import addIcon from "./main/actions/add-icon.svg";
-import uploadIcon from "./main/actions/upload-icon.svg"
-
+import uploadIcon from "./main/actions/upload-icon.svg";
 
 export const dashboardIcons = {
-    arrowDown,
-    arrowUp,
-    firstChart,
-    secondChart,
-    thirdChart,
-    fourthChart,
-    barChart,
-    barChart2,
-    waveChart,
-    waveChart2,
-    purpleCircle,
-    lightPurpleCircle,
-    grayCircle,
+  arrowDown,
+  arrowUp,
+  firstChart,
+  secondChart,
+  thirdChart,
+  fourthChart,
+  barChart,
+  barChart2,
+  waveChart,
+  waveChart2,
+  purpleCircle,
+  lightPurpleCircle,
+  grayCircle,
 };
 
 export const usersIcons = {
-    addUserIcon,
-    addressIcon,
-    phoneIcon,
-    rolIcon,
-    cityIcon,
+  addUserIcon,
+  addressIcon,
+  phoneIcon,
+  rolIcon,
+  cityIcon,
 };
 
 export const productsIcons = {
-    addProductIcon,
-    barcodeReaderIcon,
-    barcodeIcon,
+  addProductIcon,
+  barcodeReaderIcon,
+  barcodeIcon,
 };
 
 export const actionsIcons = {
-    moreInfoIcon,
-    editInfoIcon,
-    deleteIcon,
-    filterIcon,
-    addIcon,
-    uploadIcon,
+  moreInfoIcon,
+  editInfoIcon,
+  deleteIcon,
+  filterIcon,
+  addIcon,
+  uploadIcon,
 };
 
 export const warrantiesIcons = {
-    addWarrantyIcon,
-    incompleteIcon,
-    inprocessIcon,
-    completeIcon,
+  addWarrantyIcon,
+  incompleteIcon,
+  inprocessIcon,
+  completeIcon,
 };

@@ -4,10 +4,10 @@ import errorIcon from "./modal/error-modal-image.svg";
 import githubIcon from "./modal/github_icon.svg";
 import redirectIcon from "./modal/open-link-icon.svg";
 
-export const modalIcons ={
-    closeIcon,
-    confirmIcon,
-    errorIcon,
-    githubIcon,
-    redirectIcon,
-}
+export const modalIcons = {
+  closeIcon,
+  confirmIcon,
+  errorIcon,
+  githubIcon,
+  redirectIcon,
+};

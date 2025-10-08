@@ -15,22 +15,22 @@ import infoIcon from "./aside/more-info-icon.svg";
 import helpIcon from "./aside/help-icon.svg";
 import themesIcon from "./aside/themes-icon.svg";
 
-// Esta constante exporta los iconos del aside para usarlos en cualquier lugar 
+// Esta constante exporta los iconos del aside para usarlos en cualquier lugar
 export const asideIcons = {
-    avatarIcon,
-    homeIcon,
-    usersIcon,
-    dashboardIcon,
-    categoriesIcon,
-    subcategoriesIcon,
-    productsIcon,
-    reportsIcon,
-    settingsIcon,
-    suppliersIcon,
-    transformationsIcon,
-    warrantiesIcon,
-    logoutIcon,
-    helpIcon,
-    infoIcon,
-    themesIcon,
+  avatarIcon,
+  homeIcon,
+  usersIcon,
+  dashboardIcon,
+  categoriesIcon,
+  subcategoriesIcon,
+  productsIcon,
+  reportsIcon,
+  settingsIcon,
+  suppliersIcon,
+  transformationsIcon,
+  warrantiesIcon,
+  logoutIcon,
+  helpIcon,
+  infoIcon,
+  themesIcon,
 };

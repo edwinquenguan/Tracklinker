@@ -5,9 +5,9 @@ import tracklinkerIcon from "./login/logo.svg";
 import emailIcon from "./login/email-icon.svg";
 
 export const loginIcons = {
-    tracklinkerIcon,
-    userIcon,
-    showPasswordIcon,
-    hidePasswordIcon,
-    emailIcon,
-}
+  tracklinkerIcon,
+  userIcon,
+  showPasswordIcon,
+  hidePasswordIcon,
+  emailIcon,
+};

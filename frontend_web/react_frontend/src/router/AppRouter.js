@@ -13,46 +13,46 @@ import TransformationsPage from "../modules/transformations/TransformationsPage"
 import HelpPage from "../modules/help/HelpPage";
 
 export default function AppRouter() {
-    return(
+  return (
     <Routes>
-        {/* Ruta no existente lo que haria es enviarlo al login */}
-        <Route path="*" element={<Navigate to="/login" />} />
-        
-        { /* Página Login o de Inicio de Sesión */ }
-        <Route path="/login" element={<Login />} />
+      {/* Ruta no existente lo que haria es enviarlo al login */}
+      <Route path="*" element={<Navigate to="/login" />} />
 
-        {/* Página Principal */}
-        <Route path="/home" element={<HomePage />} />
+      {/* Página Login o de Inicio de Sesión */}
+      <Route path="/login" element={<Login />} />
 
-        {/* Página Panel de Control */}
-        <Route path="/dashboard" element={<DashboardPage />} />
+      {/* Página Principal */}
+      <Route path="/home" element={<HomePage />} />
 
-        {/* Página Usuarios */}
-        <Route path="/users" element={<UsersPage />} />
+      {/* Página Panel de Control */}
+      <Route path="/dashboard" element={<DashboardPage />} />
 
-        {/* Página Productos */}
-        <Route path="/products" element={<ProductsPage />} />
+      {/* Página Usuarios */}
+      <Route path="/users" element={<UsersPage />} />
 
-        {/* Página Categorias */}
-        <Route path="/categories" element={<CategoriesPage />} />
+      {/* Página Productos */}
+      <Route path="/products" element={<ProductsPage />} />
 
-        {/* Página Subcategorias */}
-        <Route path="/subcategories" element={<SubcategoriesPage />} />
+      {/* Página Categorias */}
+      <Route path="/categories" element={<CategoriesPage />} />
 
-        {/* Página Reportes */}
-        <Route path="/reports" element={<ReportsPage />} />
+      {/* Página Subcategorias */}
+      <Route path="/subcategories" element={<SubcategoriesPage />} />
 
-        {/* Página Garantias */}
-        <Route path="/warranties" element={<WarrantiesPage />} />
+      {/* Página Reportes */}
+      <Route path="/reports" element={<ReportsPage />} />
 
-        {/* Página Proveedores */}
-        <Route path="/suppliers" element={<SuppliersPage />} />
+      {/* Página Garantias */}
+      <Route path="/warranties" element={<WarrantiesPage />} />
 
-        {/* Página Transformaciones */}
-        <Route path="/transformations" element={<TransformationsPage />} />
-        
-        {/* Página Ayuda */}
-        <Route path="/help" element={<HelpPage />} />
+      {/* Página Proveedores */}
+      <Route path="/suppliers" element={<SuppliersPage />} />
+
+      {/* Página Transformaciones */}
+      <Route path="/transformations" element={<TransformationsPage />} />
+
+      {/* Página Ayuda */}
+      <Route path="/help" element={<HelpPage />} />
     </Routes>
-    );
+  );
 }
