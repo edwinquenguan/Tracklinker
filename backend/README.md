@@ -24,3 +24,17 @@ deactivate
 
 # Si agregas nuevas dependencias utiliza el siguiente comando para actualizar el requirements.txt
 pip freeze > requirements.txt
+
+
+```
+
+Para nombrar cualquier cosa aqui en el backend se debe seguir este formato:
+
+| Tipo de elemento                        | Estilo recomendado                        | Ejemplo correcto                | Ejemplo incorrecto        |
+| --------------------------------------- | ----------------------------------------- | ------------------------------- | ------------------------  |
+| **Clases**                              | `PascalCase`                              | `class UserModel:` ✅             | `class user_model:` ❌    |
+| **Funciones / métodos**                 | `snake_case`                              | `def get_all_users():`  ✅         | `def GetAllUsers():` ❌   |
+| **Variables**                           | `snake_case`                              | `user_name = "Juan"` ✅           | `UserName = "Juan"` ❌    |
+| **Constantes**                          | `UPPER_CASE`                              | `DB_HOST = "localhost"` ✅        | `dbHost = "localhost"` ❌ |
+| **Módulos (archivos .py)**              | `snake_case`                              | `user_model.py`    ✅             | `UserModel.py` ❌         |
+| **Paquetes (carpetas con **init**.py)** | `snake_case`                              | `core`, `models`, `controllers` | `Core`, `Models` ❌       |
