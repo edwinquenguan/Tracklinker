@@ -6,7 +6,7 @@ from app.core.config import settings
 def get_connection():
     try:
         connection = mysql.connector.connect(
-            host=settings.DB_HOST,
+            host=settings.DB_HOST or "localhost" ,
             port=settings.DB_PORT,
             user=settings.DB_USER,
             password=settings.DB_PASSWORD,
