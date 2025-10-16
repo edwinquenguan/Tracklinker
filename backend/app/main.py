@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from app.core.database import get_connection
-from app.models.users_model import get_all_users
+from app.routes import user_routes
 
+# Instancia principal de la app FastAPI
 app = FastAPI(
     title="API con FastAPI y MySQL",
     description="Api para tracklinker",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Endpoint para probar conexión a la base de datos
@@ -22,16 +23,12 @@ def ping_db():
             "status": "Error al intentar conectarse a la base de datos"
         }
     
-# Endpoint raíz
+# Endpoint raíz para probar ejecución de la API
 @app.get("/")
 def root():
     return {
         "message": "API funcionando"
     }
 
-@app.get("/users")
-def get_users():
-    data = get_all_users()
-    return{
-        "data": data
-    }
+# Rutas para el modúlo de Usuarios
+app.include_router(user_routes.router)
