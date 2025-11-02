@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.user_model import User
 from jose import jwt, JWTError
+from datetime import datetime
 import bcrypt
 
 class UserRepository:
@@ -17,9 +18,9 @@ class UserRepository:
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            return results
+            return None, results
         except Exception as e:
-            print(f"❌ Error al ejecutar la consulta: {e}")
+            return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
@@ -36,9 +37,9 @@ class UserRepository:
         try:
             cursor.execute(query, (user_id,))
             result = cursor.fetchall()
-            return result
+            return None, result
         except Exception as e:
-            print(f"❌ Error al ejecutar la consulta: {e}")
+            return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
@@ -54,50 +55,50 @@ class UserRepository:
         try:
             cursor.execute(query)
             result = cursor.fetchall()
-            return result
+            return None, result
         except Exception as e:
-            print(f"❌ Error al ejecutar la consulta: {e}")
+            return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
 
     # Crear usuario
     @staticmethod
-    def create(user_data: dict):
+    def create(user_data: User):
 
-        # Validación de que la contraseña existe
-        if password not in user_data:
-            raise ValueError("La contraseña es necesaria")
+        data = user_data.model_dump()
 
         connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor()
 
-        # Arrays vacios para almacenar los datos del usuario
-        fields = []
-        values = []
-        placeholders = []
-
-        for key, value in user_data.items():
-            fields.append(key)
-            placeholders.append("%s")
-            values.append(value)
+        # Validar email duplicado
+        cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (data["user_email"],))
+        if cursor.fetchone():
+            cursor.close()
+            connection.close()
+            return None, False, "El correo ya está registrado"
 
         # Hashear la contraseña
-        password = user_data["password"].encode("utf-8")
-        hash = bcrypt.hashpw(password, bcrypt.gensalt())
-        user_data["password"] = hash.decode("utf-8")
+        password = data["user_password"].encode("utf-8")
+        data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
+        
+        # Fecha actual para indicar la hora a la que se creo el usuario
+        data["user_date"] = datetime.now()
+        
+        # Arrays vacios para almacenar los datos del usuario
+        fields = list(data.keys())
+        placeholders = ["%s"] * len(fields)
+        values = list(data.values())
 
         # Petición a la base de datos
         query = f"INSERT INTO USERS ({','.join(fields)}) VALUES({','.join(placeholders)})"
 
-        cursor.execute(query)
-
         try:
-            cursor.execute(query)
-            result = cursor.commit()
-            return result
+            cursor.execute(query, values)
+            connection.commit()
+            return None, True, "Usuario creado correctamente"
         except Exception as e:
-            print(f"❌ Error al ejecutar la consulta: {e}")
+            return f"❌ Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
@@ -105,26 +106,33 @@ class UserRepository:
     # Actualizar la información del usuario
     @staticmethod
     def update(user_id: int, user_data: dict):
+
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        fields = []
-        values = []
+        # Verificar si existe el usuario
+        cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            cursor.close()
+            connection.close()
+            return "Usuario no encontrado", None, None
 
-        if user_data.password:
-            hash = 
+        fields = list(user_data.keys())
+        placeholders = ["%s"] * len(fields)
+        values = list(user_data.values())
 
         values.append(user_id)
-        query = "UPDATE USERS SET {user_data} WHERE user_id = ({values})"
+        query = "UPDATE USERS SET {','.join(fields)} WHERE user_id = ({values})"
 
         try:
-            cursor.execute(query, (user_id))
+            cursor.execute(query, values)
             cursor.commit()
             cursor.execute("SELECT * FROM USERS WHERE id = %s", (user_id,))
             result = cursor.fetchone()
-            return result
+            return None, result
         except Exception as e:
-            print(f"❌ Error al ejecutar la consulta: {e}")
+            return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
@@ -134,16 +142,23 @@ class UserRepository:
     @staticmethod
     def delete(user_id: int):
         connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            cursor.close()
+            connection.close()
+            return "Usuario no encontrado", False, None
 
         query = "DELETE FROM USERS WHERE user_id = %s"
 
         try:
-            cursor.execute(query, (user_id))
-            result = cursor.commit()
-            return result
+            cursor.execute(query, (user_id,))
+            connection.commit()
+            return None, True, "Usuario eliminado correctamente"
         except Exception as e:
-            print(f"❌ Error la intentar ejecutar la consulta {e}")
+            return f"❌ Error la intentar ejecutar la consulta {e}", False, None
         finally:
             cursor.close()
             connection.close()
