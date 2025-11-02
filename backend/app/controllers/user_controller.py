@@ -1,39 +1,63 @@
 from fastapi import HTTPException
 from app.repository.user_repository import UserRepository
+from app.models.user_model import User
 
-class UserController:        
+class UserController:
 
     @staticmethod
-    def get_user_by_id(user_id: int):
-        user = UserRepository.find_by_id(user_id)
-        if not user:
-            raise HTTPException(status_code=404, detail="Usuario no encontrado")
-        return user
+    def login(user_email: str, user_password: str):
+        error, email = UserRepository.find_by_email()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return{
+            "data": email
+        }
     
     @staticmethod
     def get_all_users():
-        user = UserRepository.find_all_users()
-        if not user:
-            raise HTTPException(status_code=404, detail="No se pudo encontrar los usuarios")
-        return user
+        error, users = UserRepository.find_all_users()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": users
+        }
+
+    @staticmethod
+    def get_user_by_id(user_id: int):
+        error, user = UserRepository.find_by_id(user_id)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+           "data": user
+        }
+    
     
     @staticmethod
-    def create_user():
-        user = UserRepository.create()
-        if not user:
-            raise HTTPException(status_code=404, detail="No se pudo crear el usuario")
-        return user
+    def create_user(user_data: User):
+        error, success, message = UserRepository.create(user_data)
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return {
+            "success": success,
+            "message": message
+        }
     
     @staticmethod
-    def update_user():
-        user = UserRepository.update()
-        if not user:
-            raise HTTPException(status_code=404, detail="No se pudo actualizar el usuario")
-        return user
+    def update_user(user_id: int, user_data: dict):
+        error, message, user = UserRepository.update(user_id, user_data)
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return {
+            "message": message,
+            "data": user
+        }
     
     @staticmethod
-    def delete_user():
-        user = UserRepository.delete()
-        if not user:
-            raise HTTPException(status_code=404, detail="No se pudo eliminar el usuario")
-        return user
+    def delete_user(user_id: int):
+        error, success, message = UserRepository.delete(user_id)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "success": success,
+            "message": message
+        }
