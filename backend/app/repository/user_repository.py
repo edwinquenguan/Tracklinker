@@ -1,20 +1,33 @@
 from app.core.database import get_connection
 from app.models.user_model import User
-from pydantic import EmailStr
-from jose import jwt, JWTError
 from datetime import datetime
 import bcrypt
 
 class UserRepository:
 
-# Obtener todos los usuarios
+    # Obtener todos los usuarios
     @staticmethod
     def find_all_users():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
-        query = "SELECT * FROM USERS"
+        query = """
+        SELECT
+            r.rol_name,
+            u.user_id,
+            u.user_name,
+            u.user_first_surname,
+            u.user_second_surname,
+            u.user_phone,
+            u.user_email,
+            u.user_address,
+            u.user_city,
+            u.user_date
+        FROM USERS AS u 
+        INNER JOIN ROLES AS r 
+        ON u.rol_id = r.rol_id
+        """
 
         try:
             cursor.execute(query)
@@ -45,25 +58,26 @@ class UserRepository:
             cursor.close()
             connection.close()
 
+    # Obtener un usuario mediante el correo
     @staticmethod
-    def find_by_email(user_email: EmailStr):
+    def find_by_email(user_email: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
-        query = "SELECT * FROM USERS WHERE user_email = %s"
+        query = "SELECT user_email, user_password FROM USERS WHERE user_email = %s"
 
         try:
-            cursor.execute(query)
-            result = cursor.fetchall()
-            return None, result
+            cursor.execute(query, (user_email,))
+            result = cursor.fetchone()
+            return result
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"❌ Error al ejecutar la consulta: {e}"
         finally:
             cursor.close()
             connection.close()
 
-    # Crear usuario
+    # Crear un usuario
     @staticmethod
     def create(user_data: User):
 
@@ -104,7 +118,7 @@ class UserRepository:
             cursor.close()
             connection.close()
 
-    # Actualizar la información del usuario
+    # Actualizar la información de un usuario
     @staticmethod
     def update(user_id: int, user_data: dict):
 
@@ -114,30 +128,36 @@ class UserRepository:
         # Verificar si existe el usuario
         cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
         user = cursor.fetchone()
+
         if not user:
             cursor.close()
             connection.close()
             return "Usuario no encontrado", None, None
 
+        # Campos vacios para almacenar todo lo que va a actualizar
         fields = list(user_data.keys())
-        placeholders = ["%s"] * len(fields)
         values = list(user_data.values())
 
+        set_clause = ",".join([f"{field} = %s" for field in fields])
         values.append(user_id)
-        query = "UPDATE USERS SET {','.join(fields)} WHERE user_id = ({values})"
+
+        query = f"UPDATE USERS SET {set_clause} WHERE user_id = %s"
 
         try:
             cursor.execute(query, values)
-            cursor.commit()
-            cursor.execute("SELECT * FROM USERS WHERE id = %s", (user_id,))
+            connection.commit()
+
+            # Consultar y devolver el usuario que actualizamos
+            cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
             result = cursor.fetchone()
-            return None, result
+
+            return None, "Usuario actualizado correctamente" ,result
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            connection.rollback()
+            return f"❌ Error al ejecutar la consulta: {e} {query}", None, None
         finally:
             cursor.close()
             connection.close()
-
 
     # Eliminar un usuario
     @staticmethod
