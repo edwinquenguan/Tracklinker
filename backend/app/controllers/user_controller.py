@@ -1,8 +1,10 @@
-from fastapi import HTTPException, Depends
 from datetime import timedelta
+from fastapi import HTTPException, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from app.repository.user_repository import UserRepository
 from app.models.user_model import User
-from fastapi.security import OAuth2PasswordRequestForm
+from app.core.security import create_access_token
+from app.core.config import settings
 
 class UserController:
 
@@ -10,7 +12,7 @@ class UserController:
     def login(form_data: OAuth2PasswordRequestForm = Depends()):
         error, email = UserRepository.find_by_email(form_data.email)
 
-        expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE)
+        expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE)
         token = create_access_token({"sub": form_data.email}, expires_delta=expires)
 
         if error:
