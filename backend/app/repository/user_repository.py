@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 from app.models.user_model import User
+from pydantic import EmailStr
 from jose import jwt, JWTError
 from datetime import datetime
 import bcrypt
@@ -45,7 +46,7 @@ class UserRepository:
             connection.close()
 
     @staticmethod
-    def find_by_email():
+    def find_by_email(user_email: EmailStr):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
