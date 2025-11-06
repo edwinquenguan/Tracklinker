@@ -65,7 +65,17 @@ class UserRepository:
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
-        query = "SELECT user_email, user_password FROM USERS WHERE user_email = %s"
+        query = """
+        SELECT
+            r.rol_name,
+            u.user_id,
+            u.user_email, 
+            u.user_password 
+        FROM USERS AS u 
+        INNER JOIN ROLES AS r 
+        ON r.rol_id = u.rol_id 
+        WHERE user_email = %s
+        """
 
         try:
             cursor.execute(query, (user_email,))
