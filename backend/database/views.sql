@@ -52,5 +52,3 @@ CREATE VIEW get_all_subcategories AS
 	FROM categories AS c
 	INNER JOIN subcategories AS sc
 	ON c.category_id=sc.category_id;
-
-SELECT * FROM get_all_subcategories;
