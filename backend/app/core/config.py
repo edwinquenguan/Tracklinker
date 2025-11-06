@@ -1,6 +1,16 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
+    """
+    Esta clase carga y valida las variables de entorno definidas en el archivo ".env"
+    Simplemente importa `settings` donde lo necesites y accede a sus atributos.
+
+    Ejemplo:
+        from app.core.config import settings
+        print(settings.DB_HOST)
+
+    Además si falta alguna de estas variables Pydantic mostrara un error antes de iniciar la app
+    """
     DB_HOST: str
     DB_PORT: int
     DB_USER: str
