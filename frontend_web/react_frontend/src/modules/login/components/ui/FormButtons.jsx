@@ -14,7 +14,7 @@ export default function FormButtons({getIntoButtonOnclick, recoverButtonOnclick}
                 onClick={recoverButtonOnclick}
                 className="flex justify-center px-8 py-4 text-base rounded-xl transition-all duration-300
                 hover:bg-stone-300
-                dark:text-white"
+                dark:text-white dark:hover:bg-[#202022a6]"
             >
                 ¿Olvidaste tu Contraseña?
             </button>
