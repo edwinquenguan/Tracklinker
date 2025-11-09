@@ -8,6 +8,7 @@ cd backend
 python -m venv venv
 
 # 3: Activar el entorno virtual 
+
 # En Windows:
 venv\Scripts\activate
 
@@ -18,7 +19,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # 5: Iniciar el servidor de FastAPI
-uvicorn app.main:app --reload
+
+
 
 # 6: Y al terminar se desactivar el entorno virtual
 deactivate
