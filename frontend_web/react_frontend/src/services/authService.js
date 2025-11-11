@@ -27,11 +27,13 @@ export async function login(email, password) {
     // Guardamos el token en localStorage con su tipo
     localStorage.setItem("token", `${data.token_type} ${data.access_token}`)
     
-    return data;
+    return { error: null, data };
 
   } catch (error) {
     console.error("Error", error)
-    return null
+    return {
+      "error": error
+    }
   }
 };
 
