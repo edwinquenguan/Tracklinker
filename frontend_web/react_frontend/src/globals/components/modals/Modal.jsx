@@ -36,9 +36,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
                   : "flex items-center justify-center"
             }
         `}
-      onClick={() => {
-        setClosing(true);
-      }}
+      onClick={handleClose}
     >
       {/* Card blanca o modal */}
       {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
