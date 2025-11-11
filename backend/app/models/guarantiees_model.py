@@ -10,5 +10,6 @@ class Guarantee(BaseModel):
     warranty_address: str
     warranty_description : str
     warranty_link_attachments: str
+    warranty_city: str
     warranty_date: Optional[datetime] = None
     warranty_status: int 

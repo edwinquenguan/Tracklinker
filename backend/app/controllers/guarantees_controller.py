@@ -1,8 +1,8 @@
 from datetime import timedelta
 from fastapi import HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
-from app.repository.garranties_repository import GaranteeRepository
-from app.models.garranties_model import Guarantee
+from app.repository.guarantees_repository import GuaranteeRepository
+from app.models.guarantiees_model import Guarantee
 from app.repository.user_repository import UserRepository
 from app.core.security import create_access_token
 from app.core.config import settings
@@ -26,10 +26,29 @@ class GuarantieeController:
         }
     
     @staticmethod
-    def get_all_garranties():
-        error, garranties = GaranteeRepository.find_all_garranties()
+    def get_all_guarantee():
+        error, guarantiee = GuaranteeRepository.find_all_guarantiee()
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {
-            "data": garranties
+            "data": guarantiee
+        }
+    
+    @staticmethod
+    def get_guarantiee_by_id(warranty_incidents_id: int):
+        error, guarantiee = GuaranteeRepository.find_by_id(warranty_incidents_id)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": guarantiee
+        }
+   
+    @staticmethod
+    def create_guarantiee(warranty_data: Guarantee):
+        error, success, message = GuaranteeRepository.create(warranty_data)
+        if error:
+            raise HTTPException (status_code=400, detail=error)
+        return{
+            "seccess":success,
+            "message": message
         }
