@@ -6,8 +6,7 @@ export default function ErrorModal({ onClose }) {
       <img src={modalIcons.errorIcon} alt="" className="h-36 w-36" />
       <div className="flex flex-col items-center gap-2 dark:text-white">
         <span className="text-xl font-medium">
-          {" "}
-          Usuario o Contraseña Incorrectos{" "}
+          Usuario o Contraseña Incorrectos
         </span>
         <p>Verifique su usuario o contraseña</p>
       </div>
