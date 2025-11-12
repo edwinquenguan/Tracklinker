@@ -52,3 +52,25 @@ class GuarantieeController:
             "seccess":success,
             "message": message
         }
+
+    @staticmethod
+    def update_garantee(warranty_incidents_id:int, warranty_date: dict):
+        error,success, message, warranty= GuaranteeRepository.update(warranty_incidents_id, warranty_date)
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return{
+            "success": success,
+            "message": message
+
+        } 
+    
+    @staticmethod
+    def delete_garantee(warranty_incidents_id:int):
+        error, success, message= GuaranteeRepository.delete(warranty_incidents_id)
+        if error:
+            raise HTTPException(status_code=400, detail= error)
+        return{
+            "success": success,
+            "message": message
+        }
+    

@@ -30,3 +30,13 @@ def create_guarantiee(
     
     ):
     return GuarantieeController.create_guarantiee(warranty_data)
+
+# Endpoint para actualizar la informacion de la incidencia mediante su id
+@router.put("/update/{warranty_incidents_id}")
+def update_garantee(
+    warranty_incidents_id:int,
+    warranty_data:dict
+
+):
+    return GuarantieeController,update_garantee(warranty_incidents_id,warranty_data)
+
