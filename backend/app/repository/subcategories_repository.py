@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 
 class SubcategoriesRepository:
+    
     @staticmethod
     def find_all_subcategories():
         connection = get_connection()
