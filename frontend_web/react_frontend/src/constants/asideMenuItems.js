@@ -89,6 +89,6 @@ export const secondSectionItems = [
     path: "/",
     icon: asideIcons.logoutIcon,
     alt: "Icono para cerrar sesión",
-    onClick: signOut(),
+    onClick: signOut,
   },
 ];
