@@ -40,3 +40,9 @@ def update_garantee(
 ):
     return GuarantieeController,update_garantee(warranty_incidents_id,warranty_data)
 
+@router.delete("/delete/{warranty_incidents_id}")
+def delete_garantee(
+    warranty_incidents_id:int,
+    payload: dict = Depends (require_roles(["Admin"]))
+):
+  return GuarantieeController.delete_garantee(warranty_incidents_id)

@@ -73,3 +73,29 @@ class GuaranteeRepository:
         finally:
             cursor.close()
             connection.close()
+
+   @staticmethod
+   def update(warranty_incidents_id: int, warranty_data: dict):
+
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Construir la consulta de actualización dinámicamente
+        fields = []
+        values = []
+        for key, value in warranty_data.items():
+            fields.append(f"{key} = %s")
+            values.append(value)
+        values.append(warranty_incidents_id)
+
+        query = f"UPDATE WARRANTY_INCIDENTS SET {', '.join(fields)} WHERE warranty_incidents_id = %s"
+
+        try:
+            cursor.execute(query, values)
+            connection.commit()
+            return None, True, "Incidencia actualizada correctamente"
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None, None
+        finally:
+            cursor.close()
+            connection.close()
