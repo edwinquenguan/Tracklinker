@@ -7,6 +7,7 @@ import { actionsIcons } from "../../assets/icons/mainIcons";
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
 import ChartCard from "./components/ui/ChartCard";
+import TinyBarChart from "./components/ui/TinyBarChart";
 import TopSection from "../../globals/components/ui/TopSection";
 // Modales
 import DownloadModal from "./components/modals/DownloadModal";
@@ -133,15 +134,7 @@ export default function DashBoardPage() {
           chart={dashboardIcons.waveChart}
           imageSize={"w-full h-[80%]"}
         />
-        <ChartCard
-          rowSpan={2}
-          colSpan={4}
-          name={"Chart"}
-          metricValue={"2.000"}
-          percentValue={"2.1%"}
-          chart={dashboardIcons.barChart}
-          imageSize={"w-full h-[80%]"}
-        />
+        <TinyBarChart/>
       </section>
 
       {/* Modales */}
