@@ -10,6 +10,7 @@ export default function ChartCard({
   bgColor,
   textColor,
   imageSize,
+  children,
 }) {
   return (
     <section
@@ -37,6 +38,7 @@ export default function ChartCard({
         </NavLink>
       </div>
       <img src={chart} alt="" className={`${imageSize}`} />
+      {children}
     </section>
   );
 }
