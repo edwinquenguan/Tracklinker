@@ -99,3 +99,20 @@ class GuaranteeRepository:
         finally:
             cursor.close()
             connection.close()
+
+   @staticmethod
+   def delete(warranty_incidents_id:int):
+        connection= get_connection()
+        cursor  = connection.cursor()
+        query = """
+        DELETE FROM WARRANTY_INCIDENTS WHERE warranty_incidents_id = %s
+        """
+        try:
+            cursor.execute (query, (warranty_incidents_id,))
+            connection.commit()
+            return None, True, "Incidencia eliminada correctamente"
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None, None
+        finally:
+            cursor.close()
+            connection.close()
