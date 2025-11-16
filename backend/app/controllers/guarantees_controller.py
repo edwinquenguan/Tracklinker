@@ -55,12 +55,12 @@ class GuarantieeController:
 
     @staticmethod
     def update_garantee(warranty_incidents_id:int, warranty_date: dict):
-        error,success, message, warranty= GuaranteeRepository.update(warranty_incidents_id, warranty_date)
+        error, message, warranty= GuaranteeRepository.update(warranty_incidents_id, warranty_date)
         if error:
             raise HTTPException(status_code=400, detail=error)
         return{
-            "success": success,
-            "message": message
+            "message": message,
+            "data": warranty
 
         } 
     

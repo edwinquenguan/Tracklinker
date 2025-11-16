@@ -38,7 +38,7 @@ def update_garantee(
     warranty_data:dict
 
 ):
-    return GuarantieeController,update_garantee(warranty_incidents_id,warranty_data)
+    return GuarantieeController.update_garantee(warranty_incidents_id, warranty_data)
 
 @router.delete("/delete/{warranty_incidents_id}")
 def delete_garantee(
