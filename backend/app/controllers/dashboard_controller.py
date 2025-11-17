@@ -12,3 +12,13 @@ class DashboardController:
         return {
             "data": data
         }
+    
+    @staticmethod
+    def get_all_outputs():
+        error, data = DashboardRepository.find_all_outputs()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return{
+            "data": data
+        }
