@@ -12,7 +12,7 @@ export const getAllUsers = async () => {
 
     try {
         // Consumimos el endpoint y lo almacenamos en res, le pasamos el metodo y el jwt que necesita para traer los datos
-        const res =  await fetch(`${apiUrl}/api/users/`, {
+        const res =  await fetch(`${apiUrl}/users/`, {
             method:"GET",
             headers:{
                 Authorization: `${token}`
