@@ -1,30 +1,28 @@
 import { BarChart, Bar, XAxis } from "recharts";
-import useBarChartData from "../hooks/useBarChartData";
+import useBarChart from "../../hooks/useBarChart";
 import ChartCard from "./ChartCard";
 
-// Grafico de barras 
+// Grafico de barras
 export default function TinyBarChart() {
+  const { barChartData, error } = useBarChart();
 
-  const { barChartData, error} = useBarChartData();
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     // Contenedor del gráfico
     <ChartCard
-    colSpan={4}
-    rowSpan={2}
-    name={"Entradas Mensuales de cada proveedor"}
+      colSpan={4}
+      rowSpan={2}
+      name={"Entradas Mensuales de cada proveedor"}
     >
       {/* Gráfico */}
-      <BarChart
-      width="100%"
-      height="100%"
-      responsive
-      data={barChartData}
-      >
+      <BarChart width="100%" height="100%" responsive data={barChartData}>
         {/* Eje x donde salen los nombres */}
-        <XAxis dataKey={"supplier_name"} fontSize={"6px"} fontWeight={800}/>
+        <XAxis dataKey={"supplier_name"} fontSize={"6px"} fontWeight={800} />
         {/* Barras del gráfico */}
-        <Bar dataKey="orders" fill="#4050e7"/>
+        <Bar dataKey="orders" fill="#4050e7" />
       </BarChart>
     </ChartCard>
   );
