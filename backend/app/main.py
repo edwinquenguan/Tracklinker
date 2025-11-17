@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import get_connection
-from app.routes import guarantees_routes, user_routes, auth_routes
+from app.routes import guarantees_routes, user_routes, auth_routes, output_details_routes
 
 # Instancia principal de la app FastAPI
 app = FastAPI(
@@ -45,3 +45,5 @@ app.include_router(auth_routes.router)
 app.include_router(user_routes.router)
 # Rutas para el modúlo de Garantias
 app.include_router(guarantees_routes.router)
+#Rutas para tabla de detalles de salida
+app.include_router(output_details_routes.router)
