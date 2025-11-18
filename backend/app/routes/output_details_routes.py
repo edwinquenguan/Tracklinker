@@ -41,7 +41,7 @@ def create_outputDetails(
 def update_outputDetails(
     output_details_id: int,
     outputDetails_data: dict,
-   #payload: dict= Depends(require_roles(["Admin"]))
+    payload: dict= Depends(require_roles(["Admin"]))
 ):
     return OutputDetailsController.update_outputDetails(output_details_id, outputDetails_data)
 
@@ -50,6 +50,6 @@ def update_outputDetails(
 @router.delete("/delete{output_details_id}")
 def delete_outputDetails(
     output_details_id:int,
-   #payload: dict= Depends(require_roles(["Admin"]))
+    payload: dict= Depends(require_roles(["Admin"]))
 ):
     return OutputDetailsController.delete_outputDetails(output_details_id)

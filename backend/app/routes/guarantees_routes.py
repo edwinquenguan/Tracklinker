@@ -18,7 +18,10 @@ def get_all_guarantiee(payload: dict=Depends(require_roles(["Admin"]))):
 
 # Endpoint para ontener solicitud por mediante id
 @router.get("/{warranty_incidents_id}")
-def get_guarantiee_by_id(warranty_incidents_id: int):
+def get_guarantiee_by_id(
+    warranty_incidents_id: int,
+    payload: dict= Depends(require_roles(["Admin"]))
+    ):
        return GuarantieeController.get_guarantiee_by_id(warranty_incidents_id)
 
 # Endpont para crear o registrar incidencia de garantía
@@ -35,7 +38,8 @@ def create_guarantiee(
 @router.put("/update/{warranty_incidents_id}")
 def update_garantee(
     warranty_incidents_id:int,
-    warranty_data:dict
+    warranty_data:dict,
+    payload: dict= Depends(require_roles(["Admin"]))
 
 ):
     return GuarantieeController.update_garantee(warranty_incidents_id, warranty_data)
