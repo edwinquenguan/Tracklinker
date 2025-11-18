@@ -33,11 +33,11 @@ class DashboardRepository:
 
         query = """
         SELECT 
-            DATE_FORMAT(out_order_date, '%Y-%m') AS month,
+            DATE_FORMAT(out_order_date, '%M') AS month,
             COUNT(*) AS output_orders
-            FROM OUTPUT_ORDERS
-            GROUP BY month
-            ORDER BY month;
+        FROM OUTPUT_ORDERS
+        GROUP BY 
+            DATE_FORMAT(out_order_date, '%M');
         """
 
         try:
@@ -56,6 +56,38 @@ class DashboardRepository:
             return None, data
         except Exception as e:
             return f"Error al ejecutar al consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+        
+    @staticmethod
+    def find_all_warranty_status():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT 
+            warranty_status,
+            COUNT(*) AS total
+        FROM WARRANTY_INCIDENTS
+        GROUP BY warranty_status;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "status": item[0],
+                    "total": item[1]
+                }
+                for item in result
+            ]
+
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
         finally:
             cursor.close()
             connection.close()
