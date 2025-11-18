@@ -37,6 +37,7 @@ module.exports = {
     "bg-black",
     "bg-red-600",
     "w-64",
+    "hidden",
     "animate-modalFadeOut",
     "animate-modelFadeIn"
   ],
