@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { areaChartData } from "../services/areaChartData";
 
 export function useAreaChart() {
-  const [areaChartData, setareaChartData] = useState([]);
+  const [areaChartInfo, setareaChartData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export function useAreaChart() {
     }
 
     fetchAreaChartData();
-  });
+  }, []);
 
-  return { areaChartData, error }
+  return { areaChartInfo, error }
 }
