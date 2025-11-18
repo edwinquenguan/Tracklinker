@@ -16,3 +16,8 @@ def get_monthly_suppliers_inputs():
 @router.get("/monthly-outputs")
 def get_monthly_outputs():
     return DashboardController.get_all_outputs()
+
+# Endpoint para obtener todos los estados de garantías y sus cantidades
+@router.get("/warranty-status")
+def get_all_warranty_status():
+    return DashboardController.get_all_warranty_status()
