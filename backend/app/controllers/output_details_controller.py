@@ -25,3 +25,33 @@ class OutputDetailsController:
      return{
        "data": outputDetails
      }
+   
+   @staticmethod
+   def create_outputDetails(outputDetails:OutputDetails):
+     error, success, message= OutputDetailsrepository.create(outputDetails)
+     if error:
+       raise HTTPException(status_code=400, detail=error)
+     return{
+       "success":success,
+       "message":message
+     }
+   
+   @staticmethod
+   def update_outputDetails(outputDetails:int, output_details_id: dict):
+     error, message, outputDetails = OutputDetailsrepository.update( output_details_id, outputDetails)
+     if error:
+       raise HTTPException (status_code=400, detail=error)
+     return{
+       "message": message,
+       "data": outputDetails
+     }
+   
+   @staticmethod
+   def delete_outputDetails(output_details_id:int):
+     error, success, message= OutputDetailsrepository.delete(output_details_id)
+     if error:
+       raise HTTPException(status_code=400, detail=error)
+     return{
+       "success": success,
+       "message": message
+     }
