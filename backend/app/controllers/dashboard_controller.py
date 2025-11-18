@@ -22,3 +22,13 @@ class DashboardController:
         return{
             "data": data
         }
+    
+    @staticmethod
+    def get_all_warranty_status():
+        error, data = DashboardRepository.find_all_warranty_status()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data
+        }
