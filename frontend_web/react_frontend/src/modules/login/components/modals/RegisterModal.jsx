@@ -1,6 +1,7 @@
 import FormField from "../../../../globals/components/ui/FormField";
+import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function RegisterModal() {
+export default function RegisterModal({cancelButtonOnClick, confirmButtonOnClick}) {
   return (
     <section className="flex flex-col items-center">
       <form action="" method="post" className="flex flex-col gap-3">
@@ -15,6 +16,10 @@ export default function RegisterModal() {
           id={"password-input"}
           labelText={"Contraseña"}
           placeholder={"********"}
+        />
+        <ConfirmCancelButtons
+          cancelButtonOnClick={cancelButtonOnClick}
+          confirmButtonOnClick={confirmButtonOnClick}
         />
       </form>
     </section>
