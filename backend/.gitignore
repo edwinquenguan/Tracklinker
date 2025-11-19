@@ -10,6 +10,7 @@ venv/
 # Cache de python
 __pycache__/
 *.pyc
+.vscode
 
 # Compilados
 build/
