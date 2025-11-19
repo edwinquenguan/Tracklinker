@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 class OutputOrder(BaseModel):
-    output_order_id: Optional[int] = None
-    order_date: Optional[datetime] = None
-    client_id: int
-    user_id: int
+    out_order_id: Optional[int] = None
+    out_order_date: Optional[datetime] = None
+    product_details_id: int
+    amount: int

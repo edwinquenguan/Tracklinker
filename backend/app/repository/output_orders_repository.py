@@ -51,7 +51,7 @@ class OutputOrdersRepository:
         cursor = connection.cursor()
         
         # Fecha actual para indicar la hora a la que se creo la orden de salida
-        data["order_date"] = datetime.now()
+        data["out_order_date"] = datetime.now()
         
         # Arrays vacios para almacenar los datos de la orden de salida
         fields = list(data.keys())
@@ -85,7 +85,7 @@ class OutputOrdersRepository:
         query = f"""
         UPDATE OUTPUT_ORDERS
         SET {fields}
-        WHERE output_order_id = %s
+        WHERE out_order_id = %s
         """
         try:
             cursor.execute(query, values)
