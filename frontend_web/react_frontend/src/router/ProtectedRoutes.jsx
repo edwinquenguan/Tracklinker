@@ -19,7 +19,7 @@ export default function ProtectedRoutes({ role }) {
     const verifyRole = async () => {
       try {
         // Enviamos el token al backend para validar el rol del usuario
-        const res = await fetch(`${apiUrl}/api/auth/verify-role/${role}`, {
+        const res = await fetch(`${apiUrl}/auth/verify-role/${role}`, {
           headers: {
             Authorization: `${token}`,
           },

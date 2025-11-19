@@ -3,7 +3,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 // Función para loguearse
 export async function login(email, password) {
   try {
-    const res = await fetch(`${apiUrl}/api/auth/login`, {
+    const res = await fetch(`${apiUrl}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
