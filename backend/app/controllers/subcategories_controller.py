@@ -24,3 +24,34 @@ class SubcategoriesController:
          return {
               "data": subcategory
          }
+
+     @staticmethod
+     def create_subcategory(subcategory_data: dict):
+         error, success, message = SubcategoriesRepository.create_subcategory(subcategory_data)
+         if error:
+             raise HTTPException(status_code=400, detail=error)
+         return {
+             "success": success,
+             "message": message
+         }
+
+     @staticmethod
+     def update_subcategory(subcategory_id: int, subcategory_data: dict):
+         error, message, subcategory = SubcategoriesRepository.update(subcategory_id, subcategory_data)
+         if error:
+             raise HTTPException(status_code=400, detail=error)
+         return {
+             "message": message,
+             "data": subcategory
+         }
+
+     @staticmethod
+     def delete_subcategory(subcategory_id: int):
+         error, message = SubcategoriesRepository.delete(subcategory_id)
+         if error:
+             raise HTTPException(status_code=400, detail=error)
+         return {
+             "message": message
+         }
+
+          
