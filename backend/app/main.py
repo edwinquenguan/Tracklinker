@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.core.database import get_connection
 from app.routes import user_routes
-from app.routes import auth_routes
+from app.routes import auth_routes, category_routes
 
 # Instancia principal de la app FastAPI
 app = FastAPI(
@@ -33,4 +33,7 @@ def root():
 
 # Rutas para el modúlo de Usuarios
 app.include_router(user_routes.router)
+# Rutas para el modúlo de Autenticación
 app.include_router(auth_routes.router)
+# Rutas para el modúlo de Categorías
+app.include_router(category_routes.router)  
