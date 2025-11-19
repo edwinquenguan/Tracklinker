@@ -10,7 +10,7 @@ export default function SimpleAreaChart() {
   }
 
   return (
-    <ChartCard rowSpan={2} colSpan={6} bgColor={""} name={"Chart"}>
+    <ChartCard rowSpan={2} colSpan={6} bgColor={""} name={"Salidas Mensuales del año"}>
       {/* Grafico en forma de ola */}
       <AreaChart width="100%" height="95%" responsive data={areaChartInfo}>
         {/* Nombres o meses que salen debajo del gráfico */}
