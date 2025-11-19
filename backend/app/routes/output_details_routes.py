@@ -5,7 +5,7 @@ from app.models.output_details_model import OutputDetails #Pendiente crear los a
 from app.middlewares.roles_middleware import require_roles
 
 router =APIRouter(
-    prefix="/api/outputDetails",
+    prefix="/api/output_details",
     tags=["Output details"]
 )
 

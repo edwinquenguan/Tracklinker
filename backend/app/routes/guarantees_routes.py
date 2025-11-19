@@ -7,14 +7,16 @@ from app.middlewares.roles_middleware import require_roles
 
 
 router =APIRouter(
-    prefix="/api/guarantee",
-    tags= ["Guarrantee"]
+    prefix="/api/warranty_incidents",
+    tags= ["Warranty incidents"]
 )
 
 # Endpoint para obtener todos las solicitudes de garantía 
 @router.get("/")
-def get_all_guarantiee(payload: dict=Depends(require_roles(["Admin"]))):
- return GuarantieeController.get_all_guarranties()
+def get_all_guarantiee(
+    #payload: dict=Depends(require_roles(["Admin"]))
+    ):
+ return GuarantieeController.get_all_guarantee()
 
 # Endpoint para ontener solicitud por mediante id
 @router.get("/{warranty_incidents_id}")
