@@ -151,6 +151,11 @@ class UserRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
+        if "user_password" in user_data:
+            # Hashear la nueva contraseña
+            password = user_data["user_password"].encode("utf-8")
+            user_data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
+
         # Verificar si existe el usuario
         cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
         user = cursor.fetchone()

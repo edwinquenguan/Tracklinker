@@ -43,5 +43,7 @@ def root():
 app.include_router(auth_routes.router)
 # Rutas para el modúlo de Usuarios
 app.include_router(user_routes.router)
+app.include_router(auth_routes.router)
+app.include_router(subcategories_routes.router)
 # Rutas para el modúlo de Panel de control
 app.include_router(dashboard_routes.router)
