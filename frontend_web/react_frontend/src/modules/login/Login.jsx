@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authService";
 // Componentes
 import LoginForm from "./components/ui/LoginForm";
-import ConfirmCancelButtons from "../../globals/components/modals/ConfirmCancelButtons";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import ErrorModal from "./components/modals/ErrorModal";
@@ -21,10 +20,12 @@ export default function Login() {
   // Al momento de clickear un botón abre la modal que pertenece a ese botón
   const openModal = (type) => {
     setModalType(type);
+    setIsOpen(true);
   };
   // Y esto cierra la modal
   const closeModal = () => {
     setModalType(null);
+    setIsOpen(false);
   };
 
   // Esto hace el manejo del login para los errores y demás
@@ -33,22 +34,21 @@ export default function Login() {
     const { error } = await login(email, password);
     if (error) {
       openModal("error");
-      setIsOpen(true);
     } else {
       navigate("/home");
     }
   };
 
   return (
-    <LoginForm
-      getIntoButtonOnclick={handleLogin}
-      recoverButtonOnclick={() => {
-        openModal("rememberPassword");
-        setIsOpen(true);
-      }}
-      setEmail={(e) => setEmail(e.target.value)}
-      setPassword={(e) => setPassword(e.target.value)}
-    >
+    <section className="w-screen h-screen flex items-center justify-center">
+      <LoginForm
+        getIntoButtonOnclick={handleLogin}
+        recoverButtonOnclick={() => {
+          openModal("rememberPassword");
+        }}
+        setEmail={(e) => setEmail(e.target.value)}
+        setPassword={(e) => setPassword(e.target.value)}
+      ></LoginForm>
       {modalType && (
         <Modal
           title={
@@ -60,57 +60,31 @@ export default function Login() {
           }
           type={modalType}
           isOpen={isOpen}
-          onClose={() => {
-            closeModal();
-            setIsOpen(false);
-          }}
+          onClose={() => closeModal()}
         >
-          {modalType === "error" && (
-            <ErrorModal
-              onClose={() => {
-                closeModal();
-                setIsOpen(false);
-              }}
-            />
-          )}
+          {modalType === "error" && 
+          <ErrorModal onClose={() => closeModal()} />
+          }
 
           {modalType === "register" && (
             <section className="flex flex-col items-center">
-              <RegisterModal />
-              <ConfirmCancelButtons
-                cancelButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
-                confirmButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
+              <RegisterModal
+                cancelButtonOnClick={() => closeModal()}
+                confirmButtonOnClick={() => closeModal()}
               />
             </section>
           )}
 
           {modalType === "rememberPassword" && (
             <section className="flex flex-col items-center">
-              <RecoverPasswordModal />
-              <ConfirmCancelButtons
-                flexDirection={"flex-col"}
-                cancelText="Volver al login"
-                cancelButtonWidth={"w-52"}
-                cancelButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
-                confirmText="Restablecer Contraseña"
-                confirmButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
+              <RecoverPasswordModal
+                cancelButtonOnClick={() => closeModal()}
+                confirmButtonOnClick={() => closeModal()}
               />
             </section>
           )}
         </Modal>
       )}
-    </LoginForm>
+    </section>
   );
 }

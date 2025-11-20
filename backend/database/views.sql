@@ -52,3 +52,39 @@ CREATE VIEW get_all_subcategories AS
 	FROM categories AS c
 	INNER JOIN subcategories AS sc
 	ON c.category_id=sc.category_id;
+
+-- Estado de garantías (Sin completar, en proceso, completada)
+CREATE VIEW get_warranties_status AS
+    SELECT 
+    warranty_status, 
+    COUNT(*) AS total
+    FROM WARRANTY_INCIDENTS
+    GROUP BY warranty_status;
+
+-- Salidas o "ventas" por mes
+CREATE VIEW get_monthly_outputs AS
+    SELECT
+    YEAR(out_order_date) AS years,
+    MONTH(out_order_date) AS months, 
+    COUNT(*) AS total
+    FROM OUTPUT_ORDERS
+    GROUP BY YEAR(out_order_date), MONTH(out_order_date)
+    ORDER BY years;
+
+-- Entradas por proveedor
+CREATE VIEW get_supplier_inputs AS
+    SELECT s.supplier_name, 
+    COUNT(*) AS orders
+    FROM INPUT_ORDERS io
+    JOIN SUPPLIERS s ON io.supplier_id = s.supplier_id
+    GROUP BY s.supplier_id
+    ORDER BY orders DESC;
+
+-- Garantias por mes
+CREATE VIEW get_monthly_warranties AS
+    SELECT
+    YEAR(warranty_date) AS years,
+    MONTH(warranty_date) AS months, 
+    COUNT(*) AS warranties
+    FROM WARRANTY_INCIDENTS
+    GROUP BY years, months;

@@ -34,7 +34,7 @@ class UserRepository:
             results = cursor.fetchall()
             return None, results
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
@@ -69,7 +69,7 @@ class UserRepository:
             result = cursor.fetchall()
             return None, result
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
@@ -98,7 +98,7 @@ class UserRepository:
             result = cursor.fetchone()
             return result
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}"
+            return f"Error al ejecutar la consulta: {e}"
         finally:
             cursor.close()
             connection.close()
@@ -139,7 +139,7 @@ class UserRepository:
             connection.commit()
             return None, True, "Usuario creado correctamente"
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None, None
+            return f"Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
@@ -164,6 +164,12 @@ class UserRepository:
             cursor.close()
             connection.close()
             return "Usuario no encontrado", None, None
+        # Valida si existe user_password en user_data y lo hashea
+        if "user_password" in user_data:
+            password = user_data["user_password"].encode("utf-8")
+            user_data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
+
+        print(user_data["user_password"])
 
         # Campos vacios para almacenar todo lo que va a actualizar
         fields = list(user_data.keys())
@@ -185,7 +191,7 @@ class UserRepository:
             return None, "Usuario actualizado correctamente" ,result
         except Exception as e:
             connection.rollback()
-            return f"❌ Error al ejecutar la consulta: {e} {query}", None, None
+            return f"Error al ejecutar la consulta: {e} {query}", None, None
         finally:
             cursor.close()
             connection.close()
@@ -210,7 +216,7 @@ class UserRepository:
             connection.commit()
             return None, True, "Usuario eliminado correctamente"
         except Exception as e:
-            return f"❌ Error la intentar ejecutar la consulta {e}", False, None
+            return f"Error la intentar ejecutar la consulta {e}", False, None
         finally:
             cursor.close()
             connection.close()

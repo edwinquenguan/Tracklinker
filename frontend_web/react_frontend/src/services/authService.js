@@ -1,42 +1,54 @@
-import { supabase } from "../supabase/supabaseClient";
+const apiUrl = process.env.REACT_APP_API_URL;
 
-const apiUrl = process.env.REACT_APP_API_URL
-
-// Función para loguearse 
+// Función para loguearse
 export async function login(email, password) {
-  try{
-    const res = await fetch(`${apiUrl}/api/auth/login`,{
+  try {
+    const res = await fetch(`${apiUrl}/auth/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": email,
-        "password": password
-      })
+        email: email,
+        password: password,
+      }),
     });
 
     // Validamos si el estado de la respuesta no fue 200
     if (!res.ok) {
-      throw new Error("Credenciales Invalidas")
+      throw new Error("Credenciales Invalidas");
     }
 
     // Almacenamos la respuesta y la pasamos a json
-    const data = await res.json()
+    const data = await res.json();
 
     // Guardamos el token en localStorage con su tipo
-    localStorage.setItem("token", `${data.token_type} ${data.access_token}`)
-    
-    return data;
+    localStorage.setItem("token", `${data.token_type} ${data.access_token}`);
 
+    return { error: null, data };
   } catch (error) {
-    console.error("Error", error)
-    return null
+    console.error("Error", error);
+    return {
+      error: error,
+    };
   }
-};
+}
 
-// Función para cerrar la sesión
-// TODO: Agregar contenido a la función y no usar supabase
+// Función para cerrar sesión
 export async function signOut() {
-  return await supabase.auth.signOut();
+  try {
+    // Trae el token del localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No existe un token");
+    }
+    // Remueve todo lo que este almacenado en el localStorage
+    localStorage.clear();
+  } catch (error) {
+    console.error(error);
+    return {
+      error: error,
+    };
+  }
 }
