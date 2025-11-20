@@ -4,10 +4,14 @@ import { useState } from "react";
 import { dashboardIcons } from "../../assets/icons/mainIcons";
 import { actionsIcons } from "../../assets/icons/mainIcons";
 // Componentes
-import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
-import ChartCard from "./components/ui/ChartCard";
+import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
+// Gráficos
+import ChartCard from "./components/ui/ChartCard";
+import TinyBarChart from "./components/ui/TinyBarChart";
+import SimpleAreaChart from "./components/ui/SimpleAreaChart";
+import SimplePieChart from "./components/ui/SimplePieChart";
 // Modales
 import DownloadModal from "./components/modals/DownloadModal";
 import FilterModal from "../../globals/components/modals/FilterModal";
@@ -92,17 +96,8 @@ export default function DashBoardPage() {
           percentValue={"2.1%"}
           chart={dashboardIcons.firstChart}
         />
-
         {/* Segunda Fila de Gráficos */}
-        <ChartCard
-          rowSpan={2}
-          colSpan={6}
-          bgColor={""}
-          name={"Chart"}
-          metricValue={"2.000"}
-          percentValue={"2.1%"}
-          chart={dashboardIcons.waveChart2}
-        />
+        <SimpleAreaChart />
         <ChartCard
           rowSpan={2}
           colSpan={3}
@@ -112,16 +107,7 @@ export default function DashBoardPage() {
           percentValue={"2.1%"}
           chart={dashboardIcons.barChart2}
         />
-        <ChartCard
-          rowSpan={4}
-          colSpan={3}
-          bgColor={""}
-          name={"Chart"}
-          metricValue={"2.000"}
-          percentValue={"2.1%"}
-          chart={dashboardIcons.thirdChart}
-          imageSize={"w-full h-[90%] p-5"}
-        />
+        <SimplePieChart />
 
         {/* Tercera fila de Gráficos */}
         <ChartCard
@@ -133,15 +119,7 @@ export default function DashBoardPage() {
           chart={dashboardIcons.waveChart}
           imageSize={"w-full h-[80%]"}
         />
-        <ChartCard
-          rowSpan={2}
-          colSpan={4}
-          name={"Chart"}
-          metricValue={"2.000"}
-          percentValue={"2.1%"}
-          chart={dashboardIcons.barChart}
-          imageSize={"w-full h-[80%]"}
-        />
+        <TinyBarChart />
       </section>
 
       {/* Modales */}

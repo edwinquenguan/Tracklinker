@@ -6,7 +6,7 @@ from app.middlewares.roles_middleware import require_roles
 
 router = APIRouter(
     prefix="/api/users",
-    tags=["Usuarios"]
+    tags=["Users"]
 )
 
 # Endpoint para obtener todos los usuarios

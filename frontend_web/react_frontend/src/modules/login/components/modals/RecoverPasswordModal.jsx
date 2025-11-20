@@ -1,7 +1,8 @@
 import FormField from "../../../../globals/components/ui/FormField";
+import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 import { loginIcons } from "../../../../assets/icons/loginIcons";
 
-export default function RecordPasswordModal() {
+export default function RecoverPasswordModal({cancelButtonOnClick, confirmButtonOnClick}) {
   return (
     <section className="flex flex-col items-center">
       <FormField
@@ -9,6 +10,14 @@ export default function RecordPasswordModal() {
         inputIcon={loginIcons.emailIcon}
         type="email"
         placeholder={"Escribe tu correo aquí"}
+      />
+      <ConfirmCancelButtons
+        flexDirection={"flex-col"}
+        cancelText="Volver al login"
+        cancelButtonWidth={"w-52"}
+        cancelButtonOnClick={cancelButtonOnClick}
+        confirmText="Restablecer Contraseña"
+        confirmButtonOnClick={confirmButtonOnClick}
       />
     </section>
   );

@@ -1,13 +1,22 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import get_connection
-from app.routes import user_routes
-from app.routes import auth_routes, category_routes
+from app.routes import user_routes, auth_routes, dashboard_routes
 
 # Instancia principal de la app FastAPI
 app = FastAPI(
     title="API con FastAPI y MySQL",
     description="Api para tracklinker",
     version="1.0.0",
+)
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Endpoint para probar conexión a la base de datos
@@ -30,10 +39,13 @@ def root():
     return {
         "message": "API funcionando"
     }
-
+# Rutas de autenticación
+app.include_router(auth_routes.router)
 # Rutas para el modúlo de Usuarios
 app.include_router(user_routes.router)
-# Rutas para el modúlo de Autenticación
-app.include_router(auth_routes.router)
-# Rutas para el modúlo de Categorías
+# Rutas para el modulo de categorias
 app.include_router(category_routes.router)  
+# Rutas para el modulo de subcategorias
+app.include_router(subcategories_routes.router)
+# Rutas para el modúlo de Panel de control
+app.include_router(dashboard_routes.router)

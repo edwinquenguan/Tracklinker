@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { users } from "../data/users";
-import { getUsersWithRol } from "../../services/getUsersWithRol";
+import { getAllUsers } from "../../services/getAllUsers";
 import { usersIcons, actionsIcons } from "../../assets/icons/mainIcons";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
@@ -34,12 +34,12 @@ export default function UsersPage() {
     setModalType(null);
   };
 
-  // Esto llama a la función getAllUsers y espera a obtener toda los datos y los almacena en "data"
+  // Este effect llama al service getAllUsers y espera a obtener todos los datos y los almacena en "data"
   useEffect(() => {
     async function fetchUsers() {
       try {
         setLoading(true);
-        const data = await getUsersWithRol();
+        const data = await getAllUsers();
         setUsers(data);
       } catch (error) {
         setError(error.message);
@@ -107,7 +107,7 @@ export default function UsersPage() {
                       alt=""
                       className="w-5 h-5 dark:invert"
                     />
-                    <p>{user.roles.rol_name}</p>
+                    <p>{user.rol_name}</p>
                   </div>
                 </address>
               </article>
@@ -240,10 +240,11 @@ export default function UsersPage() {
           {modalType === "info" && (
             <section className="flex flex-col justify-center dark:text-white">
               <p>
-                <strong>Rol:</strong> {selectedUser.roles.rol_name}
+                <strong>Rol:</strong> {selectedUser.rol_name}
               </p>
               <p>
-                <strong>Nombre:</strong> {selectedUser.user_name}{" "}
+                <strong>Nombre: </strong>
+                {selectedUser.user_name} {" "}
                 {selectedUser.user_first_surname}{" "}
                 {selectedUser.user_second_surname}
               </p>

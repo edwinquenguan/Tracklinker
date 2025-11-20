@@ -45,5 +45,14 @@ class AuthController:
 
         return{
             "token_type": "Bearer",
-            "access_token": token,
+            "access_token": token
+        }
+    
+    @staticmethod
+    def verify_role(rol, payload):
+        # Valida si el rol que hay dentro del jwt es igual al parametro rol
+        if payload.get("role") != rol:
+            raise HTTPException(status_code=403, detail="No autorizado")
+        return {
+            "success": True
         }
