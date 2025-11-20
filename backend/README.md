@@ -14,8 +14,6 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # 4: Instalar todas las dependencias
-pip install -r requirements.txt
-
 # 5: Iniciar el servidor de FastAPI
 uvicorn app.main:app --reload
 

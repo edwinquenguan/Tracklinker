@@ -1,0 +1,54 @@
+from fastapi import APIRouter
+from app.controllers.guarantees_controller import GuarantieeController
+from fastapi import Depends
+from app.models.guarantiees_model import Guarantee
+from app.middlewares.roles_middleware import require_roles
+
+
+
+router =APIRouter(
+    prefix="/api/warranty_incidents",
+    tags= ["Warranty incidents"]
+)
+
+# Endpoint para obtener todos las solicitudes de garantía 
+@router.get("/")
+def get_all_guarantiee(
+    #payload: dict=Depends(require_roles(["Admin"]))
+    ):
+ return GuarantieeController.get_all_guarantee()
+
+# Endpoint para ontener solicitud por mediante id
+@router.get("/{warranty_incidents_id}")
+def get_guarantiee_by_id(
+    warranty_incidents_id: int,
+    payload: dict= Depends(require_roles(["Admin"]))
+    ):
+       return GuarantieeController.get_guarantiee_by_id(warranty_incidents_id)
+
+# Endpont para crear o registrar incidencia de garantía
+
+@router.post("/create")
+def create_guarantiee(
+    warranty_data:Guarantee,
+    payload: dict = Depends (require_roles("Admin"))
+    
+    ):
+    return GuarantieeController.create_guarantiee(warranty_data)
+
+# Endpoint para actualizar la informacion de la incidencia mediante su id
+@router.put("/update/{warranty_incidents_id}")
+def update_garantee(
+    warranty_incidents_id:int,
+    warranty_data:dict,
+    payload: dict= Depends(require_roles(["Admin"]))
+
+):
+    return GuarantieeController.update_garantee(warranty_incidents_id, warranty_data)
+
+@router.delete("/delete/{warranty_incidents_id}")
+def delete_garantee(
+    warranty_incidents_id:int,
+    payload: dict = Depends (require_roles(["Admin"]))
+):
+  return GuarantieeController.delete_garantee(warranty_incidents_id)
