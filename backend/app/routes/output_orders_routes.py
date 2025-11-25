@@ -5,7 +5,7 @@ from app.middlewares.roles_middleware import require_roles
 
 router =APIRouter(
     prefix="/api/output_orders",
-    tags =["Output Orders"]
+    tags =["Transformations"]
 )
 
 # Endpoint para obtener todas las órdenes de salida
