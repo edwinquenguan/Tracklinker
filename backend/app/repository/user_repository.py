@@ -220,3 +220,51 @@ class UserRepository:
         finally:
             cursor.close()
             connection.close()
+
+   
+
+    @staticmethod
+    def find_by_rol(rol_id: int):
+        # 💡 MEJORA: Inicializar variables a None para el manejo de errores
+        connection = None
+        cursor = None
+        
+        try:
+            # 1. Establecer conexión y cursor
+            connection = get_connection()
+            cursor = connection.cursor(dictionary=True)
+
+            query = """
+            SELECT
+                r.rol_name, 
+                u.user_id,
+                u.user_name,
+                u.user_first_surname,
+                u.user_second_surname,
+                u.user_phone,
+                u.user_email,
+                u.user_address,
+                u.user_city,
+                u.user_date
+            FROM USERS AS u 
+            INNER JOIN ROLES AS r 
+            ON u.rol_id = r.rol_id
+            WHERE r.rol_id = %s
+            """
+            
+            # 2. Ejecutar y obtener resultados
+            cursor.execute(query, (rol_id,))
+            result = cursor.fetchall() # Obtiene la lista completa de usuarios
+            
+            # 3. ÉXITO: Devuelve una tupla de 2 (None indica que NO hay error)
+            return None, result 
+            
+        except Exception as e:
+            # 4. ERROR: Devuelve una tupla de 2 (Mensaje de error y None para datos)
+            error_message = f"Error al ejecutar la consulta: {e}"
+            return error_message, None
+            
+        finally:
+            
+                cursor.close()
+                connection.close()

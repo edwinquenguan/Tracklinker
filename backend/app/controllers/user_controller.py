@@ -33,7 +33,6 @@ class UserController:
         return {
             "data": users
         }
-
     @staticmethod
     def get_user_by_id(user_id: int):
         error, user = UserRepository.find_by_id(user_id)
@@ -72,4 +71,13 @@ class UserController:
         return {
             "success": success,
             "message": message
+        }
+
+    @staticmethod
+    def get_report_users(rol_id: int):
+        error, user = UserRepository.find_by_rol(rol_id)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+           "data": user
         }
