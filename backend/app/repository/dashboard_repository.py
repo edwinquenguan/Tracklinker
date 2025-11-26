@@ -91,3 +91,39 @@ class DashboardRepository:
         finally:
             cursor.close()
             connection.close()
+
+    @staticmethod
+    def find_all_and_new_users():
+        
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT 
+        (SELECT COUNT(*) FROM USERS) AS total_users,
+        (SELECT COUNT(*) 
+        FROM USERS 
+        WHERE MONTH(user_date) = MONTH(CURDATE())
+        AND YEAR(user_date) = YEAR(CURDATE())
+        ) AS new_users;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            row = result[0]
+
+            data = [
+                {
+                    "users": row[0]
+                },
+                {
+                    "new_users": row[1]
+                }
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
