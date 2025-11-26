@@ -14,7 +14,7 @@ export default function SimpleAreaChart() {
       {/* Grafico en forma de ola */}
       <AreaChart width="100%" height="95%" responsive data={areaChartInfo}>
         {/* Nombres o meses que salen debajo del gráfico */}
-        <XAxis dataKey={"month"} fontSize={"12px"}/>
+        <XAxis dataKey={"month"} fontSize={"10px"} width={"100%"}/>
         {/* Eje Y */}
         <Tooltip/>
         <CartesianGrid vertical={false} stroke="#e5e7eb" />
