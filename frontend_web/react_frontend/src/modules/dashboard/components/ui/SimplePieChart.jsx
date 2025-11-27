@@ -11,7 +11,7 @@ export default function SimplePieChart() {
 
   return (
     <ChartCard rowSpan={4} colSpan={3} name={"Estados de garantías"}>
-      <PieChart height="100%" width="100%" responsive>
+      <PieChart height="95%" width="100%" responsive>
         <Tooltip />
         <Pie
           data={simplePieChartData}
