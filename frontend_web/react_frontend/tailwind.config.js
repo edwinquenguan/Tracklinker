@@ -39,6 +39,7 @@ module.exports = {
     "w-64",
     "hidden",
     "animate-modalFadeOut",
-    "animate-modelFadeIn"
+    "animate-modelFadeIn",
+    "users-background"
   ],
 };
