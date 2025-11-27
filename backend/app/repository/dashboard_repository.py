@@ -84,7 +84,7 @@ class DashboardRepository:
                 }
                 for item in result
             ]
-
+            print(data)
             return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta {e}", None
@@ -111,15 +111,13 @@ class DashboardRepository:
         try:
             cursor.execute(query)
             result = cursor.fetchall()
-            row = result[0]
 
             data = [
                 {
-                    "users": row[0]
-                },
-                {
-                    "new_users": row[1]
+                    "users": item[0],
+                    "new_users": item[1]
                 }
+                for item in result
             ]
             return None, data
         except Exception as e:
