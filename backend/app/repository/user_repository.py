@@ -164,10 +164,6 @@ class UserRepository:
             cursor.close()
             connection.close()
             return "Usuario no encontrado", None, None
-        # Valida si existe user_password en user_data y lo hashea
-        if "user_password" in user_data:
-            password = user_data["user_password"].encode("utf-8")
-            user_data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
 
         print(user_data["user_password"])
 
