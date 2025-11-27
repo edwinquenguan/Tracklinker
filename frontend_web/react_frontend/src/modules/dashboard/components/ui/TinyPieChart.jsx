@@ -1,5 +1,5 @@
-import ChartCard from "./ChartCard";
-import { Pie, PieChart, Tooltip, Cell } from "recharts";
+import TopChartsCard from "./TopChartsCard";
+import SeeReportButton from "./SeeReportButton";
 import { useTinyPieChart } from "../../hooks/useTinyPieChart";
 
 export default function TinyPieChart() {
@@ -10,30 +10,22 @@ export default function TinyPieChart() {
   }
 
   return (
-    <ChartCard
-      rowSpan={1}
-      colSpan={3}
-      bgColor={""}
-      textColor={"black"}
-      name={"Usuarios"}
-      metricValue={"1"}
-    >
-      <PieChart data={tinyPieChartInfo} height={"100%"} responsive>
-        <Pie
-          dataKey={"value"}
-          nameKey={"name"}
-          cornerRadius="50%"
-          innerRadius="80%"
-          outerRadius="100%"
-          fill="#2f3ab5"
-          paddingAngle={5}
-        >
-          {tinyPieChartInfo.map((item, index) => (
-            <Cell key={index} fill={item.color} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
-    </ChartCard>
+    <TopChartsCard background={"users-background"}>
+      <section>
+        <section className="flex items-center justify-between">
+          {/* Nombre del Grafico */}
+          <span className="font-medium text-xl">Usuarios</span>
+          <SeeReportButton />
+        </section>
+        {tinyPieChartInfo.map((item) => (
+          <div className="flex items-center gap-1">
+            {/* Usuarios existentes */}
+            <span className="font-semibold text-2xl">{item.users}</span>
+            {/* Usuarios creados en el mes actual */}
+            <span className="font-medium text-base text-[#00a86b]">+{item.new_users}</span>
+          </div>
+        ))}
+      </section>
+    </TopChartsCard>
   );
 }
