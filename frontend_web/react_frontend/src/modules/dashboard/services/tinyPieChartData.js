@@ -3,6 +3,7 @@ import { getToken } from "../../../utils/auth";
 
 export async function tinyPieChartData() {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/new-users`, {
+    method: "GET",
     headers: {
       Authorization: getToken(),
     },
