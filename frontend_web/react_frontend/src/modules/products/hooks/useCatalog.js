@@ -23,7 +23,6 @@ export function useCatalog() {
         setLoading(false);
       }
     }
-
     fetchProducts();
 
     async function fetchCategories() {
@@ -46,10 +45,6 @@ export function useCatalog() {
     }
     fetchSubcategories();
   }, []);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return { products, categories, subcategories, loading, error };
 }
