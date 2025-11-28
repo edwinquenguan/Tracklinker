@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-// import { users } from "../data/users";
-import { getAllUsers } from "../../services/getAllUsers";
+import { useState} from "react";
+import { useUsers } from "./hooks/useUsers";
 import { usersIcons, actionsIcons } from "../../assets/icons/mainIcons";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
@@ -15,13 +14,10 @@ import SearchBar from "../../globals/components/ui/SearchBar";
 
 export default function UsersPage() {
   // Definir los estados y sus valores por defecto
-
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const { users, loading, error } = useUsers();
 
   // Al momento de clickear un botón esto guarda la información del usuario y abre la modal que pertenece a ese botón
   const openModal = (user, type) => {
@@ -34,23 +30,12 @@ export default function UsersPage() {
     setModalType(null);
   };
 
-  // Este effect llama al service getAllUsers y espera a obtener todos los datos y los almacena en "data"
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        setLoading(true);
-        const data = await getAllUsers();
-        setUsers(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
-
-    fetchUsers();
-  }, []);
-
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  if (loading) {
+    return <div>Cargando...</div>;
   }
 
   return (
@@ -244,8 +229,7 @@ export default function UsersPage() {
               </p>
               <p>
                 <strong>Nombre: </strong>
-                {selectedUser.user_name} {" "}
-                {selectedUser.user_first_surname}{" "}
+                {selectedUser.user_name} {selectedUser.user_first_surname}{" "}
                 {selectedUser.user_second_surname}
               </p>
               <p>
