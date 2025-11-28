@@ -84,7 +84,6 @@ class DashboardRepository:
                 }
                 for item in result
             ]
-            print(data)
             return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta {e}", None
