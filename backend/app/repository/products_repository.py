@@ -14,6 +14,7 @@ class ProductsRepository:
         try:
             cursor.execute(query)
             result = cursor.fetchall()
+            # Mapeamos cada item que devuelve la query y le agregamos una llave para identificarlos
             data = [
                 {
                     "input_date": item[0],
