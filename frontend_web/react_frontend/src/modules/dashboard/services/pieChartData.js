@@ -3,6 +3,7 @@ import { getToken } from "../../../utils/auth";
 
 export async function pieChartData() {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/warranty-status`, {
+    method: "GET",
     headers: {
       Authorization: getToken(),
     },
