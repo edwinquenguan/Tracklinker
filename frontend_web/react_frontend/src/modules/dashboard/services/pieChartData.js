@@ -1,8 +1,8 @@
-import { settings } from "../../../config/settings";
+import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
 export async function pieChartData() {
-  const res = await fetch(`${settings.apiUrl}/dashboard/warranty-status`, {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/warranty-status`, {
     headers: {
       Authorization: getToken(),
     },
