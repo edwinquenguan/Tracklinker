@@ -1,8 +1,8 @@
-import { settings } from "../../../config/settings";
+import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
 export async function tinyPieChartData() {
-  const res = await fetch(`${settings.apiUrl}/dashboard/new-users`, {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/new-users`, {
     headers: {
       Authorization: getToken(),
     },
