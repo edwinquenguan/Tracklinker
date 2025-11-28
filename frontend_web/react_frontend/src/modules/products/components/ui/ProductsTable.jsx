@@ -36,9 +36,8 @@ export default function ProductsTable({
       {products.map((product) => (
         <tbody className="font-normal dark:text-gray-300">
           {/* Productos */}
-          {product.product_serials.map((product_serial) => (
             <tr
-              key={product_serial.product_serial}
+              key={product.product_serial}
               className="h-12 overflow-x-auto overflow-y-auto transition duration-500
                         hover:bg-[#cdcacf] hover:shadow-lg
                         dark:hover:bg-[#101012]"
@@ -48,7 +47,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product_serial.input_orders.input_order_date}
+                {product.input_date}
               </th>
 
               {/* Orden de Entrada */}
@@ -56,7 +55,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product_serial.input_orders.input_order_bill}
+                {product.input_order}
               </th>
 
               {/* Subcategoria */}
@@ -64,7 +63,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product.subcategories.subcategory_name}
+                {product.subcategory}
               </th>
 
               {/* Serial */}
@@ -72,7 +71,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product_serial.product_serial}
+                {product.product_serial}
               </th>
 
               {/* Modelo */}
@@ -80,7 +79,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product.product_details.product_detail_model}
+                {product.model}
               </th>
 
               {/* Descripción */}
@@ -88,7 +87,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product.product_details.product_detail_description}
+                {product.description}
               </th>
 
               {/* Marca */}
@@ -96,7 +95,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product.product_details.product_brands.product_brand_name}
+                {product.brand}
               </th>
 
               {/* Stock */}
@@ -104,7 +103,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                {product.product_stock}
+                {product.stock}
               </th>
 
               {/* Tiempo de garantía */}
@@ -112,7 +111,7 @@ export default function ProductsTable({
                 className="font-normal text-start pl-4 text-sm
                             xl:text-base"
               >
-                12 Meses
+                {product.warranty_time}
               </th>
 
               {/* Botones */}
@@ -123,7 +122,6 @@ export default function ProductsTable({
                 />
               </th>
             </tr>
-          ))}
         </tbody>
       ))}
     </table>

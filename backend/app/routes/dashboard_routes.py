@@ -21,3 +21,8 @@ def get_monthly_outputs():
 @router.get("/warranty-status")
 def get_all_warranty_status():
     return DashboardController.get_all_warranty_status()
+
+# Endpoint para obtener el numero de usuarios existentes y los nuevos
+@router.get("/new-users")
+def get_new_users():
+    return DashboardController.get_all_and_new_users()

@@ -9,13 +9,14 @@ import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
 // Gráficos
 import ChartCard from "./components/ui/ChartCard";
-import TinyBarChart from "./components/ui/TinyBarChart";
+import SimpleBarChart from "./components/ui/SimpleBarChart";
 import SimpleAreaChart from "./components/ui/SimpleAreaChart";
 import SimplePieChart from "./components/ui/SimplePieChart";
 // Modales
 import DownloadModal from "./components/modals/DownloadModal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
+import TinyPieChart from "./components/ui/TinyPieChart";
 
 export default function DashBoardPage() {
   const [modalType, setModalType] = useState(null);
@@ -56,16 +57,7 @@ export default function DashBoardPage() {
             sm:grid-cols-1 sm:grid-rows-4 gap-5"
       >
         {/* Primera Fila de Gráficos */}
-        <ChartCard
-          rowSpan={1}
-          colSpan={3}
-          bgColor={""}
-          textColor={"black"}
-          name={"Chart"}
-          metricValue={"2.000"}
-          percentValue={"2.1%"}
-          chart={dashboardIcons.firstChart}
-        />
+        <TinyPieChart />
         <ChartCard
           rowSpan={1}
           colSpan={3}
@@ -119,7 +111,7 @@ export default function DashBoardPage() {
           chart={dashboardIcons.waveChart}
           imageSize={"w-full h-[80%]"}
         />
-        <TinyBarChart />
+        <SimpleBarChart />
       </section>
 
       {/* Modales */}

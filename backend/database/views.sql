@@ -18,30 +18,33 @@ ON u.rol_id = r.rol_id;
 -- Vista para obtener todos los productos con sus categorias y subcategorias
 CREATE VIEW get_all_products AS
 SELECT
+    io.input_order_date,
+    io.input_order_bill,
     c.category_name,
     sc.subcategory_name,
     p.product_id,
-    io.input_order_id,
+    s.supplier_name,
+    ps.product_serial,
     pd.product_detail_model,
     pd.product_detail_description,
     pb.product_brand_name,
-    s.supplier_name
+    p.product_stock,
+    ps.product_garanty_input
     FROM SUPPLIERS AS s
     INNER JOIN INPUT_ORDERS AS io
     ON s.supplier_id = io.supplier_id
     INNER JOIN PRODUCT_SERIALS AS ps
     ON io.input_order_id = ps.input_order_id
-    INNER JOIN PRODUCTS AS p
+    INNER JOIN PRODUCTS as p
     ON ps.product_id = p.product_id
-    INNER JOIN PRODUCT_DETAILS AS pd
-    ON p.product_details_id = pd.product_details_id
-    INNER JOIN PRODUCT_BRANDS AS pb 
-    ON pd.product_brand_id = pb.product_brand_id
     INNER JOIN SUBCATEGORIES AS sc
     ON p.subcategory_id = sc.subcategory_id
     INNER JOIN CATEGORIES AS c
     ON sc.category_id = c.category_id
-    ORDER BY p.product_id ASC;
+    INNER JOIN PRODUCT_DETAILS AS pd
+    ON p.product_details_id = pd.product_details_id
+    INNER JOIN PRODUCT_BRANDS AS pb
+    ON pd.product_brand_id = pb.product_brand_id;
 
 -- Vista para obtener todas subcategorias con su categoria
 CREATE VIEW get_all_subcategories AS
