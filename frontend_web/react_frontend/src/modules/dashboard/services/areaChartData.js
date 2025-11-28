@@ -1,8 +1,9 @@
-import { settings } from "../../../config/settings";
+import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
 export async function areaChartData() {
-  const res = await fetch(`${settings.apiUrl}/dashboard/monthly-outputs`, {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/monthly-outputs`, {
+    method: "GET",
     headers: {
       Authorization: getToken(),
     },
