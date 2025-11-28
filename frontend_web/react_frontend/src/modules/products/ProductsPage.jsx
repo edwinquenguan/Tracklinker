@@ -21,6 +21,14 @@ export default function ProductsPage() {
   const { modalType, selectedProduct, isOpen, openModal, closeModal } =
     useModal();
 
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
+  if (error) {
+    <div>{error}</div>
+  }
+
   return (
     <Layout
       avatarOnClick={() => {
