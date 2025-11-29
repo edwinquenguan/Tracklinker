@@ -29,7 +29,7 @@ class CategoryController:
     def create_category(category_data: CategoryCreate):
         data_dict = category_data.dict()
         
-        error, message, result = CategoryModel.create(data_dict)
+        error, message, result = CategoryRepository.create(data_dict)
         if error:
             raise HTTPException(status_code=400, detail=error)
         return {

@@ -1,4 +1,4 @@
-import { Pie, PieChart, Tooltip } from "recharts";
+import { Pie, PieChart, Tooltip, Cell, Legend } from "recharts";
 import { usePieChart } from "../../hooks/usePieChart";
 import ChartCard from "./ChartCard";
 
@@ -11,18 +11,22 @@ export default function SimplePieChart() {
 
   return (
     <ChartCard rowSpan={4} colSpan={3} name={"Estados de garantías"}>
-      <PieChart height="100%" width="100%" responsive>
+      <PieChart height="95%" width="100%" responsive>
         <Tooltip />
         <Pie
           data={simplePieChartData}
-          dataKey={"total"}
-          nameKey={"status"}
+          dataKey={"value"}
+          nameKey={"name"}
           cornerRadius="50%"
           innerRadius="80%"
           outerRadius="100%"
-          fill="#2f3ab5"
           paddingAngle={5}
-        />
+        >
+          {simplePieChartData.map((item, index) => (
+            <Cell key={index} fill={item.color} />
+          ))}
+          <Legend />
+        </Pie>
       </PieChart>
     </ChartCard>
   );

@@ -56,8 +56,7 @@ class CategoryRepository:
 
             # Resto del código igual...
             data_for_db = {
-                "category_name": category_data["name"],
-                "description": category_data.get("description")
+                "category_name": category_data["name"]
             }
 
             fields = list(data_for_db.keys())
