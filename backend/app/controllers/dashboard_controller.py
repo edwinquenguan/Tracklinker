@@ -32,3 +32,13 @@ class DashboardController:
         return {
             "data": data
         }
+    
+    @staticmethod
+    def get_all_and_new_users():
+        error, data = DashboardRepository.find_all_and_new_users()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data
+        }

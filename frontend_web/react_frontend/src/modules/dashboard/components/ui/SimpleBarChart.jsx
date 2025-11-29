@@ -1,9 +1,9 @@
-import { BarChart, Bar, XAxis,  Tooltip, YAxis } from "recharts";
+import { BarChart, Bar, XAxis, Tooltip, YAxis } from "recharts";
 import useBarChart from "../../hooks/useBarChart";
 import ChartCard from "./ChartCard";
 
 // Grafico de barras
-export default function TinyBarChart() {
+export default function SimpleBarChart() {
   const { barChartData, error } = useBarChart();
 
   if (error) {

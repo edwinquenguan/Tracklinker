@@ -165,8 +165,6 @@ class UserRepository:
             connection.close()
             return "Usuario no encontrado", None, None
 
-        print(user_data["user_password"])
-
         # Campos vacios para almacenar todo lo que va a actualizar
         fields = list(user_data.keys())
         values = list(user_data.values())

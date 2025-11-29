@@ -1,8 +1,8 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function areaChartData() {
-  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/monthly-outputs`, {
+export async function tinyPieChartData() {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/new-users`, {
     method: "GET",
     headers: {
       Authorization: getToken(),
@@ -16,7 +16,6 @@ export async function areaChartData() {
 
   // Convertimos la respuesta a json y la almacenamos en data
   const data = await res.json();
-
   // Retornamos la información para el gráfico
   return data.data;
 }
