@@ -1,5 +1,5 @@
 // Hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWarranties } from "./hooks/useWarranties";
 // Iconos
 import { warrantiesIcons } from "../../assets/icons/mainIcons";
@@ -8,14 +8,20 @@ import Layout from "../../globals/components/Layout/Layout";
 import WarrantyCard from "./components/ui/WarrantyCard";
 import TopSection from "../../globals/components/ui/TopSection";
 // Modales
+import { getWarranties } from "./services/getWarranties";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddWarrantyModal from "./components/modals/AddWarrantyModal";
+import { data } from "react-router-dom";
 // import { warranties } from "../data/warranties";
 
 export default function WarrantiesPage() {
-  const { warranties, error, loading } = useWarranties();
+   const [error, setError] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [warranties, setWarranties] = useState([]);
+   
+  ;
   const [selectedWarranty, setSelectedWarranty] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +35,25 @@ export default function WarrantiesPage() {
     setSelectedWarranty(null);
     setModalType(null);
   };
+
+  // Este effect llama a la función getWarranties cuando el componente se monta
+  useEffect(() =>{
+    async function fetchWarranties() {
+      try {
+        setLoading(true);
+        const data = await getWarranties();
+        setWarranties(data);
+      } catch (error){
+           setError(error.message);
+        }
+      }
+
+      fetchWarranties();
+    }, []);
+
+      if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <Layout
@@ -50,23 +75,57 @@ export default function WarrantiesPage() {
           setIsOpen(true);
         }}
       />
-      {/* Contenedor de las cards de garantia */}
-      <section className="max-h-[95%] flex flex-wrap gap-2 z-50 overflow-x-auto overflow-y-auto">
-        {warranties.map((warranty) => (
-          <WarrantyCard
-            warrantyId={warranty.warranty_incidents_id}
-            warrantyRequirement={warranty.warranty_description}
-            warrantyCreateDate={warranty.warranty_date}
-            warrantyStatusIcon={warrantiesIcons.inprocessIcon}
-            warrantyStatus={warranty.warranty_status}
-            onClick={() => {
-              openModal(warranty, "info");
-              setIsOpen(true);
-            }}
-          />
-        ))}
-      </section>
+<section className="max-h-[93%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+  <ul className="pt-3 flex flex-col gap-1">
 
+    {/* Fila de encabezados fija */}
+    <li
+      className="flex items-center p-5 font-bold
+                 bg-gray-200 dark:bg-gray-800 rounded-lg
+                 sticky top-0 z-10"
+    >
+      <div className="w-1/6"><p>Caso con Número</p></div>
+      <div className="w-2/6"><p>Descripción</p></div>
+      <div className="w-1/6"><p>Fecha</p></div>
+      <div className="w-1/6"><p>Icono</p></div>
+      <div className="w-1/6"><p>Estado</p></div>
+
+      <div className="w-1/6"><p>Cliente</p></div>
+      <div className="w-1/6"><p>Teléfono</p></div>
+      <div className="w-1/6"><p>Dirección</p></div>
+      <div className="w-1/6"><p>Ciudad</p></div>
+      <div className="w-1/6"><p>Serial Producto</p></div>
+    </li>
+
+    {/* Filas de datos */}
+    {warranties.map((warranty) => (
+      <li
+        className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md
+                   transition duration-300 dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+        key={warranty.warranty_incidents_id}
+      >
+        <div className="w-1/6"><p>{warranty.warranty_incidents_id}</p></div>
+        <div className="w-2/6"><p>{warranty.warranty_description}</p></div>
+        <div className="w-1/6"><p>{warranty.warranty_date}</p></div>
+
+        <div className="w-1/6">
+          <img
+            src={warrantiesIcons.inprocessIcon}
+            alt=""
+            className="w-5 h-5 dark:invert"
+          />
+        </div>
+
+        <div className="w-1/6"><p>{warranty.warranty_status}</p></div>
+        <div className="w-1/6"><p>{warranty.warranty_customer}</p></div>
+        <div className="w-1/6"><p>{warranty.warranty_phone}</p></div>
+        <div className="w-1/6"><p>{warranty.warranty_address}</p></div>
+        <div className="w-1/6"><p>{warranty.warranty_city}</p></div>
+        <div className="w-1/6"><p>{warranty.product_serial}</p></div>
+      </li>
+    ))}
+  </ul>
+</section>
       {/* Modales */}
       {modalType && (
         <Modal
