@@ -21,8 +21,8 @@ export default function DashBoardPage() {
         sectionName={"Panel De Control"}
         addButtonIcon={actionsIcons.uploadIcon}
         addButtonText={"Descargar"}
-        createOnClick={() => openModal("download")}
-        filterOnClick={() => openModal("filter")}
+        createOnClick={() => openModal(null, "download")}
+        filterOnClick={() => openModal(null, "filter")}
       />
       {/* Container de los gráficos */}
       <ChartsContainer />
