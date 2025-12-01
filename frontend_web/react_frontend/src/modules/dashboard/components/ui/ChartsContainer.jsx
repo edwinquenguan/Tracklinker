@@ -1,11 +1,12 @@
 // Iconos
 import { dashboardIcons } from "../../../../assets/icons/mainIcons";
 // Gráficos
-import TinyPieChart from "./charts/TinyPieChart";
+import UsersChart from "./charts/UsersChart";
 import SimpleAreaChart from "./charts/SimpleAreaChart";
 import ChartCard from "./ChartCard";
 import SimpleBarChart from "./charts/SimpleBarChart";
 import SimplePieChart from "./charts/SimplePieChart";
+import ProductsChart from "./charts/ProductsChart";
 
 export default function ChartsContainer() {
   return (
@@ -15,17 +16,8 @@ export default function ChartsContainer() {
             sm:grid-cols-1 sm:grid-rows-4 gap-5"
     >
       {/* Primera Fila de Gráficos */}
-      <TinyPieChart />
-      <ChartCard
-        rowSpan={1}
-        colSpan={3}
-        bgColor={""}
-        textColor={"black"}
-        name={"Chart"}
-        metricValue={"2.000"}
-        percentValue={"2.1%"}
-        chart={dashboardIcons.firstChart}
-      />
+      <UsersChart />
+      <ProductsChart />
       <ChartCard
         rowSpan={1}
         colSpan={3}
