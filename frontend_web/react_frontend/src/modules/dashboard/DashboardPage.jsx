@@ -16,7 +16,7 @@ export default function DashBoardPage() {
   const { modalType, isOpen, openModal, closeModal } = useModal();
 
   return (
-    <Layout avatarOnClick={() => openModal("user")}>
+    <Layout avatarOnClick={() => openModal(null, "user")}>
       <TopSection
         sectionName={"Panel De Control"}
         addButtonIcon={actionsIcons.uploadIcon}
