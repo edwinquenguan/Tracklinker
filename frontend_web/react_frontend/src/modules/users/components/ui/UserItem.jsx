@@ -8,6 +8,9 @@ export default function UserItem({
   user_second_surname,
   user_phone,
   user_rol,
+  editButtonOnClick,
+  deleteButtonOnClick,
+  moreInfoOnClick,
 }) {
   return (
     <li
@@ -19,8 +22,7 @@ export default function UserItem({
       <article>
         <address className="flex gap-3 not-italic font-medium dark:text-white">
           <p className="text-xl">
-            {user_name} {user_first_surname}{" "}
-            {user_second_surname}
+            {user_name} {user_first_surname} {user_second_surname}
           </p>
           <div className="flex items-center">
             <img
@@ -41,7 +43,11 @@ export default function UserItem({
         </address>
       </article>
 
-      <UserActions />
+      <UserActions 
+      editButtonOnClick={editButtonOnClick}
+      deleteButtonOnClick={deleteButtonOnClick}
+      moreInfoOnClick={moreInfoOnClick}
+      />
     </li>
   );
 }
