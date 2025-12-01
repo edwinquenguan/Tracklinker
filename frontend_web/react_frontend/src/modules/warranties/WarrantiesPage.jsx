@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useWarranties } from "./hooks/useWarranties";
 // Iconos
-import { warrantiesIcons } from "../../assets/icons/mainIcons";
+import { warrantiesIcons, actionsIcons } from "../../assets/icons/mainIcons";
 // Componentes
 import Layout from "../../globals/components/Layout/Layout";
 import WarrantyCard from "./components/ui/WarrantyCard";
@@ -95,6 +95,7 @@ export default function WarrantiesPage() {
       <div className="w-1/6"><p>Dirección</p></div>
       <div className="w-1/6"><p>Ciudad</p></div>
       <div className="w-1/6"><p>Serial Producto</p></div>
+      <div className="w-1/6"><p>Acción</p></div>
     </li>
 
     {/* Filas de datos */}
@@ -112,7 +113,7 @@ export default function WarrantiesPage() {
           <img
             src={warrantiesIcons.inprocessIcon}
             alt=""
-            className="w-5 h-5 dark:invert"
+            className="w-5 h-5  dark:invert"
           />
         </div>
 
@@ -122,6 +123,18 @@ export default function WarrantiesPage() {
         <div className="w-1/6"><p>{warranty.warranty_address}</p></div>
         <div className="w-1/6"><p>{warranty.warranty_city}</p></div>
         <div className="w-1/6"><p>{warranty.product_serial}</p></div>
+        
+       <div className="w-1/6 flex justify-center items-center">
+          <img
+            src={actionsIcons.moreInfoIcon}
+            alt=""
+          />
+          <img
+            src={warrantiesIcons.editIcon}
+            alt=""
+          />
+        </div>
+        
       </li>
     ))}
   </ul>
