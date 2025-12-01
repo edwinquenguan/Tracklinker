@@ -1,6 +1,6 @@
-import TopChartsCard from "./TopChartsCard";
-import SeeReportButton from "./SeeReportButton";
-import { useTinyPieChart } from "../../hooks/useTinyPieChart";
+import TopChartsCard from "../TopChartsCard";
+import SeeReportButton from "../SeeReportButton";
+import { useTinyPieChart } from "../../../hooks/useTinyPieChart";
 
 export default function TinyPieChart() {
   const { tinyPieChartInfo, error } = useTinyPieChart();
