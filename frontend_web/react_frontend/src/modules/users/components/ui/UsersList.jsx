@@ -1,8 +1,16 @@
 import { useUsers } from "../../hooks/useUsers";
 import UserItem from "./UserItem";
 
-export default function UsersList() {
-  const { users } = useUsers();
+export default function UsersList({ openModal }) {
+  const { users, loading, error } = useUsers();
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     /* Contenedor de los usuarios */
@@ -17,6 +25,9 @@ export default function UsersList() {
             user_second_surname={user.user_second_surname}
             user_phone={user.user_phone}
             user_rol={user.rol_name}
+            moreInfoOnClick={() => openModal(user, "info")}
+            editButtonOnClick={() => openModal(user, "edit")}
+            deleteButtonOnClick={() => openModal(user, "delete")}
           />
         ))}
       </ul>
