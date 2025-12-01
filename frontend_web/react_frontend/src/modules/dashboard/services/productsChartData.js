@@ -1,14 +1,16 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function tinyPieChartData() {
-  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.dashboard}/new-users`, {
-    method: "GET",
-    headers: {
-      Authorization: getToken(),
-    },
-  });
-
+export async function productsChartData() {
+  const res = await fetch(
+    `${apiRoutes.apiUrl}${apiRoutes.products}/all-and-new`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: getToken(),
+      },
+    }
+  );
   // Validamos si la respuesta fue OK
   if (!res.ok) {
     throw new Error("Error en la petición");
