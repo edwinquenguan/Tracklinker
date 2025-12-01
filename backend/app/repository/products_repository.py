@@ -39,3 +39,42 @@ class ProductsRepository:
             cursor.close()
             connection.close()
 
+    @staticmethod
+    def find_all_and_new_products_ammount():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT 
+            (SELECT COUNT(*) FROM PRODUCTS) AS total,
+            (SELECT COUNT(*) 
+            FROM PRODUCTS AS p
+            INNER JOIN PRODUCT_SERIALS AS ps
+            ON p.product_id = ps.product_id
+            INNER JOIN INPUT_ORDERS AS io
+            ON ps.input_order_id = io.input_order_id
+            WHERE MONTH(io.input_order_date) = MONTH(CURDATE())
+            AND YEAR(io.input_order_date) = YEAR(CURDATE())
+            ) AS new_products;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "products": item[0],
+                    "new_products": item[1]
+                }
+                for item in result
+            ]
+
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            connection.close()
+            cursor.close()
+
+

@@ -11,3 +11,6 @@ router = APIRouter(
 def get_all_products():
     return ProductsController.get_all_products()
 
+@router.get("/all-and-new")
+def get_old_and_new_products_ammount():
+    return ProductsController.get_all_and_new_products_ammount()
