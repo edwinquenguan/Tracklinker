@@ -7,7 +7,7 @@ export const apiRoutes = {
     dashboard: "/dashboard" ,
     auth: "/auth" ,
     suppliers: "/suppliers" ,
-    warranties: "/warranties" ,
+    warranties: "/warranty_incidents" ,
     transformations: "/transformations" ,
     products: "/products"
 }
