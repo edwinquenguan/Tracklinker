@@ -6,8 +6,7 @@ export default function DeleteProductModal({ selectedProduct, onCloseModal }) {
       <p className="dark:text-white">
         ¿Seguro que deseas eliminar este Producto llamado
         <strong>
-          {" "}
-          {selectedProduct.product_details.product_detail_model}{" "}
+          {selectedProduct.model}
         </strong>
         ?
       </p>
