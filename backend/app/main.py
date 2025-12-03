@@ -55,3 +55,5 @@ app.include_router(category_routes.router)
 app.include_router(subcategories_routes.router)
 # Rutas para el modúlo de Panel de control
 app.include_router(dashboard_routes.router)
+# Rutas para el modúlo de productos
+app.include_router(products_routes.router)
