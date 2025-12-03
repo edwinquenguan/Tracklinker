@@ -12,13 +12,12 @@ class SubcategoriesRepository:
 
         query = """
         SELECT 
-        c.categories,
-        
-        * FROM SUBCATEGORIES
-        INNER JOIN CATEGORIES 
-        ON SUBCATEGORIES.category_id = CATEGORIES.category_id
-
-    
+        c.category_name,
+        s.subcategory_id,
+        s.subcategory_name
+        FROM SUBCATEGORIES AS s
+        INNER JOIN CATEGORIES AS c 
+        ON s.category_id = c.category_id
         """
 
         try:

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+
 // import { subcategories } from "../data/subcategories"
 import { actionsIcons } from "../../assets/icons/mainIcons";
 import { asideIcons } from "../../assets/icons/asideIcons";
 import { getAllCategories } from "../../services/getAllCategories";
-import { getSubcategoriesWithCategory } from "../../services/getSubcategoriesWithCategory";
+import { getSubcategoriesWithCategory } from "./services/getSubcategoriesWithCategory";
 import Layout from "../../globals/components/Layout/Layout";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
@@ -105,7 +105,7 @@ export default function SubcategoriesPage() {
                     className="invert brightness-200 dark:brightness-50"
                   />
                   <span className="font-medium">
-                    {subcategory.categories.category_name}
+                    {subcategory.category_name}
                   </span>
                 </div>
               </section>
@@ -224,29 +224,7 @@ export default function SubcategoriesPage() {
           )}
           {/* Modal para editar la subcategoria */}
           {modalType === "edit" && (
-            <section className="flex flex-col items-center">
-              <form action="" className="flex flex-col gap-2">
-                <FormField
-                  labelText={"Nombre"}
-                  placeholder={selectedSubcategory.subcategory_name}
-                  id={"name"}
-                />
-              </form>
-
-              {/* Botones */}
-              <ConfirmCancelButtons
-                confirmText={"Confirmar"}
-                cancelText={"Cancelar"}
-                confirmButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
-                cancelButtonOnClick={() => {
-                  closeModal();
-                  setIsOpen(false);
-                }}
-              />
-            </section>
+           
           )}
 
           {/* Modal para eliminar la subcategoria */}
