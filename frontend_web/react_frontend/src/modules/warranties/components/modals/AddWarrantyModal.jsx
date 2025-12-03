@@ -42,7 +42,15 @@ export default function AddWarrantyModal({ onCloseModal }) {
           name="requirement"
           id="requirement_input"
           placeholder="Escribe aqui el requerimiento..."
-          className="h-48 w-64 p-2 text-sm border rounded-lg text-clip"
+          className="h-20 w-72 p-2 text-sm border rounded-lg text-clip"
+        />
+        <span>Archivos adjuntos</span>
+        <input
+          type="file"
+          name="requirement"
+          id="requirement_input"
+          placeholder="Escribe aqui el requerimiento..."
+          className="h-18 w-80 "
         />
       </form>
 
