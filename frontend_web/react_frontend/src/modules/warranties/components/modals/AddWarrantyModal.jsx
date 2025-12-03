@@ -11,12 +11,29 @@ export default function AddWarrantyModal({ onCloseModal }) {
           id={"serial"}
         />
 
-        <FormField labelText={"Modelo"} placeholder={"10KQ3400"} id={"model"} />
+        <FormField labelText={"Modelo"} 
+          placeholder={"10KQ3400"} 
+          id={"model"} />
 
         <FormField
           labelText={"Nombre del Cliente"}
           placeholder={"Miguel Arnulfo Pérez"}
-          id={"customer"}
+          id={"cliente"}
+        />
+        <FormField
+          labelText={"Teléfono"}
+          placeholder={"+57 300 123 XXXX"}
+          id={"telefono"}
+        />
+        <FormField
+          labelText={"Dirección"}
+          placeholder={"kr 45 # 67-XX"}
+          id={"direccion"}
+        />
+        <FormField
+          labelText={"Ciudad"}
+          placeholder={"Bogotá"}
+          id={"ciudad"}
         />
 
         <span>Requerimiento</span>

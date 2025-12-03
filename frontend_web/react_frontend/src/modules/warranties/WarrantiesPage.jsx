@@ -20,8 +20,6 @@ export default function WarrantiesPage() {
    const [error, setError] = useState(null);
    const [loading, setLoading] = useState(true);
    const [warranties, setWarranties] = useState([]);
-   
-  ;
   const [selectedWarranty, setSelectedWarranty] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -125,16 +123,25 @@ export default function WarrantiesPage() {
         <div className="w-1/6"><p>{warranty.product_serial}</p></div>
         
        <div className="w-1/6 flex justify-center items-center">
-          <img
-            src={actionsIcons.moreInfoIcon}
-            alt=""
-          />
-          <img
-            src={warrantiesIcons.editIcon}
-            alt=""
-          />
+          <button className="hover:scale-125">
+            <img
+              src={actionsIcons.moreInfoIcon}
+              alt=""
+            />
+          </button>
+           <button className="hover:scale-125">
+            <img
+              src={warrantiesIcons.editIcon}
+              alt=""
+            />
+          </button>
+          <button className="hover:scale-125">
+            <img
+              src={actionsIcons.deleteIcon}
+              alt=""
+            />
+          </button>
         </div>
-        
       </li>
     ))}
   </ul>
