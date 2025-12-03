@@ -1,6 +1,6 @@
 import { Pie, PieChart, Tooltip, Cell, Legend } from "recharts";
-import { usePieChart } from "../../hooks/usePieChart";
-import ChartCard from "./ChartCard";
+import { usePieChart } from "../../../hooks/usePieChart";
+import ChartCard from "../ChartCard";
 
 export default function SimplePieChart() {
   const { simplePieChartData, error } = usePieChart();

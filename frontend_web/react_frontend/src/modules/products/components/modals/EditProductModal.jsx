@@ -8,13 +8,13 @@ export default function EditProductModal({ selectedProduct, onCloseModal }) {
       <form action="" className="flex flex-col gap-2">
         <FormField
           labelText={"Modelo"}
-          placeholder={selectedProduct.product_details.product_detail_model}
+          placeholder={selectedProduct.model}
           id={"model"}
         />
         <FormField
           labelText={"Marca"}
           placeholder={
-            selectedProduct.product_details.product_brands.product_brand_name
+            selectedProduct.brand
           }
           id={"brand"}
         />

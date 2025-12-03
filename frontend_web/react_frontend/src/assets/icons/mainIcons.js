@@ -30,6 +30,8 @@ import addWarrantyIcon from "./main/warranties/add-warranty-icon.svg";
 import incompleteIcon from "./main/warranties/incomplete-icon.svg";
 import inprocessIcon from "./main/warranties/inprocess-icon.svg";
 import completeIcon from "./main/warranties/complete-icon.svg";
+import editIcon from "./main/warranties/edit-info-icon.svg";
+
 
 /* Action Icons */
 import moreInfoIcon from "./main/actions/more-info-icon.svg";
@@ -83,4 +85,5 @@ export const warrantiesIcons = {
   incompleteIcon,
   inprocessIcon,
   completeIcon,
+  editIcon,
 };

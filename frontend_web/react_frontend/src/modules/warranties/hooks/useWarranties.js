@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllWarranties } from "../services/getAllWarranties";
+import { getWarranties } from "../services/getWarranties";
 
 export function useWarranties() {
   const [warranties, setWarranties] = useState([]);
@@ -11,7 +11,7 @@ export function useWarranties() {
     async function fetchWarranties() {
       try {
         setLoading(true);
-        const data = await getAllWarranties();
+        const data = await getWarranties();
         setWarranties(data);
       } catch (error) {
         setError(error.message);

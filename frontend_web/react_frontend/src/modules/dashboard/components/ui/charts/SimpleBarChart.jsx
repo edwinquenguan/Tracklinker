@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, Tooltip, YAxis } from "recharts";
-import useBarChart from "../../hooks/useBarChart";
-import ChartCard from "./ChartCard";
+import useBarChart from "../../../hooks/useBarChart";
+import ChartCard from "../ChartCard";
 
 // Grafico de barras
 export default function SimpleBarChart() {

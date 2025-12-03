@@ -1,6 +1,6 @@
 import { Area, AreaChart, Tooltip, XAxis, CartesianGrid } from "recharts";
-import { useAreaChart } from "../../hooks/useAreaChart";
-import ChartCard from "./ChartCard";
+import { useAreaChart } from "../../../hooks/useAreaChart";
+import ChartCard from "../ChartCard";
 
 export default function SimpleAreaChart() {
   const { areaChartInfo, error } = useAreaChart();
