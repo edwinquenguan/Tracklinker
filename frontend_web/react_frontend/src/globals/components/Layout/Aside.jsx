@@ -106,7 +106,7 @@ export default function Aside({ avatarOnClick }) {
           <nav>
             <ul>
               {extendedSectionItems.map((item) => (
-                <NavLink to={item.path}>
+                <NavLink to={item.path} key={item.name}>
                   {({ isActive }) => (
                     <section
                       className={`w-20 h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300

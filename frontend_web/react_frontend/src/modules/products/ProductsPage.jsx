@@ -17,7 +17,6 @@ import ProductsFilterModal from "./components/modals/ProductsFilterModal";
 import DeleteProductModal from "./components/modals/DeleteProductModal";
 
 export default function ProductsPage() {
-  const { products, loading, error } = useCatalog();
   const { modalType, selectedProduct, isOpen, openModal, closeModal } =
     useModal();
 
@@ -38,21 +37,9 @@ export default function ProductsPage() {
           openModal(null, "filter");
         }}
       />
+      
       {/* Contenedor de la tabla */}
-      <section
-        className="max-h-[95%] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
-            dark:border-[#303033]"
-      >
-        <ProductsTable
-          products={products}
-          editButtonOnClick={(product) => {
-            openModal(product, "edit");
-          }}
-          deleteButtonOnClick={(product) => {
-            openModal(product, "delete");
-          }}
-        />
-      </section>
+      <ProductsTable openModal={openModal} />
 
       {/* Modales */}
       {isOpen && (
