@@ -262,3 +262,28 @@ class UserRepository:
             
                 cursor.close()
                 connection.close()
+
+    @staticmethod
+    def find_all_roles():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM ROLES"
+
+        try:
+            cursor.execute(query)
+            result =cursor.fetchall()
+            
+            data = [
+                {
+                    "id": item[0],
+                    "name": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}"
+        finally:
+            connection.close()
+            cursor.close()
