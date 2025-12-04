@@ -1,14 +1,9 @@
 import { loginIcons } from "../../../../assets/icons/loginIcons";
+import { useLogin } from "../../hooks/useLogin";
 import FormButtons from "./FormButtons";
 
-export default function LoginForm({
-  email,
-  password,
-  setEmail,
-  setPassword,
-  getIntoButtonOnclick,
-  recoverButtonOnclick,
-}) {
+export default function LoginForm({openModal}) {
+  const { setEmail, setPassword, handleLogin } = useLogin(openModal);
   return (
     <section className="w-[100%] h-[100%] flex place-items-center justify-center">
       {/* Container del formulario */}
@@ -31,11 +26,10 @@ export default function LoginForm({
               className="w-6 h-6 dark:invert"
             />
             <input
-              value={email}
               id="email-input"
               type="text"
               placeholder="Email"
-              onChange={setEmail}
+              onChange={(e) => setEmail(e.target.value)}
               className="px-2 py-1 text-sm outline-none dark:bg-transparent dark:border-[#101012] dark:text-white"
             />
           </section>
@@ -50,17 +44,16 @@ export default function LoginForm({
               className="w-6 h-6 dark:invert"
             />
             <input
-              value={password}
               type="password"
               placeholder="Contraseña"
-              onChange={setPassword}
+              onChange={(e) => setPassword(e.target.value)}
               className="px-2 py-1 text-sm outline-none dark:bg-transparent dark:border-[#101012] dark:text-white"
             />
           </section>
           {/* Botones de Ingresar y recuperar contraseña */}
           <FormButtons
-            getIntoButtonOnclick={getIntoButtonOnclick}
-            recoverButtonOnclick={recoverButtonOnclick}
+            getIntoButtonOnclick={handleLogin}
+            recoverButtonOnclick={() => openModal(null, "rememberPassword")}
           />
         </form>
       </section>
