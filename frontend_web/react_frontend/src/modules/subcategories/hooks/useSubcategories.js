@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../services/getSubcategories";
+import { getSubcategories } from "../services/getSubcategories";
 
 export function useSubcategories() {
-  const [subcategories, getSubcategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
