@@ -1,9 +1,12 @@
 export default function FormField({
+  value,
   labelText,
   inputIcon,
   id,
   type = "text",
   placeholder,
+  onChange,
+  name,
   autoComplete = "",
 }) {
   return (
@@ -21,6 +24,9 @@ export default function FormField({
           className="invert brightness-200 dark:brightness-0"
         />
         <input
+          name={name}
+          onChange={onChange}
+          value={value}
           type={type}
           placeholder={placeholder}
           id={id}
