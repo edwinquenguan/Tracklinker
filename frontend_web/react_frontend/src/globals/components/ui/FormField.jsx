@@ -15,14 +15,8 @@ export default function FormField({
         {labelText}
       </label>
       <div
-        className="flex justify-between border pl-1.5 
-            dark:bg-[#2020226c] dark:border-[#101012]"
+        className="border dark:bg-[#2020226c] dark:border-[#101012]"
       >
-        <img
-          src={inputIcon}
-          alt=""
-          className="invert brightness-200 dark:brightness-0"
-        />
         <input
           name={name}
           onChange={onChange}
