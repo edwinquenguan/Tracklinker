@@ -81,3 +81,12 @@ class UserController:
         return {
            "data": user
         }
+    
+    @staticmethod
+    def get_all_roles():
+        error, data = UserRepository.find_all_roles()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data
+        }

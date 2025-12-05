@@ -219,14 +219,9 @@ class UserRepository:
 
     @staticmethod
     def find_by_rol(rol_id: int):
-        # 💡 MEJORA: Inicializar variables a None para el manejo de errores
-        connection = None
-        cursor = None
-        
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
         try:
-            # 1. Establecer conexión y cursor
-            connection = get_connection()
-            cursor = connection.cursor(dictionary=True)
 
             query = """
             SELECT
@@ -250,15 +245,37 @@ class UserRepository:
             cursor.execute(query, (rol_id,))
             result = cursor.fetchall() # Obtiene la lista completa de usuarios
             
-            # 3. ÉXITO: Devuelve una tupla de 2 (None indica que NO hay error)
             return None, result 
             
         except Exception as e:
-            # 4. ERROR: Devuelve una tupla de 2 (Mensaje de error y None para datos)
-            error_message = f"Error al ejecutar la consulta: {e}"
-            return error_message, None
+            return f"Error al ejecutar la consulta: {e}", None
             
         finally:
             
                 cursor.close()
                 connection.close()
+
+    @staticmethod
+    def find_all_roles():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM ROLES"
+
+        try:
+            cursor.execute(query)
+            result =cursor.fetchall()
+            
+            data = [
+                {
+                    "id": item[0],
+                    "name": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}"
+        finally:
+            connection.close()
+            cursor.close()

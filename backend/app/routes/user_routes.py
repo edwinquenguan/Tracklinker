@@ -9,6 +9,11 @@ router = APIRouter(
     tags=["Users"]
 )
 
+# Endpoint para obtener todos los roles existentes
+@router.get("/roles")
+def get_all_roles():
+    return UserController.get_all_roles()
+
 # Endpoint para obtener todos los usuarios
 @router.get("/")
 def get_all_users(payload: dict = Depends(require_roles(["Admin"]))):
