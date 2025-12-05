@@ -15,7 +15,7 @@ export async function createWarranty(warrantyData) {
 
   // Validamos si la respuesta no fue OK
   if (!res.ok) {
-    throw new Error("Error al crear el usuario");
+    throw new Error("Error al crear la garantía");
   }
 
   return await res.json();

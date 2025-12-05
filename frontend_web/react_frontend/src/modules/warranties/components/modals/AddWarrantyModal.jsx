@@ -1,6 +1,6 @@
 import React, { useRef } from "react"; 
-// ❌ Eliminamos la importación de FormField
-// import FormField from "../../../../globals/components/ui/FormField"; 
+
+
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 import { useCreateWarranty } from "../../hooks/useCreateWarranties";
 
@@ -21,7 +21,7 @@ export default function AddWarrantyModal({ onCloseModal }) {
         <section className="flex flex-col items-center">
             <form onSubmit={handleCreateWarranty} ref={formRef} className="flex flex-col gap-1">
                 
-                {/* ✅ REEMPLAZO: <FormField> por <label> e <input> */}
+            
                 
                 <label className="text-sm mt-1">Serial</label>
                 <input type="text" name="product_serial" placeholder="10KQ34012414" className="border rounded-lg p-2 text-sm" />

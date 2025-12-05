@@ -11,7 +11,7 @@ class GuaranteeRepository:
         cursor = connection.cursor(dictionary=True)
 
         query = """
-        SELECT * FROM WARRANTY_INCIDENTS
+        SELECT * FROM WARRANTY_INCIDENTS ORDER BY WARRANTY_INCIDENTS_ID DESC
         """
         try:
             cursor.execute(query)
