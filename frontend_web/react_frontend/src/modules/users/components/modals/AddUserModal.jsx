@@ -38,6 +38,7 @@ export default function AddUserModal({ onClose }) {
           spanText={"Rol"}
           onChange={handleChange}
         >
+          <option> Seleccionar </option>
           {roles.map((rol) => (
             <option value={rol.id} key={rol.id}>
               {rol.name}
@@ -54,6 +55,16 @@ export default function AddUserModal({ onClose }) {
           name={"user_name"}
           onChange={handleChange}
           autoComplete="given-name"
+        />
+
+        <FormField
+          value={form.user_password}
+          labelText={"contras"}
+          placeholder={"********"}
+          id={"name"}
+          name={"user_password"}
+          onChange={handleChange}
+          autoComplete="pass"
         />
 
         <FormField
