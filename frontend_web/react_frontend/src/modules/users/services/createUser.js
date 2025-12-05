@@ -6,6 +6,7 @@ export async function createUser(user_data) {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.users}/create`, {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       Authorization: getToken(),
     },
     body: JSON.stringify(user_data),
