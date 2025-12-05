@@ -33,6 +33,7 @@ class UserController:
         return {
             "data": users
         }
+
     @staticmethod
     def get_user_by_id(user_id: int):
         error, user = UserRepository.find_by_id(user_id)
@@ -80,4 +81,13 @@ class UserController:
             raise HTTPException(status_code=404, detail=error)
         return {
            "data": user
+        }
+    
+    @staticmethod
+    def get_all_roles():
+        error, data = UserRepository.find_all_roles()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data
         }
