@@ -2,9 +2,10 @@
 // import { subcategories } from "../data/subcategories"
 import { actionsIcons } from "../../assets/icons/mainIcons";
 import { asideIcons } from "../../assets/icons/asideIcons";
-import { getAllCategories } from "../../services/getAllCategories";
-import { getSubcategoriesWithCategory } from "./services/getSubcategoriesWithCategory";
+import { getCategories } from "../services/getAllCategories";
+import { getSubcategories } from "../services/getSubcategoriesWithCategory";
 import Layout from "../../globals/components/Layout/Layout";
+import EditSubcategoryModal from "./components/modals/EditSubcategoryModal";
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
@@ -13,6 +14,8 @@ import ConfirmCancelButtons from "../../globals/components/modals/ConfirmCancelB
 import ActionButtons from "../../globals/components/ui/ActionButtons";
 import FormField from "../../globals/components/ui/FormField";
 import TopSection from "../../globals/components/ui/TopSection";
+import { useState, useEffect } from "react";
+
 
 export default function SubcategoriesPage() {
   // Definir los estados y sus valores por defecto
@@ -224,7 +227,7 @@ export default function SubcategoriesPage() {
           )}
           {/* Modal para editar la subcategoria */}
           {modalType === "edit" && (
-           
+           <EditSubcategoryModal />
           )}
 
           {/* Modal para eliminar la subcategoria */}

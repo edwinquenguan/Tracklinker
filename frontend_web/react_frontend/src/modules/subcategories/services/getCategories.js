@@ -2,9 +2,9 @@ import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
 // Esta función obtiene todas las subcategorias y las almacena en data
-export async function getSubcategories() {
+export async function getCategories() {
   // Consumimos el endpoint y lo almacenamos en res, le pasamos el metodo y el jwt que necesita para traer los datos
-  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.subcategories}/`, {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.categories}/`, {
     method: "GET",
     headers: {
       Authorization: getToken(),
