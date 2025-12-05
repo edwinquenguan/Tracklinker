@@ -82,6 +82,7 @@ export default function UsersPage() {
           {/* Modal para editar el usuario */}
           {modalType === "edit" && (
             <EditUserInfoModal
+              user_id={modalData.user_id}
               user_name={modalData.user_name}
               user_first_surname={modalData.user_first_surname}
               user_second_surname={modalData.user_second_surname}
