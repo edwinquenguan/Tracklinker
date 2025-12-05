@@ -1,7 +1,7 @@
 // useCreateWarranty.js (Asegúrate de que este es el contenido actual)
 
 import { useState } from "react";
-import { createWarranty } from "../services/warrantyService";
+import { createWarranty } from "../services/createWarranty";
 
 // Función auxiliar para convertir FormData a un objeto plano
 function formDataToObject(formData) {
