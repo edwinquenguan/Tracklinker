@@ -3,7 +3,6 @@ import { createUser } from "../services/createUserService";
 
 export function useCreateUser(formData) {
   const [form, setForm] = useState(formData);
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,7 +21,6 @@ export function useCreateUser(formData) {
 
     try {
       const response = await createUser(form);
-      setData(response);
     } catch (error) {
       setError(error);
     } finally {
@@ -30,5 +28,5 @@ export function useCreateUser(formData) {
     }
   }
 
-  return { form, data, loading, error, handleSubmit, handleChange };
+  return { form, loading, error, handleSubmit, handleChange };
 }
