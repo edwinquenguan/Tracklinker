@@ -96,6 +96,7 @@ export default function UsersPage() {
           {/* Modal para eliminar el usuario */}
           {modalType === "delete" && (
             <DeleteUserModal
+              user_id={modalData.user_id}
               user_name={modalData.user_name}
               user_first_surname={modalData.user_first_surname}
               onClose={() => closeModal()}
