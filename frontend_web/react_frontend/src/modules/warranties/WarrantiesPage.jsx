@@ -43,6 +43,7 @@ export default function WarrantiesPage() {
     useEffect(() => {
         fetchWarranties();
     }, []);
+    
 
     const openModal = (warranty, type) => {
         setSelectedWarranty(warranty);
@@ -50,11 +51,13 @@ export default function WarrantiesPage() {
         setIsOpen(true);
     };
 
+
     const closeModal = () => {
         setSelectedWarranty(null);
         setModalType(null);
         setIsOpen(false);
     };
+
 
     // ... (useEffect para fetchWarranties y lógica de carga/error)
     useEffect(() => {
@@ -166,7 +169,9 @@ export default function WarrantiesPage() {
                 >
                     {modalType === "user" && <ProfileModal onClose={closeModal} />}
                     {modalType === "filter" && <FilterModal onClose={closeModal} />}
-                    {modalType === "add" && <AddWarrantyModal onCloseModal={closeModal} />}
+                    {modalType === "add" && <AddWarrantyModal onCloseModal={closeModal} 
+                        onAddSuccess={fetchWarranties}
+                    />}
 
                     {/* Contenido del Modal de Más Información (se mantiene en línea por ser simple) */}
                     {modalType === "info" && selectedWarranty && (
@@ -181,21 +186,23 @@ export default function WarrantiesPage() {
                         </address>
                     )}
 
-                    {/* 🔑 USANDO COMPONENTES DE MODAL SEPARADOS */}
+                    {/* USANDO COMPONENTES DE MODAL SEPARADOS */}
                     {modalType === "edit" && selectedWarranty && (
                         <EditWarrantyModal
                             selectedWarranty={selectedWarranty}
                             onClose={closeModal}
+                            onEditSuccess={fetchWarranties}
                         />
                     )}
                     
-                 {/* 🔑 INTEGRACIÓN DEL MODAL DE ELIMINACIÓN */}
+                 {/* INTEGRACIÓN DEL MODAL DE ELIMINACIÓN */}
                     {modalType === "delete" && selectedWarranty && (
                         <DeleteWarrantyModal
                             selectedWarranty={selectedWarranty}
                             onClose={closeModal}
-                            // 👈 PASAMOS LA FUNCIÓN DE RECARGA
-                            onDeleteSuccess={fetchWarranties} 
+                            // PASAMOS LA FUNCIÓN DE RECARGA
+                            onDeleteSuccess={fetchWarranties}
+                            
                         />
                     )}
                 </Modal>

@@ -36,7 +36,7 @@ export default function DeleteWarrantyModal({ selectedWarranty, onClose, onDelet
   return (
     <div className="flex flex-col items-center p-5">
       <p className="text-lg mb-6 text-center">
-        ¿Estás seguro de que deseas **eliminar** permanentemente la garantía **#{selectedWarranty?.warranty_incidents_id}**?
+        ¿Estás seguro de que deseas **eliminar** permanentemente la garantía Ccon caso número {selectedWarranty?.warranty_incidents_id}?
       </p>
       <p className="text-red-500 font-bold mb-4">¡Esta acción es irreversible!</p>
       
