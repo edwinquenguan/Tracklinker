@@ -26,7 +26,7 @@ export default function SimpleAreaChart() {
       {/* Grafico en forma de ola */}
       <AreaChart width="100%" height="95%" responsive data={areaChartInfo}>
         {/* Número de ordenes de salidas que sale a la izquierda */}
-        <YAxis width="auto" fontSize={"12px"} />
+        <YAxis width="auto" fontSize={"11px"} />
         {/* Nombres o meses que salen debajo del gráfico */}
         <XAxis dataKey={"month"} fontSize={"10px"} width={"100%"} />
         {/* Eje Y */}
