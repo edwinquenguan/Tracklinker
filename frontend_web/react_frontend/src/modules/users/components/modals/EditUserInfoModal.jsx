@@ -1,50 +1,99 @@
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 import DisabledFormField from "../../../../globals/components/ui/DisabledFormField";
+import SelectMenu from "../../../../globals/components/modals/SelectMenu";
+import { useEditUser } from "../../hooks/useEditUser"
+import { useRoles } from "../../hooks/useRoles";
 
-export default function EditUserInfoModal({
-  user_id,
-  user_name,
-  user_first_surname,
-  user_second_surname,
-  user_phone,
-  user_email,
-  user_address,
-  onClose,
-}) {
+export default function EditUserInfoModal({user, onClose}) {
+  const { roles } = useRoles()
+  const { handleChange, handleSubmit, loading, error, form } = useEditUser(
+    {
+      rol_id: user.rol_id || "",
+      user_name: user.user_name|| "",
+      user_first_surname: user.user_first_surname || "",
+      user_second_surname: user.user_second_surname || "",
+      user_address: user.user_address || "",
+      user_city:  user.user_city || "",
+      user_email: user.user_email || "",
+      user_phone: user.user_phone || "",
+    },
+    user.user_id
+  )
+
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>
+  }
   return (
     <section className="flex flex-col items-center">
       <form action="" className="flex flex-col gap-2">
         {/* ID del usuario */}
-        <DisabledFormField hidden={"hidden"} id={"user_id"} value={user_id}/>
+        <DisabledFormField hidden={"hidden"} id={"user_id"} value={user.user_id}/>
+        <SelectMenu
+          name={"rol_id"}
+          value={form.rol_id ?? ""}
+          id={"user_rol_menu"}
+          spanText={"Rol"}
+          onChange={handleChange}
+        >
+          <option> Seleccionar </option>
+          {roles.map((rol) => (
+            <option value={rol.id} key={rol.id}>
+              {rol.name}
+            </option>
+          ))}
+          <option value="add-rol"> Agregar rol</option>
+        </SelectMenu>
         <FormField
+          name={"user_name"}
+          value={form.user_name}
           labelText={"Nombre"}
-          placeholder={user_name}
+          onChange={handleChange}
           id={"name"}
-          autoComplete="name"
+          autoComplete="given-name"
         />
         <FormField
-          labelText={"Apellidos"}
-          placeholder={`${user_first_surname} ${user_second_surname}`}
+          name={"user_first_surname"}
+          value={form.user_first_surname}
+          labelText={"Primer Apellido"}
           id={"first_surname"}
+          onChange={handleChange}
           autoComplete="family-name"
         />
         <FormField
+          name={"user_second_surname"}
+          value={form.user_second_surname}
+          labelText={"Segundo Apellido"}
+          id={"second_surname"}
+          onChange={handleChange}
+          autoComplete="family-name"
+        />
+        <FormField
+          name={"user_phone"}
+          value={form.user_phone}
           labelText={"Número"}
-          placeholder={user_phone}
           id={"phone"}
+          onChange={handleChange}
           autoComplete="tel"
         />
         <FormField
+          name={"user_email"}
+          value={form.user_email}
           labelText={"Correo Electrónico"}
-          placeholder={user_email}
           id={"email"}
+          onChange={handleChange}
           autoComplete="email"
         />
         <FormField
+          name={"user_address"}
+          value={form.user_address}
           labelText={"Dirección"}
-          placeholder={user_address}
           id={"address"}
+          onChange={handleChange}
           autoComplete="street-address"
         />
       </form>
@@ -53,7 +102,7 @@ export default function EditUserInfoModal({
       <ConfirmCancelButtons
         confirmText={"Confirmar"}
         cancelText={"Cancelar"}
-        confirmButtonOnClick={onClose}
+        confirmButtonOnClick={(e) => handleSubmit(e)}
         cancelButtonOnClick={onClose}
       />
     </section>
