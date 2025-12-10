@@ -91,3 +91,24 @@ CREATE VIEW get_monthly_warranties AS
     COUNT(*) AS warranties
     FROM WARRANTY_INCIDENTS
     GROUP BY years, months;
+
+
+-- Salidas de productos
+CREATE VIEW get_output_products AS
+    SELECT
+    oo.out_order_id,
+    oo.out_order_date,
+    od.product_serial,
+    od.output_details_id,
+    od.out_product_garanty,
+    od.product_transformation,
+    pd.product_detail_description,
+    pd.product_detail_model,
+    pb.product_brand_name
+    FROM OUTPUT_DETAILS AS od 
+    INNER JOIN OUTPUT_ORDERS AS oo
+    ON od.out_order_id = od.out_order_id
+    INNER JOIN PRODUCT_DETAILS AS pd
+    ON oo.product_details_id = pd.product_details_id
+    INNER JOIN PRODUCT_BRANDS AS pb
+    ON pd.product_brand_id = pb.product_brand_id;

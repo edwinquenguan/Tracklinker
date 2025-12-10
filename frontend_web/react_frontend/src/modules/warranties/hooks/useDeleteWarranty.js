@@ -1,7 +1,7 @@
 // hooks/useDeleteWarranty.js
 
 import { useState } from "react";
-// 🚨 Reemplaza esta ruta por la ubicación real de tu servicio
+// Reemplaza esta ruta por la ubicación real de tu servicio
 import { deleteWarranty } from "../services/deleteWarranty"; 
 
 /**

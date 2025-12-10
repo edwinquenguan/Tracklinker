@@ -10,7 +10,7 @@ class OutputOrdersRepository:
         cursor = connection.cursor(dictionary=True)
 
         query = """
-        SELECT * FROM OUTPUT_ORDERS
+        SELECT * FROM get_output_products
         """
         try:
             cursor.execute(query)

@@ -16,6 +16,7 @@ import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddWarrantyModal from "./components/modals/AddWarrantyModal";
 import EditWarrantyModal from "./components/modals/EditWarrantyModal";    
 import DeleteWarrantyModal from "./components/modals/DeleteWarrantyModal"; 
+import ActionButtons from "../../globals/components/ui/ActionButtons";
 // ... (otras importaciones)
 
 export default function WarrantiesPage() {
@@ -132,15 +133,14 @@ export default function WarrantiesPage() {
 
                             {/* Botones de ACCIÓN: Llama a openModal con el tipo y la garantía */}
                             <div className="w-1/6 flex justify-center items-center">
-                                <button className="hover:scale-125" onClick={() => openModal(warranty, "info")}>
+                            <ActionButtons
+                            editButtonOnClick={() =>openModal(warranty, "edit")}
+                            deleteButtonOnClick={() => openModal(warranty, "delete")}
+                            >
+                                <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(warranty, "info")}>
                                     <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
                                 </button>
-                                <button className="hover:scale-125" onClick={() => openModal(warranty, "edit")}>
-                                    <img src={warrantiesIcons.editIcon} alt="Editar" />
-                                </button>
-                                <button className="hover:scale-125" onClick={() => openModal(warranty, "delete")}>
-                                    <img src={actionsIcons.deleteIcon} alt="Eliminar" />
-                                </button>
+                            </ActionButtons>
                             </div>
                         </li>
                     ))}

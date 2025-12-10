@@ -57,3 +57,5 @@ app.include_router(subcategories_routes.router)
 app.include_router(dashboard_routes.router)
 # Rutas para el modúlo de productos
 app.include_router(products_routes.router)
+# Rutas para el modulo de salidas
+
