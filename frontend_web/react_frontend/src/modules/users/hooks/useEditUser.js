@@ -2,30 +2,34 @@ import { useState } from "react";
 import { editUserService } from "../services/editUserService";
 
 export function useEditUser(userId, formData) {
-  const [id, setId] = useState(userId)
+  const [id, setId] = useState(userId);
   const [form, setForm] = useState(formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   function handleChange(e) {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const response = await editUserService(id, form)
+      const response = await editUserService(id, form);
+      if (response.success) {
+        setInnerModal("success");
+      }
     } catch (error) {
-      setError(error.message)
+      setInnerModal("error");
+      setError(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
-  return {handleChange, handleSubmit, loading, error, form}
+  return { handleChange, handleSubmit, loading, error, form };
 }
