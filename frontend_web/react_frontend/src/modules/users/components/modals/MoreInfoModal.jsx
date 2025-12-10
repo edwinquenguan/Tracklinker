@@ -1,33 +1,24 @@
-export default function MoreInfoModal({
-  rol_name,
-  user_name,
-  user_first_surname,
-  user_second_surname,
-  user_phone,
-  user_email,
-  user_address,
-  user_date,
-}) {
+export default function MoreInfoModal({user}) {
   return (
     <section className="flex flex-col justify-center dark:text-white">
       <p>
-        <strong>Rol:</strong> {rol_name}
+        <strong>Rol:</strong> {user.rol_name}
       </p>
       <p>
         <strong>Nombre: </strong>
-        {user_name} {user_first_surname} {user_second_surname}
+        {user.user_name} {user.user_first_surname} {user.user_second_surname}
       </p>
       <p>
-        <strong>Teléfono:</strong> {user_phone}
+        <strong>Teléfono:</strong> {user.user_phone}
       </p>
       <p>
-        <strong>Correo:</strong> {user_email}
+        <strong>Correo:</strong> {user.user_email}
       </p>
       <p>
-        <strong>Dirección:</strong> {user_address}
+        <strong>Dirección:</strong> {user.user_address}
       </p>
       <p>
-        <strong>Fecha De Creación:</strong> {user_date}
+        <strong>Fecha De Creación:</strong> {user.user_date}
       </p>
     </section>
   );
