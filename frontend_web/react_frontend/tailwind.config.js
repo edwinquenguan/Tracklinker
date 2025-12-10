@@ -42,6 +42,7 @@ module.exports = {
     "z-100",
     "animate-modalFadeOut",
     "animate-modelFadeIn",
-    "users-background"
+    "users-background",
+    "bg-green-500"
   ],
 };
