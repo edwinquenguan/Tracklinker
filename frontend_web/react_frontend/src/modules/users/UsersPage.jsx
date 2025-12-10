@@ -63,7 +63,7 @@ export default function UsersPage() {
           {modalType === "filter" && (
             <FilterUserModal onClose={() => closeModal()} />
           )}
-          {modalType === "add" && <AddUserModal onClose={() => closeModal()} />}
+          {modalType === "add" && <AddUserModal onClose={() => closeModal()} openModal={openModal} />}
           {/* Modal para mas información del usuario */}
           {modalType === "info" && (
             <MoreInfoModal
@@ -82,14 +82,8 @@ export default function UsersPage() {
           {/* Modal para editar el usuario */}
           {modalType === "edit" && (
             <EditUserInfoModal
-              user_id={modalData.user_id}
-              user_name={modalData.user_name}
-              user_first_surname={modalData.user_first_surname}
-              user_second_surname={modalData.user_second_surname}
-              user_phone={modalData.user_phone}
-              user_email={modalData.user_email}
-              user_address={modalData.user_phone}
-              onClose={() => closeModal()}
+            user={modalData}
+            onClose={() => closeModal()}
             />
           )}
 
