@@ -57,15 +57,6 @@ export default function AddUserModal({ onClose }) {
           autoComplete="given-name"
         />
 
-        <FormField
-          value={form.user_password}
-          labelText={"contras"}
-          placeholder={"********"}
-          id={"name"}
-          name={"user_password"}
-          onChange={handleChange}
-          autoComplete="pass"
-        />
 
         <FormField
           value={form.user_first_surname}
@@ -85,6 +76,17 @@ export default function AddUserModal({ onClose }) {
           name={"user_second_surname"}
           onChange={handleChange}
           autoComplete="name"
+        />
+        
+        <FormField
+          value={form.user_password}
+          labelText={"Contraseña"}
+          type="password"
+          placeholder={"********"}
+          id={"password"}
+          name={"user_password"}
+          onChange={handleChange}
+          autoComplete="pass"
         />
 
         <FormField
