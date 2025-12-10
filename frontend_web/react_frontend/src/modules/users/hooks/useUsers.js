@@ -6,20 +6,20 @@ export function useUsers() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Este effect llama al service getAllUsers y espera a obtener todos los datos y los almacena en "data"
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const data = await getUsers();
-        setUsers(data);
-        setLoading(false)
-      } catch (error) {
-        setError(error.message);
-      }
+  // Esta functión llama al service getAllUsers y espera a obtener todos los datos y los almacena en "data"
+  async function fetchUsers() {
+    try {
+      const data = await getUsers();
+      setUsers(data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
     }
+  }
 
+  useEffect(() => {
     fetchUsers();
   }, []);
 
-  return { users, loading, error };
+  return { users, loading, error, fetchUsers };
 }
