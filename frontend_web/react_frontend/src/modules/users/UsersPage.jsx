@@ -18,7 +18,7 @@ import UsersList from "./components/ui/UsersList";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
-  const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
+  const { modalType, isOpen, modalData, refetch, openModal, closeModal } = useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -26,9 +26,7 @@ export default function UsersPage() {
         sectionName={"Usuarios"}
         addButtonIcon={usersIcons.addUserIcon}
         addButtonText={"Agregar Usuario"}
-        createOnClick={() => {
-          openModal(null, "add");
-        }}
+        createOnClick={() => openModal(null, "add")}
         filterOnClick={() => openModal(null, "filter")}
       >
         <SearchBar />
