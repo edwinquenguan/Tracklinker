@@ -14,19 +14,23 @@ export function useCreateUser(formData) {
   }
 
   // Función que pasa los parametros al service y valida la respuesta
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
 
     setLoading(true);
 
     try {
       const response = await createUser(form);
+      if (response.success) {
+        setInnerModal("success")
+      }
     } catch (error) {
+      setInnerModal("error")
       setError(error);
     } finally {
       setLoading(false);
     }
   }
 
-  return { form, loading, error, handleSubmit, handleChange };
+  return { form, loading, handleSubmit, handleChange };
 }
