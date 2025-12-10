@@ -1,41 +1,46 @@
+// Componentes
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 import DisabledFormField from "../../../../globals/components/ui/DisabledFormField";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
-import { useEditUser } from "../../hooks/useEditUser"
+import Loader from "../../../../globals/components/ui/Loader";
+// Hooks
+import { useEditUser } from "../../hooks/useEditUser";
 import { useRoles } from "../../hooks/useRoles";
+import { useState } from "react";
+// Modales
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
+import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 
-export default function EditUserInfoModal({user, onClose}) {
-  const { roles } = useRoles()
-  const { handleChange, handleSubmit, loading, error, form } = useEditUser(
+export default function EditUserInfoModal({ user, onClose }) {
+  const [innerModal, setInnerModal] = useState(null);
+  const { roles } = useRoles();
+  const { handleChange, handleSubmit, loading, form } = useEditUser(
+    user.user_id,
     {
       rol_id: user.rol_id || "",
-      user_name: user.user_name|| "",
+      user_name: user.user_name || "",
       user_first_surname: user.user_first_surname || "",
       user_second_surname: user.user_second_surname || "",
       user_address: user.user_address || "",
-      user_city:  user.user_city || "",
+      user_city: user.user_city || "",
       user_email: user.user_email || "",
       user_phone: user.user_phone || "",
-    },
-    user.user_id
-  )
+    }
+  );
 
-  if (loading) {
-    return <div>Cargando...</div>
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
   return (
     <section className="flex flex-col items-center">
       <form action="" className="flex flex-col gap-2">
         {/* ID del usuario */}
-        <DisabledFormField hidden={"hidden"} id={"user_id"} value={user.user_id}/>
+        <DisabledFormField
+          hidden={"hidden"}
+          id={"user_id"}
+          value={user.user_id}
+        />
         <SelectMenu
           name={"rol_id"}
-          value={form.rol_id ?? ""}
+          value={form.rol_id}
           id={"user_rol_menu"}
           spanText={"Rol"}
           onChange={handleChange}
@@ -100,11 +105,36 @@ export default function EditUserInfoModal({user, onClose}) {
 
       {/* Botones */}
       <ConfirmCancelButtons
-        confirmText={"Confirmar"}
+        confirmText={loading ? <Loader /> : "Confirmar"}
         cancelText={"Cancelar"}
-        confirmButtonOnClick={(e) => handleSubmit(e)}
+        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
         cancelButtonOnClick={onClose}
       />
+
+      {/* Modales Internas */}
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen={true}
+          confirmTitle={"Usuario creado con éxito!"}
+          confirmText={
+            "Se ha creado correctamente el usuario, toca el botón de volver a la pagina para verlo, ¡Bienvenido!"
+          }
+          confirmButtonText={"Volver a la pagina"}
+          onClose={() => {
+            setInnerModal(null);
+            onClose();
+          }}
+        />
+      )}
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen={true}
+          errorTitle="No se puedo completar el registro!"
+          errorText="Verfica que todos los campos esten completos y que el correo electronico no este registrado"
+          confirmButtonText="Volver a intentarlo"
+          onClose={() => setInnerModal(null)}
+        />
+      )}
     </section>
   );
 }
