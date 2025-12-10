@@ -7,9 +7,9 @@ export function useCreateUser(formData) {
   const [error, setError] = useState(null);
 
   function handleChange(e) {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   }
 
@@ -22,10 +22,10 @@ export function useCreateUser(formData) {
     try {
       const response = await createUser(form);
       if (response.success) {
-        setInnerModal("success")
+        setInnerModal("success");
       }
     } catch (error) {
-      setInnerModal("error")
+      setInnerModal("error");
       setError(error);
     } finally {
       setLoading(false);
