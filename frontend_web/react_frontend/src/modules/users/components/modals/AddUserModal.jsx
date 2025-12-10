@@ -11,7 +11,7 @@ import { useCreateUser } from "../../hooks/useCreateUser";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function AddUserModal({ onClose }) {
+export default function AddUserModal({ onClose, fetch }) {
   // Estado para las modales se abren encima de esta
   const [innerModal, setInnerModal] = useState(null);
   const { roles } = useRoles();
@@ -150,6 +150,7 @@ export default function AddUserModal({ onClose }) {
           onClose={() => {
             setInnerModal(null);
             onClose();
+            fetch();
           }}
         />
       )}
