@@ -19,6 +19,7 @@ export default function UsersList({ openModal }) {
         {users.map((user) => (
           // Usuarios
           <UserItem
+            key={user.user_id}
             user_id={user.user_id}
             user_name={user.user_name}
             user_first_surname={user.user_first_surname}
