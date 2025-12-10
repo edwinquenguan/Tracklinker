@@ -2,6 +2,7 @@ export default function FormField({
   value,
   labelText,
   inputIcon,
+  defaultValue,
   id,
   type = "text",
   placeholder,
@@ -22,6 +23,7 @@ export default function FormField({
           onChange={onChange}
           value={value}
           type={type}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           id={id}
           className="px-6 py-3 text-sm rounded-md outline-none
