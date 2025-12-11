@@ -1,5 +1,5 @@
 import { useSubcategories } from "../../hooks/useUsers";
-import SubcategoriesItem from "./UserItem";
+import SubcategoriesItem from "./SubcategoriesItem";
 
 export default function SubcategoriesList({ openModal }) {
   const { subcategories, loading, error } = useSubcategories();
