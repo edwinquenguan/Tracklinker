@@ -10,11 +10,11 @@ import TopSection from "../../globals/components/ui/TopSection";
 import { getWarranties } from "./services/getWarranties";
 import Modal from "../../globals/components/modals/Modal";
 
-//  IMPORTS DE MODALES SEPARADOS
+// IMPORTS DE MODALES SEPARADOS
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddWarrantyModal from "./components/modals/AddWarrantyModal";
-import EditWarrantyModal from "./components/modals/EditWarrantyModal";    
+import EditWarrantyModal from "./components/modals/EditWarrantyModal"; 
 import DeleteWarrantyModal from "./components/modals/DeleteWarrantyModal"; 
 import ActionButtons from "../../globals/components/ui/ActionButtons";
 // ... (otras importaciones)
@@ -27,7 +27,7 @@ export default function WarrantiesPage() {
     const [modalType, setModalType] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
- // 🔑 FUNCIÓN PARA RECARGAR DATOS
+    // 🔑 FUNCIÓN PARA RECARGAR DATOS
     const fetchWarranties = async () => {
         try {
             setLoading(true);
@@ -35,6 +35,7 @@ export default function WarrantiesPage() {
             setWarranties(data);
         } catch (error) {
             console.error("Error al cargar garantías:", error);
+            setError(error.message);
         } finally {
             setLoading(false);
         }
@@ -60,21 +61,8 @@ export default function WarrantiesPage() {
     };
 
 
-    // ... (useEffect para fetchWarranties y lógica de carga/error)
-    useEffect(() => {
-        async function fetchWarranties() {
-            try {
-                setLoading(true);
-                const data = await getWarranties();
-                setWarranties(data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchWarranties();
-    }, []);
+    // La lógica de useEffect de fetchWarranties ya estaba duplicada, se usa la primera.
+    // Se deja solo el manejo de error/loading para la visualización.
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -96,46 +84,51 @@ export default function WarrantiesPage() {
             />
             <section className="max-h-[93%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
                 <ul className="pt-3 flex flex-col gap-1">
-                    {/* Fila de encabezados fija */}
-                    {/* ... (código de encabezados) ... */}
+                    
+                    {/* Fila de encabezados fija - CENTRADO APLICADO */}
                     <li className="flex items-center p-5 font-bold bg-gray-200 dark:bg-gray-800 rounded-lg sticky top-0 z-10">
-                        <div className="w-1/6"><p>Caso con Número</p></div>
-                        <div className="w-2/6"><p>Descripción</p></div>
-                        <div className="w-1/6"><p>Fecha</p></div>
-                        <div className="w-1/6"><p>Icono</p></div>
-                        <div className="w-1/6"><p>Estado</p></div>
-                        <div className="w-1/6"><p>Cliente</p></div>
-                        <div className="w-1/6"><p>Teléfono</p></div>
-                        <div className="w-1/6"><p>Dirección</p></div>
-                        <div className="w-1/6"><p>Ciudad</p></div>
-                        <div className="w-1/6"><p>Serial Producto</p></div>
-                        <div className="w-1/6"><p>Acción</p></div>
+                        {/* Se cambia text-center por flex justify-center items-center en todas las celdas */}
+                        <div className="w-1/12 text-center"><p>Caso con Número</p></div>
+                        <div className="w-2/12 text-center"><p>Descripción</p></div>
+                        <div className="w-1/12 text-center"><p>Fecha</p></div>
+                        <div className="w-1/12 text-center"><p>Icono</p></div>
+                        <div className="w-1/12 text-center"><p>Estado</p></div>
+                        <div className="w-1/12 text-center"><p>Cliente</p></div>
+                        <div className="w-1/12 text-center"><p>Teléfono</p></div>
+                        <div className="w-1/12 text-center"><p>Dirección</p></div>
+                        <div className="w-1/12 text-center"><p>Ciudad</p></div>
+                        <div className="w-1/12 text-center"><p>Serial Producto</p></div>
+                        <div className="w-1/12 text-center"><p>Acción</p></div>
                     </li>
 
-                    {/* Filas de datos */}
+                    {/* Filas de datos - CENTRADO APLICADO */}
                     {warranties.map((warranty) => (
                         <li
-                            className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+                            className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 dark:bg-[#0f0f5] dark:hover:bg-[#212125]"
                             key={warranty.warranty_incidents_id}
                         >
-                            <div className="w-1/6"><p>{warranty.warranty_incidents_id}</p></div>
-                            <div className="w-2/6"><p>{warranty.warranty_description}</p></div>
-                            <div className="w-1/6"><p>{warranty.warranty_date}</p></div>
-                            <div className="w-1/6">
+                            {/* Se cambia text-center por flex justify-center items-center en todas las celdas */}
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_incidents_id}</p></div>
+                            <div className="w-2/12 **flex justify-center items-center**"><p>{warranty.warranty_description}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_date}</p></div>
+                            
+                            {/* Celda del Icono (ya estaba bien) */}
+                            <div className="w-1/12 flex justify-center items-center">
                                 <img src={warrantiesIcons.inprocessIcon} alt="Icono de estado" className="w-5 h-5 dark:invert" />
                             </div>
-                            <div className="w-1/6"><p>{warranty.warranty_status}</p></div>
-                            <div className="w-1/6"><p>{warranty.warranty_customer}</p></div>
-                            <div className="w-1/6"><p>{warranty.warranty_phone}</p></div>
-                            <div className="w-1/6"><p>{warranty.warranty_address}</p></div>
-                            <div className="w-1/6"><p>{warranty.warranty_city}</p></div>
-                            <div className="w-1/6"><p>{warranty.product_serial}</p></div>
+                            
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_status}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_customer}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_phone}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_address}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_city}</p></div>
+                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.product_serial}</p></div>
 
-                            {/* Botones de ACCIÓN: Llama a openModal con el tipo y la garantía */}
-                            <div className="w-1/6 flex justify-center items-center">
+                            {/* Botones de ACCIÓN (ya estaba bien) */}
+                            <div className="w-1/12 flex justify-center items-center">
                             <ActionButtons
-                            editButtonOnClick={() =>openModal(warranty, "edit")}
-                            deleteButtonOnClick={() => openModal(warranty, "delete")}
+                                editButtonOnClick={() =>openModal(warranty, "edit")}
+                                deleteButtonOnClick={() => openModal(warranty, "delete")}
                             >
                                 <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(warranty, "info")}>
                                     <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
@@ -173,7 +166,7 @@ export default function WarrantiesPage() {
                         onAddSuccess={fetchWarranties}
                     />}
 
-                    {/* Contenido del Modal de Más Información (se mantiene en línea por ser simple) */}
+                    {/* Contenido del Modal de Más Información */}
                     {modalType === "info" && selectedWarranty && (
                         <address className="flex flex-col justify-center items-center not-italic gap-2">
                             <div className="flex flex-col items-center"><span><strong>Nombre del cliente</strong></span><p>{selectedWarranty.warranty_customer}</p></div>
@@ -195,7 +188,7 @@ export default function WarrantiesPage() {
                         />
                     )}
                     
-                 {/* INTEGRACIÓN DEL MODAL DE ELIMINACIÓN */}
+                   {/* INTEGRACIÓN DEL MODAL DE ELIMINACIÓN */}
                     {modalType === "delete" && selectedWarranty && (
                         <DeleteWarrantyModal
                             selectedWarranty={selectedWarranty}

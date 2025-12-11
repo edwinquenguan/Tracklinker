@@ -14,6 +14,7 @@ import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddTransformationModal from "./components/modals/AddTransformationModal";
 import MoreInfoModal from "./components/modals/MoreInfoModal";
+import ActionButtons from "../../globals/components/ui/ActionButtons";
 
 export default function TransformationsPage() {
   const [selectedTranformation, setSelectedTransformation] = useState(null);
@@ -50,21 +51,47 @@ export default function TransformationsPage() {
           setIsOpen(true);
         }}
       />
+      
       {/* Contendor de las transformaciones */}
-      <section className="max-h-[95%] flex flex-wrap gap-2 z-50 overflow-x-auto overflow-y-auto">
-        {transformations.map((transformation) => (
-          <TranformationCard
-            transformationId={transformation.transformationId}
-            transformationRequirement={transformation.transformationRequirement}
-            transformationCreateDate={transformation.transformationCreateDate}
-            transformationStatusIcon={warrantiesIcons.inprocessIcon}
-            transformationStatus={transformation.transformationStatus}
-            onClick={() => {
-              openModal(transformation, "info");
-              setIsOpen(true);
-            }}
-          />
-        ))}
+      <section className="max-h-[80%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+         <ul className="pt-3 flex flex-col gap-1">
+              {/* Fila de encabezados fija */}
+                    {/* ... (código de encabezados) ... */}
+                    <li className="flex items-center p-5 font-bold bg-gray-200 dark:bg-gray-800 rounded-lg sticky top-0 z-10">
+                        <div className="w-1/5 text-center"><p>Orden de salida</p></div>
+                        <div className="w-1/5 text-center"><p>Tranformación de producto</p></div>
+                        <div className="w-1/5 text-center"><p>Fecha</p></div>
+                        <div className="w-1/5 text-center"><p>Estatus</p></div>
+                        <div className="w-1/5 text-center"><p>Acciones</p></div>
+                        
+                    </li>
+              {transformations.map((transformation) => (
+              <li
+                className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+                key={transformation.transformationId}
+              >
+                <div  className="w-1/5 text-center"><p>{transformation.transformationId}</p></div>
+                <div  className="w-1/5 text-center"><p>{transformation.transformationRequirement}</p></div>
+                <div  className="w-1/5 text-center"><p>{transformation.transformationCreateDate}</p></div>
+                <div  className="w-1/5 text-center"><p>{transformation.transformationStatus}</p></div>
+                {/* Botones de ACCIÓN: Llama a openModal con el tipo y la garantía */}
+                <div className="w-1/6 text-center flex justify-center items-center">
+                  <ActionButtons
+                    editButtonOnClick={() =>openModal(transformation, "edit")}
+                    deleteButtonOnClick={() => openModal(transformation, "delete")}
+                    >
+                    <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(transformation, "info")}>
+                      <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
+                    </button>
+                  </ActionButtons>
+                </div>
+                
+              </li>
+              ))}
+         </ul>
+           
+          
+
       </section>
       {/* Modales */}
       {modalType && (
