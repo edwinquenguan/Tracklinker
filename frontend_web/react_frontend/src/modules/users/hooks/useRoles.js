@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getRoles } from "../services/getRoles";
+import { getRoles } from "../services/getRolesService";
 
 export function useRoles() {
     const [roles, setRoles] = useState([]);

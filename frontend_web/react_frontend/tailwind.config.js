@@ -38,8 +38,11 @@ module.exports = {
     "bg-red-600",
     "w-64",
     "hidden",
+    "z-50",
+    "z-100",
     "animate-modalFadeOut",
     "animate-modelFadeIn",
-    "users-background"
+    "users-background",
+    "bg-green-500"
   ],
 };

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { createUser } from "../services/createUserService";
+import { editUserService } from "../services/editUserService";
 
-export function useCreateUser(formData) {
+export function useEditUser(userId, formData) {
+  const [id, setId] = useState(userId);
   const [form, setForm] = useState(formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,24 +14,22 @@ export function useCreateUser(formData) {
     }));
   }
 
-  // Función que pasa los parametros al service y valida la respuesta
   async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
-
     setLoading(true);
 
     try {
-      const response = await createUser(form);
+      const response = await editUserService(id, form);
       if (response.success) {
         setInnerModal("success");
       }
     } catch (error) {
       setInnerModal("error");
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   }
 
-  return { form, loading, handleSubmit, handleChange };
+  return { handleChange, handleSubmit, loading, error, form };
 }

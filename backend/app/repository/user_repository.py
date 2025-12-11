@@ -14,6 +14,7 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
+            r.rol_id,
             r.rol_name,
             u.user_id,
             u.user_name,
@@ -48,6 +49,7 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
+            r.rol_id,
             r.rol_name,
             u.user_id,
             u.user_name,
