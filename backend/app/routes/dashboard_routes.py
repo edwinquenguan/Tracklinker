@@ -26,3 +26,8 @@ def get_all_warranty_status():
 @router.get("/new-users")
 def get_new_users():
     return DashboardController.get_all_and_new_users()
+
+# Endpoint para obtener el numero de productos que hay por cada marca
+@router.get("/stock_by_brand")
+def get_stock_by_brand():
+    return DashboardController.get_stock_by_brand()

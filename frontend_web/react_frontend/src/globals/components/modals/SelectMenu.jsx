@@ -4,6 +4,7 @@ export default function SelectMenu({
   onChange,
   value,
   width,
+  defaultValue,
   spanText,
   children,
 }) {
@@ -11,6 +12,7 @@ export default function SelectMenu({
     <section className={`flex flex-col px-2 gap-1 w-${width}`}>
       <span className="text-sm dark:text-white">{spanText}</span>
       <select
+        defaultValue={defaultValue}
         value={value}
         onChange={onChange}
         name={name}

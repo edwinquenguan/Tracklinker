@@ -124,3 +124,38 @@ class DashboardRepository:
         finally:
             cursor.close()
             connection.close()
+    
+    @staticmethod
+    def find_stock_by_brand():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT 
+            b.product_brand_name AS brand,
+            SUM(p.product_stock) AS products
+        FROM PRODUCTS p
+        INNER JOIN PRODUCT_DETAILS d 
+        ON p.product_details_id = d.product_details_id
+        INNER JOIN PRODUCT_BRANDS b ON d.product_brand_id = b.product_brand_id
+        GROUP BY b.product_brand_name
+        ORDER BY products DESC
+        LIMIT 7;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            data = [
+                {
+                    "brand": item[0],
+                    "products": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            connection.close()
+            cursor.close()

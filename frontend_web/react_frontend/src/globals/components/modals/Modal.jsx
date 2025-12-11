@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { modalIcons } from "../../../assets/icons/modalIcons";
 
-export default function Modal({ isOpen, title, children, onClose, type }) {
+export default function Modal({ isOpen, title, children, onClose, type, z_index = "50" }) {
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
 
@@ -27,7 +27,7 @@ export default function Modal({ isOpen, title, children, onClose, type }) {
   return (
     /* Container de la modal */
     <section
-      className={`fixed z-50 inset-0 bg-[#0000002c]
+      className={`fixed z-${z_index} inset-0 bg-[#0000002c]
             ${
               type === "filter"
                 ? "flex justify-end items-start pr-[260px] pt-4 bg-[#00000013]"
