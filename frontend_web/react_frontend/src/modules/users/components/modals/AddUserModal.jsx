@@ -1,12 +1,21 @@
-import SelectMenu from "../../../../globals/components/modals/SelectMenu";
+// Componentes
+import Loader from "../../../../globals/components/ui/Loader";
 import FormField from "../../../../globals/components/ui/FormField";
+import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import { useCreateUser } from "../../hooks/useCreateUser";
+// Hooks
+import { useState } from "react";
 import { useRoles } from "../../hooks/useRoles";
+import { useCreateUser } from "../../hooks/useCreateUser";
+// Modales
+import ErrorModal from "../../../../globals/components/modals/ErrorModal";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function AddUserModal({ onClose }) {
+export default function AddUserModal({ onClose, fetch }) {
+  // Estado para las modales se abren encima de esta
+  const [innerModal, setInnerModal] = useState(null);
   const { roles } = useRoles();
-  const { form, loading, error, handleSubmit, handleChange } = useCreateUser({
+  const { form, loading, handleSubmit, handleChange } = useCreateUser({
     rol_id: "",
     user_name: "",
     user_first_surname: "",
@@ -17,14 +26,6 @@ export default function AddUserModal({ onClose }) {
     user_email: "",
     user_phone: "",
   });
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <section className="flex flex-col items-center">
@@ -58,16 +59,6 @@ export default function AddUserModal({ onClose }) {
         />
 
         <FormField
-          value={form.user_password}
-          labelText={"contras"}
-          placeholder={"********"}
-          id={"name"}
-          name={"user_password"}
-          onChange={handleChange}
-          autoComplete="pass"
-        />
-
-        <FormField
           value={form.user_first_surname}
           labelText={"Primer Apellido"}
           placeholder={"Contreras"}
@@ -85,6 +76,17 @@ export default function AddUserModal({ onClose }) {
           name={"user_second_surname"}
           onChange={handleChange}
           autoComplete="name"
+        />
+
+        <FormField
+          value={form.user_password}
+          labelText={"Contraseña"}
+          type="password"
+          placeholder={"********"}
+          id={"password"}
+          name={"user_password"}
+          onChange={handleChange}
+          autoComplete="pass"
         />
 
         <FormField
@@ -130,11 +132,37 @@ export default function AddUserModal({ onClose }) {
 
       {/* Botones */}
       <ConfirmCancelButtons
-        confirmText={"Crear"}
+        confirmText={loading ? <Loader /> : "Crear"}
         cancelText={"Cancelar"}
-        confirmButtonOnClick={(e) => handleSubmit(e)}
+        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
         cancelButtonOnClick={onClose}
       />
+
+      {/* Modales Internas */}
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen={true}
+          confirmTitle={"Usuario creado con éxito!"}
+          confirmText={
+            "Se ha creado correctamente el usuario, toca el botón de volver a la pagina para verlo, ¡Bienvenido!"
+          }
+          confirmButtonText={"Volver a la pagina"}
+          onClose={() => {
+            setInnerModal(null);
+            onClose();
+            fetch();
+          }}
+        />
+      )}
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen={true}
+          errorTitle="No se puedo completar el registro!"
+          errorText="Verfica que todos los campos esten completos y que el correo electronico no este registrado"
+          confirmButtonText="Volver a intentarlo"
+          onClose={() => setInnerModal(null)}
+        />
+      )}
     </section>
   );
 }

@@ -18,7 +18,7 @@ import UsersList from "./components/ui/UsersList";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
-  const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
+  const { modalType, isOpen, modalData, refetch, openModal, closeModal } = useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -26,9 +26,7 @@ export default function UsersPage() {
         sectionName={"Usuarios"}
         addButtonIcon={usersIcons.addUserIcon}
         addButtonText={"Agregar Usuario"}
-        createOnClick={() => {
-          openModal(null, "add");
-        }}
+        createOnClick={() => openModal(null, "add")}
         filterOnClick={() => openModal(null, "filter")}
       >
         <SearchBar />
@@ -63,42 +61,21 @@ export default function UsersPage() {
           {modalType === "filter" && (
             <FilterUserModal onClose={() => closeModal()} />
           )}
-          {modalType === "add" && <AddUserModal onClose={() => closeModal()} />}
-          {/* Modal para mas información del usuario */}
-          {modalType === "info" && (
-            <MoreInfoModal
-              rol_name={modalData.rol_name}
-              user_name={modalData.user_name}
-              user_first_surname={modalData.user_first_surname}
-              user_second_surname={modalData.user_second_surname}
-              user_phone={modalData.user_phone}
-              user_email={modalData.user_email}
-              user_address={modalData.user_address}
-              user_date={modalData.user_date}
-              onClose={() => closeModal()}
-            />
+          {/* Modal para agregar un usuario */}
+          {modalType === "add" && (
+            <AddUserModal onClose={() => closeModal()} openModal={openModal} />
           )}
+          {/* Modal para mas información del usuario */}
+          {modalType === "info" && <MoreInfoModal user={modalData} />}
 
           {/* Modal para editar el usuario */}
           {modalType === "edit" && (
-            <EditUserInfoModal
-              user_name={modalData.user_name}
-              user_first_surname={modalData.user_first_surname}
-              user_second_surname={modalData.user_second_surname}
-              user_phone={modalData.user_phone}
-              user_email={modalData.user_email}
-              user_address={modalData.user_phone}
-              onClose={() => closeModal()}
-            />
+            <EditUserInfoModal user={modalData} onClose={() => closeModal()} />
           )}
 
           {/* Modal para eliminar el usuario */}
           {modalType === "delete" && (
-            <DeleteUserModal
-              user_name={modalData.user_name}
-              user_first_surname={modalData.user_first_surname}
-              onClose={() => closeModal()}
-            />
+            <DeleteUserModal user={modalData} onClose={() => closeModal()} />
           )}
         </Modal>
       )}

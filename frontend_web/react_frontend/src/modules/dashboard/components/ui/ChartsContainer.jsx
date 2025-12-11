@@ -7,6 +7,7 @@ import ChartCard from "./ChartCard";
 import SimpleBarChart from "./charts/SimpleBarChart";
 import SimplePieChart from "./charts/SimplePieChart";
 import ProductsChart from "./charts/ProductsChart";
+import BrandsChart from "./charts/BrandsCharts";
 
 export default function ChartsContainer() {
   return (
@@ -40,17 +41,8 @@ export default function ChartsContainer() {
       />
       {/* Segunda Fila de Gráficos */}
       <SimpleAreaChart />
-      <ChartCard
-        rowSpan={2}
-        colSpan={3}
-        bgColor={""}
-        name={"Chart"}
-        metricValue={"2.000"}
-        percentValue={"2.1%"}
-        chart={dashboardIcons.barChart2}
-      />
+      <BrandsChart />
       <SimplePieChart />
-
       {/* Tercera fila de Gráficos */}
       <ChartCard
         rowSpan={2}

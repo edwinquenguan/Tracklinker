@@ -42,3 +42,13 @@ class DashboardController:
         return {
             "data": data
         }
+    
+    @staticmethod
+    def get_stock_by_brand():
+        error, data = DashboardRepository.find_stock_by_brand()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data
+        }

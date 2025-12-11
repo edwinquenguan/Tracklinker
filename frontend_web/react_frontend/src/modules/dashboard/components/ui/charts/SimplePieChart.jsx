@@ -6,7 +6,7 @@ export default function SimplePieChart() {
   const { simplePieChartData, error } = usePieChart();
 
   if (error) {
-    return <div>{error}</div>;
+    return <div>Error: {error.message}</div>;
   }
 
   return (
