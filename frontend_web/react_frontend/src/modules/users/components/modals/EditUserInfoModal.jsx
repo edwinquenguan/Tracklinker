@@ -87,6 +87,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_email"}
+          isRequired={true}
           value={form.user_email}
           labelText={"Correo Electrónico"}
           id={"email"}
@@ -115,22 +116,22 @@ export default function EditUserInfoModal({ user, onClose }) {
       {innerModal === "success" && (
         <SuccessModal
           isOpen={true}
-          confirmTitle={"Usuario creado con éxito!"}
+          confirmTitle={"Información editada con éxito!"}
           confirmText={
-            "Se ha creado correctamente el usuario, toca el botón de volver a la pagina para verlo, ¡Bienvenido!"
+            "Se ha editado correctamente el usuario, toca el botón de volver a la pagina para verlo"
           }
           confirmButtonText={"Volver a la pagina"}
           onClose={() => {
             setInnerModal(null);
-            onClose();
+            onClose(); 
           }}
         />
       )}
       {innerModal === "error" && (
         <ErrorModal
           isOpen={true}
-          errorTitle="No se puedo completar el registro!"
-          errorText="Verfica que todos los campos esten completos y que el correo electronico no este registrado"
+          errorTitle="¡No se pudo completar el registro!"
+          errorText="Verfica que todos los campos esten completos y que el correo electronico es el correcto"
           confirmButtonText="Volver a intentarlo"
           onClose={() => setInnerModal(null)}
         />
