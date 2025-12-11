@@ -1,7 +1,7 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function editSubcategory(subcategory_data) {
+export async function editSubcategoryService(subcategory_data,subcategory_data) {
   console.log(JSON.stringify(subcategory_data))
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.users}/update`, {
     method: "POST",
