@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { getCategories } from "../services/getCategories";
+import { getCategory } from "../services/getCategory";
 
-export function useCategories() {
-  const [categories, setCategories] = useState([]);
+export function useCategory() {
+  const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Este effect llama al service getCategories para obtener todas las categorías
+  // Este effect llama al service getCategory para obtener la categoría
   useEffect(() => {
-    async function fetchCategories() {
+    async function fetchCategory() {
       try {
-        const data = await getCategories();
-        setCategories(data);
+        const data = await getCategory();
+        setCategory(data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
       }
     }
 
-    fetchCategories();
+    fetchCategory();
   }, []);
 
-  return { categories, loading, error };
+  return { category, loading, error };
 }
