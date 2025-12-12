@@ -4,14 +4,14 @@ from app.models.output_orders_model import OutputOrder
 from app.middlewares.roles_middleware import require_roles
 
 router =APIRouter(
-    prefix="/api/output_orders",
+    prefix="/api/outputs",
     tags =["Transformations"]
 )
 
 # Endpoint para obtener todas las órdenes de salida
 @router.get("/")       
 def get_all_output_orders(
-    payload: dict=Depends(require_roles(["Admin"]))
+    #payload: dict=Depends(require_roles(["Admin"]))
     ):
     return OutputOrdersController.get_all_output_orders()
 

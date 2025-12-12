@@ -1,27 +1,28 @@
+// src/modules/transformations/hooks/useTransformations.js
 import { useState, useEffect } from "react";
-import { getTransformations } from "../services/getTransformations"; 
+import { getTransformations } from "../services/getTransformations";
 
 export function useTransformations() {
   const [transformations, setTransformations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchTransformations() {
-      try {
-        setLoading(true);
-        const data = await getTransformations(); 
-        console.log("Transformations fetched:", data);
-        setTransformations(data);
-      } catch (err) {
-        setError(err.message || "Error al obtener transformaciones");
-      } finally {
-        setLoading(false);
-      }
+  const fetchTransformations = async () => {
+    try {
+      setLoading(true);
+      const data = await getTransformations();
+      setTransformations(data);
+    } catch (err) {
+      console.error("Error al cargar transformaciones:", err);
+      setError(err.message || "Error al obtener transformaciones");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    fetchTransformations()
+  useEffect(() => {
+    fetchTransformations();
   }, []);
 
-  return { transformations, loading, error };
+  return { transformations, loading, error, fetchTransformations };
 }
