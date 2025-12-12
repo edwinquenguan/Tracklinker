@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSubcategories } from "../services/getSubcategories";
-
-
+import { getSubcategories } from "../services/getSubcategoriesService";
 
 export function useSubcategories() {
   const [subcategories, setSubcategories] = useState([]);
