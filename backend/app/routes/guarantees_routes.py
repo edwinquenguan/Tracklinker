@@ -14,7 +14,7 @@ router =APIRouter(
 # Endpoint para obtener todos las solicitudes de garantía 
 @router.get("")
 def get_all_guarantiee(
-    #payload: dict=Depends(require_roles(["Admin"]))
+    payload: dict=Depends(require_roles(["Admin"]))
     ):
  return GuarantieeController.get_all_guarantee()
 

@@ -27,8 +27,7 @@ def get_user_by_id(user_id: int):
 # Endpoint para crear o registrar un usuario
 @router.post("/create")
 def create_user(
-    user_data: User, 
-    payload: dict = Depends(require_roles(["Admin"]))
+    user_data: User
 ):
     return UserController.create_user(user_data)
 

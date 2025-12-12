@@ -87,8 +87,11 @@ class UserRepository:
         SELECT
             r.rol_name,
             u.user_id,
+            u.user_name,
+            u.user_first_surname,
+            u.user_second_surname,
             u.user_email, 
-            u.user_password 
+            u.user_password
         FROM USERS AS u 
         INNER JOIN ROLES AS r 
         ON r.rol_id = u.rol_id 
