@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
 import { getAllCategories } from "../../../services/getAllCategories";
-import { getSubcategoriesWithCategory } from "../../../services/getSubcategoriesWithCategory";
+import { getSubcategoriesWithCategory } from '../../services/getSubcategoriesWithCategory';
+
+
 
 export function useCatalog() {
   // Definir los estados y sus valores por defecto

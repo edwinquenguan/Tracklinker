@@ -1,5 +1,5 @@
 import { subcategoriesIcons } from "../../../../assets/icons/mainIcons";
-import SubcategoriesActions from "./SubcategoriesActions";
+import SubcategoriesActions from "../SubcategoriesActions";
 
 export default function SubcategoriesItem({
   subcategory_id,
