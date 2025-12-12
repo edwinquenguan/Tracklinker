@@ -7,10 +7,11 @@ export function useTransformations() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchTransformations() {
       try {
         setLoading(true);
         const data = await getTransformations(); 
+        console.log("Transformations fetched:", data);
         setTransformations(data);
       } catch (err) {
         setError(err.message || "Error al obtener transformaciones");
@@ -19,7 +20,7 @@ export function useTransformations() {
       }
     }
 
-    fetchData();
+    fetchTransformations()
   }, []);
 
   return { transformations, loading, error };
