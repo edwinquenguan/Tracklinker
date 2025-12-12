@@ -11,9 +11,9 @@ export function useLogin(openModal) {
     // Prevenir el envio del formulario
     e.preventDefault();
     
-    const { error } = await login(email, password);
+    const response = await login(email, password);
     // Validacion de si existe algún error
-    if (error) {
+    if (!response.success) {
       openModal(null, "error");
     } else {
       navigate("/home");

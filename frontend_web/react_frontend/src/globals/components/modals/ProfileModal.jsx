@@ -1,6 +1,8 @@
 import { asideIcons } from "../../../assets/icons/asideIcons";
+import { useUser } from "../../hooks/useUser";
 
 export default function ProfileModal({ onClose }) {
+  const { user } = useUser()
   return (
     <section className="flex gap-5">
       <aside className="w-40 pr-3 border-r border-gray-300 dark:border-[#3a3d43]">
@@ -61,8 +63,7 @@ export default function ProfileModal({ onClose }) {
                 className="py-5 px-10 rounded-xl bg-[#efedf0] font-light
                             dark:bg-[#202022] dark:text-white"
               >
-                {" "}
-                Agustín Perez García{" "}
+                {user.name} {user.first_surname} {user.second_surname}
               </span>
             </section>
             <section className="flex flex-col items-center justify-center gap-1">
@@ -71,8 +72,7 @@ export default function ProfileModal({ onClose }) {
                 className="p-5 rounded-xl bg-[#efedf0] font-light
                             dark:bg-[#202022] dark:text-white"
               >
-                {" "}
-                juan.perez1@example.com{" "}
+                {user.email}
               </span>
             </section>
           </article>
