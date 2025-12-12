@@ -87,8 +87,11 @@ class UserRepository:
         SELECT
             r.rol_name,
             u.user_id,
+            u.user_name,
+            u.user_first_surname,
+            u.user_second_surname,
             u.user_email, 
-            u.user_password 
+            u.user_password
         FROM USERS AS u 
         INNER JOIN ROLES AS r 
         ON r.rol_id = u.rol_id 
@@ -216,3 +219,68 @@ class UserRepository:
         finally:
             cursor.close()
             connection.close()
+
+   
+
+    @staticmethod
+    def find_by_rol(rol_id: int):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+        try:
+
+            query = """
+            SELECT
+                r.rol_name, 
+                u.user_id,
+                u.user_name,
+                u.user_first_surname,
+                u.user_second_surname,
+                u.user_phone,
+                u.user_email,
+                u.user_address,
+                u.user_city,
+                u.user_date
+            FROM USERS AS u 
+            INNER JOIN ROLES AS r 
+            ON u.rol_id = r.rol_id
+            WHERE r.rol_id = %s
+            """
+            
+            # 2. Ejecutar y obtener resultados
+            cursor.execute(query, (rol_id,))
+            result = cursor.fetchall() # Obtiene la lista completa de usuarios
+            
+            return None, result 
+            
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+            
+        finally:
+            
+                cursor.close()
+                connection.close()
+
+    @staticmethod
+    def find_all_roles():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM ROLES"
+
+        try:
+            cursor.execute(query)
+            result =cursor.fetchall()
+            
+            data = [
+                {
+                    "id": item[0],
+                    "name": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}"
+        finally:
+            connection.close()
+            cursor.close()
