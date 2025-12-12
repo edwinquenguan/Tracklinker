@@ -7,6 +7,8 @@ cd backend
 # 2: Crear el entorno virtual
 python -m venv venv
 
+python -m uvicorn app.main:app --reload
+
 # 3: Activar el entorno virtual 
 # En Windows:
 venv\Scripts\activate

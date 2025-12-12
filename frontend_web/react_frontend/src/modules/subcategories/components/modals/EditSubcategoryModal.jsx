@@ -1,6 +1,7 @@
-import FormField from "../../../../globals/components/ui/FormField";
-import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import SelectMenu from "../../../../globals/components/ui/SelectMenu";
+import FormField from '../../../../globals/components/ui/FormField';
+import ConfirmCancelButtons from '../../../../globals/components/modals/ConfirmCancelButtons';
+import SelectMenu from '../../../../globals/components/ui/SelectMenu';
+
 
 export default function EditSubcategoryInfoModal({
   subcategory_name,
