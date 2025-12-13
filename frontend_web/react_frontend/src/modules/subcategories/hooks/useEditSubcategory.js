@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { editSubcategory, editSubcategory } from "../services/EditSubcategoryService";
+import { editSubcategoryService } from "../services/editSubcategoryService";
 
-export function useEditSubcategoy(formData) {
+export function useEditSubcategory(formData) {
   const [form, setForm] = useState(formData);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ export function useEditSubcategoy(formData) {
     setLoading(true);
 
     try {
-      const response = await editSubcategory(form);
+      const response = await editSubcategoryService(form);
       setData(response);
     } catch (error) {
       setError(error);
