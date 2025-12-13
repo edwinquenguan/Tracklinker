@@ -150,7 +150,6 @@ export default function AddUserModal({ onClose, fetch }) {
           onClose={() => {
             setInnerModal(null);
             onClose();
-            fetch();
           }}
         />
       )}
