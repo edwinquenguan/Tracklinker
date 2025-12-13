@@ -33,6 +33,7 @@ export default function DeleteUserModal({ user, onClose }) {
       {innerModal === "success" && (
         <SuccessModal
         isOpen={true}
+        confirmButtonText={"Volver a la página"}
         confirmTitle={"¡Usuario eliminado correctamente!"}
         confirmText={"Todos los datos de este usuarios han sido eliminados exitosamente."}
         onClose={() => {
@@ -44,6 +45,7 @@ export default function DeleteUserModal({ user, onClose }) {
       {innerModal === "error" && (
         <ErrorModal
         isOpen={true}
+        confirmButtonText={"Volver a intentarlo"}
         errorTitle={"¡No se pudo borrar el usuario!"}
         errorText={"Intenta nuevamente eliminar el usuario y si el problema persiste comunicate ccon soporte"}
         onClose={() => setInnerModal(null)}
