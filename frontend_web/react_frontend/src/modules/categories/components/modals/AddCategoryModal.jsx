@@ -47,8 +47,7 @@ export default function AddCategoryModal({ onClose }) {
           confirmButtonText={"Volver a la página"}
           onClose={() => {
             setInnerModal(null);
-            onClose();
-            fetch();
+            onClose();            
           }}
         />
       )}
