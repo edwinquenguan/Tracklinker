@@ -1,12 +1,10 @@
 import Loader from "../../../../globals/components/ui/Loader";
-import { useCategories } from "../../hooks/useCategories";
 import CategoryItem from "./CategoryItem";
 
-export default function CategoriesList({ openModal }) {
-  const { categories, loading, error } = useCategories();
+export default function CategoriesList({ categories, loading, error, openModal, refetch }) {
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error.message}</div>;
   }
 
   if (loading) {
@@ -20,9 +18,9 @@ export default function CategoriesList({ openModal }) {
         {categories.map((category) => (
           <CategoryItem
             category={category}
-            moreInfoOnClick={() => openModal(category, "info")}
-            editButtonOnClick={() => openModal(category, "edit")}
-            deleteButtonOnClick={() => openModal(category, "delete")}
+            moreInfoOnClick={() => openModal(category, "info", refetch)}
+            editButtonOnClick={() => openModal(category, "edit", refetch)}
+            deleteButtonOnClick={() => openModal(category, "delete", refetch)}
           />
         ))}
       </ul>
