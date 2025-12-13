@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUser } from "../services/createUser";
+import { createSubcategory } from "../services/createSubcategorySevice";
 
 export function useCreateSubcategory(formData) {
   const [form, setForm] = useState(formData);
@@ -7,27 +7,31 @@ export function useCreateSubcategory(formData) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-    function handleChange(e) {
-    setForm(prev => ({
+  function handleChange(e) {
+    setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
-  } 
-    // Función que pasa los parametros al service y valida la respuesta
-    async function handleSubmit(e) {    
+  }
+  // Función que pasa los parametros al service y valida la respuesta
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
 
     setLoading(true);
 
     try {
-      const response = await createUser(form);
+      const response = await createSubcategory(form);
       setData(response);
+      if (response.success) {
+        setInnerModal("success");
+      }
     } catch (error) {
+      setInnerModal("error");
       setError(error);
     } finally {
       setLoading(false);
     }
-    }
+  }
 
-    return { form, data, loading, error, handleSubmit, handleChange };
+  return { form, data, loading, error, handleSubmit, handleChange };
 }
