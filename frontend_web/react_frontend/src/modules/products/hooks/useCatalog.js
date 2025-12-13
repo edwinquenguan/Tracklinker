@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
-import { getAllCategories } from "../../../services/getAllCategories";
+import { getCategoriesService } from "../../categories/services/getCategoriesService"
 import { getSubcategories } from "../../subcategories/services/getSubcategoriesService";
 
 export function useCatalog() {
@@ -27,7 +27,7 @@ export function useCatalog() {
 
     async function fetchCategories() {
       try {
-        const categoryData = await getAllCategories();
+        const categoryData = await getCategoriesService();
         setCategories(categoryData);
       } catch (error) {
         setError(error.message);
