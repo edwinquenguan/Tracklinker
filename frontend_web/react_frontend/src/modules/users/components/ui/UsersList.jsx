@@ -1,9 +1,12 @@
-import { useUsers } from "../../hooks/useUsers";
 import UserItem from "./UserItem";
 
-export default function UsersList({ openModal }) {
-  const { users, loading, error, fetchUsers } = useUsers();
-
+export default function UsersList({
+  users,
+  loading,
+  error,
+  refetch,
+  openModal,
+}) {
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -26,9 +29,9 @@ export default function UsersList({ openModal }) {
             user_second_surname={user.user_second_surname}
             user_phone={user.user_phone}
             user_rol={user.rol_name}
-            moreInfoOnClick={() => openModal(user, "info", fetchUsers)}
-            editButtonOnClick={() => openModal(user, "edit", fetchUsers)}
-            deleteButtonOnClick={() => openModal(user, "delete", fetchUsers)}
+            moreInfoOnClick={() => openModal(user, "info", refetch)}
+            editButtonOnClick={() => openModal(user, "edit", refetch)}
+            deleteButtonOnClick={() => openModal(user, "delete", refetch)}
           />
         ))}
       </ul>
