@@ -1,8 +1,12 @@
-import { useSubcategories } from "../../hooks/useSubcategories";
 import SubcategoriesItem from "./SubcategoriesItem";
 
-export default function SubcategoriesList({openModal}) {
-  const { subcategories, loading, error } = useSubcategories();
+export default function SubcategoriesList({
+  subcategories,
+  loading,
+  error,
+  refetch,
+  openModal,
+}) {
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -17,9 +21,11 @@ export default function SubcategoriesList({openModal}) {
           // Subcategorías
           <SubcategoriesItem
             subcategory={subcategory}
-            moreInfoOnClick={() => openModal(subcategory, "info")}
-            editButtonOnClick={() => openModal(subcategory, "edit")}
-            deleteButtonOnClick={() => openModal(subcategory, "delete")}
+            moreInfoOnClick={() => openModal(subcategory, "info", refetch)}
+            editButtonOnClick={() => openModal(subcategory, "edit", refetch)}
+            deleteButtonOnClick={() =>
+              openModal(subcategory, "delete", refetch)
+            }
           />
         ))}
       </ul>
