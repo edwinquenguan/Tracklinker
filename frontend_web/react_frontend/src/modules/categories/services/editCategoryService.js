@@ -1,14 +1,14 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function editCategoryService(category_data) {
+export async function editCategoryService(id, category_data) {
   const res = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.categories}/edit/${category_data.id}`,
+    `${apiRoutes.apiUrl}${apiRoutes.categories}/update/${id}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: getToken(),
+        Authorization: getToken()
       },
       body: JSON.stringify(category_data),
     }
@@ -22,5 +22,5 @@ export async function editCategoryService(category_data) {
   const data = await res.json();
 
   // Retornamos únicamente la categoría editada
-  return data.data;
+  return data;
 }

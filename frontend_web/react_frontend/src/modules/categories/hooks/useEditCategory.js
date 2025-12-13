@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { editCategory } from "../services/editCategory";
+import { editCategoryService } from "../services/editCategoryService";
 
-export function useEditCategory(initialData) {
+export function useEditCategory(id, initialData) {
   const [form, setForm] = useState(initialData);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,16 +15,19 @@ export function useEditCategory(initialData) {
   }
 
   // Función que envía los datos al service y maneja la respuesta
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
 
     setLoading(true);
-    setError(null);
 
     try {
-      const response = await editCategory(form);
+      const response = await editCategoryService(id, form);
+      if (response) {
+        setInnerModal("success")
+      }
       setData(response);
     } catch (err) {
+      setInnerModal("error")
       setError(err);
     } finally {
       setLoading(false);
