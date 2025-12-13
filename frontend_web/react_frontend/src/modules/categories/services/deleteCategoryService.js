@@ -20,5 +20,5 @@ export async function deleteCategoryService(id) {
   const data = await res.json();
 
   // Retornamos solo la categoría eliminada o confirmación
-  return data.data;
+  return data;
 }
