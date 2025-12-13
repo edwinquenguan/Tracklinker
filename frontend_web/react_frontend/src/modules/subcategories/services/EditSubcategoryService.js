@@ -3,7 +3,7 @@ import { getToken } from "../../../utils/auth";
 
 export async function editSubcategoryService(subcategory_id, subcategory_data) {
   const res = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.users}/update/${subcategory_id}`,
+    `${apiRoutes.apiUrl}${apiRoutes.subcategories}/update/${subcategory_id}`,
     {
       method: "PUT",
       headers: {
