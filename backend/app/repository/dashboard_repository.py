@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 
+
 class DashboardRepository:
 
     @staticmethod
@@ -52,14 +53,14 @@ class DashboardRepository:
                 }
                 for item in result
             ]
-            
+
             return None, data
         except Exception as e:
             return f"Error al ejecutar al consulta {e}", None
         finally:
             cursor.close()
             connection.close()
-        
+
     @staticmethod
     def find_all_warranty_status():
         connection = get_connection()
@@ -93,7 +94,7 @@ class DashboardRepository:
 
     @staticmethod
     def find_all_and_new_users():
-        
+
         connection = get_connection()
         cursor = connection.cursor()
 
@@ -124,7 +125,7 @@ class DashboardRepository:
         finally:
             cursor.close()
             connection.close()
-    
+
     @staticmethod
     def find_stock_by_brand():
         connection = get_connection()

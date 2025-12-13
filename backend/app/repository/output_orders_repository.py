@@ -2,8 +2,9 @@ from app. core.database import get_connection
 from app.models.output_orders_model import OutputOrder
 from datetime import datetime
 
+
 class OutputOrdersRepository:
-       
+
     @staticmethod
     def find_all_output_orders():
         connection = get_connection()
@@ -22,15 +23,15 @@ class OutputOrdersRepository:
             cursor.close()
             connection.close()
 
-
     # Obtener una orden de salida por ID
+
     @staticmethod
     def find_by_id(out_order_id: int):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
-        query= """ 
+        query = """ 
         SELECT * FROM OUTPUT_ORDERS WHERE out_order_id = %s
         """
         try:
@@ -49,10 +50,10 @@ class OutputOrdersRepository:
 
         connection = get_connection()
         cursor = connection.cursor()
-        
+
         # Fecha actual para indicar la hora a la que se creo la orden de salida
         data["out_order_date"] = datetime.now()
-        
+
         # Arrays vacios para almacenar los datos de la orden de salida
         fields = list(data.keys())
         values = [data[field] for field in fields]
@@ -92,7 +93,8 @@ class OutputOrdersRepository:
             connection.commit()
 
             # Obtener la orden de salida actualizada
-            cursor.execute("SELECT * FROM OUTPUT_ORDERS WHERE out_order_id = %s", (output_order_id,))
+            cursor.execute(
+                "SELECT * FROM OUTPUT_ORDERS WHERE out_order_id = %s", (output_order_id,))
             updated_order = cursor.fetchone()
 
             return None, "✅ Orden de salida actualizada exitosamente.", updated_order
@@ -101,6 +103,7 @@ class OutputOrdersRepository:
         finally:
             cursor.close()
             connection.close()
+
     @staticmethod
     def delete(output_order_id: int):
         connection = get_connection()
@@ -118,4 +121,3 @@ class OutputOrdersRepository:
         finally:
             cursor.close()
             connection.close()
-            
