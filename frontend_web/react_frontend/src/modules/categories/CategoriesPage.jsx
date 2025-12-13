@@ -1,5 +1,6 @@
 // Hooks
 import { useModal } from "../../globals/hooks/useModal";
+import { useCategories } from "./hooks/useCategories";
 // Iconos
 import { actionsIcons } from "../../assets/icons/mainIcons";
 // Componentes
@@ -16,8 +17,8 @@ import DeleteCategoryModal from "./components/modals/DeleteCategoryModal";
 import EditCategoryInfoModal from "./components/modals/EditCategoryInfoModal";
 
 export default function CategoriesPage() {
-  const { modalType, isOpen, modalData, refetch, openModal, closeModal } =
-    useModal();
+  const { categories, loading, error, fetchCategories } = useCategories();
+  const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -25,11 +26,17 @@ export default function CategoriesPage() {
         sectionName={"Categorias"}
         addButtonIcon={actionsIcons.addIcon}
         addButtonText={"Agregar Categoria"}
-        createOnClick={() => openModal(null, "add")}
-        filterOnClick={() => openModal(null, "filter")}
+        createOnClick={() => openModal(null, "add", fetchCategories)}
+        filterOnClick={() => openModal(null, "filter", fetchCategories)}
       />
       {/* Listado de categorias */}
-      <CategoriesList openModal={openModal} />
+      <CategoriesList
+        categories={categories}
+        openModal={openModal}
+        loading={loading}
+        error={error}
+        refetch={fetchCategories}
+      />
 
       {/* Modales */}
       {modalType && (
@@ -71,7 +78,10 @@ export default function CategoriesPage() {
           )}
           {/* Modal para eliminar la categoria */}
           {modalType === "delete" && (
-            <DeleteCategoryModal category={modalData} onClose={() => closeModal()}/>
+            <DeleteCategoryModal
+              category={modalData}
+              onClose={() => closeModal()}
+            />
           )}
         </Modal>
       )}
