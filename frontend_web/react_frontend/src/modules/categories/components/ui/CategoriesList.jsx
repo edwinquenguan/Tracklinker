@@ -1,3 +1,4 @@
+import Loader from "../../../../globals/components/ui/Loader";
 import { useCategories } from "../../hooks/useCategories";
 import CategoryItem from "./CategoryItem";
 
@@ -9,7 +10,7 @@ export default function CategoriesList({ openModal }) {
   }
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <Loader />;
   }
 
   return (
@@ -18,10 +19,7 @@ export default function CategoriesList({ openModal }) {
       <ul className="pt-3 flex flex-col gap-1">
         {categories.map((category) => (
           <CategoryItem
-            category_id={category.category_id}
-            category_name={category.category_name}
-            category_description={category.category_description}
-            category_status={category.category_status}
+            category={category}
             moreInfoOnClick={() => openModal(category, "info")}
             editButtonOnClick={() => openModal(category, "edit")}
             deleteButtonOnClick={() => openModal(category, "delete")}
