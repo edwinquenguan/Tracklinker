@@ -1,5 +1,6 @@
 // Hooks
 import { useModal } from "../../globals/hooks/useModal";
+import { useSubcategories } from "./hooks/useSubcategories";
 // Iconos
 import { actionsIcons } from "../../assets/icons/mainIcons";
 // Modales
@@ -16,8 +17,9 @@ import SubcategoriesList from "./components/ui/SubcategoriesList";
 import MoreSubcategoryInfoModal from "./components/modals/MoreSubcategoryInfoModal";
 
 export default function SubcategoriesPage() {
-  const { modalType, isOpen, modalData, refetch, openModal, closeModal } =
-    useModal();
+  const { subcategories, loading, error, fetchSubcategories } =
+    useSubcategories();
+  const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -25,12 +27,17 @@ export default function SubcategoriesPage() {
         sectionName={"Subcategorias"}
         addButtonIcon={actionsIcons.addIcon}
         addButtonText={"Agregar Subcategoria"}
-        createOnClick={() => openModal(null, "add")}
-        filterOnClick={() => openModal(null, "filter")}
+        createOnClick={() => openModal(null, "add", fetchSubcategories)}
+        filterOnClick={() => openModal(null, "filter", fetchSubcategories)}
       />
       {/* Listado de las subcategorias */}
-      <SubcategoriesList openModal={openModal} />   
-      
+      <SubcategoriesList
+        subcategories={subcategories}
+        loading={loading}
+        error={error}
+        refetch={fetchSubcategories}
+        openModal={openModal}
+      />
       {/* Modales */}
       {modalType && (
         <Modal
@@ -58,16 +65,23 @@ export default function SubcategoriesPage() {
             <FilterModal onClose={() => closeModal()}></FilterModal>
           )}
           {/* Modal para agregar una subcategoria */}
-          {modalType === "add" && <AddSubcategoryModal onClose={() => closeModal()}/>}
-
+          {modalType === "add" && (
+            <AddSubcategoryModal onClose={() => closeModal()} />
+          )}
           {/* Modal para mas información de la subcategoria */}       
-          {modalType === "info" && <MoreSubcategoryInfoModal subcategory={modalData} onClose={() => closeModal()} />}
-
+          {modalType === "info" && (
+            <MoreSubcategoryInfoModal
+              subcategory={modalData}
+              onClose={() => closeModal()}
+            />
+          )}
           {/* Modal para editar la información de la subcategoria */}
           {modalType === "edit" && (
-            <EditSubcategoryModal subcategory={modalData} onClose={() => closeModal()}/>
+            <EditSubcategoryModal
+              subcategory={modalData}
+              onClose={() => closeModal()}
+            />
           )}
-
           {/* Modal para eliminar la subcategoria */}
           {modalType === "delete" && (
             <DeleteSubcategoryModal
