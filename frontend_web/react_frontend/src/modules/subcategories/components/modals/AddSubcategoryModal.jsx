@@ -11,7 +11,7 @@ import FormField from "../../../../globals/components/ui/FormField";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function AddSubcategoryModal({ onClose, fetch }) {
+export default function AddSubcategoryModal({ onClose }) {
   // Estado para las modales se abren encima de esta
   const [innerModal, setInnerModal] = useState(null);
   const { categories } = useCategories();
@@ -72,7 +72,6 @@ export default function AddSubcategoryModal({ onClose, fetch }) {
           onClose={() => {
             setInnerModal(null);
             onClose();
-            fetch();
           }}
         />
       )}
