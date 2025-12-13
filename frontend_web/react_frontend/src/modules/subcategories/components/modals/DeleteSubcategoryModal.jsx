@@ -33,7 +33,7 @@ export default function DeleteSubcategoryModal({ subcategory, onClose }) {
       {innerModal === "success" && (
         <SuccessModal
           isOpen={true}
-          confirmTitle={"Subcategoria creada con éxito!"}
+          confirmTitle={"Subcategoria eliminada con éxito!"}
           confirmText={
             "Se ha creado correctamente la subcategoria, toca el botón de volver a la pagina de subcategorias"
           }
@@ -41,7 +41,6 @@ export default function DeleteSubcategoryModal({ subcategory, onClose }) {
           onClose={() => {
             setInnerModal(null);
             onClose();
-            fetch();
           }}
         />
       )}
