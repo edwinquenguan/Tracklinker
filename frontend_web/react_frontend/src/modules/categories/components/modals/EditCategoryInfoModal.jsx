@@ -9,7 +9,7 @@ import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmC
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function EditCategoryInfoModal({ category, onClose }) {
+export default function EditCategoryInfoModal({ category, onClose}) {
   const [innerModal, setInnerModal] = useState(null);
   const { form, loading, handleChange, handleSubmit } = useEditCategory(
     category.category_id,
@@ -48,7 +48,6 @@ export default function EditCategoryInfoModal({ category, onClose }) {
           onClose={() => {
             setInnerModal(null);
             onClose();
-            fetch();
           }}
         />
       )}
