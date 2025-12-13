@@ -1,42 +1,38 @@
-import SelectMenu from "../../../../globals/components/modals/SelectMenu";
+// Hooks
+import { useState } from "react";
+import { useCreateCategory } from "../../hooks/useCreateCategory";
+// Componentes
+import Loader from "../../../../globals/components/ui/Loader";
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import SuccessModal from "../../../../globals/components/modals/SuccessModal";
+// Modales
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function AddCategoryModal({ onClose, innerModal, setInnerModal, fetch }) {
+export default function AddCategoryModal({ onClose }) {
+  const [innerModal, setInnerModal] = useState(null);
+  const { form, loading, handleChange, handleSubmit } = useCreateCategory({
+    name: "",
+  });
   return (
     <section className="flex flex-col items-center">
       <form action="" className="flex flex-col gap-1">
         <FormField
+          onChange={handleChange}
+          value={form.name}
+          name={"name"}
           labelText={"Nombre de la Categoría"}
-          placeholder={"Electrodomésticos / Accesorios / Tecnología"}
+          placeholder={"Electrodomésticos"}
           id={"category_name"}
           autoComplete="off"
         />
-
-        <FormField
-          labelText={"Descripción"}
-          placeholder={"Categoría destinada a productos de tecnología"}
-          id={"category_description"}
-          autoComplete="off"
-        />
-
-        <SelectMenu
-          id={"category_status"}
-          name={"category_status"}
-          spanText={"Estado"}
-        >
-          <option value="active"> Activa </option>
-          <option value="inactive"> Inactiva </option>
-        </SelectMenu>
       </form>
 
       {/* Botones */}
       <ConfirmCancelButtons
-        confirmText={"Confirmar"}
+        confirmText={loading ? <Loader /> : "Crear"}
         cancelText={"Cancelar"}
-        confirmButtonOnClick={onClose}
+        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
         cancelButtonOnClick={onClose}
       />
 

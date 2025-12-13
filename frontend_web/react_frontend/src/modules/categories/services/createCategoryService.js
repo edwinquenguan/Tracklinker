@@ -19,5 +19,5 @@ export async function createCategoryService(category_data) {
   const data = await res.json();
 
   // Retornamos solo la categoría creada
-  return data.data;
+  return data;
 }

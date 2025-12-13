@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createCategory } from "../services/createCategoryService";
+import { createCategoryService } from "../services/createCategoryService";
 
 export function useCreateCategory(formData) {
   const [form, setForm] = useState(formData);
@@ -8,22 +8,26 @@ export function useCreateCategory(formData) {
   const [error, setError] = useState(null);
 
   function handleChange(e) {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   }
 
   // Función que pasa los parámetros al service y valida la respuesta
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
 
     setLoading(true);
 
     try {
-      const response = await createCategory(form);
+      const response = await createCategoryService(form);
+      if (response.success) {
+        setInnerModal("success");
+      }
       setData(response);
     } catch (error) {
+      setInnerModal("error");
       setError(error);
     } finally {
       setLoading(false);
