@@ -1,147 +1,139 @@
-import React from 'react';
-import { useEditWarranty } from '../../hooks/useEditWarranty';
-
+// src/modules/warranties/components/modals/EditWarrantyModal.jsx
+import React, { useState, useRef } from "react";
+import { useEditWarranty } from "../../hooks/useEditWarranty";
+import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
+import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 
 export default function EditWarrantyModal({ selectedWarranty, onClose, onEditSuccess }) {
+  const formRef = useRef(null);
+  const { handleEdit, loading } = useEditWarranty();
+  const [form, setForm] = useState({ ...selectedWarranty });
+  const [innerModal, setInnerModal] = useState(null); // "success" o "error"
 
-  const { editWarranty, loading, error } = useEditWarranty();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const updatedData = Object.fromEntries(formData.entries());
+    const id = selectedWarranty?.warranty_incidents_id; // 🔑 corregido typo
+    if (!id) {
+      setInnerModal("error");
+      return;
+    }
 
-    try {
-      await editWarranty(selectedWarranty.warranty_incidents_id, updatedData);
-
-      alert("Garantía actualizada correctamente");
-      onClose();
-       if (onEditSuccess) {
-            onEditSuccess(); // 👈 Ejecuta la recarga de datos en el componente padre (WarrantiesPage)
-        }
-
-    } catch (err) {
-      console.error("Error actualizando:", err);
-      alert("No se pudo actualizar la garantía");
+    const { success, error } = await handleEdit(id, form);
+    if (success) {
+      setInnerModal("success");
+    } else {
+      setInnerModal("error");
     }
   };
 
-  const InputGroup = ({ labelText, name, type = "text", defaultValue, placeholder, required }) => (
-    <div className="flex flex-col gap-1">
-        <label htmlFor={name} className="text-sm">{labelText}</label>
-        <input 
-            id={name}
-            name={name} 
-            type={type}
-            defaultValue={defaultValue}
-            placeholder={placeholder}
-            required={required}
-            className="border rounded-lg p-2 text-sm"
-        />
-    </div>
-  );
+  const handleSubmitViaButton = () => formRef.current?.requestSubmit();
 
   return (
-    <div className="flex flex-col items-center">
-      <h3 className="text-xl mb-4">Editando Garantía # {selectedWarranty?.warranty_incidents_id}</h3>
-      
-      {/* Si hay error mostrarlo */}
-      {error && (
-        <p className="text-red-500 text-sm mb-2">
-          Error: {error?.message || JSON.stringify(error)}
-        </p>
+    <section className="flex flex-col items-center">
+      <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-1 w-72">
+        <label className="text-sm mt-1">Serial</label>
+        <input
+          type="text"
+          name="product_serial"
+          value={form.product_serial || ""}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        />
+
+        <label className="text-sm mt-1">Nombre del Cliente</label>
+        <input
+          type="text"
+          name="warranty_customer"
+          value={form.warranty_customer || ""}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        />
+
+        <label className="text-sm mt-1">Teléfono</label>
+        <input
+          type="text"
+          name="warranty_phone"
+          value={form.warranty_phone || ""}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        />
+
+        <label className="text-sm mt-1">Dirección</label>
+        <input
+          type="text"
+          name="warranty_address"
+          value={form.warranty_address || ""}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        />
+
+        <label className="text-sm mt-1">Ciudad</label>
+        <input
+          type="text"
+          name="warranty_city"
+          value={form.warranty_city || ""}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        />
+
+        <label className="text-sm mt-1">Requerimiento</label>
+        <textarea
+          name="warranty_description"
+          value={form.warranty_description || ""}
+          onChange={handleChange}
+          className="h-20 w-full p-2 text-sm border rounded-lg"
+        />
+
+        {/* NUEVO SELECT PARA ESTADO */}
+        <label className="text-sm mt-1">Estado</label>
+        <select
+          name="warranty_status"
+          value={form.warranty_status || "0"}
+          onChange={handleChange}
+          className="border rounded-lg p-2 text-sm"
+        >
+          <option value="0">Incompleto</option>
+          <option value="1">En proceso</option>
+          <option value="2">Completado</option>
+        </select>
+      </form>
+
+      <ConfirmCancelButtons
+        confirmButtonOnClick={handleSubmitViaButton}
+        cancelButtonOnClick={onClose}
+        confirmLoading={loading}
+      />
+
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen
+          confirmTitle="¡Garantía actualizada!"
+          confirmText="La garantía se ha actualizado correctamente."
+          confirmButtonText="Cerrar"
+          onClose={() => {
+            setInnerModal(null);
+            if (onEditSuccess) onEditSuccess();
+            onClose();
+          }}
+        />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
-
-        <InputGroup 
-             labelText="Serial del Producto" 
-             name="product_serial" 
-             defaultValue={selectedWarranty?.product_serial}
-             placeholder="10KQ34012414"
-             required
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen
+          errorTitle="Error al actualizar"
+          errorText="No se pudo actualizar la garantía. Intenta nuevamente."
+          confirmButtonText="Cerrar"
+          onClose={() => setInnerModal(null)}
         />
-
-        <InputGroup 
-             labelText="Nombre del Cliente" 
-             name="warranty_customer" 
-             defaultValue={selectedWarranty?.warranty_customer}
-             placeholder="Miguel Arnulfo Pérez"
-             required
-        />
-
-        <InputGroup 
-             labelText="Teléfono" 
-             name="warranty_phone" 
-             defaultValue={selectedWarranty?.warranty_phone}
-             placeholder="+57 300 123 XXXX"
-             type="tel"
-             required
-        />
-
-        <InputGroup 
-             labelText="Dirección" 
-             name="warranty_address" 
-             defaultValue={selectedWarranty?.warranty_address}
-             placeholder="Kr 45 # 67-XX"
-             required
-        />
-
-        <InputGroup 
-             labelText="Ciudad" 
-             name="warranty_city" 
-             defaultValue={selectedWarranty?.warranty_city}
-             placeholder="Bogotá"
-             required
-        />
-
-        <div className="flex flex-col gap-1">
-            <label htmlFor="warranty_description" className="text-sm">Requerimiento</label>
-            <textarea
-                id="warranty_description"
-                name="warranty_description"
-                defaultValue={selectedWarranty?.warranty_description}
-                rows="4" 
-                className="border rounded-lg p-2 text-sm resize-none"
-                required
-            />
-        </div>
-      
-        <div className="flex flex-col gap-1">
-            <label htmlFor="warranty_status" className="text-sm">Estado</label>
-            <select 
-                id="warranty_status"
-                name="warranty_status" 
-                defaultValue={selectedWarranty?.warranty_status} 
-                className="border rounded-lg p-2 py-3 text-sm"
-                required
-            >
-                <option value="">Seleccione el estado</option>
-                <option value="0">Pendiente</option>
-                <option value="1">En Proceso</option>
-                <option value="2">Finalizada</option>
-            </select>
-        </div>
-
-        <div className="flex gap-2 pt-5 justify-center">
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400 disabled:opacity-50"
-          >
-            {loading ? "Actualizando..." : "Confirmar Edición"}
-          </button>
-
-          <button
-            type="button"
-            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200"
-            onClick={onClose}
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+      )}
+    </section>
   );
 }

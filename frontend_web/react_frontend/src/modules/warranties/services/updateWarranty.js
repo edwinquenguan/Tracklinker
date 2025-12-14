@@ -1,30 +1,27 @@
-// services/updateWarranty.js
+// src/modules/warranties/services/updateWarranty.js
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function updateWarranty(warrantyId, updatedData) {
+export async function updateWarranty(id, data) {
+  if (!id) return { success: false, error: "No se proporcionó ID" };
 
-    const res = await fetch(`${apiRoutes.apiUrl}/warranty_incidents/update/${warrantyId}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: getToken(),
-        },
-        body: JSON.stringify(updatedData),
+  try {
+    const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.warranties}/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getToken(),
+      },
+      body: JSON.stringify(data),
     });
 
     if (!res.ok) {
-        let detail = `Error al actualizar la garantía con ID ${warrantyId}`;
-        try {
-            const json = await res.json();
-            detail = json.message || detail;
-        } catch {}
-        throw new Error(detail);
+      const resData = await res.json();
+      return { success: false, error: resData?.message || "Error al actualizar la garantía" };
     }
 
-    try {
-        return await res.json();
-    } catch {
-        return { message: "Garantía actualizada con éxito" };
-    }
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: "Error de red o del servidor" };
+  }
 }

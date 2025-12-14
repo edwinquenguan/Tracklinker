@@ -1,23 +1,25 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
-export async function createWarranty(warrantyData) {
-  const res = await fetch(`${apiRoutes.apiUrl}/warranty_incidents/create`, {
-    method: "POST",
-    headers: {
+export async function createWarranty(data) {
+  try {
+    const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.warranties}/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getToken(),
+      },
+      body: JSON.stringify(data),
+    });
 
-      'Content-Type': 'application/json',
-      Authorization: getToken(),
+    const responseData = await res.json();
 
-    },
-    body: JSON.stringify(warrantyData),
-  });
+    if (!res.ok) {
+      return { success: false, error: responseData?.message || "Error al crear la garantía" };
+    }
 
-  // Validamos si la respuesta no fue OK
-  if (!res.ok) {
-    throw new Error("Error al crear la garantía");
+    return { success: true, data: responseData };
+  } catch (error) {
+    return { success: false, error: "Error de red o del servidor" };
   }
-
-  return await res.json();
 }
-

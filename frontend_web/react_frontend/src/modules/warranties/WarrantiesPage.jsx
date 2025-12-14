@@ -59,6 +59,18 @@ export default function WarrantiesPage() {
         setModalType(null);
         setIsOpen(false);
     };
+    const getStatusIcon = (status) => {
+    switch (status) {
+        case 0: // pendiente / incomplete
+            return warrantiesIcons.incompleteIcon;
+        case 1: // en proceso / inprocess
+            return warrantiesIcons.inprocessIcon;
+        case 2: // completado / complete
+            return warrantiesIcons.completeIcon;
+        default:
+            return warrantiesIcons.incompleteIcon; // fallback
+    }
+};
 
 
     // La lógica de useEffect de fetchWarranties ya estaba duplicada, se usa la primera.
@@ -87,56 +99,52 @@ export default function WarrantiesPage() {
                     
                     {/* Fila de encabezados fija - CENTRADO APLICADO */}
                     <li className="flex items-center p-5 font-bold bg-gray-200 dark:bg-gray-800 rounded-lg sticky top-0 z-10">
-                        {/* Se cambia text-center por flex justify-center items-center en todas las celdas */}
+                        <div className="w-1/12 text-center"><p>Icono</p></div>
                         <div className="w-1/12 text-center"><p>Caso con Número</p></div>
                         <div className="w-2/12 text-center"><p>Descripción</p></div>
                         <div className="w-1/12 text-center"><p>Fecha</p></div>
-                        <div className="w-1/12 text-center"><p>Icono</p></div>
                         <div className="w-1/12 text-center"><p>Estado</p></div>
                         <div className="w-1/12 text-center"><p>Cliente</p></div>
                         <div className="w-1/12 text-center"><p>Teléfono</p></div>
                         <div className="w-1/12 text-center"><p>Dirección</p></div>
                         <div className="w-1/12 text-center"><p>Ciudad</p></div>
-                        <div className="w-1/12 text-center"><p>Serial Producto</p></div>
+                        <div className="w-2/12 text-center"><p>Serial Producto</p></div>
                         <div className="w-1/12 text-center"><p>Acción</p></div>
                     </li>
 
                     {/* Filas de datos - CENTRADO APLICADO */}
-                    {warranties.map((warranty) => (
-                        <li
-                            className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 dark:bg-[#0f0f5] dark:hover:bg-[#212125]"
-                            key={warranty.warranty_incidents_id}
-                        >
-                            {/* Se cambia text-center por flex justify-center items-center en todas las celdas */}
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_incidents_id}</p></div>
-                            <div className="w-2/12 **flex justify-center items-center**"><p>{warranty.warranty_description}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_date}</p></div>
-                            
-                            {/* Celda del Icono (ya estaba bien) */}
-                            <div className="w-1/12 flex justify-center items-center">
-                                <img src={warrantiesIcons.inprocessIcon} alt="Icono de estado" className="w-5 h-5 dark:invert" />
-                            </div>
-                            
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_status}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_customer}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_phone}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_address}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.warranty_city}</p></div>
-                            <div className="w-1/12 **flex justify-center items-center**"><p>{warranty.product_serial}</p></div>
+            {warranties.map((warranty) => (
+    <li key={warranty.warranty_incidents_id} className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 dark:bg-[#0f0f5] dark:hover:bg-[#212125]">
+        {/* ICONO DE ESTADO */}
+        <div className="w-1/12 flex justify-center items-center">
+            <img
+                src={getStatusIcon(warranty.warranty_status)}
+                alt="Icono de estado"
+                className="w-5 h-5 dark:invert"
+            />
+        </div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_incidents_id}</p></div>
+        <div className="w-2/12 flex justify-center items-center"><p>{warranty.warranty_description}</p></div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_date}</p></div>
+         <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_status}</p></div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_customer}</p></div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_phone}</p></div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_address}</p></div>
+        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_city}</p></div>
+        <div className="w-2/12 flex justify-center items-center"><p>{warranty.product_serial}</p></div>
+        <div className="w-1/12 flex justify-center items-center">
+            <ActionButtons
+                editButtonOnClick={() => openModal(warranty, "edit")}
+                deleteButtonOnClick={() => openModal(warranty, "delete")}
+            >
+                <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(warranty, "info")}>
+                    <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
+                </button>
+            </ActionButtons>
+        </div>
+    </li>
+))}
 
-                            {/* Botones de ACCIÓN (ya estaba bien) */}
-                            <div className="w-1/12 flex justify-center items-center">
-                            <ActionButtons
-                                editButtonOnClick={() =>openModal(warranty, "edit")}
-                                deleteButtonOnClick={() => openModal(warranty, "delete")}
-                            >
-                                <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(warranty, "info")}>
-                                    <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
-                                </button>
-                            </ActionButtons>
-                            </div>
-                        </li>
-                    ))}
                 </ul>
             </section>
 

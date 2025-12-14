@@ -1,28 +1,19 @@
-// hooks/useEditWarranty.js
+// src/modules/warranties/hooks/useEditWarranty.js
 import { useState } from "react";
 import { updateWarranty } from "../services/updateWarranty";
 
-export const useEditWarranty = (onSuccess = () => {}, onError = () => {}) => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+export function useEditWarranty() {
+  const [loading, setLoading] = useState(false);
 
-    const editWarranty = async (id, data) => {
-        setLoading(true);
-        setError(null);
+  const handleEdit = async (id, data) => {
+    if (!id) return { success: false, error: "No se proporcionó ID" };
 
-        try {
-            // NOMBRE CORRECTO
-            await updateWarranty(id, data); 
-            onSuccess();
+    setLoading(true);
+    const result = await updateWarranty(id, data);
+    setLoading(false);
 
-        } catch (err) {
-            console.error("Error al editar la garantía:", err);
-            setError(err);
-            onError(err);
-        } finally {
-            setLoading(false);
-        }
-    };
+    return result;
+  };
 
-    return { editWarranty, loading, error };
-};
+  return { handleEdit, loading };
+}

@@ -8,7 +8,7 @@ import { getToken } from "../../../utils/auth";
  */
 export async function deleteWarranty(warrantyId) {
     
-  const res = await fetch(`${apiRoutes.apiUrl}/warranty_incidents/delete/${warrantyId}`, {
+  const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.warranties}/delete/${warrantyId}`, {
     method: "DELETE",
     headers: {
          Authorization: getToken(),
