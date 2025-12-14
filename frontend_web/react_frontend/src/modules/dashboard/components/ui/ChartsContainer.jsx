@@ -1,15 +1,12 @@
-// Iconos
-import { dashboardIcons } from "../../../../assets/icons/mainIcons";
 // Gráficos
 import UsersChart from "./charts/UsersChart";
 import SimpleAreaChart from "./charts/SimpleAreaChart";
-import ChartCard from "./ChartCard";
 import SimpleBarChart from "./charts/SimpleBarChart";
 import SimplePieChart from "./charts/SimplePieChart";
 import ProductsChart from "./charts/ProductsChart";
 import BrandsChart from "./charts/BrandsCharts";
 import OutputOrdersChart from "./charts/OutputOrdersChart";
-import SimpleWaveChart from "./charts/SimpleWaveChart";
+import SubcategoriesWithStockChart from "./charts/SubcategoriesWithStockChart";
 import CategoriesChart from "./charts/CategoriesChart";
 
 export default function ChartsContainer() {
@@ -29,7 +26,7 @@ export default function ChartsContainer() {
       <BrandsChart />
       <SimplePieChart />
       {/* Tercera fila de Gráficos */}
-      <SimpleWaveChart />
+      <SubcategoriesWithStockChart />
       <SimpleBarChart />
     </section>
   );
