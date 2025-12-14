@@ -24,7 +24,7 @@ export default function SimpleAreaChart() {
       name={"Salidas Mensuales del año"}
     >
       {/* Grafico en forma de ola */}
-      <AreaChart width="100%" height="95%" responsive data={areaChartInfo}>
+      <AreaChart width="100%" height="95%" responsive data={areaChartInfo} margin={{left: 20}}>
         {/* Número de ordenes de salidas que sale a la izquierda */}
         <YAxis width="auto" fontSize={"11px"} />
         {/* Nombres o meses que salen debajo del gráfico */}
