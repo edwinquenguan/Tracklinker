@@ -12,13 +12,15 @@ export function useModal() {
     setIsOpen(true);
     setRefetch(() => refetchFn);
   };
-  
+
   const closeModal = () => {
     setModalData(null);
     setIsOpen(false);
     setModalType(null);
-    refetch()
-    setRefetch(null)
+    if (typeof refetch === "function") {
+      refetch();
+    }
+    setRefetch(null);
   };
 
   return { modalType, isOpen, modalData, refetch, openModal, closeModal };
