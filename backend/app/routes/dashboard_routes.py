@@ -31,3 +31,18 @@ def get_new_users():
 @router.get("/stock_by_brand")
 def get_stock_by_brand():
     return DashboardController.get_stock_by_brand()
+
+# Endpoint para obtener el numero de ordenes de salida que existen y las nuevas
+@router.get("/output-orders")
+def get_output_orders():
+    return DashboardController.get_output_orders_amount()
+
+# Endponit para obtener el numero de categorias que existen
+@router.get("/categories")
+def get_categories():
+    return DashboardController.get_categories_amount()
+
+# Endpoint para obtener las subcategorias con el número de productos que tienen
+@router.get("/subcategories-with-stock")
+def get_subcategories_with_stock():
+    return DashboardController.get_subcategories_with_stock()

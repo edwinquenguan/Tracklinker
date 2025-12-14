@@ -160,3 +160,98 @@ class DashboardRepository:
         finally:
             connection.close()
             cursor.close()
+
+    @staticmethod
+    def find_output_orders_amount():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT
+            (SELECT COUNT(*) FROM OUTPUT_ORDERS) AS orders,
+            (SELECT COUNT(*) 
+        FROM OUTPUT_ORDERS 
+        WHERE MONTH(out_order_date) = MONTH(CURDATE())
+        AND YEAR(out_order_date) = YEAR(CURDATE())
+        ) AS new_orders;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "orders": item[0],
+                    "new_orders": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_categories_amount():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT
+            COUNT(category_id) AS categories 
+        FROM CATEGORIES;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "categories": item[0],
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_subcategories_with_stock():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        SELECT
+            s.subcategory_name,
+            SUM(p.product_stock) AS total_stock
+        FROM PRODUCTS AS p
+        INNER JOIN SUBCATEGORIES AS s
+        ON p.subcategory_id = s.subcategory_id
+        GROUP BY s.subcategory_name
+        ORDER BY total_stock DESC
+        LIMIT 5;
+        """
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            data = [
+                {
+                    "subcategory": item[0],
+                    "stock": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al intentar ejecutar la consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
