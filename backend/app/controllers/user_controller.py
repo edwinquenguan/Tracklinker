@@ -91,3 +91,36 @@ class UserController:
         return {
             "data": data
         }
+    
+    @staticmethod
+    def get_users_by_date_range(start_date: str, end_date: str):
+        error, users = UserRepository.find_users_by_date_range(start_date, end_date)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": users
+        }
+    @staticmethod
+    def get_report_users_by_create_date():
+        error, users = UserRepository.find_users_grouped_by_create_date()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": users
+        }
+    @staticmethod
+    def get_disabled_users():
+        error, users = UserRepository.find_disabled_users()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": users
+        }
+    @staticmethod
+    def get_deleted_users_by_date_range():
+        error, users = UserRepository.find_deleted_users_by_date_range()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": users
+        }

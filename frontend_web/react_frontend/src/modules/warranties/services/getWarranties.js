@@ -3,6 +3,7 @@ import {getToken} from "../../../utils/auth";
 
 
 export async function getWarranties(){
+   
   const res = await fetch (`${apiRoutes.apiUrl}${apiRoutes.warranties}`,{
      method:"GET",
      headers: {

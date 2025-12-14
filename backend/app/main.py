@@ -49,8 +49,6 @@ app.include_router(user_routes.router)
 app.include_router(guarantees_routes.router)
 # Rutas para tabla de detalles de salida
 app.include_router(output_details_routes.router)
-# Rutas para tabla de ordenes de salida
-app.include_router(output_orders_routes.router)
 # Rutas para el modulo de categorias
 app.include_router(category_routes.router)
 # Rutas para el modulo de subcategorias

@@ -12,7 +12,7 @@ class OutputDetailsrepository:
         cursor = connection.cursor(dictionary=True)
 
         query = """
-        SELECT * FROM OUTPUT_DETAILS
+        SELECT * FROM get_output_products ORDER BY out_order_id DESC
         """
         try:
             cursor.execute(query)
@@ -24,7 +24,7 @@ class OutputDetailsrepository:
             cursor.close()
             connection.close()
 
-    # Ontener detalle de salida por Id
+    # Obtener detalle de salida por Id
 
     @staticmethod
     def find_by_id(output_details_id: int):
@@ -51,7 +51,7 @@ class OutputDetailsrepository:
         connection = get_connection()
         cursor = connection.cursor()
 
-        # Fecha actual para indicar cuandose creo el detalle de salida
+        # Fecha actual para indicar cuando se creo el detalle de salida
         data["out_product_garanty"] = datetime.now()
 
         # Arrays vacios para almacenar datos de detalles de salida

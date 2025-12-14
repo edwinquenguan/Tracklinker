@@ -1,20 +1,59 @@
 import Loader from "../../../../globals/components/ui/Loader";
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import { useState } from "react";
-import { useCreateTransformation } from "../../hooks/useCreateTransformation";
+import { useState, useEffect } from "react";
+import { useEditTransformation } from "../../hooks/useEditTransformation";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function AddTransformationModal({ onClose, fetch }) {
+export default function EditTransformationModal({ selectedTransformation, onClose, onEditSuccess }) {
   const [innerModal, setInnerModal] = useState(null);
+  const [form, setForm] = useState({
+    out_order_id: "",
+    out_product_garanty: "",
+    product_transformation: "",
+    product_serial: "",
+  });
 
-  const { form, loading, handleSubmit, handleChange } =
-    useCreateTransformation();
+  const { editTransformation, loading } = useEditTransformation();
+
+  // Inicializa los valores del formulario al cargar el modal
+  useEffect(() => {
+    if (selectedTransformation) {
+      setForm({
+        output_details_id: selectedTransformation.output_details_id || "",
+        out_order_id: selectedTransformation.out_order_id || "",
+        out_product_garanty: selectedTransformation.out_product_garanty || "",
+        product_transformation: selectedTransformation.product_transformation || "",
+        product_serial: selectedTransformation.product_serial || "",
+      });
+    }
+  }, [selectedTransformation]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!selectedTransformation) return;
+
+    const id = selectedTransformation.output_details_id; // 🔑 llave primaria correcta
+   
+    const response = await editTransformation(id, form);
+
+    if (response.success) {
+      setInnerModal("success");
+    } else {
+      setInnerModal("error");
+    }
+  };
 
   return (
     <section className="flex flex-col items-center">
       <form className="flex flex-col gap-1">
+   
         <FormField
           value={form.out_order_id}
           labelText="Orden de salida"
@@ -49,22 +88,22 @@ export default function AddTransformationModal({ onClose, fetch }) {
       </form>
 
       <ConfirmCancelButtons
-        confirmText={loading ? <Loader /> : "Registrar"}
+        confirmText={loading ? <Loader /> : "Actualizar"}
         cancelText="Cancelar"
-        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
+        confirmButtonOnClick={handleSubmit}
         cancelButtonOnClick={onClose}
       />
 
       {innerModal === "success" && (
         <SuccessModal
           isOpen
-          confirmTitle="¡Transformación registrada con éxito!"
-          confirmText="La transformación se ha guardado correctamente."
+          confirmTitle="¡Transformación actualizada!"
+          confirmText="La transformación se ha modificado correctamente."
           confirmButtonText="Volver"
           onClose={() => {
             setInnerModal(null);
-            fetch?.();    // 🔄 refresca lista
-            onClose?.();  // ❌ cierra modal
+            onEditSuccess?.(); // refresca lista
+            onClose?.();       // cierra modal
           }}
         />
       )}
@@ -72,7 +111,7 @@ export default function AddTransformationModal({ onClose, fetch }) {
       {innerModal === "error" && (
         <ErrorModal
           isOpen
-          errorTitle="Error al registrar la transformación"
+          errorTitle="Error al actualizar la transformación"
           errorText="Verifica los datos e inténtalo nuevamente."
           confirmButtonText="Volver"
           onClose={() => setInnerModal(null)}

@@ -59,3 +59,35 @@ class SubcategoriesController:
             "success": True,
             "message": message
         }
+
+    @staticmethod
+    def get_subcategories_by_date_range(start_date: str, end_date: str):
+        error, subcategories = SubcategoriesRepository.find_subcategories_by_date_range(
+            start_date, end_date)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": subcategories
+        }
+
+    @staticmethod
+    def get_deleted_subcategories_by_date_range(start_date: str, end_date: str):
+        error, subcategories = SubcategoriesRepository.find_deleted_subcategories_by_date_range(
+            start_date, end_date)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": subcategories
+        }
+
+    @staticmethod
+    def get_disabled_subcategories():
+        error, subcategories = SubcategoriesRepository.find_disabled_subcategories()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": subcategories
+        }
