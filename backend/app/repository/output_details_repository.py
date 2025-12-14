@@ -122,3 +122,61 @@ class OutputDetailsrepository:
         finally:
             cursor.close()
             connection.close()
+
+    @staticmethod
+    def find_transformations_by_date_range(start_date: str, end_date: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM output_details
+        WHERE transformation_date BETWEEN %s AND %s
+        """
+        try:
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_deleted_transformations_by_date_range(start_date: str, end_date: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM output_details
+        WHERE deleted_at IS NOT NULL
+        AND deleted_at BETWEEN %s AND %s
+        ORDER BY deleted_at DESC
+        """
+        try:
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_all_transformations():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM output_details ORDER BY output_details_id DESC
+        """
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()

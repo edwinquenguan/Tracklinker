@@ -148,6 +148,73 @@ class SubcategoriesRepository:
         finally:
             cursor.close()
             connection.close()
+
+    @staticmethod
+    def find_subcategories_by_date_range(start_date: str, end_date: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE created_at BETWEEN %s AND %s
+        """
+
+        try:
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_deleted_subcategories_by_date_range(start_date: str, end_date: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE deleted_at BETWEEN %s AND %s
+        """
+
+        try:
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+
+    @staticmethod
+    def find_disabled_subcategories():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE is_disabled = TRUE
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+     
+        
             
                                                                                                             
             

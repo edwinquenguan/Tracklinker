@@ -116,3 +116,63 @@ class GuaranteeRepository:
         finally:
             cursor.close()
             connection.close()
+
+   @staticmethod
+   def find_deleted_guarantees_by_date_range(start_date: str, end_date: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM WARRANTY_INCIDENTS
+        WHERE deleted_at IS NOT NULL
+        AND deleted_at BETWEEN %s AND %s
+        ORDER BY deleted_at DESC
+        """
+        try:
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+   @staticmethod
+   def find_all_guarantees():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM WARRANTY_INCIDENTS ORDER BY WARRANTY_INCIDENTS_ID DESC
+        """
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+   @staticmethod
+   def find_disabled_guarantees():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT * FROM WARRANTY_INCIDENTS
+        WHERE is_active = FALSE
+        ORDER BY WARRANTY_INCIDENTS_ID DESC
+        """
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close() 
+   
