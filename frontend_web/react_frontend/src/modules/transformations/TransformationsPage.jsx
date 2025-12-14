@@ -78,7 +78,9 @@ export default function TransformationsPage() {
             {transformations.map((transformation) => (
               <li
                 key={transformation.output_details_id}
-                className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+                className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md dark:bg-[#0f0f11] h-18 overflow-x-auto overflow-y-auto transition duration-500
+                          hover:bg-[#cdcacf] hover:shadow-lg
+                          dark:hover:bg-[#101012]"
               >
                 <div className="w-1/5 text-center">
                   {transformation.out_order_id}
