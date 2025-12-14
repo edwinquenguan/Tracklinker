@@ -82,7 +82,7 @@ export default function WarrantiesPage() {
                 createOnClick={() => openModal(null, "add")}
                 filterOnClick={() => openModal(null, "filter")}
             />
-            <section className="max-h-[93%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
+            <section className="max-h-[93%] max-w-[96%] overflow-x-auto overflow-y-auto overflow-hidden">
                 <ul className="pt-3 flex flex-col gap-1">
                     
                     {/* Fila de encabezados fija - CENTRADO APLICADO */}

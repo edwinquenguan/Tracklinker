@@ -8,6 +8,6 @@ export const apiRoutes = {
     auth: "/auth" ,
     suppliers: "/suppliers" ,
     warranties: "/warranty_incidents" ,
-    transformations: "/outputs" ,
+    transformations: "/output_details" ,
     products: "/products"
 }

@@ -1,47 +1,44 @@
-// components/modals/DeleteTransformationModal.jsx
-import React from "react";
-// ⬇ Reemplaza esta ruta con la ruta real de tu hook
+// src/modules/transformations/components/modals/DeleteTransformationModal.jsx
+import React, { useState } from "react";
 import { useDeleteTransformation } from "../../hooks/useDeleteTransformation";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
+import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 
 export default function DeleteTransformationModal({
   selectedTransformation,
   onClose,
   onDeleteSuccess,
 }) {
-  // Hook para eliminar transformación
-  const { handleDeleteTransformation, loading } = useDeleteTransformation(
-    // ✔ onSuccess
+  const [innerModal, setInnerModal] = useState(null); // "success" | "error"
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const { handleDelete, loading } = useDeleteTransformation(
     () => {
-      alert(
-        `✅ Transformación #${selectedTransformation.transformationId} eliminada con éxito.`
-      );
-
-      // Notifica al padre para refrescar lista
-      if (onDeleteSuccess) onDeleteSuccess();
-
-      onClose();
+      setInnerModal("success");
     },
-
-    // ❌ onError
-    (errorMessage) => {
-      alert(`❌ Error al eliminar la transformación: ${errorMessage}`);
+    (error) => {
+      setErrorMessage(error);
+      setInnerModal("error");
     }
   );
 
-  // Ejecuta la eliminación
   const handleDeleteClick = () => {
-    if (selectedTransformation?.transformationId) {
-      handleDeleteTransformation(selectedTransformation.transformationId);
+    const id = selectedTransformation?.output_details_id;
+    if (!id) {
+      setErrorMessage("No se pudo obtener el ID de la transformación");
+      setInnerModal("error");
+      return;
     }
+    handleDelete(id);
   };
 
   return (
     <div className="flex flex-col items-center p-5">
       <p className="text-lg mb-6 text-center">
-        ¿Estás seguro de que deseas **eliminar** permanentemente la
+        ¿Estás seguro de que deseas <strong>eliminar</strong> permanentemente la
         transformación con ID{" "}
         <span className="font-bold">
-          {selectedTransformation?.transformationId}
+          {selectedTransformation?.output_details_id}
         </span>
         ?
       </p>
@@ -50,7 +47,6 @@ export default function DeleteTransformationModal({
         ¡Esta acción es irreversible!
       </p>
 
-      {/* Botones */}
       <div className="flex gap-4 pt-5">
         <button
           className="bg-red-600 text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:bg-red-700"
@@ -68,6 +64,32 @@ export default function DeleteTransformationModal({
           Cancelar
         </button>
       </div>
+
+      {/* Modal interno de éxito */}
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen
+          confirmTitle="¡Transformación eliminada con éxito!"
+          confirmText={`La transformación #${selectedTransformation.output_details_id} ha sido eliminada correctamente.`}
+          confirmButtonText="Volver"
+          onClose={() => {
+            setInnerModal(null);
+            onDeleteSuccess?.();
+            onClose?.();
+          }}
+        />
+      )}
+
+      {/* Modal interno de error */}
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen
+          errorTitle="Error al eliminar la transformación"
+          errorText={errorMessage}
+          confirmButtonText="Volver"
+          onClose={() => setInnerModal(null)}
+        />
+      )}
     </div>
   );
 }

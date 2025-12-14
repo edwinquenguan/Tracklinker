@@ -1,163 +1,122 @@
-// components/modals/EditTransformationModal.jsx
-import React from "react";
+import Loader from "../../../../globals/components/ui/Loader";
+import FormField from "../../../../globals/components/ui/FormField";
+import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
+import { useState, useEffect } from "react";
 import { useEditTransformation } from "../../hooks/useEditTransformation";
+import ErrorModal from "../../../../globals/components/modals/ErrorModal";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function EditTransformationModal({
-  selectedTransformation,
-  onClose,
-  onEditSuccess,
-}) {
-  const { editTransformation, loading, error } = useEditTransformation();
+export default function EditTransformationModal({ selectedTransformation, onClose, onEditSuccess }) {
+  const [innerModal, setInnerModal] = useState(null);
+  const [form, setForm] = useState({
+    out_order_id: "",
+    out_product_garanty: "",
+    product_transformation: "",
+    product_serial: "",
+  });
+
+  const { editTransformation, loading } = useEditTransformation();
+
+  // Inicializa los valores del formulario al cargar el modal
+  useEffect(() => {
+    if (selectedTransformation) {
+      setForm({
+        output_details_id: selectedTransformation.output_details_id || "",
+        out_order_id: selectedTransformation.out_order_id || "",
+        out_product_garanty: selectedTransformation.out_product_garanty || "",
+        product_transformation: selectedTransformation.product_transformation || "",
+        product_serial: selectedTransformation.product_serial || "",
+      });
+    }
+  }, [selectedTransformation]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedTransformation) return;
 
-    const formData = new FormData(e.target);
-    const updatedData = Object.fromEntries(formData.entries());
+    const id = selectedTransformation.output_details_id; // 🔑 llave primaria correcta
+   
+    const response = await editTransformation(id, form);
 
-    try {
-      await editTransformation(
-        selectedTransformation.transformationId,
-        updatedData
-      );
-
-      alert("Transformación actualizada correctamente");
-
-      if (onEditSuccess) onEditSuccess(); // recargar lista
-
-      onClose();
-    } catch (err) {
-      console.error("Error actualizando transformación:", err);
-      alert("No se pudo actualizar la transformación");
+    if (response.success) {
+      setInnerModal("success");
+    } else {
+      setInnerModal("error");
     }
   };
 
-  const InputGroup = ({
-    labelText,
-    name,
-    type = "text",
-    defaultValue,
-    placeholder,
-    required,
-  }) => (
-    <div className="flex flex-col gap-1">
-      <label htmlFor={name} className="text-sm">
-        {labelText}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        defaultValue={defaultValue}
-        placeholder={placeholder}
-        required={required}
-        className="border rounded-lg p-2 text-sm"
-      />
-    </div>
-  );
-
   return (
-    <div className="flex flex-col items-center">
-      <h3 className="text-xl mb-4">
-        Editando Transformación #{selectedTransformation?.transformationId}
-      </h3>
+    <section className="flex flex-col items-center">
+      <form className="flex flex-col gap-1">
+   
+        <FormField
+          value={form.out_order_id}
+          labelText="Orden de salida"
+          placeholder="XXX123"
+          name="out_order_id"
+          onChange={handleChange}
+        />
 
-      {/* Error */}
-      {error && (
-        <p className="text-red-500 text-sm mb-2">
-          Error: {error?.message || JSON.stringify(error)}
-        </p>
+        <FormField
+          type="date"
+          value={form.out_product_garanty}
+          labelText="Finaliza garantía"
+          name="out_product_garanty"
+          onChange={handleChange}
+        />
+
+        <FormField
+          value={form.product_transformation}
+          labelText="Transformación"
+          placeholder="Cambio de pieza X"
+          name="product_transformation"
+          onChange={handleChange}
+        />
+
+        <FormField
+          value={form.product_serial}
+          labelText="Serial del producto"
+          placeholder="ABC123"
+          name="product_serial"
+          onChange={handleChange}
+        />
+      </form>
+
+      <ConfirmCancelButtons
+        confirmText={loading ? <Loader /> : "Actualizar"}
+        cancelText="Cancelar"
+        confirmButtonOnClick={handleSubmit}
+        cancelButtonOnClick={onClose}
+      />
+
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen
+          confirmTitle="¡Transformación actualizada!"
+          confirmText="La transformación se ha modificado correctamente."
+          confirmButtonText="Volver"
+          onClose={() => {
+            setInnerModal(null);
+            onEditSuccess?.(); // refresca lista
+            onClose?.();       // cierra modal
+          }}
+        />
       )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
-
-        <InputGroup
-          labelText="Nombre del Cliente"
-          name="transformationCustomer"
-          defaultValue={selectedTransformation?.transformationCustomer}
-          placeholder="Nombre del cliente"
-          required
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen
+          errorTitle="Error al actualizar la transformación"
+          errorText="Verifica los datos e inténtalo nuevamente."
+          confirmButtonText="Volver"
+          onClose={() => setInnerModal(null)}
         />
-
-        <InputGroup
-          labelText="Teléfono"
-          name="transformationPhone"
-          type="tel"
-          defaultValue={selectedTransformation?.transformationPhone}
-          placeholder="+57 300 123 XXXX"
-          required
-        />
-
-        <InputGroup
-          labelText="Ciudad"
-          name="transformationCity"
-          defaultValue={selectedTransformation?.transformationCity}
-          placeholder="Bogotá"
-          required
-        />
-
-        <InputGroup
-          labelText="Correo"
-          name="transformationEmail"
-          type="email"
-          defaultValue={selectedTransformation?.transformationEmail}
-          placeholder="cliente@mail.com"
-          required
-        />
-
-        {/* REQUERIMIENTO */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="transformationRequirement" className="text-sm">
-            Requerimiento
-          </label>
-          <textarea
-            id="transformationRequirement"
-            name="transformationRequirement"
-            defaultValue={selectedTransformation?.transformationRequirement}
-            rows="4"
-            className="border rounded-lg p-2 text-sm resize-none"
-            required
-          />
-        </div>
-
-        {/* ESTADO */}
-        <div className="flex flex-col gap-1">
-          <label htmlFor="transformationStatus" className="text-sm">
-            Estado
-          </label>
-          <select
-            id="transformationStatus"
-            name="transformationStatus"
-            defaultValue={selectedTransformation?.transformationStatus}
-            className="border rounded-lg p-2 text-sm"
-            required
-          >
-            <option value="">Seleccione el estado</option>
-            <option value="0">Pendiente</option>
-            <option value="1">En Progreso</option>
-            <option value="2">Finalizada</option>
-          </select>
-        </div>
-
-        {/* BOTONES */}
-        <div className="flex gap-2 pt-5 justify-center">
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-black text-white px-5 py-2 rounded-xl shadow-xl text-sm transition duration-300 hover:text-gray-400 disabled:opacity-50"
-          >
-            {loading ? "Actualizando..." : "Confirmar Edición"}
-          </button>
-
-          <button
-            type="button"
-            className="px-5 py-2 border rounded-xl shadow-xl text-sm transition duration-300 hover:bg-gray-200"
-            onClick={onClose}
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+      )}
+    </section>
   );
 }

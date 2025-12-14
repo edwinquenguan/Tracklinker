@@ -26,6 +26,7 @@ SELECT
     s.supplier_name,
     ps.product_serial,
     pd.product_detail_model,
+    pd.product_details_id,
     pd.product_detail_description,
     pb.product_brand_name,
     p.product_stock,
@@ -98,8 +99,8 @@ CREATE VIEW get_output_products AS
     SELECT
     oo.out_order_id,
     oo.out_order_date,
-    od.product_serial,
     od.output_details_id,
+    od.product_serial,
     od.out_product_garanty,
     od.product_transformation,
     pd.product_detail_description,
@@ -107,8 +108,14 @@ CREATE VIEW get_output_products AS
     pb.product_brand_name
     FROM OUTPUT_DETAILS AS od 
     INNER JOIN OUTPUT_ORDERS AS oo
-    ON od.out_order_id = od.out_order_id
+    ON oo.out_order_id = od.out_order_id
+    INNER JOIN PRODUCT_SERIALS AS ps
+    ON od.product_serial = ps.product_serial
+    INNER JOIN PRODUCTS AS p
+    ON ps.product_id = p.product_id
     INNER JOIN PRODUCT_DETAILS AS pd
-    ON oo.product_details_id = pd.product_details_id
+    ON p.product_details_id = pd.product_details_id
     INNER JOIN PRODUCT_BRANDS AS pb
     ON pd.product_brand_id = pb.product_brand_id;
+
+    select * from get_output_products;

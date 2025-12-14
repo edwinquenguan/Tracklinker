@@ -5,22 +5,27 @@ import { deleteTransformation } from "../services/deleteTransformation";
 export function useDeleteTransformation(onSuccess, onError) {
   const [loading, setLoading] = useState(false);
 
-  const handleDeleteTransformation = async (id) => {
+  const handleDelete = async (id) => {
     if (!id) {
-      if (onError) onError("Se requiere el ID de la transformación para eliminar.");
+      onError?.("No se proporcionó ID");
       return;
     }
 
     setLoading(true);
     try {
-      await deleteTransformation(id);
-      if (onSuccess) onSuccess();
-    } catch (err) {
-      if (onError) onError(err.message);
+      const result = await deleteTransformation(id);
+
+      if (result.success) {
+        onSuccess?.();
+      } else {
+        onError?.(result.error);
+      }
+    } catch (error) {
+      onError?.("Error de red o del servidor");
     } finally {
       setLoading(false);
     }
   };
 
-  return { handleDeleteTransformation, loading };
+  return { handleDelete, loading };
 }

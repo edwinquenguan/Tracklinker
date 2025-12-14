@@ -1,21 +1,39 @@
-// src/modules/transformations/services/updateTransformation.js
+import { apiRoutes } from "../../../config/apiRoutes";
+import { getToken } from "../../../utils/auth";
+
 export async function updateTransformation(id, data) {
   try {
-    const res = await fetch(`/api/output_orders/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const res = await fetch(
+      `${apiRoutes.apiUrl}${apiRoutes.transformations}/update${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getToken(),
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    const responseData = await res.json();
 
     if (!res.ok) {
-      const errorResponse = await res.json().catch(() => null);
-      throw new Error(errorResponse?.message || "Error al actualizar la transformación");
+      return {
+        success: false,
+        error:
+          responseData?.message ||
+          "Error al actualizar la transformación",
+      };
     }
 
-    return true;
-  } catch (err) {
-    throw new Error(err.message);
+    return {
+      success: true,
+      data: responseData,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: "Error de red o del servidor",
+    };
   }
 }

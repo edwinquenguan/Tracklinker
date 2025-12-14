@@ -11,18 +11,19 @@ class OutputDetailsrepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        query =  """
-        SELECT * FROM OUTPUT_DETAILS
+        query = """
+        SELECT * FROM get_output_products ORDER BY out_order_id DESC
         """
         try:
             cursor.execute(query)
             results = cursor.fetchall()
             return None, results
         except Exception as e:
-                return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
-             cursor.close()
-             connection.close()
+            cursor.close()
+            connection.close()
+
 
 
     # Ontener detalle de salida por Id
@@ -51,8 +52,7 @@ class OutputDetailsrepository:
          connection = get_connection()
          cursor= connection.cursor()
 
-         #Fecha actual para indicar cuandose creo el detalle de salida 
-         data["out_product_garanty"] = datetime.now()
+     
 
 
          #Arrays vacios para almacenar datos de detalles de salida

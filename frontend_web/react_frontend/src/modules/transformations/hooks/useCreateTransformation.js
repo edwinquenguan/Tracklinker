@@ -1,54 +1,52 @@
-// hooks/useCreateTransformation.js
 import { useState } from "react";
 import { createTransformation } from "../services/createTransformation";
 
-// Convierte FormData → Objeto plano
-function formDataToObject(formData) {
-  const object = {};
-  formData.forEach((value, key) => {
-    if (!Reflect.has(object, key)) {
-      object[key] = value;
-      return;
-    }
-    if (!Array.isArray(object[key])) {
-      object[key] = [object[key]];
-    }
-    object[key].push(value);
+export function useCreateTransformation() {
+  const [form, setForm] = useState({
+    out_order_id: "",
+    product_serial: "",
+    out_product_garanty: "",
+    product_transformation: "",
   });
-  return object;
-}
 
-export function useCreateTransformation(onSuccess, onError) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const handleCreateTransformation = async (e) => {
+  // Manejo de inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Envío del formulario
+  const handleSubmit = async (e, setInnerModal) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
-      const formData = new FormData(e.target);
-      const transformationData = formDataToObject(formData);
+      const response = await createTransformation(form);
 
-      const { error: serviceError, data } =
-        await createTransformation(transformationData);
+      if (!response.success) {
+        console.error("Error API:", response.error);
+        setInnerModal("error");
+        return;
+      }
 
-      if (serviceError) throw new Error(serviceError);
-
-      if (onSuccess) onSuccess(data);
-
-      return data;
-
-    } catch (err) {
-      setError(err);
-      if (onError) onError(err.message);
-      return null;
-
+      setInnerModal("success");
+    } catch (error) {
+      console.error("Error inesperado:", error);
+      setInnerModal("error");
     } finally {
       setLoading(false);
     }
   };
 
-  return { handleCreateTransformation, loading, error };
+  return {
+    form,
+    loading,
+    handleChange,
+    handleSubmit,
+  };
 }

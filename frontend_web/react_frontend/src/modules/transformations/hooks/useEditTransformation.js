@@ -1,25 +1,24 @@
-// src/modules/transformations/hooks/useEditTransformation.js
 import { useState } from "react";
 import { updateTransformation } from "../services/updateTransformation";
 
-export function useEditTransformation(onSuccess = () => {}, onError = () => {}) {
+export function useEditTransformation() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const editTransformation = async (id, data) => {
     setLoading(true);
-    setError(null);
 
     try {
-      await updateTransformation(id, data);
-      onSuccess();
-    } catch (err) {
-      setError(err);
-      onError(err);
+      const response = await updateTransformation(id, data);
+      return response;
+    } catch (error) {
+      return {
+        success: false,
+        error,
+      };
     } finally {
       setLoading(false);
     }
   };
 
-  return { editTransformation, loading, error };
+  return { editTransformation, loading };
 }

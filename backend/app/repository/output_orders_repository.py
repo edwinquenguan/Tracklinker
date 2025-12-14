@@ -10,7 +10,7 @@ class OutputOrdersRepository:
         cursor = connection.cursor(dictionary=True)
 
         query = """
-        SELECT * FROM get_output_products
+        SELECT * FROM get_output_products ORDER BY out_order_id DESC
         """
         try:
             cursor.execute(query)
