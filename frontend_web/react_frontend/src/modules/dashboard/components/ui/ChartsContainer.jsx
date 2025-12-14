@@ -12,7 +12,7 @@ import CategoriesChart from "./charts/CategoriesChart";
 export default function ChartsContainer() {
   return (
     <section
-      className="grid max-h-[95%] p-2 transition duration-300 ease-in-out
+      className="grid max-h-[95%] h-full p-2 transition duration-300 ease-in-out
             xl:grid-cols-12 xl:grid-rows-5
             sm:grid-cols-1 sm:grid-rows-4 gap-5"
     >
