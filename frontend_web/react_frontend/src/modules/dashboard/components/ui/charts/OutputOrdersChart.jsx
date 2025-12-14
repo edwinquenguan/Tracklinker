@@ -11,9 +11,9 @@ export default function OutputOrdersChart() {
     >
       {orders.map((item) => (
         <div className="flex items-center gap-1" key={item.orders}>
-          {/* Usuarios existentes */}
+          {/* Ordenes existentes */}
           <span className="font-semibold text-2xl">{item.orders}</span>
-          {/* Usuarios creados en el mes actual */}
+          {/* Ordenes creadas en el mes actual */}
           <span className="font-medium text-base text-[#00a86b]">
             +{item.new_orders}
           </span>

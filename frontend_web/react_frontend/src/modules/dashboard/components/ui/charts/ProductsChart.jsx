@@ -19,7 +19,7 @@ export default function ProductsChart() {
         <div className="flex items-center gap-1" key={item.products}>
           {/* Productos Totales */}
           <span className="font-semibold text-2xl">{item.products}</span>
-          {/* Products que entraton en el mes actual */}
+          {/* Productos que entraron en el mes actual */}
           <span className="font-medium text-base text-[#00a86b]">
             +{item.new_products}
           </span>
