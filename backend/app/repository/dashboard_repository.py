@@ -201,8 +201,12 @@ class DashboardRepository:
 
         query = """
         SELECT
-            COUNT(category_id) AS categories 
-        FROM CATEGORIES;
+            (SELECT COUNT(*) FROM CATEGORIES) AS categories,
+            (SELECT COUNT(*)
+        FROM CATEGORIES 
+        WHERE MONTH(category_date) = MONTH(CURDATE())
+        AND YEAR(category_date) = YEAR(CURDATE())
+        ) AS new_categories;
         """
 
         try:
@@ -212,6 +216,7 @@ class DashboardRepository:
             data = [
                 {
                     "categories": item[0],
+                    "new_categories": item[1]
                 }
                 for item in result
             ]

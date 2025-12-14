@@ -28,6 +28,16 @@
   background-position: right 5px bottom -40px;
 }
 
+/* Fondo del gráfico de categorias */
+.categories-background {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.644), rgba(255, 255, 255, 0.089)),
+    url("../../assets/icons/aside/categories-icon.svg");
+  background-repeat: no-repeat;
+  background-size: 180px;
+  background-position: right 5px bottom -45px;
+}
+
 /* Estilos para el modo oscuro */
 @media (prefers-color-scheme: dark) {
   .users-background {
