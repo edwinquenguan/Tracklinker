@@ -55,3 +55,41 @@ class OutputDetailsController:
        "success": success,
        "message": message
      }
+   
+   @staticmethod
+   def get_transformations_by_date_range(start_date: str, end_date: str):
+     error, transformations = OutputDetailsrepository.find_transformations_by_date_range(start_date, end_date)
+     if error:
+       raise HTTPException(status_code=400, detail=error)
+     return {
+       "data": transformations
+     }
+   
+   @staticmethod
+   def get_deleted_transformations_by_date_range(start_date: str, end_date: str):
+       error, transformations = OutputDetailsrepository.find_deleted_transformations_by_date_range(start_date, end_date)
+
+       if error:
+           raise HTTPException(status_code=404, detail=error)
+       
+       return{
+           "data": transformations
+       }
+   
+   @staticmethod
+   def get_all_transformations():
+       error, transformations= OutputDetailsrepository.find_all_transformations()
+       if error:
+           raise HTTPException(status_code=400, detail=error)
+       return{
+           "data":transformations
+       }
+   
+   @staticmethod
+   def get_completed_transformations():
+       error, transformations= OutputDetailsrepository.find_completed_transformations()
+       if error:
+           raise HTTPException(status_code=400, detail=error)
+       return{
+           "data":transformations
+       }

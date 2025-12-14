@@ -4,7 +4,7 @@ from app.models.guarantiees_model import Guarantee
 
 from app.core.config import settings
 
-class GuarantieeController:
+class GuaranteeController:
        
     @staticmethod
     def get_all_guarantee():
@@ -54,4 +54,32 @@ class GuarantieeController:
             "success": success,
             "message": message
         }
+    @staticmethod
+    def get_deleted_guarantees_by_date_range(start_date: str, end_date: str):
+        error, guarantees = GuaranteeRepository.find_deleted_guarantees_by_date_range(
+            start_date, end_date)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": guarantees
+        }
+    @staticmethod
+    def get_all_guarantees():
+        error, guarantees = GuaranteeRepository.find_all_guarantees()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": guarantees
+        }
+    @staticmethod
+    def get_disabled_guarantees():
+        error, guarantees = GuaranteeRepository.find_disabled_guarantees()
+       
+        if error:
+           raise HTTPException(status_code=404, detail=error)
+        return {
+             "data": guarantees 
+              }
+    
     

@@ -57,3 +57,35 @@ class CategoryController:
             "success": success,
             "message": message
         }
+    
+    @staticmethod
+    def get_categories_by_date_range(start_date: str, end_date: str):
+        error, categories = CategoryRepository.find_categories_by_date_range(start_date, end_date)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        
+        return{
+            "data": categories
+        }
+    
+    @staticmethod
+    def get_deleted_categories_by_date_range(start_date: str, end_date: str):
+        error, categories = CategoryRepository.find_deleted_categories_by_date_range(start_date, end_date)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        
+        return{
+            "data": categories
+        }
+    @staticmethod
+    def  get_disabled_categories():
+        error, categories = CategoryRepository.find_disabled_categories()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        
+        return{
+            "data": categories
+        }   

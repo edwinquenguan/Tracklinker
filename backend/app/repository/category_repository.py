@@ -161,3 +161,37 @@ class CategoryRepository:
         finally:
             cursor.close()
             connection.close()
+
+    @staticmethod
+    def find_categories_by_date_range(start_date: str, end_date: str):
+        connection  = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = "SELECT * FROM CATEGORIES WHERE CATEGORY_DATE BETWEEN %s AND %s"
+
+        try:
+            cursor.execute(query, (start_date, end_date))
+            result = cursor.fetchall()
+            return None, result
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_deleted_categories_by_date_range(start_date: str, end_date: str):
+        connection  = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = "SELECT * FROM CATEGORIES WHERE DELETION_DATE BETWEEN %s AND %s"
+
+        try:
+            cursor.execute(query, (start_date, end_date))
+            result = cursor.fetchall()
+            return None, result
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
