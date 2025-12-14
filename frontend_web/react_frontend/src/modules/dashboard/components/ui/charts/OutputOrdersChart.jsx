@@ -1,5 +1,4 @@
 import TopChartsCard from "../TopChartsCard";
-import SeeReportButton from "../SeeReportButton";
 import { useOutputOrdersChart } from "../../../hooks/useOutputOrdersChart";
 
 export default function OutputOrdersChart() {

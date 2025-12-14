@@ -1,5 +1,4 @@
 import TopChartsCard from "../TopChartsCard";
-import SeeReportButton from "../SeeReportButton";
 import { useProductChart } from "../../../hooks/useProductChart";
 
 export default function ProductsChart() {
