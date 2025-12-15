@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
-import { getAllCategories } from "../../../services/getAllCategories";
-import { getSubcategoriesWithCategory } from "../../../services/getSubcategoriesWithCategory";
+import { getCategoriesService } from "../../categories/services/getCategoriesService"
+import { getSubcategories } from "../../subcategories/services/getSubcategoriesService";
 
 export function useCatalog() {
   // Definir los estados y sus valores por defecto
@@ -27,7 +27,7 @@ export function useCatalog() {
 
     async function fetchCategories() {
       try {
-        const categoryData = await getAllCategories();
+        const categoryData = await getCategoriesService();
         setCategories(categoryData);
       } catch (error) {
         setError(error.message);
@@ -37,7 +37,7 @@ export function useCatalog() {
 
     async function fetchSubcategories() {
       try {
-        const subcategoryData = await getSubcategoriesWithCategory();
+        const subcategoryData = await getSubcategories();
         setSubcategories(subcategoryData);
       } catch (error) {
         setError(error.message);

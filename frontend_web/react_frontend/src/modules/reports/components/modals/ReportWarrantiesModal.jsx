@@ -2,10 +2,7 @@ import DateInput from "../../../../globals/components/ui/DateInput";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function ReportWarrantiesModal({
-  confirmButtonOnClick,
-  cancelButtonOnClick,
-}) {
+export default function ReportWarrantiesModal({ onClose }) {
   return (
     <section className="flex flex-col items-center gap-2">
       <SelectMenu
@@ -13,11 +10,9 @@ export default function ReportWarrantiesModal({
         name={"report-type-menu"}
         spanText={"Quiero Un Informe De:"}
       >
+        <option value="select"> Seleccionar </option>
         <option value="date-range"> Garantías Creadas en las fechas </option>
-        <option value="delete-range">
-          {" "}
-          Garantías Eliminadas en las fechas{" "}
-        </option>
+        <option value="delete-range">Garantías Eliminadas en las fechas</option>
         <option value="existence"> Garantías Existentes </option>
         <option value="disabled"> Garantías Deshabilitadas </option>
       </SelectMenu>
@@ -30,8 +25,8 @@ export default function ReportWarrantiesModal({
       </section>
       <ConfirmCancelButtons
         confirmText="Crear"
-        confirmButtonOnClick={confirmButtonOnClick}
-        cancelButtonOnClick={cancelButtonOnClick}
+        confirmButtonOnClick={onClose}
+        cancelButtonOnClick={onClose}
       />
     </section>
   );

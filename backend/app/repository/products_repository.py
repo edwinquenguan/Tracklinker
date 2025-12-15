@@ -1,7 +1,8 @@
 from app.core.database import get_connection
 
+
 class ProductsRepository:
-    
+
     @staticmethod
     def find_all_products():
         connection = get_connection()

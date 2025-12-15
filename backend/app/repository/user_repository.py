@@ -3,6 +3,7 @@ from app.models.user_model import User
 from datetime import datetime
 import bcrypt
 
+
 class UserRepository:
 
     # Obtener todos los usuarios
@@ -65,7 +66,7 @@ class UserRepository:
         ON u.rol_id = r.rol_id
         WHERE user_id = %s
         """
-        
+
         try:
             cursor.execute(query, (user_id,))
             result = cursor.fetchall()
@@ -87,8 +88,11 @@ class UserRepository:
         SELECT
             r.rol_name,
             u.user_id,
+            u.user_name,
+            u.user_first_surname,
+            u.user_second_surname,
             u.user_email, 
-            u.user_password 
+            u.user_password
         FROM USERS AS u 
         INNER JOIN ROLES AS r 
         ON r.rol_id = u.rol_id 
@@ -115,7 +119,8 @@ class UserRepository:
         cursor = connection.cursor()
 
         # Validar email duplicado
-        cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (data["user_email"],))
+        cursor.execute(
+            "SELECT user_id FROM USERS WHERE user_email = %s", (data["user_email"],))
         if cursor.fetchone():
             cursor.close()
             connection.close()
@@ -123,11 +128,12 @@ class UserRepository:
 
         # Hashear la contraseña
         password = data["user_password"].encode("utf-8")
-        data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
-        
+        data["user_password"] = bcrypt.hashpw(
+            password, bcrypt.gensalt()).decode("utf-8")
+
         # Fecha actual para indicar la hora a la que se creo el usuario
         data["user_date"] = datetime.now()
-        
+
         # Arrays vacios para almacenar los datos del usuario
         fields = list(data.keys())
         placeholders = ["%s"] * len(fields)
@@ -156,7 +162,8 @@ class UserRepository:
         if "user_password" in user_data:
             # Hashear la nueva contraseña
             password = user_data["user_password"].encode("utf-8")
-            user_data["user_password"] = bcrypt.hashpw(password, bcrypt.gensalt()).decode("utf-8")
+            user_data["user_password"] = bcrypt.hashpw(
+                password, bcrypt.gensalt()).decode("utf-8")
 
         # Verificar si existe el usuario
         cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
@@ -181,10 +188,11 @@ class UserRepository:
             connection.commit()
 
             # Consultar y devolver el usuario que actualizamos
-            cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
+            cursor.execute(
+                "SELECT * FROM USERS WHERE user_id = %s", (user_id,))
             result = cursor.fetchone()
 
-            return None, "Usuario actualizado correctamente" ,result
+            return None, "Usuario actualizado correctamente", result
         except Exception as e:
             connection.rollback()
             return f"Error al ejecutar la consulta: {e} {query}", None, None
@@ -217,8 +225,6 @@ class UserRepository:
             cursor.close()
             connection.close()
 
-   
-
     @staticmethod
     def find_by_rol(rol_id: int):
         connection = get_connection()
@@ -242,20 +248,20 @@ class UserRepository:
             ON u.rol_id = r.rol_id
             WHERE r.rol_id = %s
             """
-            
+
             # 2. Ejecutar y obtener resultados
             cursor.execute(query, (rol_id,))
-            result = cursor.fetchall() # Obtiene la lista completa de usuarios
-            
-            return None, result 
-            
+            result = cursor.fetchall()  # Obtiene la lista completa de usuarios
+
+            return None, result
+
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
-            
+
         finally:
-            
-                cursor.close()
-                connection.close()
+
+            cursor.close()
+            connection.close()
 
     @staticmethod
     def find_all_roles():
@@ -266,8 +272,8 @@ class UserRepository:
 
         try:
             cursor.execute(query)
-            result =cursor.fetchall()
-            
+            result = cursor.fetchall()
+
             data = [
                 {
                     "id": item[0],

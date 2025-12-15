@@ -145,6 +145,7 @@ ENGINE = InnoDB;
 CREATE TABLE CATEGORIES (
   category_id INT NOT NULL AUTO_INCREMENT COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
   category_name VARCHAR(100) NOT NULL COMMENT 'Identificar y clasificar los productos tecnológicos en el sistema.',
+  category_date DATE NOT NULL,
   UNIQUE INDEX category_id_UNIQUE (category_id ASC),
   PRIMARY KEY (category_id))
 ENGINE = InnoDB;
