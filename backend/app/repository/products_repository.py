@@ -1,7 +1,9 @@
 from app.core.database import get_connection
+from app.models.product_model import Product
+
 
 class ProductsRepository:
-    
+
     @staticmethod
     def find_all_products():
         connection = get_connection()
@@ -17,18 +19,20 @@ class ProductsRepository:
             # Mapeamos cada item que devuelve la query y le agregamos una llave para identificarlos
             data = [
                 {
-                    "input_date": item[0],
-                    "input_order": item[1],
-                    "category": item[2],
-                    "subcategory": item[3],
-                    "product_id": item[4],
-                    "supplier": item[5],
-                    "product_serial": item[6],
-                    "model": item[7],
-                    "description": item[8],
-                    "brand": item[9],
-                    "stock": item[10],
-                    "warranty_time": item[11]
+                    "input_order_id": item[0],
+                    "input_date": item[1],
+                    "input_order": item[2],
+                    "category": item[3],
+                    "subcategory": item[4],
+                    "product_id": item[5],
+                    "supplier": item[6],
+                    "product_serial": item[7],
+                    "model": item[8],
+                    "product_details_id": item[9],
+                    "description": item[10],
+                    "brand": item[11],
+                    "stock": item[12],
+                    "warranty_time": item[13]
                 }
                 for item in result
             ]
@@ -76,7 +80,7 @@ class ProductsRepository:
         finally:
             connection.close()
             cursor.close()
-    
+
     @staticmethod
     def find_products_added_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
@@ -139,5 +143,54 @@ class ProductsRepository:
             cursor.close()
             connection.close()
 
+    @staticmethod
+    def create_product(product_data: Product):
+        data = product_data.model_dump()
+        connection = get_connection()
+        cursor = connection.cursor()
 
-        
+        if "product_brand" in data:
+            try:
+                cursor.execute(
+                    "SELECT * FROM PRODUCT_BRANDS WHERE product_brand_name = %s", (data["product_brand"],))
+                brand = cursor.fetchone()
+                if not brand:
+                    cursor.execute(
+                        f"INSERT INTO PRODUCT_BRANDS (product_brand_name) VALUES (%s)",
+                        (data["product_brand"],)
+                    )
+                    connection.commit()
+                del data["product_brand"]
+            except Exception as e:
+                return f"Error al intentar obtener la marca del producto {e}", None, None
+
+        if "input_order_id" in data:
+            try:
+                cursor.execute(
+                    "SELECT * FROM INPUT_ORDERS WHERE input_order_id = %s", (data["input_order_id"],))
+                result = cursor.fetchone()
+
+                if not result:
+                    cursor.execute()
+
+                del data["input_order_id"]
+            except Exception as e:
+                return f"Error al intentar obtener la orden de entrada {e}", None, None
+
+        # Arrays vacios para almacenar los datos del producto
+        fields = list(data.keys())
+        placeholders = ["%s"] * len(fields)
+        values = list(data.values())
+
+        query = f"""
+        INSERT INTO PRODUCTS ({','.join(fields)}) VALUES ({','.join(placeholders)})
+        """
+        try:
+            cursor.execute(query, values)
+            connection.commit()
+            return None, True, "Producto Creado Correctamente"
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None, None
+        finally:
+            cursor.close()
+            connection.close()

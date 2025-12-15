@@ -40,6 +40,7 @@ module.exports = {
     "hidden",
     "z-50",
     "z-100",
+    "z-150",
     "animate-modalFadeOut",
     "animate-modelFadeIn",
     "users-background",

@@ -33,6 +33,7 @@ class UserController:
         return {
             "data": users
         }
+
     @staticmethod
     def get_user_by_id(user_id: int):
         error, user = UserRepository.find_by_id(user_id)

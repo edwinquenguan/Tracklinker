@@ -2,10 +2,7 @@ import DateInput from "../../../../globals/components/ui/DateInput";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function ReportSuppliersModal({
-  confirmButtonOnClick,
-  cancelButtonOnClick,
-}) {
+export default function ReportSuppliersModal({ onClose }) {
   return (
     <section className="flex flex-col items-center gap-2">
       <SelectMenu
@@ -13,10 +10,10 @@ export default function ReportSuppliersModal({
         name={"report-type-menu"}
         spanText={"Quiero Un Informe De:"}
       >
+        <option value="select"> Seleccionar </option>
         <option value="date-range"> Proveedores Creados en las fechas </option>
         <option value="delete-range">
-          {" "}
-          Proveedores Eliminados en las fechas{" "}
+          Proveedores Eliminados en las fechas
         </option>
         <option value="existence"> Proveedores Existentes </option>
       </SelectMenu>
@@ -29,8 +26,8 @@ export default function ReportSuppliersModal({
       </section>
       <ConfirmCancelButtons
         confirmText="Crear"
-        confirmButtonOnClick={confirmButtonOnClick}
-        cancelButtonOnClick={cancelButtonOnClick}
+        confirmButtonOnClick={onClose}
+        cancelButtonOnClick={onClose}
       />
     </section>
   );

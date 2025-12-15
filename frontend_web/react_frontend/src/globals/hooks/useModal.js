@@ -9,14 +9,18 @@ export function useModal() {
   const openModal = (data, type, refetchFn) => {
     setModalData(data);
     setModalType(type);
-    setRefetch(refetchFn)
     setIsOpen(true);
+    setRefetch(() => refetchFn);
   };
 
   const closeModal = () => {
     setModalData(null);
     setIsOpen(false);
     setModalType(null);
+    if (typeof refetch === "function") {
+      refetch();
+    }
+    setRefetch(null);
   };
 
   return { modalType, isOpen, modalData, refetch, openModal, closeModal };

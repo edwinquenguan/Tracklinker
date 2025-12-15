@@ -44,6 +44,13 @@ class AuthController:
             expires_delta=expires)
 
         return{
+            "success": True,
+            "user": {
+                "name": user["user_name"],
+                "first_surname": user["user_first_surname"],
+                "second_surname": user["user_second_surname"],
+                "email": email,
+            },
             "token_type": "Bearer",
             "access_token": token
         }

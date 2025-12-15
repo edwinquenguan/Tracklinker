@@ -18,6 +18,7 @@ ON u.rol_id = r.rol_id;
 -- Vista para obtener todos los productos con sus categorias y subcategorias
 CREATE VIEW get_all_products AS
 SELECT
+    io.input_order_id,
     io.input_order_date,
     io.input_order_bill,
     c.category_name,

@@ -2,6 +2,7 @@ from app.core.database import get_connection
 from datetime import datetime
 import bcrypt
 
+
 class SubcategoriesRepository:
     # Obtener todas las subcategorías
     @staticmethod
@@ -11,14 +12,14 @@ class SubcategoriesRepository:
         # Petición a la base de datos
 
         query = """
-        SELECT 
-        c.categories,
-        
-        * FROM SUBCATEGORIES
-        INNER JOIN CATEGORIES 
-        ON SUBCATEGORIES.category_id = CATEGORIES.category_id
-
-    
+        SELECT
+        c.category_id,
+        c.category_name,
+        s.subcategory_id,
+        s.subcategory_name
+        FROM SUBCATEGORIES AS s
+        INNER JOIN CATEGORIES AS c 
+        ON s.category_id = c.category_id
         """
 
         try:
@@ -101,9 +102,21 @@ class SubcategoriesRepository:
                 subcategory_id
             ))
             connection.commit()
-            return None, cursor.rowcount
+            cursor.execute(
+                "SELECT * FROM SUBCATEGORIES WHERE subcategory_id = %s", (subcategory_id,))
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "category_id": item[0],
+                    "subcategory_id": item[1],
+                    "subcategory_name": item[2]
+                }
+                for item in result
+            ]
+            return None, cursor.rowcount, data
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"❌ Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
@@ -125,7 +138,7 @@ class SubcategoriesRepository:
             return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
-            connection.close()   
+            connection.close()
 
     # Obtener subcategorías por categoría ID
     @staticmethod
@@ -213,11 +226,69 @@ class SubcategoriesRepository:
             cursor.close()
             connection.close()
 
-     
-        
-            
-                                                                                                            
-            
-        
+    # Obtener subcategorías actualizadas antes de una fecha específica
+    @staticmethod
+    def find_updated_before(date: datetime):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
 
-        
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE updated_at < %s
+        """
+
+        try:
+            cursor.execute(query, (date,))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    # Obtener subcategorías por estado (activo/inactivo)
+    @staticmethod
+    def find_by_status(is_active: bool):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE is_active = %s
+        """
+
+        try:
+            cursor.execute(query, (is_active,))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    # Activar o desactivar una subcategoría
+    @staticmethod
+    def set_active_status(subcategory_id: int, is_active: bool):
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        # Petición a la base de datos
+        query = """
+        UPDATE SUBCATEGORIES
+        SET is_active = %s
+        WHERE subcategory_id = %s
+        """
+
+        try:
+            cursor.execute(query, (is_active, subcategory_id))
+            connection.commit()
+            return None, cursor.rowcount
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()

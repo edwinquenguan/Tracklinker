@@ -2,10 +2,7 @@ import DateInput from "../../../../globals/components/ui/DateInput";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function ReportCategoriesModal({
-  confirmButtonOnClick,
-  cancelButtonOnClick,
-}) {
+export default function ReportCategoriesModal({ onClose }) {
   return (
     <section className="flex flex-col items-center gap-2">
       <SelectMenu
@@ -13,10 +10,10 @@ export default function ReportCategoriesModal({
         name={"report-type-menu"}
         spanText={"Quiero Un Informe De:"}
       >
+        <option value="select"> Seleccionar </option>
         <option value="date-range"> Categorias Creadas en las fechas </option>
         <option value="delete-range">
-          {" "}
-          Categorias Eliminadas en las fechas{" "}
+          Categorias Eliminadas en las fechas
         </option>
         <option value="existence"> Categorias Existentes </option>
         <option value="disabled"> Categorias Deshabilitadas </option>
@@ -30,8 +27,8 @@ export default function ReportCategoriesModal({
       </section>
       <ConfirmCancelButtons
         confirmText="Crear"
-        confirmButtonOnClick={confirmButtonOnClick}
-        cancelButtonOnClick={cancelButtonOnClick}
+        confirmButtonOnClick={onClose}
+        cancelButtonOnClick={onClose}
       />
     </section>
   );
