@@ -2,10 +2,7 @@ import DateInput from "../../../../globals/components/ui/DateInput";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 
-export default function ReportTranformationsModal({
-  confirmButtonOnClick,
-  cancelButtonOnClick,
-}) {
+export default function ReportTranformationsModal({ onClose }) {
   return (
     <section className="flex flex-col items-center gap-2">
       <SelectMenu
@@ -13,13 +10,12 @@ export default function ReportTranformationsModal({
         name={"report-type-menu"}
         spanText={"Quiero Un Informe De:"}
       >
+        <option value="select"> Seleccionar </option>
         <option value="date-range">
-          {" "}
-          Tranformaciones Creadas en las fechas{" "}
+          Tranformaciones Creadas en las fechas
         </option>
         <option value="delete-range">
-          {" "}
-          Tranformaciones Eliminadas en las fechas{" "}
+          Tranformaciones Eliminadas en las fechas
         </option>
         <option value="existence"> Tranformaciones Existentes </option>
         <option value="disabled"> Tranformaciones Completadas </option>
@@ -33,8 +29,8 @@ export default function ReportTranformationsModal({
       </section>
       <ConfirmCancelButtons
         confirmText="Crear"
-        confirmButtonOnClick={confirmButtonOnClick}
-        cancelButtonOnClick={cancelButtonOnClick}
+        confirmButtonOnClick={onClose}
+        cancelButtonOnClick={onClose}
       />
     </section>
   );
