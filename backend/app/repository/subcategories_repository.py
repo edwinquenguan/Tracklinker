@@ -161,21 +161,20 @@ class SubcategoriesRepository:
         finally:
             cursor.close()
             connection.close()
-    # Obtener subcategorías por nombre
 
     @staticmethod
-    def find_by_name(subcategory_name: str):
+    def find_subcategories_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
         query = """
         SELECT * FROM SUBCATEGORIES 
-        WHERE subcategory_name = %s
+        WHERE created_at BETWEEN %s AND %s
         """
 
         try:
-            cursor.execute(query, (subcategory_name,))
+            cursor.execute(query, (start_date, end_date))
             results = cursor.fetchall()
             return None, results
         except Exception as e:
@@ -184,39 +183,41 @@ class SubcategoriesRepository:
             cursor.close()
             connection.close()
 
-    # Contar el número de subcategorías
     @staticmethod
-    def count_subcategories():
-        connection = get_connection()
-        cursor = connection.cursor()
-
-        # Petición a la base de datos
-        query = "SELECT COUNT(*) FROM SUBCATEGORIES"
-
-        try:
-            cursor.execute(query)
-            result = cursor.fetchone()
-            return None, result[0]
-        except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    # Obtener subcategorías creadas después de una fecha específica
-    @staticmethod
-    def find_created_after(date: datetime):
+    def find_deleted_subcategories_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
         query = """
         SELECT * FROM SUBCATEGORIES 
-        WHERE created_at > %s
+        WHERE deleted_at BETWEEN %s AND %s
         """
 
         try:
-            cursor.execute(query, (date,))
+            cursor.execute(query, (start_date, end_date))
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"❌ Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+
+    @staticmethod
+    def find_disabled_subcategories():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """
+        SELECT * FROM SUBCATEGORIES 
+        WHERE is_disabled = TRUE
+        """
+
+        try:
+            cursor.execute(query)
             results = cursor.fetchall()
             return None, results
         except Exception as e:

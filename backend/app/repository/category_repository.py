@@ -202,3 +202,20 @@ class CategoryRepository:
         finally:
             cursor.close()
             connection.close()
+
+    @staticmethod
+    def find_disabled_categories():
+        connection  = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = "SELECT * FROM CATEGORIES WHERE STATUS = 'DISABLED'"
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            return None, result
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
