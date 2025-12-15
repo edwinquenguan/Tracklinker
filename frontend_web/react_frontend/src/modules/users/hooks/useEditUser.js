@@ -20,7 +20,7 @@ export function useEditUser(userId, formData) {
 
     try {
       const response = await editUserService(id, form);
-      if (response.success) {
+      if (response) {
         setInnerModal("success");
       }
     } catch (error) {

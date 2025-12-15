@@ -1,5 +1,6 @@
 // Hooks
 import { useModal } from "../../globals/hooks/useModal";
+import { useUsers } from "./hooks/useUsers";
 // Iconos
 import { usersIcons } from "../../assets/icons/mainIcons";
 // Modales
@@ -18,7 +19,8 @@ import UsersList from "./components/ui/UsersList";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
-  const { modalType, isOpen, modalData, refetch, openModal, closeModal } = useModal();
+  const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
+  const { users, loading, error, fetchUsers } = useUsers();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -26,14 +28,20 @@ export default function UsersPage() {
         sectionName={"Usuarios"}
         addButtonIcon={usersIcons.addUserIcon}
         addButtonText={"Agregar Usuario"}
-        createOnClick={() => openModal(null, "add")}
-        filterOnClick={() => openModal(null, "filter")}
+        createOnClick={() => openModal(null, "add", fetchUsers)}
+        filterOnClick={() => openModal(null, "filter", fetchUsers)}
       >
         <SearchBar />
       </TopSection>
 
       {/* Contenedor de los usuarios */}
-      <UsersList openModal={openModal} />
+      <UsersList
+        users={users}
+        loading={loading}
+        error={error}
+        refetch={fetchUsers}
+        openModal={openModal}
+      />
 
       {/* Modales */}
       {modalType && (

@@ -2,28 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Importar los fondos de algunos cards del dashboard */
-@import url("./background-charts-icons.css");
+/* Importar estilos de toda la aplicación */
+@import url("./global.css");
 
-/* Importar el loader o circulo de carga */
-@import url("./loader.css");
-
-/* Importar fuentes */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-@font-face {
-  font-family: "Poppins";
-  src:
-    url("../../assets/fonts/Poppins-Regular.ttf") format("truetype"),
-    url("../../assets/fonts/Poppins-Medium.ttf") format("truetype"),
-    url("../../assets/fonts/Poppins-Black.ttf") format("truetype"),
-    url("../../assets/fonts/Poppins-Bold.ttf") format("truetype"),
-    url("../../assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Recommended for better performance and user experience */
-}
-
+/* Estilos para formatear los estilos por defecto del navegador */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -40,30 +22,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Estilos para el menu de opciones */
-select {
-  border-radius: 5px;
-}
-
 code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-/* Clase para ocultar la barra de navegación */
-::-webkit-scrollbar {
-  display: none;
-}
-
-/* Estilos para el input de tipo archivo */
-input[type="file"]::file-selector-button {
-  padding: 0.5em 1em;
-  border: 1px solid #9ca3af;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-input[type="file"]::file-selector-button:hover {
-  color: #9ca3af;
 }

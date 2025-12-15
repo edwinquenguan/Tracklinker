@@ -24,7 +24,8 @@ def get_subcategory_by_id(subcategory_id: int):
 @router.post("/create")
 def create_subcategory(
     subcategory_data: dict,
-    payload: dict = Depends(require_roles(["Admin"]))):
+    payload: dict = Depends(require_roles(["Admin"]))
+):
     return SubcategoriesController.create_subcategory(subcategory_data)
 
 
@@ -33,7 +34,8 @@ def create_subcategory(
 def update_subcategory(
     subcategory_id: int,
     subcategory_data: dict,
-    payload: dict = Depends(require_roles(["Admin"]))):
+    payload: dict = Depends(require_roles(["Admin"]))
+):
     return SubcategoriesController.update_subcategory(subcategory_id, subcategory_data)
 
 
@@ -41,7 +43,8 @@ def update_subcategory(
 @router.delete("/delete/{subcategory_id}")
 def delete_subcategory(
     subcategory_id: int,
-    payload: dict = Depends(require_roles(["Admin"]))):
+    payload: dict = Depends(require_roles(["Admin"]))
+):
     return SubcategoriesController.delete_subcategory(subcategory_id) 
 
      

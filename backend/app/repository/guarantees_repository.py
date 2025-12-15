@@ -4,9 +4,9 @@ from datetime import datetime
 
 
 class GuaranteeRepository:
-   
-   @staticmethod
-   def find_all_guarantiee():
+
+    @staticmethod
+    def find_all_guarantiee():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
@@ -23,39 +23,38 @@ class GuaranteeRepository:
             cursor.close()
             connection.close()
 
-
     # Obtener una incidencia por ID
-   @staticmethod
-   def find_by_id(warranty_incidents_id: int):
-       connection = get_connection()
-       cursor = connection.cursor(dictionary=True)
 
-       # Petición a la base de datos
-       query= """ 
+    @staticmethod
+    def find_by_id(warranty_incidents_id: int):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Petición a la base de datos
+        query = """ 
         SELECT * FROM WARRANTY_INCIDENTS WHERE warranty_incidents_id = %s
         """
-       try:
+        try:
             cursor.execute(query, (warranty_incidents_id,))
             result = cursor.fetchall()
             return None, result
-       except Exception as e:
+        except Exception as e:
             return f"❌ Error al ejecutar la consulta: {e}", None
-       finally:
+        finally:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def create(warranty_data: Guarantee):
-       
+    @staticmethod
+    def create(warranty_data: Guarantee):
+
         data = warranty_data.model_dump()
 
         connection = get_connection()
         cursor = connection.cursor()
-        
 
-         # Fecha actual para indicar la hora a la que se creo la incidencia
+        # Fecha actual para indicar la hora a la que se creo la incidencia
         data["warranty_date"] = datetime.now()
-        
+
         # Arrays vacios para almacenar los datos de la incidencia
         fields = list(data.keys())
         placeholders = ["%s"] * len(fields)
@@ -65,17 +64,17 @@ class GuaranteeRepository:
         query = f"INSERT INTO warranty_incidents ({','.join(fields)}) VALUES({','.join(placeholders)})"
 
         try:
-           cursor.execute(query, values)
-           connection.commit()
-           return None, True, "Incidencia creado correctamente"
+            cursor.execute(query, values)
+            connection.commit()
+            return None, True, "Incidencia creado correctamente"
         except Exception as e:
             return f"❌ Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def update(warranty_incidents_id: int, warranty_data: dict):
+    @staticmethod
+    def update(warranty_incidents_id: int, warranty_data: dict):
 
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
@@ -100,15 +99,15 @@ class GuaranteeRepository:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def delete(warranty_incidents_id:int):
-        connection= get_connection()
-        cursor  = connection.cursor()
+    @staticmethod
+    def delete(warranty_incidents_id: int):
+        connection = get_connection()
+        cursor = connection.cursor()
         query = """
         DELETE FROM WARRANTY_INCIDENTS WHERE warranty_incidents_id = %s
         """
         try:
-            cursor.execute (query, (warranty_incidents_id,))
+            cursor.execute(query, (warranty_incidents_id,))
             connection.commit()
             return None, True, "Incidencia eliminada correctamente"
         except Exception as e:

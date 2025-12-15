@@ -2,6 +2,7 @@ from app.core.database import get_connection
 from datetime import datetime
 import bcrypt
 
+
 class SubcategoriesRepository:
     # Obtener todas las subcategorías
     @staticmethod
@@ -11,7 +12,8 @@ class SubcategoriesRepository:
         # Petición a la base de datos
 
         query = """
-        SELECT 
+        SELECT
+        c.category_id,
         c.category_name,
         s.subcategory_id,
         s.subcategory_name
@@ -100,9 +102,21 @@ class SubcategoriesRepository:
                 subcategory_id
             ))
             connection.commit()
-            return None, cursor.rowcount
+            cursor.execute(
+                "SELECT * FROM SUBCATEGORIES WHERE subcategory_id = %s", (subcategory_id,))
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "category_id": item[0],
+                    "subcategory_id": item[1],
+                    "subcategory_name": item[2]
+                }
+                for item in result
+            ]
+            return None, cursor.rowcount, data
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"❌ Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
@@ -124,7 +138,7 @@ class SubcategoriesRepository:
             return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
-            connection.close()   
+            connection.close()
 
     # Obtener subcategorías por categoría ID
     @staticmethod
@@ -148,7 +162,8 @@ class SubcategoriesRepository:
             cursor.close()
             connection.close()
     # Obtener subcategorías por nombre
-    @staticmethod   
+
+    @staticmethod
     def find_by_name(subcategory_name: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
@@ -170,7 +185,7 @@ class SubcategoriesRepository:
             connection.close()
 
     # Contar el número de subcategorías
-    @staticmethod   
+    @staticmethod
     def count_subcategories():
         connection = get_connection()
         cursor = connection.cursor()
@@ -231,9 +246,9 @@ class SubcategoriesRepository:
         finally:
             cursor.close()
             connection.close()
-            
+
     # Obtener subcategorías por estado (activo/inactivo)
-    @staticmethod   
+    @staticmethod
     def find_by_status(is_active: bool):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
@@ -276,14 +291,3 @@ class SubcategoriesRepository:
         finally:
             cursor.close()
             connection.close()
-
-                
-
-            
-
-
-                                                                                                            
-            
-        
-
-        

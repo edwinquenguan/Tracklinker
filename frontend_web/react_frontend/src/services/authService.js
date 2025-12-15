@@ -25,10 +25,13 @@ export async function login(email, password) {
     // Guardamos el token en localStorage con su tipo
     localStorage.setItem("token", `${data.token_type} ${data.access_token}`);
 
-    return { error: null, data };
+    // Guardamos la información del usuario en el localStorage
+    localStorage.setItem("user", JSON.stringify(data.user))
+    
+    return data;
   } catch (error) {
     return {
-      error: error,
+      error: error.message,
     };
   }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { deleteSubcategory } from "../services/deleteSubcategorySevice";
+import { deleteSubcategoryService } from "../services/deleteSubcategoryService";
 
-export function useDeleteSubcategoy(formData) {
+export function useDeleteSubcategory(formData) {
   const [form, setForm] = useState(formData);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,15 +15,19 @@ export function useDeleteSubcategoy(formData) {
   }
 
   // Función que pasa los parametros al service y valida la respuesta
-  async function handleSubmit(e) {
+  async function handleSubmit(e, setInnerModal) {
     e.preventDefault();
 
     setLoading(true);
 
     try {
-      const response = await deleteSubcategory(form);
+      const response = await deleteSubcategoryService(form);
       setData(response);
+      if(response.success){
+        setInnerModal("success")
+      }
     } catch (error) {
+      setInnerModal("error")
       setError(error);
     } finally {
       setLoading(false);

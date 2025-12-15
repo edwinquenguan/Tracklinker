@@ -1,10 +1,8 @@
-import { subcategoriesIcons } from "../../../../assets/icons/mainIcons";
-import SubcategoriesActions from "../SubcategoriesActions";
+import SubcategoriesActions from "./SubcategoriesActions";
+import { asideIcons } from "../../../../assets/icons/asideIcons";
 
 export default function SubcategoriesItem({
-  subcategory_id,
-  subcategory_name, 
-  subcategory_description,
+  subcategory,
   editButtonOnClick,
   deleteButtonOnClick,
   moreInfoOnClick,
@@ -13,21 +11,21 @@ export default function SubcategoriesItem({
     <li
       className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300  
                     dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
-      key={subcategory_id}
+      key={subcategory.subcategory_id}
     > 
       {/* Datos de la Subcategoría */}
       <article>
         <address className="flex gap-3 not-italic font-medium dark:text-white">   
           <p className="text-xl">
-            {subcategory_name}
+            {subcategory.subcategory_name}
           </p>  
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <img
-              src={subcategoriesIcons.descriptionIcon}
+              src={asideIcons.categoriesIcon}
               alt=""
-              className="w-5 h-5 dark:invert"
+              className="w-5 h-5 dark:invert brightness-0"
             />
-            <p>{subcategory_description}</p>
+            <p>{subcategory.category_name}</p>
           </div>
         </address>
       </article>  
