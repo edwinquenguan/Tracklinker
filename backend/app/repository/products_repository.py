@@ -80,7 +80,7 @@ class ProductsRepository:
         finally:
             connection.close()
             cursor.close()
-    
+
     @staticmethod
     def find_products_added_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
@@ -143,9 +143,6 @@ class ProductsRepository:
             cursor.close()
             connection.close()
 
-
-        
-
     @staticmethod
     def create_product(product_data: Product):
         data = product_data.model_dump()
@@ -166,10 +163,11 @@ class ProductsRepository:
                 del data["product_brand"]
             except Exception as e:
                 return f"Error al intentar obtener la marca del producto {e}", None, None
-        
+
         if "input_order_id" in data:
             try:
-                cursor.execute("SELECT * FROM INPUT_ORDERS WHERE input_order_id = %s", (data["input_order_id"],))
+                cursor.execute(
+                    "SELECT * FROM INPUT_ORDERS WHERE input_order_id = %s", (data["input_order_id"],))
                 result = cursor.fetchone()
 
                 if not result:
