@@ -31,7 +31,7 @@ class GuaranteeRepository:
         cursor = connection.cursor(dictionary=True)
 
         # Petición a la base de datos
-        query = """ 
+        query = """
         SELECT * FROM WARRANTY_INCIDENTS WHERE warranty_incidents_id = %s
         """
         try:
@@ -116,8 +116,8 @@ class GuaranteeRepository:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def find_deleted_guarantees_by_date_range(start_date: str, end_date: str):
+    @staticmethod
+    def find_deleted_guarantees_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
@@ -137,8 +137,8 @@ class GuaranteeRepository:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def find_all_guarantees():
+    @staticmethod
+    def find_all_guarantees():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
@@ -155,8 +155,8 @@ class GuaranteeRepository:
             cursor.close()
             connection.close()
 
-   @staticmethod
-   def find_disabled_guarantees():
+    @staticmethod
+    def find_disabled_guarantees():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
@@ -173,5 +173,4 @@ class GuaranteeRepository:
             return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
-            connection.close() 
-   
+            connection.close()
