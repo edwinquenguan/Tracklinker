@@ -116,8 +116,8 @@ class UserController:
             "data": users
         }
     @staticmethod
-    def get_deleted_users_by_date_range():
-        error, users = UserRepository.find_deleted_users_by_date_range()
+    def get_deleted_users_by_date_range(start_date: str, end_date: str):
+        error, users = UserRepository.find_deleted_users_by_date_range(start_date, end_date)
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {
