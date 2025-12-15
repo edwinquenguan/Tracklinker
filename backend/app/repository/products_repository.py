@@ -18,18 +18,20 @@ class ProductsRepository:
             # Mapeamos cada item que devuelve la query y le agregamos una llave para identificarlos
             data = [
                 {
-                    "input_date": item[0],
-                    "input_order": item[1],
-                    "category": item[2],
-                    "subcategory": item[3],
-                    "product_id": item[4],
-                    "supplier": item[5],
-                    "product_serial": item[6],
-                    "model": item[7],
-                    "description": item[8],
-                    "brand": item[9],
-                    "stock": item[10],
-                    "warranty_time": item[11]
+                    "input_order_id": item[0],
+                    "input_order_date": item[1],
+                    "input_order": item[2],
+                    "category": item[3],
+                    "subcategory": item[4],
+                    "product_id": item[5],
+                    "supplier": item[6],
+                    "product_serial": item[7],
+                    "model": item[8],
+                    "product_details_id": item[9],
+                    "description": item[10],
+                    "brand": item[11],
+                    "stock": item[12],
+                    "warranty_time": item[13]
                 }
                 for item in result
             ]
