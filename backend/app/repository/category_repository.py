@@ -1,5 +1,5 @@
 from app.core.database import get_connection
-
+from datetime import datetime
 
 class CategoryRepository:
 
@@ -58,7 +58,8 @@ class CategoryRepository:
 
             # Resto del código igual...
             data_for_db = {
-                "category_name": category_data["name"]
+                "category_name": category_data["name"],
+                "category_date": datetime.now()
             }
 
             fields = list(data_for_db.keys())
