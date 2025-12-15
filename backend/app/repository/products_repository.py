@@ -1,4 +1,5 @@
 from app.core.database import get_connection
+from app.models.product_model import Product
 
 
 class ProductsRepository:
@@ -19,7 +20,7 @@ class ProductsRepository:
             data = [
                 {
                     "input_order_id": item[0],
-                    "input_order_date": item[1],
+                    "input_date": item[1],
                     "input_order": item[2],
                     "category": item[3],
                     "subcategory": item[4],
@@ -144,3 +145,54 @@ class ProductsRepository:
 
 
         
+
+    @staticmethod
+    def create_product(product_data: Product):
+        data = product_data.model_dump()
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        if "product_brand" in data:
+            try:
+                cursor.execute(
+                    "SELECT * FROM PRODUCT_BRANDS WHERE product_brand_name = %s", (data["product_brand"],))
+                brand = cursor.fetchone()
+                if not brand:
+                    cursor.execute(
+                        f"INSERT INTO PRODUCT_BRANDS (product_brand_name) VALUES (%s)",
+                        (data["product_brand"],)
+                    )
+                    connection.commit()
+                del data["product_brand"]
+            except Exception as e:
+                return f"Error al intentar obtener la marca del producto {e}", None, None
+        
+        if "input_order_id" in data:
+            try:
+                cursor.execute("SELECT * FROM INPUT_ORDERS WHERE input_order_id = %s", (data["input_order_id"],))
+                result = cursor.fetchone()
+
+                if not result:
+                    cursor.execute()
+
+                del data["input_order_id"]
+            except Exception as e:
+                return f"Error al intentar obtener la orden de entrada {e}", None, None
+
+        # Arrays vacios para almacenar los datos del producto
+        fields = list(data.keys())
+        placeholders = ["%s"] * len(fields)
+        values = list(data.values())
+
+        query = f"""
+        INSERT INTO PRODUCTS ({','.join(fields)}) VALUES ({','.join(placeholders)})
+        """
+        try:
+            cursor.execute(query, values)
+            connection.commit()
+            return None, True, "Producto Creado Correctamente"
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None, None
+        finally:
+            cursor.close()
+            connection.close()
