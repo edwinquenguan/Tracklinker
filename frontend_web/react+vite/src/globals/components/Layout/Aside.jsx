@@ -32,8 +32,7 @@ export default function Aside({ avatarOnClick }) {
         </button>
         <section className="hidden xl:block text-center">
           <p className="font-medium">
-            {" "}
-            {user.name} {user.first_surname}{" "}
+            {user.name} {user.first_surname}
           </p>
           <p className="font-normal"> Rol </p>
         </section>
