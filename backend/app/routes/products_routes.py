@@ -18,6 +18,11 @@ def get_all_products():
 def get_old_and_new_products_ammount():
     return ProductsController.get_all_and_new_products_ammount()
 
+# Endpoint para obtener todas las marcas de productos
+@router.get("/brands")
+def get_all_brands():
+    return ProductsController.get_all_product_brands()
+
 # Endpoint para crear o agregar productos
 @router.post("/create")
 def create_product(product_data: Product):

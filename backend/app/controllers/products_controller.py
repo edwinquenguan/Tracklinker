@@ -61,8 +61,20 @@ class ProductsController:
         }
 
     @staticmethod
+    def get_all_product_brands():
+        error, brands = ProductsRepository.find_all_product_brands()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+
+        return {
+            "data": brands
+        }
+
+    @staticmethod
     def create_product(product_garanty_input):
-        error, success, message = ProductsRepository.create_product(product_garanty_input)
+        error, success, message = ProductsRepository.create_product(
+            product_garanty_input)
 
         if error:
             raise HTTPException(status_code=400, detail=error)
