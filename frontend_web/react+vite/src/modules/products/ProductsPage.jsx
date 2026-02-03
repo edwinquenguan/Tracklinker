@@ -1,5 +1,5 @@
 // Hooks
-import { useModal } from "./hooks/useModal";
+import { useModal } from "../../globals/hooks/useModal";
 // Iconos
 import { productsIcons } from "../../assets/icons/mainIcons";
 // Componentes de la Ui
