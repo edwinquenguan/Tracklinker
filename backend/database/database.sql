@@ -28,7 +28,7 @@ CREATE TABLE USERS (
   user_address VARCHAR(255) NOT NULL COMMENT 'Dirección del usuario (VARCHAR, Not null)',
   user_password VARCHAR(255) NOT NULL COMMENT 'Contrasena del usuario, se debe almacenar hasheada para mayor seguridad (VARCHAR, Not null)',
   user_city VARCHAR(255) NOT NULL COMMENT 'Ciudad en la que se encuentra el usuario',
-  user_date DATE NOT NULL COMMENT 'Fecha de creación del usuario (DATE, Not null)',
+  user_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de creación del usuario (DATE, Not null)',
   PRIMARY KEY (user_id),
   INDEX fk_rol_users_idx (rol_id ASC),
   UNIQUE INDEX users_id_UNIQUE (user_id ASC),
@@ -127,7 +127,7 @@ CREATE TABLE INPUT_ORDERS (
   input_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único autogenerado para órdenes de entrada (PK). Clave primaria autoincremental. Requerido para todas las transacciones (NOT NULL, UNIQUE).',
   supplier_id INT NOT NULL COMMENT 'Identificador del proveedor asociado a la orden. not null ',
   input_order_bill VARCHAR(255) NOT NULL COMMENT 'Identificador único de factura (PK). Clave primaria para registro de documentos de compra. Requerido para todas las transacciones (NOT NULL).',
-  input_order_date DATE NOT NULL COMMENT 'Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema',
+  input_order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha/hora de creación de la orden. Requerido por políticas de auditoría (NOT NULL). Captura automática del sistema',
   PRIMARY KEY (input_order_id, input_order_bill),
   UNIQUE INDEX idINPUT_ORDER_UNIQUE (input_order_id ASC),
   INDEX fk_input_order_supplier_idx ( supplier_id ASC),
@@ -145,7 +145,7 @@ ENGINE = InnoDB;
 CREATE TABLE CATEGORIES (
   category_id INT NOT NULL AUTO_INCREMENT COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
   category_name VARCHAR(100) NOT NULL COMMENT 'Identificar y clasificar los productos tecnológicos en el sistema.',
-  category_date DATE NOT NULL,
+  category_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE INDEX category_id_UNIQUE (category_id ASC),
   PRIMARY KEY (category_id))
 ENGINE = InnoDB;
@@ -255,7 +255,7 @@ CREATE TABLE WARRANTY_INCIDENTS (
   warranty_description VARCHAR(100) NOT NULL COMMENT'Descripción detallada del problema o incidente reportado por el cliente.',
   warranty_link_attachments VARCHAR(255) NOT NULL COMMENT'Campo que contiene la URL o el path a los archivos adjuntos (imágenes, documentos) de la garantía, como facturas o fotos del producto.',
   warranty_city VARCHAR(100) NOT NULL COMMENT'Nombre de la ciudad del cliente. Utilizado para determinar la ubicación geográfica y asignar el caso a un centro de servicio local.' ,
-  warranty_date DATE NOT NULL COMMENT 'Fecha y hora en que se reportó el incidente de garantía al sistema.' ,
+  warranty_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha y hora en que se reportó el incidente de garantía al sistema.' ,
   warranty_status INT NOT NULL DEFAULT 0 COMMENT 'Estado actual de la garantía , 0 = Sin Completar, 1 = En Proceso, 2 = Sin Completar, Al momento de ingresar la garantia nueva se le da un estado de 0 o Sin completar',
   PRIMARY KEY (warranty_incidents_id),
   UNIQUE INDEX warranty_incidents_id_UNIQUE (warranty_incidents_id ASC),
