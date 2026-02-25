@@ -30,8 +30,8 @@ class GuaranteeRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-       # Petición a la base de datos
-       query= """ 
+        # Petición a la base de datos
+        query = """
         SELECT * FROM WARRANTY_INCIDENTS WHERE warranty_incidents_id = %s
         """
         try:
@@ -173,5 +173,4 @@ class GuaranteeRepository:
             return f"❌ Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
-            connection.close() 
-   
+            connection.close()
