@@ -1,7 +1,6 @@
 from app.core.database import get_connection
 from app.models.product_model import Product
 
-
 class ProductsRepository:
 
     @staticmethod
