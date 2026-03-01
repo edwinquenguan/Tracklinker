@@ -14,7 +14,7 @@ import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
 export default function AddProductModal({ onCloseModal }) {
   const [innerModal, setInnerModal] = useState(null);
-  const { subcategories, products } = useCatalog();
+  const { subcategories, products, brands } = useCatalog();
   const { form, loading, handleChange, handleSubmit } = useCreateProduct({
     input_order_id: "",
     subcategory_id: "",
@@ -58,13 +58,18 @@ export default function AddProductModal({ onCloseModal }) {
             </option>
           ))}
         </SelectMenu>
-        <FormField
+        <SelectMenu
+          spanText={"Marca"}
+          name={"product_brand"}
           onChange={handleChange}
-          name={"product_model"}
-          labelText={"Modelo"}
-          placeholder={"Impresora HP z1455"}
-          id={"model"}
-        />
+        >
+          <option value="">Seleccionar</option>
+          {brands.map((brand) => (
+            <option key={brand.id} value={brand.id}>
+              {brand.name}
+            </option>
+          ))}
+        </SelectMenu>
         <FormField
           name={"product_serial"}
           labelText={"Serial"}
@@ -73,11 +78,11 @@ export default function AddProductModal({ onCloseModal }) {
           onChange={handleChange}
         />
         <FormField
-          labelText={"Marca"}
-          placeholder={"Asus"}
-          name={"product_brand"}
-          id={"brand"}
           onChange={handleChange}
+          name={"product_model"}
+          labelText={"Modelo"}
+          placeholder={"Impresora HP z1455"}
+          id={"model"}
         />
         <FormField
           labelText={"Cantidad"}

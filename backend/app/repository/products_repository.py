@@ -193,3 +193,26 @@ class ProductsRepository:
         finally:
             cursor.close()
             connection.close()
+
+    def find_all_product_brands():
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM PRODUCT_BRANDS"
+
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            data = [
+                {
+                    "id": item[0],
+                    "name": item[1]
+                }
+                for item in result
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta {e}", None
+        finally:
+            cursor.close()
+            connection.close()
