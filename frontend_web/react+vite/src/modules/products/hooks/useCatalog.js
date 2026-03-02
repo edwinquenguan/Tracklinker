@@ -13,50 +13,51 @@ export function useCatalog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  async function fetchProducts() {
+    try {
+      setLoading(true);
+      const data = await getProducts();
+      setProducts(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function fetchCategories() {
+    try {
+      const categoryData = await getCategoriesService();
+      setCategories(categoryData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchSubcategories() {
+    try {
+      const subcategoryData = await getSubcategories();
+      setSubcategories(subcategoryData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchBrands() {
+    try {
+      const brandsData = await getProductBrands();
+      setBrands(brandsData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        setLoading(true);
-        const data = await getProducts();
-        setProducts(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
     fetchProducts();
-
-    async function fetchCategories() {
-      try {
-        const categoryData = await getCategoriesService();
-        setCategories(categoryData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchCategories();
-
-    async function fetchSubcategories() {
-      try {
-        const subcategoryData = await getSubcategories();
-        setSubcategories(subcategoryData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchSubcategories();
-
-    async function fetchBrands() {
-      try {
-        const brandsData = await getProductBrands();
-        setBrands(brandsData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchBrands();
   }, []);
 
-  return { products, categories, subcategories, brands, loading, error };
+  return { products, categories, subcategories, brands, loading, error, fetchProducts };
 }
