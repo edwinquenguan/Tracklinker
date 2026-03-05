@@ -5,12 +5,12 @@ export default {
     extend: {
       keyframes: {
         modalFadeIn: {
-          "0%": { opacity: "0", transform: "scale(0.95)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
+          "0%": { opacity: "0", transform: "scale(0.95)", filter: "blur(4px)" },
+          "100%": { opacity: "1", transform: "scale(1)", filter: "blur(0px)" },
         },
         modalFadeOut: {
-          "0%": { opacity: "1", transform: "scale(1)" },
-          "100%": { opacity: "0", transform: "scale(0.95)" },
+          "0%": { opacity: "1", transform: "scale(1)", filter: "blur(0px)" },
+          "100%": { opacity: "0", transform: "scale(0.95)", filter: "blur(4px)" },
         },
         slideIn: {
           "0%": { transform: "translateX(-5px)", opacity: "0" },
