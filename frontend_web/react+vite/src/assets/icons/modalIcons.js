@@ -5,6 +5,7 @@ import errorIcon from "./modal/error-modal-image.svg";
 import githubIcon from "./modal/github_icon.svg";
 import redirectIcon from "./modal/open-link-icon.svg";
 import settingsIcon from "./modal/settings-icon.svg";
+import menIcon from "./modal/men-icon.svg";
 
 export const modalIcons = {
   errorWithFillIcon,
@@ -13,5 +14,6 @@ export const modalIcons = {
   errorIcon,
   githubIcon,
   redirectIcon,
-  settingsIcon
+  settingsIcon,
+  menIcon
 };
