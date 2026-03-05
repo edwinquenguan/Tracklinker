@@ -30,7 +30,6 @@ SELECT
     pd.product_details_id,
     pd.product_detail_description,
     pb.product_brand_name,
-    p.product_stock,
     ps.product_garanty_input
     FROM SUPPLIERS AS s
     INNER JOIN INPUT_ORDERS AS io
@@ -118,5 +117,19 @@ CREATE VIEW get_output_products AS
     ON p.product_details_id = pd.product_details_id
     INNER JOIN PRODUCT_BRANDS AS pb
     ON pd.product_brand_id = pb.product_brand_id;
-
-    select * from get_output_products;
+    
+CREATE VIEW get_all_products_with_stock AS
+SELECT 
+    v.*,
+    IFNULL(stock.stock, 0) AS stock
+FROM get_all_products v
+LEFT JOIN (
+    SELECT 
+        p.product_id,
+        COUNT(ps.product_serial) AS stock
+    FROM PRODUCTS p
+    LEFT JOIN PRODUCT_SERIALS ps 
+        ON ps.product_id = p.product_id
+    GROUP BY p.product_id
+) AS stock
+ON v.product_id = stock.product_id;
