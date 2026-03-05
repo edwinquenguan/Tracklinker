@@ -69,7 +69,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
           </button>
         </header>
         {/* Contenido principal de la modal o cuerpo de la modal */}
-        <div>{children}</div>
+        <div className="animate-blurUp">{children}</div>
       </section>
     </section>
   );

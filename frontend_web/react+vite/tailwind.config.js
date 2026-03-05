@@ -16,11 +16,16 @@ export default {
           "0%": { transform: "translateX(-5px)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
         },
+        blurUp: {
+          "0%": { opacity: "0", transform: "translateY(10px)", filter: "blur(4px)" },
+          "100%": { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+        }
       },
       animation: {
         slideIn: "slideIn 0.5s ease-out",
         modalFadeIn: "modalFadeIn 0.5s ease-out forwards",
-        modalFadeOut: "modalFadeOut 0.3s ease-in forwards",
+        modalFadeOut: "modalFadeOut 0.4s ease-out forwards",
+        blurUp: "blurUp 0.5s ease-in forwards",
       },
     },
   },
@@ -43,6 +48,7 @@ export default {
     "z-150",
     "animate-modalFadeOut",
     "animate-modelFadeIn",
+    "animate-blurUp",
     "users-background",
     "bg-green-500",
   ],
