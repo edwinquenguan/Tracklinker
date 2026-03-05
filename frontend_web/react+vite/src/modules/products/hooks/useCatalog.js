@@ -1,8 +1,11 @@
+// Hooks
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
+import { getProductBrands } from "../services/getProductBrands";
+import { getProductModels } from "../services/getProductModels";
+import { getInputOrdersService } from "../services/getInputOrdersService";
 import { getCategoriesService } from "../../categories/services/getCategoriesService";
 import { getSubcategories } from "../../subcategories/services/getSubcategoriesService";
-import { getProductBrands } from "../services/getProductBrands";
 
 export function useCatalog() {
   // Definir los estados y sus valores por defecto
@@ -10,6 +13,8 @@ export function useCatalog() {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [models, setModels] = useState([]);
+  const [inputOrders, setInputOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -52,12 +57,42 @@ export function useCatalog() {
     }
   }
 
+  async function fetchModels() {
+    try {
+      const modelsData = await getProductModels();
+      setModels(modelsData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchInputOrders() {
+    try {
+      const inputOrdersData = await getInputOrdersService();
+      setInputOrders(inputOrdersData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
   useEffect(() => {
     fetchProducts();
     fetchCategories();
     fetchSubcategories();
     fetchBrands();
+    fetchModels();
+    fetchInputOrders();
   }, []);
 
-  return { products, categories, subcategories, brands, loading, error, fetchProducts };
+  return {
+    products,
+    categories,
+    subcategories,
+    brands,
+    models,
+    inputOrders,
+    loading,
+    error,
+    fetchProducts
+  };
 }
