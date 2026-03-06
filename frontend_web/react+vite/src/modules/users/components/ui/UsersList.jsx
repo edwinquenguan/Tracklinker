@@ -35,7 +35,6 @@ export default function UsersList({
           />
         ))}
       </ul>
-      <button onClick={refetch}>a</button>
     </section>
   );
 }

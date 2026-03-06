@@ -1,8 +1,11 @@
+// Hooks
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
+import { getProductBrands } from "../services/getProductBrands";
+import { getProductModels } from "../services/getProductModels";
+import { getInputOrdersService } from "../services/getInputOrdersService";
 import { getCategoriesService } from "../../categories/services/getCategoriesService";
 import { getSubcategories } from "../../subcategories/services/getSubcategoriesService";
-import { getProductBrands } from "../services/getProductBrands";
 
 export function useCatalog() {
   // Definir los estados y sus valores por defecto
@@ -10,53 +13,86 @@ export function useCatalog() {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [models, setModels] = useState([]);
+  const [inputOrders, setInputOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  async function fetchProducts() {
+    try {
+      setLoading(true);
+      const data = await getProducts();
+      setProducts(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function fetchCategories() {
+    try {
+      const categoryData = await getCategoriesService();
+      setCategories(categoryData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchSubcategories() {
+    try {
+      const subcategoryData = await getSubcategories();
+      setSubcategories(subcategoryData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchBrands() {
+    try {
+      const brandsData = await getProductBrands();
+      setBrands(brandsData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchModels() {
+    try {
+      const modelsData = await getProductModels();
+      setModels(modelsData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  async function fetchInputOrders() {
+    try {
+      const inputOrdersData = await getInputOrdersService();
+      setInputOrders(inputOrdersData);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        setLoading(true);
-        const data = await getProducts();
-        setProducts(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    }
     fetchProducts();
-
-    async function fetchCategories() {
-      try {
-        const categoryData = await getCategoriesService();
-        setCategories(categoryData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchCategories();
-
-    async function fetchSubcategories() {
-      try {
-        const subcategoryData = await getSubcategories();
-        setSubcategories(subcategoryData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchSubcategories();
-
-    async function fetchBrands() {
-      try {
-        const brandsData = await getProductBrands();
-        setBrands(brandsData);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchBrands();
+    fetchModels();
+    fetchInputOrders();
   }, []);
 
-  return { products, categories, subcategories, brands, loading, error };
+  return {
+    products,
+    categories,
+    subcategories,
+    brands,
+    models,
+    inputOrders,
+    loading,
+    error,
+    fetchProducts
+  };
 }

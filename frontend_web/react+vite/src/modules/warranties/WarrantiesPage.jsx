@@ -1,214 +1,89 @@
 // Hooks
-import { useState, useEffect } from "react";
-
+import { useModal } from "../../globals/hooks/useModal";
+import { useWarranties } from "./hooks/useWarranties";
 // Iconos
-import { warrantiesIcons, actionsIcons } from "../../assets/icons/mainIcons";
+import { warrantiesIcons } from "../../assets/icons/mainIcons";
 // Componentes
 import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
-// Modales de servicio
-import { getWarranties } from "./services/getWarranties";
+import WarrantiesTable from "./components/ui/WarrantiesTable";
+// Modales
 import Modal from "../../globals/components/modals/Modal";
-
-// IMPORTS DE MODALES SEPARADOS
 import FilterModal from "../../globals/components/modals/FilterModal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddWarrantyModal from "./components/modals/AddWarrantyModal";
-import EditWarrantyModal from "./components/modals/EditWarrantyModal"; 
-import DeleteWarrantyModal from "./components/modals/DeleteWarrantyModal"; 
-import ActionButtons from "../../globals/components/ui/ActionButtons";
-// ... (otras importaciones)
+import EditWarrantyModal from "./components/modals/EditWarrantyModal";
+import DeleteWarrantyModal from "./components/modals/DeleteWarrantyModal";
+import MoreWarrantyInfo from "./components/modals/MoreWarrantyInfo";
 
 export default function WarrantiesPage() {
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [warranties, setWarranties] = useState([]);
-    const [selectedWarranty, setSelectedWarranty] = useState(null);
-    const [modalType, setModalType] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, modalData, modalType, refetch, openModal, closeModal } =
+    useModal();
+  const { warranties, fetchWarranties } = useWarranties();
 
-    // 🔑 FUNCIÓN PARA RECARGAR DATOS
-    const fetchWarranties = async () => {
-        try {
-            setLoading(true);
-            const data = await getWarranties(); // Llama a tu servicio de obtención
-            setWarranties(data);
-        } catch (error) {
-            console.error("Error al cargar garantías:", error);
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-    
-    // useEffect para la carga inicial
-    useEffect(() => {
-        fetchWarranties();
-    }, []);
-    
+  return (
+    <Layout avatarOnClick={() => openModal(null, "user")}>
+      <TopSection
+        sectionName={"Garantías"}
+        addButtonIcon={warrantiesIcons.addWarrantyIcon}
+        addButtonText={"Agregar Garantía"}
+        createOnClick={() => openModal(null, "add")}
+        filterOnClick={() => openModal(null, "filter")}
+      />
+      <WarrantiesTable
+        warranties={warranties}
+        openModal={openModal}
+        refetch={refetch}
+      />
 
-    const openModal = (warranty, type) => {
-        setSelectedWarranty(warranty);
-        setModalType(type);
-        setIsOpen(true);
-    };
-
-
-    const closeModal = () => {
-        setSelectedWarranty(null);
-        setModalType(null);
-        setIsOpen(false);
-    };
-    const getStatusIcon = (status) => {
-    switch (status) {
-        case 0: // pendiente / incomplete
-            return warrantiesIcons.incompleteIcon;
-        case 1: // en proceso / inprocess
-            return warrantiesIcons.inprocessIcon;
-        case 2: // completado / complete
-            return warrantiesIcons.completeIcon;
-        default:
-            return warrantiesIcons.incompleteIcon; // fallback
-    }
-};
-
-
-    // La lógica de useEffect de fetchWarranties ya estaba duplicada, se usa la primera.
-    // Se deja solo el manejo de error/loading para la visualización.
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-    if (loading) {
-        return <div>Cargando garantías...</div>;
-    }
-
-    return (
-        <Layout
-            avatarOnClick={() => openModal(null, "user")}
+      {/* Modales */}
+      {modalType && (
+        <Modal
+          title={
+            modalType === "user"
+              ? "Configuración"
+              : modalType === "filter"
+                ? "Filtrar"
+                : modalType === "add"
+                  ? "Agregar Garantía"
+                  : modalType === "info"
+                    ? "Más Información"
+                    : modalType === "delete"
+                      ? "¿Eliminar Garantía?"
+                      : "Editar Garantía"
+          }
+          type={modalType}
+          isOpen={isOpen}
+          onClose={closeModal}
         >
-            <TopSection
-                sectionName={"Garantías"}
-                addButtonIcon={warrantiesIcons.addWarrantyIcon}
-                addButtonText={"Agregar Garantía"}
-                createOnClick={() => openModal(null, "add")}
-                filterOnClick={() => openModal(null, "filter")}
+          {modalType === "user" && <ProfileModal onClose={closeModal} />}
+          {modalType === "filter" && <FilterModal onClose={closeModal} />}
+          {modalType === "add" && (
+            <AddWarrantyModal
+              onCloseModal={closeModal}
+              onAddSuccess={fetchWarranties}
             />
-            <section className="max-h-[93%] max-w-[96%] overflow-x-auto overflow-y-auto overflow-hidden">
-                <ul className="pt-3 flex flex-col gap-1">
-                    
-                    {/* Fila de encabezados fija - CENTRADO APLICADO */}
-                    <li className="flex items-center p-5 font-bold bg-gray-200 dark:bg-gray-800 rounded-lg sticky top-0 z-10">
-                        <div className="w-1/12 text-center"><p>Fecha de creación</p></div>
-                        <div className="w-1/12 text-center"><p>Caso con Número</p></div>
-                        <div className="w-1/12 text-center"><p>Cliente</p></div>
-                        <div className="w-1/12 text-center"><p>Icono</p></div>
-                        <div className="w-1/12 text-center"><p>Teléfono</p></div>
-                        <div className="w-1/12 text-center"><p>Estado</p></div>
-                        <div className="w-1/12 text-center"><p>Dirección</p></div>
-                        <div className="w-1/12 text-center"><p>Ciudad</p></div>
-                        <div className="w-2/12 text-center"><p>Serial Producto</p></div>
-                        <div className="w-2/12 text-center"><p>Descripción</p></div>
-                        <div className="w-1/12 text-center"><p>Acción</p></div>
-                    </li>
-
-                    {/* Filas de datos - CENTRADO APLICADO */}
-            {warranties.map((warranty) => (
-    <li key={warranty.warranty_incidents_id} className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md dark:bg-[#0f0f5] h-18 overflow-x-auto overflow-y-auto transition duration-500
-                          hover:bg-[#cdcacf] hover:shadow-lgdark:hover:bg-[#101012]">
-       
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_date}</p></div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_incidents_id}</p></div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_customer}</p></div>
-        <div className="w-1/12 flex justify-center items-center">
-            <img
-                src={getStatusIcon(warranty.warranty_status)}
-                alt="Icono de estado"
-                className="w-5 h-5 dark:invert"
+          )}
+          {/* Contenido del Modal de Más Información */}
+          {modalType === "info" && <MoreWarrantyInfo modalData={modalData} />}
+          {/* Modal para editar una garantía */}
+          {modalType === "edit" && (
+            <EditWarrantyModal
+              selectedWarranty={modalData}
+              onClose={closeModal}
+              onEditSuccess={fetchWarranties}
             />
-        </div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_phone}</p></div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_status}</p></div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_address}</p></div>
-        <div className="w-1/12 flex justify-center items-center"><p>{warranty.warranty_city}</p></div>
-        <div className="w-2/12 flex justify-center items-center"><p>{warranty.product_serial}</p></div>
-        <div className="w-2/12 flex justify-center items-center"><p>{warranty.warranty_description}</p></div>
-        <div className="w-1/12 flex justify-center items-center">
-            <ActionButtons
-                editButtonOnClick={() => openModal(warranty, "edit")}
-                deleteButtonOnClick={() => openModal(warranty, "delete")}
-            >
-                <button className="hover:scale-125 transition-all duration-00" onClick={() => openModal(warranty, "info")}>
-                    <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
-                </button>
-            </ActionButtons>
-        </div>
-    </li>
-))}
-
-                </ul>
-            </section>
-
-            {/* Modales - RENDERING CON MODALES SEPARADOS */}
-            {modalType && (
-                <Modal
-                    title={
-                        modalType === "user"
-                            ? "Configuración"
-                            : modalType === "filter"
-                                ? "Filtrar"
-                                : modalType === "add"
-                                    ? "Agregar Garantía"
-                                    : modalType === "info"
-                                        ? "Más Información"
-                                        : modalType === "delete"
-                                            ? "¿Eliminar Garantía?"
-                                            : "Editar Garantía"
-                    }
-                    type={modalType}
-                    isOpen={isOpen}
-                    onClose={closeModal}
-                >
-                    {modalType === "user" && <ProfileModal onClose={closeModal} />}
-                    {modalType === "filter" && <FilterModal onClose={closeModal} />}
-                    {modalType === "add" && <AddWarrantyModal onCloseModal={closeModal} 
-                        onAddSuccess={fetchWarranties}
-                    />}
-
-                    {/* Contenido del Modal de Más Información */}
-                    {modalType === "info" && selectedWarranty && (
-                        <address className="flex flex-col justify-center items-center not-italic gap-2">
-                            <div className="flex flex-col items-center"><span><strong>Nombre del cliente</strong></span><p>{selectedWarranty.warranty_customer}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Teléfono</strong></span><p> {selectedWarranty.warranty_phone}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Ciudad</strong></span><p> {selectedWarranty.warranty_city}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Fecha De Creación</strong></span><p> {selectedWarranty.warranty_date}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Requerimiento</strong></span><p> {selectedWarranty.warranty_description}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Pruebas</strong></span><p>{selectedWarranty.warranty_link_attachments}</p></div>
-                            <div className="flex flex-col items-center"><span><strong>Estado</strong></span><p>{selectedWarranty.warranty_status}</p></div>
-                        </address>
-                    )}
-
-                    {/* USANDO COMPONENTES DE MODAL SEPARADOS */}
-                    {modalType === "edit" && selectedWarranty && (
-                        <EditWarrantyModal
-                            selectedWarranty={selectedWarranty}
-                            onClose={closeModal}
-                            onEditSuccess={fetchWarranties}
-                        />
-                    )}
-                    
-                   {/* INTEGRACIÓN DEL MODAL DE ELIMINACIÓN */}
-                    {modalType === "delete" && selectedWarranty && (
-                        <DeleteWarrantyModal
-                            selectedWarranty={selectedWarranty}
-                            onClose={closeModal}
-                            // PASAMOS LA FUNCIÓN DE RECARGA
-                            onDeleteSuccess={fetchWarranties}
-                            
-                        />
-                    )}
-                </Modal>
-            )}
-        </Layout>
-    );
+          )}
+          {/* Modal para eliminar una garantía */}
+          {modalType === "delete" && (
+            <DeleteWarrantyModal
+              selectedWarranty={modalData}
+              onClose={closeModal}
+              onDeleteSuccess={fetchWarranties}
+            />
+          )}
+        </Modal>
+      )}
+    </Layout>
+  );
 }

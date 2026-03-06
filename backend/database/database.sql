@@ -132,7 +132,7 @@ CREATE TABLE INPUT_ORDERS (
   UNIQUE INDEX idINPUT_ORDER_UNIQUE (input_order_id ASC),
   INDEX fk_input_order_supplier_idx ( supplier_id ASC),
   CONSTRAINT fk_input_order_supplier
-    FOREIGN KEY ( supplier_id)
+    FOREIGN KEY (supplier_id)
     REFERENCES SUPPLIERS (supplier_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -176,7 +176,6 @@ CREATE TABLE PRODUCTS (
   product_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de cada producto, El cúal sirve para relacionar los productos con su respectivo serial (INT, Not Null, Auto Increment)',
   subcategory_id INT NOT NULL COMMENT 'Identificador de cada Subcategoria, Este campo sirve para relacionar los productos con las subcategorias y poder clasificarlos según el grupo que los agrupe (INT, Not null)',
   product_details_id INT NOT NULL COMMENT 'Identificador de detalles del producto\n.\nIdentificador único que referencia un conjunto específico de detalles asociados a un producto, como sus especificaciones técnicas, presentación, lote, ubicación, estado o características adicionales. Este campo es obligatorio para asegurar la trazabilidad y correcta asociación con los productos registrados.',
-  product_stock INT NOT NULL COMMENT 'Stock del producto.\nIndica la cantidad actual disponible de un producto en el inventario. Este valor se actualiza con cada entrada y salida de mercancía, y es fundamental para la gestión de existencias, control de inventario y toma de decisiones operativas. Es un campo obligatorio para evitar registros sin control de stock.',
   PRIMARY KEY (product_id),
   UNIQUE INDEX idPRODUCTS_UNIQUE (product_id ASC),
   INDEX fk_products_subcategory_idx (subcategory_id ASC),

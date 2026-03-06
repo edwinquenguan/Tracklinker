@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { modalIcons } from "../../../assets/icons/modalIcons";
 
 export default function Modal({ isOpen, title, children, onClose, type, z_index = "50" }) {
-  const [visible, setVisible] = useState(false);
+  const visible = isOpen || closing;
   const [closing, setClosing] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setVisible(true);
-      setClosing(false);
-    }
-  }, [isOpen]);
 
   // Validación de si la modal no está visible
   if (!visible) return null;
@@ -19,7 +12,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
   const handleClose = () => {
     setClosing(true);
     setTimeout(() => {
-      setVisible(false);
+      setClosing(false);
       onClose();
     }, 500);
   };
@@ -27,7 +20,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
   return (
     /* Container de la modal */
     <section
-      className={`fixed z-${z_index} inset-0 bg-[#0000002c]
+      className={`fixed inset-0 bg-[#0000002c]
             ${
               type === "filter"
                 ? "flex justify-end items-start pr-[260px] pt-4 bg-[#00000013]"
@@ -36,12 +29,13 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
                   : "flex items-center justify-center"
             }
         `}
+      style={{ zIndex: Number(z_index) }}
       onClick={handleClose}
     >
       {/* Card blanca o modal */}
       {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
       <section
-        className={`bg-white rounded-xl shadow-lg w-[90%] p-6 relative
+        className={`bg-white rounded-xl shadow-lg w-[90%] p-6 relative animate-blur
             dark:bg-black dark:shadow-[0px_0px_0px_1px_#101012]
             ${closing ? "animate-modalFadeOut" : "animate-modalFadeIn"}
             ${
@@ -75,7 +69,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
           </button>
         </header>
         {/* Contenido principal de la modal o cuerpo de la modal */}
-        <div>{children}</div>
+        <div className="animate-blurUp">{children}</div>
       </section>
     </section>
   );

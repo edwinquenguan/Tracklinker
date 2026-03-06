@@ -26,7 +26,7 @@ export default function EditUserInfoModal({ user, onClose }) {
       user_city: user.user_city || "",
       user_email: user.user_email || "",
       user_phone: user.user_phone || "",
-    }
+    },
   );
 
   return (
@@ -123,7 +123,7 @@ export default function EditUserInfoModal({ user, onClose }) {
           confirmButtonText={"Volver a la pagina"}
           onClose={() => {
             setInnerModal(null);
-            onClose(); 
+            onClose();
           }}
         />
       )}

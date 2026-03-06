@@ -68,7 +68,7 @@ export default function SubcategoriesPage() {
           {modalType === "add" && (
             <AddSubcategoryModal onClose={() => closeModal()} />
           )}
-          {/* Modal para mas información de la subcategoria */}       
+          {/* Modal para mas información de la subcategoria */}
           {modalType === "info" && (
             <MoreSubcategoryInfoModal
               subcategory={modalData}

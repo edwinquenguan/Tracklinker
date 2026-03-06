@@ -163,38 +163,38 @@ INSERT INTO PRODUCT_DETAILS VALUES
 
 
 INSERT INTO PRODUCTS VALUES 
-(null, 15, 1, 35),    -- HP 110 .
-(null, 15, 2, 50),    -- Zebra ZD420 
-(null, 15, 3, 35),    -- Epson TM-T20 
-(null, 12, 4, 40),    -- Epson L3150 
-(null, 12, 5, 33),    -- Canon G2010 
-(null, 12, 6, 45),    -- HP Ink Tank 415 
-(null, 13, 7, 20),    -- LaserJet Pro 
-(null, 13, 8, 18),    -- Brother HL 
-(null, 13, 9, 25),    -- Samsung Xpress 
-(null, 7, 10, 15),    -- QLED Samsung
-(null, 6, 11, 35),    -- Bravia Sony 
-(null, 5, 12, 14),    -- LG LED 
-(null, 6, 13, 11),    -- LG OLED 
-(null, 37, 14, 50),   -- WD My Passport 
-(null, 31, 15, 40),   -- Logitech MX Keys 
-(null, 32, 16, 50),   -- Razer DeathAdder 
-(null, 33, 17, 35),   -- HyperX Cloud II 
-(null, 34, 18, 20),   -- TP-Link Router 
-(null, 35, 19, 15),   -- Cisco Switch 
-(null, 36, 20, 100),  -- Cables Cat6 
-(null, 1, 21, 30),    -- Lenovo ThinkPad 
-(null, 1, 22, 25),    -- Asus ROG Strix 
-(null, 1, 23, 15),    -- MacBook Pro 
-(null, 4, 24, 18),    -- LG NanoCell TV
-(null, 38, 25, 40),   -- Kioxia SSD
-(null, 40, 26, 50),   -- Kingston RAM
-(null, 41, 27, 30),   -- Crucial DDR5
-(null, 32, 28, 35),   -- Logitech G Pro X
-(null, 32, 29, 25),   -- Razer Viper Ultimate
-(null, 33, 30, 28),   -- HyperX Alpha Wireless
-(null, 34, 31, 20),   -- TP-Link Deco Mesh
-(null, 35, 32, 10);   -- Cisco Catalyst
+(null, 15, 1),    -- HP 110 .
+(null, 15, 2),    -- Zebra ZD420 
+(null, 15, 3),    -- Epson TM-T20 
+(null, 12, 4),    -- Epson L3150 
+(null, 12, 5),    -- Canon G2010 
+(null, 12, 6),    -- HP Ink Tank 415 
+(null, 13, 7),    -- LaserJet Pro 
+(null, 13, 8),    -- Brother HL 
+(null, 13, 9),    -- Samsung Xpress 
+(null, 7, 10),    -- QLED Samsung
+(null, 6, 11),    -- Bravia Sony 
+(null, 5, 12),    -- LG LED 
+(null, 6, 13),    -- LG OLED 
+(null, 37, 14),   -- WD My Passport 
+(null, 31, 15),   -- Logitech MX Keys 
+(null, 32, 16),   -- Razer DeathAdder 
+(null, 33, 17),   -- HyperX Cloud II 
+(null, 34, 18),   -- TP-Link Router 
+(null, 35, 19),   -- Cisco Switch 
+(null, 36, 20),  -- Cables Cat6 
+(null, 1, 21),    -- Lenovo ThinkPad 
+(null, 1, 22),    -- Asus ROG Strix 
+(null, 1, 23),    -- MacBook Pro 
+(null, 4, 24),    -- LG NanoCell TV
+(null, 38, 25),   -- Kioxia SSD
+(null, 40, 26),   -- Kingston RAM
+(null, 41, 27),   -- Crucial DDR5
+(null, 32, 28),   -- Logitech G Pro X
+(null, 32, 29),   -- Razer Viper Ultimate
+(null, 33, 30),   -- HyperX Alpha Wireless
+(null, 34, 31),   -- TP-Link Deco Mesh
+(null, 35, 32);   -- Cisco Catalyst
 
 
 INSERT INTO SUPPLIERS VALUES
