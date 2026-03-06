@@ -3,6 +3,7 @@ import { actionsIcons } from "../../../assets/icons/mainIcons";
 export default function ActionButtons({
   children,
   editButtonOnClick,
+  deleteButtonVisible = true,
   deleteButtonOnClick,
 }) {
   return (
@@ -15,7 +16,7 @@ export default function ActionButtons({
           className="dark:brightness-200 hover:scale-125 transition-all duration-500"
         />
       </button>
-      <button onClick={deleteButtonOnClick}>
+      <button onClick={deleteButtonOnClick} className={`${deleteButtonVisible ? "" : "hidden"}`}>
         <img
           src={actionsIcons.deleteIcon}
           alt=""
