@@ -18,28 +18,9 @@ export default function Aside({ avatarOnClick }) {
         xl:flex-col xl:row-span-2 xl:px-5 xl:py-5 xl:order-1
         "
     >
-      {/* Primera Sección */}
-      <header
-        className="min-w-max flex justify-center items-center gap-3 p-[0_1rem] order-3 dark:text-white
-            xl:order-1 md:order-1"
-      >
-        <button onClick={avatarOnClick} className="w-[50px] h-[50px]">
-          <img
-            src={avatarItem.icon}
-            alt={avatarItem.alt}
-            className="w-full h-full"
-          />
-        </button>
-        <section className="hidden xl:block text-center">
-          <p className="font-medium">
-            {user.name} {user.first_surname}
-          </p>
-          <p className="font-normal"> Rol </p>
-        </section>
-      </header>
       {/* Menús de opciones */}
       <section className="flex flex-col gap-1 order-1">
-        {/* Segunda Sección */}
+        {/* Primera Sección */}
         <nav
           className="flex p-0
                 md:pt-4
@@ -50,15 +31,35 @@ export default function Aside({ avatarOnClick }) {
                     md:flex-col
                     xl:flex-col"
           >
+            <li className="dark:hover:bg-gray-950">
+              <button
+                onClick={avatarOnClick}
+                className="w-full flex items-center justify-start py-1.5 px-4 gap-2.5 rounded-xl animate-slideIn transition duration-300
+              hover:bg-gray-200
+              dark:text-gray-50
+              "
+              >
+                <img
+                  src={avatarItem.icon}
+                  alt={avatarItem.alt}
+                  className="w-8 h-8"
+                />
+                <section className="hidden xl:block text-center">
+                  <p className="text-[#4a4a4d]">
+                    {user.name} {user.first_surname}
+                  </p>
+                </section>
+              </button>
+            </li>
             {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
             {firstSectionItems.map((item) => (
               <li key={item.name} className="rounded-xl dark:hover:bg-gray-950">
                 <NavLink to={item.path}>
                   {({ isActive }) => (
                     <section
-                      className={`w-auto h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300
+                      className={`w-auto h-14 flex flex-col py-2.5 pb-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300
                                 md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-3.5 xl:justify-start
+                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
                                     ${
                                       isActive
                                         ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white
@@ -72,17 +73,17 @@ export default function Aside({ avatarOnClick }) {
                         src={item.icon}
                         alt={item.alt}
                         className={` w-[25px] h-[25px]
-                                        ${
-                                          isActive
-                                            ? "invert brightness-0 stroke-none dark:invert-0"
-                                            : ""
-                                        }`}
+                                    ${
+                                      isActive
+                                        ? "invert brightness-0 stroke-none dark:invert-0"
+                                        : ""
+                                    }`}
                       />
                       <div className="flex gap-1">
                         <span
-                          className="text-center text-nowrap text-xs
-                                        md:hidden 
-                                        xl:block xl:text-base"
+                          className="text-center text-nowrap text-xs  
+                                      md:hidden 
+                                      xl:block xl:text-base"
                         >
                           {item.name}
                         </span>
@@ -115,7 +116,7 @@ export default function Aside({ avatarOnClick }) {
                     <section
                       className={`w-20 h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300
                                 md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-3.5 xl:justify-start
+                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
                                     ${
                                       isActive
                                         ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white
@@ -164,7 +165,7 @@ export default function Aside({ avatarOnClick }) {
                     xl:py-4"
           >
             <p
-              className="text-base py-1 pl-3 text-gray-500 hidden
+              className="text-base py-1 pl-3 text-gray-300 hidden
                         xl:block
                         md:block"
             >
@@ -180,7 +181,7 @@ export default function Aside({ avatarOnClick }) {
                     to={item.path}
                     onClick={item.onClick}
                     className={({ isActive }) =>
-                      `w-20 h-14 py-2.5 px-5 flex gap-3.5 items-center justify-center subpixel-antialiased rounded-xl
+                      `w-20 h-14 py-2.5 px-5 flex gap-2.5 items-center justify-center subpixel-antialiased rounded-xl
                                         xl:justify-start xl:w-full xl:h-auto
                                         ${
                                           isActive
