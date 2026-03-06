@@ -59,6 +59,17 @@ class ProductsController:
         return {
             "data": products
         }
+    
+    @staticmethod
+    def get_all_input_orders():
+        error, input_orders = ProductsRepository.find_all_input_orders()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+
+        return {
+            "data": input_orders
+        }
 
     @staticmethod
     def get_all_product_brands():
@@ -70,11 +81,57 @@ class ProductsController:
         return {
             "data": brands
         }
+    
+    @staticmethod
+    def get_all_product_models():
+        error, models = ProductsRepository.find_all_product_models()
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+
+        return {
+            "data": models
+        }
 
     @staticmethod
     def create_product(product_garanty_input):
         error, success, message = ProductsRepository.create_product(
             product_garanty_input)
+
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return {
+            "sucess": success,
+            "message": message
+        }
+
+    @staticmethod
+    def create_product_model(product_model):
+        error, success, message = ProductsRepository.create_product_model(
+            product_model)
+
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return {
+            "sucess": success,
+            "message": message
+        }
+    
+    @staticmethod
+    def create_product_brand(product_brand):
+        error, success, message = ProductsRepository.create_product_brand(
+            product_brand)
+
+        if error:
+            raise HTTPException(status_code=400, detail=error)
+        return {
+            "sucess": success,
+            "message": message
+        }
+    
+    @staticmethod
+    def create_input_order(input_order):
+        error, success, message = ProductsRepository.create_input_order(input_order)
 
         if error:
             raise HTTPException(status_code=400, detail=error)
