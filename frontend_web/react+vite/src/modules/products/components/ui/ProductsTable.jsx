@@ -106,10 +106,10 @@ export default function ProductsTable({products, openModal, refetch}) {
                 </th>
 
                 {/* Botones */}
-                <th className="flex h-14">
+                <th className="flex items-center justify-center h-14">
                   <ActionButtons
                     editButtonOnClick={() => openModal(product, "edit", refetch)}
-                    deleteButtonOnClick={() => openModal(product, "delete", refetch)}
+                    deleteButtonVisible={false}
                   />
                 </th>
               </tr>
