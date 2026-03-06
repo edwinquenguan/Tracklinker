@@ -20,7 +20,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
   return (
     /* Container de la modal */
     <section
-      className={`fixed inset-0 bg-[#0000002c]
+      className={`fixed inset-0 bg-[#0000002c] z-${z_index}}
             ${
               type === "filter"
                 ? "flex justify-end items-start pr-[260px] pt-4 bg-[#00000013]"
@@ -29,7 +29,6 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
                   : "flex items-center justify-center"
             }
         `}
-      style={{ zIndex: Number(z_index) }}
       onClick={handleClose}
     >
       {/* Card blanca o modal */}
@@ -69,7 +68,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
           </button>
         </header>
         {/* Contenido principal de la modal o cuerpo de la modal */}
-        <div className="animate-blurUp">{children}</div>
+        <div>{children}</div>
       </section>
     </section>
   );
