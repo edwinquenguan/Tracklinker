@@ -1,4 +1,5 @@
 // Hooks
+import { useCatalog } from "./hooks/useCatalog";
 import { useModal } from "../../globals/hooks/useModal";
 // Iconos
 import { productsIcons } from "../../assets/icons/mainIcons";
@@ -12,8 +13,6 @@ import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddProductModal from "./components/modals/AddProductModal";
 import EditProductModal from "./components/modals/EditProductModal";
 import ProductsFilterModal from "./components/modals/ProductsFilterModal";
-import DeleteProductModal from "./components/modals/DeleteProductModal";
-import { useCatalog } from "./hooks/useCatalog";
 
 export default function ProductsPage() {
   const { modalType, modalData, isOpen, openModal, closeModal } = useModal();
@@ -76,13 +75,6 @@ export default function ProductsPage() {
           {/* Modal para editar el producto */}
           {modalType === "edit" && (
             <EditProductModal
-              onCloseModal={() => closeModal()}
-              selectedProduct={modalData}
-            />
-          )}
-          {/* Modal para eliminar el producto */}
-          {modalType === "delete" && (
-            <DeleteProductModal
               onCloseModal={() => closeModal()}
               selectedProduct={modalData}
             />
