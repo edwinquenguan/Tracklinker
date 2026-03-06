@@ -1,7 +1,6 @@
 export default function FormField({
   value,
   labelText,
-  inputIcon,
   defaultValue,
   id,
   type = "text",
@@ -15,22 +14,18 @@ export default function FormField({
       <label htmlFor={id} className="self-start text-sm dark:text-white">
         {labelText}
       </label>
-      <div
-        className="border dark:bg-[#2020226c] dark:border-[#101012]"
-      >
-        <input
-          name={name}
-          onChange={onChange}
-          value={value}
-          type={type}
-          defaultValue={defaultValue}
-          placeholder={placeholder}
-          id={id}
-          className="px-6 py-3 text-sm rounded-md outline-none
-                dark:bg-transparent dark:border-[#101012] dark:text-white"
-          autoComplete={autoComplete}
-        />
-      </div>
+      <input
+        name={name}
+        onChange={onChange}
+        value={value}
+        type={type}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        id={id}
+        className="w-full px-6 py-3 text-sm rounded-xl outline-none border bg-slate-50
+              dark:bg-transparent dark:border-[#101012] dark:text-white"
+        autoComplete={autoComplete}
+      />
     </div>
   );
 }
