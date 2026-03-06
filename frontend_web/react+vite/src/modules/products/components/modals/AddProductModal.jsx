@@ -2,26 +2,33 @@
 import { useState } from "react";
 import { useCatalog } from "../../hooks/useCatalog";
 import { useCreateProduct } from "../../hooks/useCreateProduct";
-import { productsIcons } from "../../../../assets/icons/mainIcons";
+import {
+  actionsIcons,
+  productsIcons,
+} from "../../../../assets/icons/mainIcons";
 // Componentes
 import Loader from "../../../../globals/components/ui/Loader";
 import FormField from "../../../../globals/components/ui/FormField";
 import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 // Modales
+import AddInputOrderModal from "./AddInputOrderModal";
+import AddProductBrandModal from "./AddProductBrandModal";
+import AddProductModelModal from "./AddProductModelModal";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
+import AddInnerModal from "../../../../globals/components/modals/AddInnerModal";
+import AddSubcategoryModal from "../../../subcategories/components/modals/AddSubcategoryModal";
 
 export default function AddProductModal({ onCloseModal }) {
   const [innerModal, setInnerModal] = useState(null);
-  const { subcategories, products, brands } = useCatalog();
-  const { form, loading, handleChange, handleSubmit } = useCreateProduct({
+  const { subcategories, brands, models, inputOrders } = useCatalog();
+  const { loading, handleChange, handleSubmit } = useCreateProduct({
     input_order_id: "",
     subcategory_id: "",
-    product_model: "",
+    product_details_id: "",
     product_serial: "",
     product_brand: "",
-    product_stock: "",
     product_garanty_input: "",
   });
 
@@ -33,20 +40,25 @@ export default function AddProductModal({ onCloseModal }) {
           spanText={"Orden de entrada"}
           onChange={handleChange}
           name={"input_order_id"}
+          addIcon={actionsIcons.addIcon}
+          addIconFunction={() => setInnerModal("addInputOrder")}
+          addButtonInvisible={false}
         >
           <option value="">Seleccionar</option>
-          {products.map((product) => (
-            <option value={product.input_order_id}>
-              {product.input_order}
+          {inputOrders.map((inputOrder) => (
+            <option key={inputOrder.id} value={inputOrder.id}>
+              {inputOrder.bill}
             </option>
           ))}
         </SelectMenu>
         {/* Menú de subcategorias */}
         <SelectMenu
           name={"subcategory_id"}
-          width={"64"}
           spanText={"Subcategoria"}
           onChange={handleChange}
+          addIcon={actionsIcons.addIcon}
+          addIconFunction={() => setInnerModal("addSubcategory")}
+          addButtonInvisible={false}
         >
           <option value="">Seleccionar</option>
           {subcategories.map((subcategory) => (
@@ -58,15 +70,36 @@ export default function AddProductModal({ onCloseModal }) {
             </option>
           ))}
         </SelectMenu>
+        {/* Menú de marcas */}
         <SelectMenu
           spanText={"Marca"}
           name={"product_brand"}
           onChange={handleChange}
+          addIcon={actionsIcons.addIcon}
+          addIconFunction={() => setInnerModal("addBrand")}
+          addButtonInvisible={false}
         >
           <option value="">Seleccionar</option>
           {brands.map((brand) => (
             <option key={brand.id} value={brand.id}>
               {brand.name}
+            </option>
+          ))}
+        </SelectMenu>
+        {/* Menú de modelos */}
+        <SelectMenu
+          spanText={"Modelo"}
+          name={"product_details_id"}
+          onChange={handleChange}
+          id={"model"}
+          addIcon={actionsIcons.addIcon}
+          addIconFunction={() => setInnerModal("addModel")}
+          addButtonInvisible={false}
+        >
+          <option value="">Seleccionar</option>
+          {models.map((model) => (
+            <option key={model.id} value={model.id}>
+              {model.model}
             </option>
           ))}
         </SelectMenu>
@@ -77,25 +110,12 @@ export default function AddProductModal({ onCloseModal }) {
           id={"product_serial"}
           onChange={handleChange}
         />
-        <FormField
-          onChange={handleChange}
-          name={"product_model"}
-          labelText={"Modelo"}
-          placeholder={"Impresora HP z1455"}
-          id={"model"}
-        />
-        <FormField
-          labelText={"Cantidad"}
-          name={"product_stock"}
-          placeholder={"20"}
-          onChange={handleChange}
-        />
         <SelectMenu
-          width={"64"}
-          name={"product_garanty_input"}
           spanText={"Tiempo De Garantía"}
+          name={"product_garanty_input"}
           onChange={handleChange}
         >
+          <option value="2029-09-27"> Seleccionar </option>
           <option value="a"> 6 Meses </option>
           <option value=""> 12 Meses </option>
           <option value=""> 18 Meses </option>
@@ -129,8 +149,53 @@ export default function AddProductModal({ onCloseModal }) {
         cancelButtonOnClick={onCloseModal}
         confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
       />
-      {innerModal === "success" && <SuccessModal />}
-      {innerModal === "error" && <ErrorModal />}
+
+      {/* Modales internos */}
+      {innerModal === "success" && (
+        <SuccessModal
+          isOpen={true}
+          onClose={() => (
+            setInnerModal(null),
+            onCloseModal()
+          )}
+          confirmTitle={"Producto Creado Correctamente"}
+          confirmText={"El producto ha sido creado correctamente."}
+          confirmButtonText={"Volver a la página"}
+        />
+      )}
+      {innerModal === "error" && (
+        <ErrorModal
+          isOpen={true}
+          onClose={() => setInnerModal(null)}
+          errorTitle={"Error al crear el producto"}
+          errorText={"Ha ocurrido un error al intentar crear el producto."}
+          confirmButtonText={"Volver a intentarlo"}
+        />
+      )}
+      {innerModal === "addInputOrder" && (
+        <AddInputOrderModal isOpen={true} onClose={() => setInnerModal(null)} />
+      )}
+      {innerModal === "addSubcategory" && (
+        <AddInnerModal
+          isOpen={true}
+          onClose={() => setInnerModal(null)}
+          title={"Agregar subcategoria"}
+        >
+          <AddSubcategoryModal onClose={() => setInnerModal(null)} />
+        </AddInnerModal>
+      )}
+      {innerModal === "addBrand" && (
+        <AddProductBrandModal
+          isOpen={true}
+          onClose={() => setInnerModal(null)}
+        />
+      )}
+      {innerModal === "addModel" && (
+        <AddProductModelModal
+          isOpen={true}
+          onClose={() => setInnerModal(null)}
+        />
+      )}
     </section>
   );
 }

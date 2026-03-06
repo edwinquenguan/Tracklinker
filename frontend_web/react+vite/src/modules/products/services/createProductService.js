@@ -5,6 +5,7 @@ export async function createProductService(product_data) {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.products}/create`, {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       Authorization: getToken(),
     },
     body: JSON.stringify(product_data),
@@ -14,7 +15,5 @@ export async function createProductService(product_data) {
     throw new Error("Error al intentar crear el producto");
   }
 
-  const data = res.json();
-
-  return data;
+  return await res.json()
 }
