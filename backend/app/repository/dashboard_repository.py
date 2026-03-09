@@ -133,13 +133,10 @@ class DashboardRepository:
 
         query = """
         SELECT 
-            b.product_brand_name AS brand,
-            SUM(p.product_stock) AS products
-        FROM PRODUCTS p
-        INNER JOIN PRODUCT_DETAILS d 
-        ON p.product_details_id = d.product_details_id
-        INNER JOIN PRODUCT_BRANDS b ON d.product_brand_id = b.product_brand_id
-        GROUP BY b.product_brand_name
+            product_brand_name AS brand,
+            SUM(stock) AS products
+        FROM get_all_products_with_stock
+        GROUP BY product_brand_name
         ORDER BY products DESC
         LIMIT 7;
         """
@@ -234,12 +231,10 @@ class DashboardRepository:
 
         query = """
         SELECT
-            s.subcategory_name,
-            SUM(p.product_stock) AS total_stock
-        FROM PRODUCTS AS p
-        INNER JOIN SUBCATEGORIES AS s
-        ON p.subcategory_id = s.subcategory_id
-        GROUP BY s.subcategory_name
+            subcategory_name,
+            SUM(stock) AS total_stock
+        FROM get_all_products_with_stock
+        GROUP BY subcategory_name
         ORDER BY total_stock DESC
         LIMIT 5;
         """
