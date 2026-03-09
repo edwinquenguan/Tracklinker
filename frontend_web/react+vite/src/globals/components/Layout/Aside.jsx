@@ -35,8 +35,8 @@ export default function Aside({ avatarOnClick }) {
               <button
                 onClick={avatarOnClick}
                 className="w-full flex items-center justify-start py-1.5 px-4 gap-2.5 rounded-xl animate-slideIn transition duration-300
-              hover:bg-gray-200
-              dark:text-gray-50
+              hover:bg-gray-200 dark:text-gray-50
+              md:justify-center
               "
               >
                 <img
