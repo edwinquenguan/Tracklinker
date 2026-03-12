@@ -187,15 +187,10 @@ class UserRepository:
             cursor.execute(query, values)
             connection.commit()
 
-            # Consultar y devolver el usuario que actualizamos
-            cursor.execute(
-                "SELECT * FROM USERS WHERE user_id = %s", (user_id,))
-            result = cursor.fetchone()
-
-            return None, "Usuario actualizado correctamente", result
+            return None, True, "Usuario actualizado correctamente"
         except Exception as e:
             connection.rollback()
-            return f"Error al ejecutar la consulta: {e} {query}", None, None
+            return f"Error al ejecutar la consulta: {e}", False, None
         finally:
             cursor.close()
             connection.close()
