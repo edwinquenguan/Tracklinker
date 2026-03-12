@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function ActionCard({ itemName, itemPath, itemIcon, itemAlt }) {
+export default function ActionCard({ itemName, itemPath, itemIcon: Icon, itemAlt }) {
   return (
     <section>
       {/* Card de cada modulo */}
@@ -18,11 +18,7 @@ export default function ActionCard({ itemName, itemPath, itemIcon, itemAlt }) {
                 xl:h-40 xl:w-32 
                 md:h-40 md:w-32"
         >
-          <img
-            src={itemIcon}
-            alt={itemAlt}
-            className="w-12 dark:brightness-[.2] dark:invert"
-          />
+          <Icon aria-label={itemAlt} className="w-10 h-10 fill-[#75777E]"/>
         </section>
         <p className="text-base font-medium text-center dark:text-white">
           {itemName}
