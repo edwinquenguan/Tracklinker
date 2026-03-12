@@ -12,9 +12,14 @@ export default {
           "0%": { opacity: "1", transform: "scale(1)", filter: "blur(0px)" },
           "100%": { opacity: "0", transform: "scale(0.95)", filter: "blur(4px)" },
         },
-        slideIn: {
-          "0%": { transform: "translateX(-5px)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
+        iconFill: {
+          "0%": { fillOpacity : "0" },
+          "100%": { fillOpacity : "1" }
+        },
+        clickEffect: {
+          "0%":   { transform: "scale(1)" },
+          "50%":  { transform: "scale(0.96)" },
+          "100%": { transform: "scale(1)" }
         },
         blurUp: {
           "0%": { opacity: "0", transform: "translateY(10px)", filter: "blur(4px)" },
@@ -22,9 +27,10 @@ export default {
         }
       },
       animation: {
-        slideIn: "slideIn 0.5s ease-out",
-        modalFadeIn: "modalFadeIn 0.5s ease-out forwards",
-        modalFadeOut: "modalFadeOut 0.4s ease-out forwards",
+        iconFill: "iconFill 0.5s cubic-bezier(.48, 0, 0, 1)",
+        clickEffect: "clickEffect 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        modalFadeIn: "modalFadeIn 0.3s ease-out forwards",
+        modalFadeOut: "modalFadeOut 0.3s ease-out forwards",
         blurUp: "blurUp 0.5s ease-in forwards",
       },
     },
