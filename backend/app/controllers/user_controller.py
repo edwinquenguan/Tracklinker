@@ -56,12 +56,12 @@ class UserController:
     
     @staticmethod
     def update_user(user_id: int, user_data: dict):
-        error, message, user = UserRepository.update(user_id, user_data)
+        error, success, message = UserRepository.update(user_id, user_data)
         if error:
             raise HTTPException(status_code=400, detail=error)
         return {
+            "success": success,
             "message": message,
-            "data": user
         }
     
     @staticmethod
