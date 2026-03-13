@@ -39,11 +39,11 @@ export default {
         },
       },
       animation: {
-        iconFill: "iconFill 0.5s cubic-bezier(.48, 0, 0, 1)",
+        iconFill: "iconFill 0.3s cubic-bezier(.48, 0, 0, 1)",
         clickEffect: "clickEffect 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
         modalFadeIn: "modalFadeIn 0.3s ease-out forwards",
         modalFadeOut: "modalFadeOut 0.3s ease-out forwards",
-        blurUp: "blurUp 0.5s ease-in forwards",
+        blurUp: "blurUp 0.3s ease-in forwards",
       },
     },
   },
