@@ -20,11 +20,7 @@ export default function SubcategoriesItem({
             {subcategory.subcategory_name}
           </p>  
           <div className="flex items-center gap-2">
-            <img
-              src={asideIcons.categoriesIcon}
-              alt=""
-              className="w-5 h-5 dark:invert brightness-0"
-            />
+            <asideIcons.categoriesIcon className="w-5 h-5 stroke-[60] stroke-black"/>
             <p>{subcategory.category_name}</p>
           </div>
         </address>
