@@ -14,7 +14,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
     setTimeout(() => {
       setClosing(false);
       onClose();
-    }, 500);
+    }, 200);
   };
 
   return (
