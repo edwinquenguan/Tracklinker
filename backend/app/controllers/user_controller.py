@@ -75,8 +75,8 @@ class UserController:
         }
 
     @staticmethod
-    def get_report_users(rol_id: int):
-        error, user = UserRepository.find_by_rol(rol_id)
+    def get_users_by_rol():
+        error, user = UserRepository.find_by_rol()
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {

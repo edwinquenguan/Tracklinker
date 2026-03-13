@@ -221,32 +221,23 @@ class UserRepository:
             connection.close()
 
     @staticmethod
-    def find_by_rol(rol_id: int):
+    def find_by_rol():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
         try:
 
             query = """
             SELECT
-                r.rol_name, 
-                u.user_id,
-                u.user_name,
-                u.user_first_surname,
-                u.user_second_surname,
-                u.user_phone,
-                u.user_email,
-                u.user_address,
-                u.user_city,
-                u.user_date
+                r.rol_name,
+                COUNT(u.user_id) as users
             FROM USERS AS u 
-            INNER JOIN ROLES AS r 
+            LEFT JOIN ROLES AS r
             ON u.rol_id = r.rol_id
-            WHERE r.rol_id = %s
+            GROUP BY r.rol_name
             """
 
-            # 2. Ejecutar y obtener resultados
-            cursor.execute(query, (rol_id,))
-            result = cursor.fetchall()  # Obtiene la lista completa de usuarios
+            cursor.execute(query)
+            result = cursor.fetchall()
 
             return None, result
 
@@ -254,7 +245,6 @@ class UserRepository:
             return f"Error al ejecutar la consulta: {e}", None
 
         finally:
-
             cursor.close()
             connection.close()
 
