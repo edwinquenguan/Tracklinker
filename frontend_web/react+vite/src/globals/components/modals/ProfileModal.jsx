@@ -45,11 +45,9 @@ export default function ProfileModal({ onClose }) {
                         }`}
               onClick={() => setActiveSection("appearance")}
             >
-              <img
-                src={asideIcons.themesIcon}
-                alt=""
+              <asideIcons.themesIcon
                 className={`transition-all duration-300 dark:invert
-                ${activeSection === "appearance" ? "invert brightness-200" : ""}
+                ${activeSection === "appearance" ? "fill-black" : "fill-[#75777E]"}
                 `}
               />
               <span className="text-sm"> Apariencia </span>
@@ -126,10 +124,9 @@ export default function ProfileModal({ onClose }) {
               className="flex items-center gap-1.5 px-3 py-2.5 rounded-lg bg-black text-sm bg-blacktransition text-white
                     dark:bg-[#2020226c] dark:text-white dark:hover:text-gray-800"
             >
-              <img
-                src={asideIcons.logoutIcon}
+              <asideIcons.logoutIcon
                 alt="Cerrar sesión"
-                className="w-5 h-5 brightness-200 dark:invert"
+                className="w-5 h-5 fill-white"
               />
               <span className="font-medium">Cerrar Sesion</span>
             </button>
