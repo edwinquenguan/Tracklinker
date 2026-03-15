@@ -29,9 +29,18 @@ export default function UsersList({
             user_second_surname={user.user_second_surname}
             user_phone={user.user_phone}
             user_rol={user.rol_name}
-            moreInfoOnClick={() => openModal(user, "info", refetch)}
-            editButtonOnClick={() => openModal(user, "edit", refetch)}
-            deleteButtonOnClick={() => openModal(user, "delete", refetch)}
+            moreInfoOnClick={(e) => {
+              e.stopPropagation();
+              openModal(user, "info");
+            }}
+            editButtonOnClick={(e) => {
+              e.stopPropagation();
+              openModal(user, "edit", refetch);
+            }}
+            deleteButtonOnClick={(e) => {
+              e.stopPropagation();
+              openModal(user, "delete", refetch);
+            }}
           />
         ))}
       </ul>

@@ -14,9 +14,10 @@ export default function UserItem({
 }) {
   return (
     <li
-      className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300
+      className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 cursor-pointer
                     dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
       key={user_id}
+      onClick={moreInfoOnClick}
     >
       {/* Datos del Usuario */}
       <article>
@@ -43,10 +44,10 @@ export default function UserItem({
         </address>
       </article>
 
-      <UserActions 
-      editButtonOnClick={editButtonOnClick}
-      deleteButtonOnClick={deleteButtonOnClick}
-      moreInfoOnClick={moreInfoOnClick}
+      <UserActions
+        editButtonOnClick={editButtonOnClick}
+        deleteButtonOnClick={deleteButtonOnClick}
+        moreInfoOnClick={moreInfoOnClick}
       />
     </li>
   );

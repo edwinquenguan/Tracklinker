@@ -21,11 +21,18 @@ export default function SubcategoriesList({
           // Subcategorías
           <SubcategoriesItem
             subcategory={subcategory}
-            moreInfoOnClick={() => openModal(subcategory, "info", refetch)}
-            editButtonOnClick={() => openModal(subcategory, "edit", refetch)}
-            deleteButtonOnClick={() =>
-              openModal(subcategory, "delete", refetch)
-            }
+            moreInfoOnClick={(e) => {
+              e.stopPropagation();
+              openModal(subcategory, "info", refetch);
+            }}
+            editButtonOnClick={(e) => {
+              e.stopPropagation();
+              openModal(subcategory, "edit", refetch);
+            }}
+            deleteButtonOnClick={(e) => {
+              e.stopPropagation();
+              openModal(subcategory, "delete", refetch);
+            }}
           />
         ))}
       </ul>
