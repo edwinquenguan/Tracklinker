@@ -13,12 +13,15 @@ export default function ActionButtons({
         <img
           src={actionsIcons.editInfoIcon}
           alt=""
-          className="dark:brightness-200 hover:scale-125 transition-all duration-500"
+          className="z-10 transition-all duration-500 dark:brightness-200 hover:scale-125"
         />
       </button>
-      <button onClick={deleteButtonOnClick} className={`${deleteButtonVisible ? "" : "hidden"}`}>
+      <button
+        onClick={deleteButtonOnClick}
+        className={`${deleteButtonVisible ? "" : "hidden"}`}
+      >
         <img
-          src={actionsIcons.deleteIcon}
+          src={actionsIcons.visibility}
           alt=""
           className="dark:brightness-200 hover:scale-125 transition-all duration-500"
         />

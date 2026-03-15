@@ -19,7 +19,7 @@ export default function ConfirmCancelButtons({
       </button>
       <button
         onClick={cancelButtonOnClick}
-        className={`${cancelButtonWidth} px-4 py-3 rounded-lg text-sm transition duration-300 border border-gray-200
+        className={`${cancelButtonWidth} px-4 py-3 rounded-lg text-sm transition duration-300 border border-gray-200 dark:border-gray-900
             hover:bg-gray-200
             dark:text-white dark:hover:bg-[#101012]`}
       >
