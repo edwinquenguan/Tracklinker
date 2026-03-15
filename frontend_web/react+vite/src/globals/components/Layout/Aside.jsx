@@ -42,9 +42,9 @@ export default function Aside({ avatarOnClick }) {
                   className="w-8 h-8"
                 />
                 <section className="hidden xl:block text-center">
-                  <p className="text-[#4a4a4d]">
+                  <span className="text-[#4a4a4d] font-medium dark:text-[#7E8088]">
                     {user.name} {user.first_surname}
-                  </p>
+                  </span> 
                 </section>
               </button>
             </li>
@@ -63,14 +63,14 @@ export default function Aside({ avatarOnClick }) {
                                     dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
                                         : `text-[#75777E] 
                                     hover:bg-gray-200
-                                    dark:text-gray-500 font-normal`
+                                    dark:text-[7E8088] font-normal`
                                     }`}
                     >
                       <item.icon
                         className={`group-hover:stroke-black
                           ${
                             isActive
-                              ? "fill-white scale-105 stroke-none animate-iconFill"
+                              ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
                               : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[70]"
                           }`}
                       />
@@ -122,14 +122,14 @@ export default function Aside({ avatarOnClick }) {
                                     dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
                                         : `text-[#75777E] 
                                     hover:bg-gray-200
-                                    dark:text-gray-500 font-normal`
+                                    dark:text-[7E8088] font-normal`
                                     }`}
                     >
                       <item.icon
                         className={`group-hover:stroke-black
                           ${
                             isActive
-                              ? "fill-white scale-105 stroke-none animate-iconFill"
+                              ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
                               : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[70]"
                           }`}
                       />
@@ -186,14 +186,14 @@ export default function Aside({ avatarOnClick }) {
                           ${
                             isActive
                               ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect"
-                              : "text-[#75777E] dark:text-gray-500"
+                              : "text-[#75777E] dark:text-[7E8088]"
                           }`}
                       >
                         <item.icon
                           className={`
                             ${
                               isActive
-                                ? "fill-white scale-105 stroke-none animate-iconFill"
+                                ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
                                 : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]"
                             }`}
                         />
