@@ -22,11 +22,20 @@ export default function UsersAreaChart() {
         <YAxis width="auto" fontSize={"10px"} />
         <XAxis fontSize={"10px"} dataKey={"month"} />
         <Tooltip />
+
+        {/* Grandiente aplicada al gráfico */}
+        <defs>
+          <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#1447e6" stopOpacity={1} />
+            <stop offset="95%" stopColor="#1447e6" stopOpacity={0.1} />
+          </linearGradient>
+        </defs>
+
         <Area
           type={"natural"}
           dataKey={"users"}
-          stroke="#152DD1"
-          fill="#152DD1"
+          stroke="#1447e6"
+          fill="url(#colorUsers)"
         />
       </AreaChart>
     </ResponsiveContainer>

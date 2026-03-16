@@ -27,7 +27,7 @@ export default function UsersPieChart() {
           outerRadius="150"
         >
           {usersData.map((item, index) => (
-            <Cell key={index} fill={item.color} />
+            <Cell key={index} fill={item.color} stroke="#1447e6" />
           ))}
         </Pie>
         <Legend
