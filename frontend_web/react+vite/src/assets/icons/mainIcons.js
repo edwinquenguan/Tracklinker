@@ -41,6 +41,8 @@ import uploadIcon from "./main/actions/upload-icon.svg";
 import addIcon from "./main/actions/add-icon.svg";
 import visibility from "./main/actions/visibility.svg"
 import lockVisibility from "./main/actions/visibility-lock.svg"
+import arrowBack from "./main/actions/arrow-back.svg"
+import exportIcon from "./main/actions/export-icon.svg"
 
 export const dashboardIcons = {
   arrowDown,
@@ -81,6 +83,8 @@ export const actionsIcons = {
   uploadIcon,
   visibility,
   lockVisibility,
+  arrowBack,
+  exportIcon,
 };
 
 export const warrantiesIcons = {
