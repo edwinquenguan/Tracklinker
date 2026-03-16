@@ -2,7 +2,6 @@ import { apiRoutes } from "../../../config/apiRoutes";
 import { getToken } from "../../../utils/auth";
 
 export async function createSubcategory(subcategory_data) {
-  console.log(JSON.stringify(subcategory_data))
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.subcategories}/create`, {
     method: "POST",
     headers: {

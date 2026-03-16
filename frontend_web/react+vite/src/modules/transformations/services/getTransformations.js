@@ -3,7 +3,6 @@ import { getToken } from "../../../utils/auth";
 
 export async function getTransformations() {
   const url = `${apiRoutes.apiUrl}${apiRoutes.transformations}`;
-  console.log("Fetching transformaciones desde:", url);
 
   const res = await fetch(url, {
     method: "GET",
