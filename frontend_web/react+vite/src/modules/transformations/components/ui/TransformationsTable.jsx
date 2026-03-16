@@ -1,0 +1,79 @@
+import { actionsIcons } from "../../../../assets/icons/mainIcons";
+import ActionButtons from "../../../../globals/components/ui/ActionButtons";
+
+export default function TransformationsTable({
+  transformations,
+  openModal,
+  refetch,
+}) {
+  return (
+    <section>
+      <section className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden">
+        <table className="min-h-full min-w-full">
+          {/* Encabezado */}
+          <thead className="sticky top-0 z-10">
+            <tr className="h-[40px] border-b border-gray-200 dark:border-[#303033] text-sm">
+              <th className="font-medium pl-4 text-start">Orden de salida</th>
+              <th className="font-medium pl-4 text-start">Fecha de registro</th>
+              <th className="font-medium pl-4 text-start">
+                Serial de producto
+              </th>
+              <th className="font-medium pl-4 text-start">Finaliza garantía</th>
+              <th className="font-medium pl-4 text-start">Transformación</th>
+              <th className="font-medium pl-4 text-center">Acciones</th>
+            </tr>
+          </thead>
+
+          {/* Cuerpo de la tabla */}
+          {transformations.map((transformation) => (
+            <tbody className="font-normal dark:text-gray-300">
+              <tr
+              onClick={(e) => {
+                e.stopPropagation();
+                openModal(transformation, "info", refetch);
+              }}
+              key={transformation.output_details_id}
+              className="h-12 text-base overflow-x-auto overflow-y-auto transition duration-500 text-[#45474d] cursor-pointer
+                          hover:bg-[#e3e2e4] hover:shadow-md
+                          dark:hover:bg-[#101012]"
+              > 
+                <th className="font-normal text-start pl-4 text-sm">
+                  {transformation.out_order_id}
+                </th>
+                <th className="font-normal text-start pl-4 text-sm">
+                  {transformation.out_order_date}
+                </th>
+                <th className="font-normal text-start pl-4 text-sm">
+                  {transformation.product_serial}
+                </th>
+                <th className="font-normal text-start pl-4 text-sm">
+                  {transformation.out_product_garanty}
+                </th>
+                <th className="font-normal text-start pl-4 text-sm">
+                  {transformation.product_transformation}
+                </th>
+                <th>
+                  <ActionButtons
+                    editButtonOnClick={() =>
+                      openModal(transformation, "edit", refetch)
+                    }
+                    deleteButtonOnClick={() =>
+                      openModal(transformation, "delete", refetch)
+                    }
+                  >
+                    <button
+                      className="hover:scale-125 transition"
+                      onClick={() => openModal(transformation, "info")}
+                    >
+                      <img src={actionsIcons.moreInfoIcon} alt="Más Info" />
+                    </button>
+                  </ActionButtons>
+                </th>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </section>
+    </section>
+  );
+}
