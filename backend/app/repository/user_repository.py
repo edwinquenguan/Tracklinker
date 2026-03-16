@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.user_model import User
 from datetime import datetime
+from app.utils.date_formatter import date_formatter
 import bcrypt
 
 
@@ -15,7 +16,6 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            r.rol_id,
             r.rol_name,
             u.user_id,
             u.user_name,
@@ -34,7 +34,22 @@ class UserRepository:
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            return None, results
+            data = [
+                {
+                    "rol_name": item["rol_name"],
+                    "id": item["user_id"],
+                    "name": item["user_name"],
+                    "first_surname": item["user_first_surname"],
+                    "second_surname": item["user_second_surname"],
+                    "phone": item["user_phone"],
+                    "email": item["user_email"],
+                    "address": item["user_address"],
+                    "city": item["user_city"],
+                    "date": date_formatter(item["user_date"]),
+                }
+                for item in results
+            ]
+            return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
         finally:
@@ -50,7 +65,6 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            r.rol_id,
             r.rol_name,
             u.user_id,
             u.user_name,
@@ -221,39 +235,11 @@ class UserRepository:
             connection.close()
 
     @staticmethod
-    def find_by_rol():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-        try:
-
-            query = """
-            SELECT
-                r.rol_name,
-                COUNT(u.user_id) as users
-            FROM USERS AS u 
-            LEFT JOIN ROLES AS r
-            ON u.rol_id = r.rol_id
-            GROUP BY r.rol_name
-            """
-
-            cursor.execute(query)
-            result = cursor.fetchall()
-
-            return None, result
-
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
     def find_all_roles():
         connection = get_connection()
         cursor = connection.cursor()
 
-        query = "SELECT * FROM ROLES"
+        query = "SELECT rol_id, rol_name FROM ROLES"
 
         try:
             cursor.execute(query)
@@ -272,132 +258,3 @@ class UserRepository:
         finally:
             connection.close()
             cursor.close()
-
-    @staticmethod
-    def find_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE DATE(u.user_date) BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_users_grouped_by_create_date():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT 
-            DATE(u.user_date) AS create_date,
-            COUNT(*) AS user_count
-        FROM USERS AS u
-        GROUP BY DATE(u.user_date)
-        ORDER BY create_date;
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-    
-    @staticmethod
-    def find_disabled_users():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.is_active = FALSE
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_deleted_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date,
-            u.deleted_at
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.deleted_at BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
