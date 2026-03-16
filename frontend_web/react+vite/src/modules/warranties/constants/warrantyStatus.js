@@ -3,23 +3,17 @@ import { warrantiesIcons } from "../../../assets/icons/mainIcons";
 export const warrantyStatusConfig = {
   0: {
     text: "Pendiente",
-    color: "bg-red-50",
-    textColor: "text-red-700",
-    borderColor: "border-red-100",
-    icon: warrantiesIcons.incompleteIcon
+    icon: warrantiesIcons.incompleteIcon,
+    styles: "bg-red-50 text-red-700 dark:text-[#ff00008e] dark:bg-[#ff00002f]",
   },
   1: {
     text: "En Proceso",
-    color: "bg-yellow-50",
-    textColor: "text-yellow-700",
-    borderColor: "border-red-100",
-    icon: warrantiesIcons.inprocessIcon
+    icon: warrantiesIcons.inprocessIcon,
+    styles: "bg-yellow-50 text-yellow-700 dark:text-[#eeff009d] dark:bg-[#fbff001f]",
   },
   2: {
     text: "Completada",
-    color: "bg-green-50",
-    textColor: "text-green-600",
-    borderColor: "border-green-200",
     icon: warrantiesIcons.completeIcon,
+    styles: "bg-green-50 text-green-600 dark:text-[#00ff3779] dark:bg-[#00ff151f]",
   },
 };
