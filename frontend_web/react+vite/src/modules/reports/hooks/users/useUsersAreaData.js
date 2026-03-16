@@ -21,7 +21,6 @@ export function useUsersAreaData() {
           users: row.users,
         }));
         setUsersData(data);
-        console.log(data)
       } catch (error) {
         if (error.name === "AbortError") return;
         setError(error.message);
