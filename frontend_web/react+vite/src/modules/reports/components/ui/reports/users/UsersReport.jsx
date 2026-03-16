@@ -7,18 +7,11 @@ import UsersPieChart from "./UsersPieChart";
 import UsersAreaChart from "./UsersAreaChart";
 import ReturnButton from "../../ReturnButton";
 
-export default function UsersReport({ setReport, setRangeDate, setTitle }) {
-  setRangeDate("01 Feb - 08 Feb 2025");
+export default function UsersReport({ setReport }) {
   return (
     <section className="w-full h-full flex flex-col gap-2">
       <section className="flex items-center justify-between pl-3">
-        <ReturnButton
-          onClick={() => {
-            setTitle("Informes");
-            setReport("home");
-            setRangeDate(false);
-          }}
-        />
+        <ReturnButton onClick={() => setReport("home")} />
         <div className="flex items-center justify-end gap-1.5 pr-3">
           <button className="px-4 py-1.5 bg-gray-100 rounded-xl shadow-xl">
             7d

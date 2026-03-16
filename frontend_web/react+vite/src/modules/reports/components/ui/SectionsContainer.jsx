@@ -1,6 +1,6 @@
 import ReportSectionCard from "./ReportSectionCard";
 
-export default function SectionsContainer({ sections, setReport, setTitle }) {
+export default function SectionsContainer({ sections, setReport }) {
   return (
     <section
       className="
@@ -20,10 +20,7 @@ export default function SectionsContainer({ sections, setReport, setTitle }) {
     >
       {sections.map((section) => (
         <ReportSectionCard
-          sectionOnClick={() => {
-            setTitle(`${section.cardName}`);
-            setReport(`${section.name}`);
-          }}
+          sectionOnClick={() => setReport(`${section.name}`)}
           sectionKey={section.name}
           sectionIcon={section.icon}
           sectionIconAlt={section.alt}

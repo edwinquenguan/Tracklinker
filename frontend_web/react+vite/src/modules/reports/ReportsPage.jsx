@@ -17,88 +17,38 @@ import TransformationsReport from "./components/ui/reports/transformations/Trans
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import ProfileModal from "../../globals/components/modals/ProfileModal";
-import { actionsIcons } from "../../assets/icons/mainIcons";
 
 export default function ReportsPage() {
+  const [topSectionVisiblity, setTopSectionVisiblity] = useState(true);
   const [report, setReport] = useState("home");
-  const [title, setTitle] = useState("Informes");
-  const [exportOnClick, setExportOnClick] = useState(null);
-  const [rangeDate, setRangeDate] = useState(false);
   const { modalType, isOpen, openModal, closeModal } = useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
       <TopSection
-        sectionName={title}
-        rangeDate={rangeDate}
-        addButtonIcon={actionsIcons.exportIcon}
+        sectionVisible={topSectionVisiblity}
+        sectionName={"Informes"}
         filterButton={false}
-        addButtonText={"Exportar CSV"}
-        createOnClick={exportOnClick}
+        createButtonVisibility={false}
       />
       {report === "home" && (
         <SectionsContainer
           sections={sections}
           setReport={setReport}
-          setTitle={setTitle}
+          setTopSectionVisiblity={false}
         />
       )}
       {/* Contenido principal dinamico */}
-      {report === "users" && (
-        <UsersReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
-      )}
-      {report === "products" && (
-        <ProductsReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
-      )}
-      {report === "categories" && (
-        <CategoriesReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
-      )}
+      {report === "users" && <UsersReport setReport={setReport} />}
+      {report === "products" && <ProductsReport setReport={setReport} />}
+      {report === "categories" && <CategoriesReport setReport={setReport} />}
       {report === "subcategories" && (
-        <SubcategoriesReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
+        <SubcategoriesReport setReport={setReport} />
       )}
-      {report === "warranties" && (
-        <WarrantiesReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
-      )}
-      {report === "suppliers" && (
-        <SuppliersReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
-      )}
+      {report === "warranties" && <WarrantiesReport setReport={setReport} />}
+      {report === "suppliers" && <SuppliersReport setReport={setReport} />}
       {report === "transformations" && (
-        <TransformationsReport
-          setTitle={setTitle}
-          setReport={setReport}
-          setRangeDate={setRangeDate}
-          exportOnClick={setExportOnClick}
-        />
+        <TransformationsReport setReport={setReport} />
       )}
 
       {/* Modales */}

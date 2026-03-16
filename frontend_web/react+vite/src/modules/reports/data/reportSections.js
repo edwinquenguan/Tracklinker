@@ -38,7 +38,7 @@ export const sections = [
     alt: "",
   },
   {
-    name: "tranformations",
+    name: "transformations",
     cardName: "Reporte De Transformaciones",
     icon: asideIcons.transformationsIcon,
     alt: "",
