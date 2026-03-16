@@ -49,8 +49,8 @@ export default {
   },
   plugins: [],
   safelist: [
-    { pattern: /row-span-(2|3|4|5|6|7|8|9|10)/ },
-    { pattern: /col-span-(2|3|4|5|6|7|8|9|10)/ },
+    { pattern: /row-span-(2|3|4|5|6|7|8|9|10|11|12)/ },
+    { pattern: /col-span-(2|3|4|5|6|7|8|9|10|11|12)/ },
     { pattern: /z-(50|100|150)/ },
     "flex-col",
     "bg-black",

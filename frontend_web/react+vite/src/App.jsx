@@ -3,7 +3,7 @@ import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
-    <div className="w-screen h-screen dark:bg-black">
+    <div className="w-screen h-screen dark:bg-[#0a0a0a]">
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
