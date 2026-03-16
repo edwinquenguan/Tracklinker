@@ -20,7 +20,7 @@ export default function UsersReport({ setReport, setRangeDate, setTitle }) {
           }}
         />
         <div className="flex items-center justify-end gap-1.5 pr-3">
-          <button className="px-4 py-1.5 bg-gray-200 rounded-xl shadow-xl">
+          <button className="px-4 py-1.5 bg-gray-100 rounded-xl shadow-xl">
             7d
           </button>
           <button className="px-4 py-1.5 border rounded-xl shadow-md">
