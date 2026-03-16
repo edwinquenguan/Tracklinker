@@ -4,8 +4,8 @@ import ActionButtons from "../../../../globals/components/ui/ActionButtons";
 
 export default function WarrantiesTable({ warranties, openModal, refetch }) {
   return (
-    <section className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden">
-      <table className="min-w-full min-h-full border-collapse">
+    <section className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden dark:border-[#303033]">
+      <table className="min-w-full min-h-full border-collapse dark:text-white">
         <thead className="sticky top-0 z-10">
           <tr className="h-[40px] border-b border-gray-200 dark:border-[#303033] text-sm">
             <th className="font-medium text-start pl-4">Estado</th>
@@ -23,7 +23,7 @@ export default function WarrantiesTable({ warranties, openModal, refetch }) {
 
         {/* Cuerpo de la tabla */}
         {warranties.map((warranty) => (
-          <tbody className="font-normal dark:text-gray-300">
+          <tbody className="font-normal dark:text-white">
             <tr
               onClick={(e) => {
                 e.stopPropagation();
@@ -31,16 +31,18 @@ export default function WarrantiesTable({ warranties, openModal, refetch }) {
               }}
               key={warranty.warranty_incidents_id}
               className="h-12 text-base overflow-x-auto overflow-y-auto transition duration-500 text-[#45474d] cursor-pointer
-                          hover:bg-[#e3e2e4] hover:shadow-md
-                          dark:hover:bg-[#101012]"
+                          hover:bg-[#e3e2e4] hover:shadow-md 
+                          dark:hover:bg-[#2d2d30] dark:text-white"
             >
-              <th className="font-normal text-start pl-4 text-sm">
+              <th className="font-normal text-start pl-3 text-sm">
                 <div
-                  className={`w-fit flex items-center px-1.5 py-0.5 gap-1.5 rounded-full border ${warrantyStatusConfig[warranty.warranty_status]?.color} ${warrantyStatusConfig[warranty.warranty_status]?.borderColor}`}
+                  className={`w-fit flex flex-wrap items-center pl-1.5 pr-3 py-0.5 gap-1.5 rounded-full border dark:border-transparent
+                    ${warrantyStatusConfig[warranty.warranty_status]?.styles}
+                    `}
                 >
                   <img
                     src={warrantyStatusConfig[warranty.warranty_status]?.icon}
-                    className="w-4 h-4"
+                    className="w-4 h-4 dark:brightness-[0.5]"
                   />
                   <span
                     className={`${warrantyStatusConfig[warranty.warranty_status]?.textColor}`}
