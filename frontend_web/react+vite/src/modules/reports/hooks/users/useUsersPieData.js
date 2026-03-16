@@ -14,10 +14,10 @@ export function useUsersPieData() {
       try {
         const data = await getUsersPieDataService(controllerRef.current.signal);
         const pieData = [
-          { name: "Administrador", value: data[0].users, color: "#2f3ab5" },
-          { name: "Almacen", value: data[1].users, color: "#8c2fba" },
-          { name: "Técnico", value: data[2].users, color: "#10B981" },
-          { name: "Cliente", value: data[3].users, color: "#F59E0B" },
+          { name: "Administrador", value: data[0].users, color: "#a5acfa" },
+          { name: "Almacen", value: data[1].users, color: "#5769ff" },
+          { name: "Técnico", value: data[2].users, color: "#4f5ff1" },
+          { name: "Cliente", value: data[3].users, color: "#2f3ab5" },
         ];
         setUsersData(pieData);
       } catch (error) {
