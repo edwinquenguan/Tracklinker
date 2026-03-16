@@ -1,6 +1,11 @@
 import ReportSectionCard from "./ReportSectionCard";
 
-export default function SectionsContainer({ sections, setReport }) {
+export default function SectionsContainer({
+  sections,
+  setReport,
+  setTopSectionVisiblity,
+}) {
+  setTopSectionVisiblity(true);
   return (
     <section
       className="

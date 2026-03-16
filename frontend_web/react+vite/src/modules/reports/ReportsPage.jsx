@@ -35,20 +35,51 @@ export default function ReportsPage() {
         <SectionsContainer
           sections={sections}
           setReport={setReport}
-          setTopSectionVisiblity={false}
+          setTopSectionVisiblity={setTopSectionVisiblity}
         />
       )}
       {/* Contenido principal dinamico */}
-      {report === "users" && <UsersReport setReport={setReport} />}
-      {report === "products" && <ProductsReport setReport={setReport} />}
-      {report === "categories" && <CategoriesReport setReport={setReport} />}
-      {report === "subcategories" && (
-        <SubcategoriesReport setReport={setReport} />
+      {report === "users" && (
+        <UsersReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
       )}
-      {report === "warranties" && <WarrantiesReport setReport={setReport} />}
-      {report === "suppliers" && <SuppliersReport setReport={setReport} />}
+      {report === "products" && (
+        <ProductsReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
+      )}
+      {report === "categories" && (
+        <CategoriesReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
+      )}
+      {report === "subcategories" && (
+        <SubcategoriesReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
+      )}
+      {report === "warranties" && (
+        <WarrantiesReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
+      )}
+      {report === "suppliers" && (
+        <SuppliersReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
+      )}
       {report === "transformations" && (
-        <TransformationsReport setReport={setReport} />
+        <TransformationsReport
+          setReport={setReport}
+          setTopSectionVisiblity={setTopSectionVisiblity}
+        />
       )}
 
       {/* Modales */}
