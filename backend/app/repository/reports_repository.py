@@ -138,6 +138,30 @@ class ReportsRepository:
             connection.close()
 
     @staticmethod
+    def find_users_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            COUNT(CASE WHEN user_date >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_users,
+            COUNT(CASE WHEN user_status = 1 THEN 1 END) as active_users,
+            COUNT(CASE WHEN user_status = 0 THEN 1 END) as inactive_users,
+            COUNT(user_id) as total_users
+        FROM USERS
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
     def find_users_by_date_range(start_date: str, end_date: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)

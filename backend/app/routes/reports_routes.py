@@ -28,6 +28,11 @@ def get_users_report():
 def get_monthly_user_growth():
     return ReportsController.get_monthly_user_growth()
 
+# Endpoint para obtener los usuarios activos, deshabilitados y recien creados
+@router.get("/get_users_by_status")
+def get_users_by_status():
+    return ReportsController.get_users_by_status()
+
 #Endpoint para ususarios creado en un rango de fechas
 @router.get("/date-range/{start_date}/{end_date}")
 def get_users_by_date_range(

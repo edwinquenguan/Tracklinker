@@ -39,6 +39,15 @@ class ReportsController:
         return {
             "data": data 
         }
+
+    @staticmethod
+    def get_users_by_status():
+        error, data = ReportsRepository.find_users_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
     
     @staticmethod
     def get_users_by_date_range(start_date: str, end_date: str):
