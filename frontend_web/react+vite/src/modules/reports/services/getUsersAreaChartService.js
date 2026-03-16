@@ -1,9 +1,9 @@
-import { apiRoutes } from "../../../../config/apiRoutes";
-import { getToken } from "../../../../utils/auth";
+import { apiRoutes } from "../../../config/apiRoutes";
+import { getToken } from "../../../utils/auth";
 
-export async function getUsersService(signal) {
+export async function getUsersAreaChartService(signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_rol`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_user_growth`,
     {
       method: "GET",
       headers: {
@@ -16,7 +16,6 @@ export async function getUsersService(signal) {
   if (!response.ok) {
     throw new Error("Error en la petición");
   }
- console.log("a")
   const data = await response.json();
 
   return data.data;
