@@ -119,21 +119,12 @@ class ReportsRepository:
 
         query = """
         SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE DATE(u.user_date) BETWEEN %s AND %s
+            MONTH(user_date) as month_num,
+            COUNT(user_id) as users
+        FROM USERS
+        WHERE YEAR(user_date) = 2025
+        GROUP BY MONTH(user_date)
+        ORDER BY MONTH(user_date) ASC
         """
 
         try:
