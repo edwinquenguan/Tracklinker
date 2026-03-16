@@ -1,4 +1,4 @@
-export default function MoreInfoModal({user}) {
+export default function MoreInfoModal({ user }) {
   return (
     <section className="flex flex-col justify-center dark:text-white">
       <p>
@@ -6,19 +6,19 @@ export default function MoreInfoModal({user}) {
       </p>
       <p>
         <strong>Nombre: </strong>
-        {user.user_name} {user.user_first_surname} {user.user_second_surname}
+        {user.name} {user.first_surname} {user.second_surname}
       </p>
       <p>
-        <strong>Teléfono:</strong> {user.user_phone}
+        <strong>Teléfono:</strong> {user.phone}
       </p>
       <p>
-        <strong>Correo:</strong> {user.user_email}
+        <strong>Correo:</strong> {user.email}
       </p>
       <p>
-        <strong>Dirección:</strong> {user.user_address}
+        <strong>Dirección:</strong> {user.address}
       </p>
       <p>
-        <strong>Fecha De Creación:</strong> {user.user_date}
+        <strong>Fecha De Creación:</strong> {user.date}
       </p>
     </section>
   );
