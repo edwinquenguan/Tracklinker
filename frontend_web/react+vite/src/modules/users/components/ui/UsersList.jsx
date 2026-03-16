@@ -7,13 +7,6 @@ export default function UsersList({
   refetch,
   openModal,
 }) {
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     /* Contenedor de los usuarios */
@@ -23,12 +16,7 @@ export default function UsersList({
           // Usuarios
           <UserItem
             key={user.user_id}
-            user_id={user.user_id}
-            user_name={user.user_name}
-            user_first_surname={user.user_first_surname}
-            user_second_surname={user.user_second_surname}
-            user_phone={user.user_phone}
-            user_rol={user.rol_name}
+            user={user}
             moreInfoOnClick={(e) => {
               e.stopPropagation();
               openModal(user, "info");
