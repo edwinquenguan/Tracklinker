@@ -29,6 +29,7 @@ CREATE TABLE USERS (
   user_password VARCHAR(255) NOT NULL COMMENT 'Contrasena del usuario, se debe almacenar hasheada para mayor seguridad (VARCHAR, Not null)',
   user_city VARCHAR(255) NOT NULL COMMENT 'Ciudad en la que se encuentra el usuario',
   user_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de creación del usuario (DATE, Not null)',
+  user_status INT NOT NULL DEFAULT 1 COMMENT "Estado en el que se encuentra el usuario 0 = deshabilitado, 1 = activo",
   PRIMARY KEY (user_id),
   INDEX fk_rol_users_idx (rol_id ASC),
   UNIQUE INDEX users_id_UNIQUE (user_id ASC),
