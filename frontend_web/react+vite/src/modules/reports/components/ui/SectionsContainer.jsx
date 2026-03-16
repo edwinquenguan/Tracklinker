@@ -1,11 +1,11 @@
 import ReportSectionCard from "./ReportSectionCard";
 
-export default function SectionsContainer({ sections, openModal }) {
+export default function SectionsContainer({ sections, setReport, setTitle }) {
   return (
     <section
       className="
         /* Layout Base */
-        h-full grid grid-cols-3 grid-rows-3 place-items-center
+        h-full grid grid-cols-3 grid-rows-3 place-items-center animate-blurUp
 
         /* Espaciados */
         gap-[20px_12px]
@@ -20,11 +20,14 @@ export default function SectionsContainer({ sections, openModal }) {
     >
       {sections.map((section) => (
         <ReportSectionCard
-          sectionOnClick={() => openModal(null, section.modalName, null)}
+          sectionOnClick={() => {
+            setTitle(`${section.cardName}`);
+            setReport(`${section.name}`);
+          }}
           sectionKey={section.name}
           sectionIcon={section.icon}
           sectionIconAlt={section.alt}
-          sectionName={section.name}
+          sectionName={section.cardName}
         />
       ))}
     </section>
