@@ -19,7 +19,7 @@ export default function CategoriesList({
   return (
     /* Contenedor de categorías */
     <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
-      <ul className="pt-3 flex flex-col gap-1">
+      <ul className="flex flex-col gap-1">
         {categories.map((category) => (
           <CategoryItem
             category={category}

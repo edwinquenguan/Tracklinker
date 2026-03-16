@@ -11,7 +11,7 @@ export default function UsersList({
   return (
     /* Contenedor de los usuarios */
     <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
-      <ul className="pt-3 flex flex-col gap-1">
+      <ul className="flex flex-col gap-1">
         {users.map((user) => (
           // Usuarios
           <UserItem

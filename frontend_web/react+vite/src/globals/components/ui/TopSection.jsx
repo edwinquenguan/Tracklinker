@@ -2,23 +2,21 @@ import FilterButton from "./FilterButton";
 import CreateButton from "./CreateButton";
 
 export default function TopSection({
+  sectionVisible = true,
   sectionName,
-  rangeDate = false,
   addButtonIcon,
   addButtonText,
   children,
   filterOnClick,
   filterButton = true,
   createOnClick,
+  createButtonVisibility,
 }) {
   return (
-    <section className="flex items-center justify-between px-2 pb-3">
-      <div className="flex flex-col">
-        <h1 className="font-medium dark:text-white">{sectionName}</h1>
-        <span className={`${rangeDate ? "block" : "hidden"} text-xs animate-blurUp`}>
-          {rangeDate}
-        </span>
-      </div>
+    <section
+      className={`h-14 flex items-center justify-between px-2 pb-3 ${sectionVisible ? "block" : "hidden"}`}
+    >
+      <h1 className="font-medium dark:text-white">{sectionName}</h1>
       <section className="flex gap-4">
         {children}
         <FilterButton
@@ -29,6 +27,7 @@ export default function TopSection({
           icon={addButtonIcon}
           text={addButtonText}
           onClick={createOnClick}
+          createButtonVisibility={createButtonVisibility}
         />
       </section>
     </section>

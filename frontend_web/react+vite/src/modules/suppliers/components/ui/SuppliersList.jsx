@@ -15,8 +15,8 @@ export default function SuppliersList({
     return <div>Error: {error.message}</div>;
   }
   return (
-    <section className="max-h-[95%] max-w-full pt-3 flex flex-col gap-1 overflow-x-auto overflow-y-auto">
-      <ul className="pt-3 flex flex-col gap-1">
+    <section className="max-h-[95%] max-w-full flex flex-col gap-1 overflow-x-auto overflow-y-auto">
+      <ul className="flex flex-col gap-1">
       {suppliers.map((supplier) => (
         <li>
           <SupplierItem
