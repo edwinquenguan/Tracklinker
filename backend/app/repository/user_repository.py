@@ -17,6 +17,7 @@ class UserRepository:
         query = """
         SELECT
             r.rol_name,
+            r.rol_id,
             u.user_id,
             u.user_name,
             u.user_first_surname,
@@ -36,6 +37,7 @@ class UserRepository:
             results = cursor.fetchall()
             data = [
                 {
+                    "rol_id": item["rol_id"],
                     "rol_name": item["rol_name"],
                     "id": item["user_id"],
                     "name": item["user_name"],

@@ -4,13 +4,13 @@ from datetime import datetime
 
 class User(BaseModel):
     rol_id: int
-    user_id: Optional[int] = None
-    user_name: str
-    user_first_surname: str
-    user_second_surname: str
-    user_address: str
-    user_city: str
-    user_password: str
-    user_email: EmailStr
-    user_phone: int
-    user_date: Optional[datetime] = None
+    id: Optional[int] = None
+    name: str
+    first_surname: str
+    second_surname: str
+    address: str
+    city: str
+    password: str
+    email: EmailStr
+    phone: int
+    date: Optional[datetime] = None
