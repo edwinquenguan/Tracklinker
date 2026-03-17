@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 from datetime import datetime
+from app.utils.date_formatter import date_formatter
 
 class CategoryRepository:
 
@@ -10,12 +11,20 @@ class CategoryRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        query = "SELECT * FROM categories"
+        query = "SELECT category_id, category_name, category_date FROM categories"
 
         try:
             cursor.execute(query)
             result = cursor.fetchall()
-            return None, result
+            data = [
+                {
+                    "category_id": item["category_id"],
+                    "category_name": item["category_name"],
+                    "category_date": date_formatter(item["category_date"])
+                }
+                for item in result
+            ]
+            return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
         finally:
