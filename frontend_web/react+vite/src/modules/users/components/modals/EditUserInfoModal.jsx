@@ -14,40 +14,36 @@ import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 export default function EditUserInfoModal({ user, onClose }) {
   const [innerModal, setInnerModal] = useState(null);
   const { roles } = useRoles();
-  const { handleChange, handleSubmit, loading, form } = useEditUser(
-    user.id,
-    {
-      rol_id: user.rol_id || "",
-      name: user.name || "",
-      first_surname: user.first_surname || "",
-      second_surname: user.second_surname || "",
-      address: user.address || "",
-      city: user.city || "",
-      email: user.email || "",
-      phone: user.phone || "",
-    },
-  );
+  const { handleChange, handleSubmit, loading, form } = useEditUser(user.id, {
+    rol_id: user.rol_id || "",
+    user_name: user.name || "",
+    user_first_surname: user.first_surname || "",
+    user_second_surname: user.second_surname || "",
+    user_address: user.address || "",
+    user_city: user.city || "",
+    user_email: user.email || "",
+    user_phone: user.phone || "",
+  },);
 
   return (
     <section className="flex flex-col items-center">
       <form action="" className="flex flex-col gap-2">
         <SelectMenu
           name={"rol_id"}
-          value={user.rol_name}
+          value={form.rol_id}
           id={"user_rol_menu"}
           spanText={"Rol"}
           onChange={handleChange}
         >
-          <option> Seleccionar </option>
           {roles.map((rol) => (
-            <option value={rol.rol_id} key={rol.id}>
+            <option value={rol.id} key={rol.id}>
               {rol.name}
             </option>
           ))}
         </SelectMenu>
         <FormField
           name={"user_name"}
-          value={form.name}
+          value={form.user_name}
           labelText={"Nombre"}
           onChange={handleChange}
           id={"name"}
@@ -55,7 +51,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_first_surname"}
-          value={form.first_surname}
+          value={form.user_first_surname}
           labelText={"Primer Apellido"}
           id={"first_surname"}
           onChange={handleChange}
@@ -63,7 +59,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_second_surname"}
-          value={form.second_surname}
+          value={form.user_second_surname}
           labelText={"Segundo Apellido"}
           id={"second_surname"}
           onChange={handleChange}
@@ -71,7 +67,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_phone"}
-          value={form.phone}
+          value={form.user_phone}
           labelText={"Número"}
           id={"phone"}
           onChange={handleChange}
@@ -80,7 +76,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         <FormField
           name={"user_email"}
           isRequired={true}
-          value={form.email}
+          value={form.user_email}
           labelText={"Correo Electrónico"}
           id={"email"}
           onChange={handleChange}
@@ -88,7 +84,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_address"}
-          value={form.address}
+          value={form.user_address}
           labelText={"Dirección"}
           id={"address"}
           onChange={handleChange}
