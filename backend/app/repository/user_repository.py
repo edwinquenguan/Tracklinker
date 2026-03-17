@@ -136,30 +136,41 @@ class UserRepository:
 
         # Validar email duplicado
         cursor.execute(
-            "SELECT user_id FROM USERS WHERE user_email = %s", (data["user_email"],))
+            "SELECT user_id FROM USERS WHERE user_email = %s", (data["email"],))
         if cursor.fetchone():
             cursor.close()
             connection.close()
             return None, False, "El correo ya está registrado"
 
         # Hashear la contraseña
-        password = data["user_password"].encode("utf-8")
-        data["user_password"] = bcrypt.hashpw(
+        password = data["password"].encode("utf-8")
+        data["password"] = bcrypt.hashpw(
             password, bcrypt.gensalt()).decode("utf-8")
 
-        # Fecha actual para indicar la hora a la que se creo el usuario
-        data["user_date"] = datetime.now()
-
-        # Arrays vacios para almacenar los datos del usuario
-        fields = list(data.keys())
-        placeholders = ["%s"] * len(fields)
-        values = list(data.values())
-
         # Petición a la base de datos
-        query = f"INSERT INTO USERS ({','.join(fields)}) VALUES({','.join(placeholders)})"
+        query = """INSERT INTO USERS (
+            rol_id,
+            user_name,
+            user_first_surname,
+            user_second_surname,
+            user_address,
+            user_city,
+            user_password,
+            user_email,
+            user_phone
+        ) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         try:
-            cursor.execute(query, values)
+            cursor.execute(query, (
+                data["rol_id"], 
+                data["name"], 
+                data["first_surname"], 
+                data["second_surname"], 
+                data["address"], 
+                data["city"], 
+                data["password"], 
+                data["email"], 
+                data["phone"]))
             connection.commit()
             return None, True, "Usuario creado correctamente"
         except Exception as e:
@@ -175,12 +186,6 @@ class UserRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        if "user_password" in user_data:
-            # Hashear la nueva contraseña
-            password = user_data["user_password"].encode("utf-8")
-            user_data["user_password"] = bcrypt.hashpw(
-                password, bcrypt.gensalt()).decode("utf-8")
-
         # Verificar si existe el usuario
         cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
         user = cursor.fetchone()
@@ -189,6 +194,22 @@ class UserRepository:
             cursor.close()
             connection.close()
             return "Usuario no encontrado", None, None
+        
+            
+        # Verificar si existe el correo y no duplicarlo
+        if "user_email" in user_data:
+            print(user_data["user_email"])
+            cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (user_data["user_email"],))
+            if cursor.fetchone():
+                cursor.close()
+                connection.close()
+                return None, False, "El correo ya está registrado"
+        
+        if "user_password" in user_data:
+            # Hashear la nueva contraseña
+            password = user_data["user_password"].encode("utf-8")
+            user_data["user_password"] = bcrypt.hashpw(
+                password, bcrypt.gensalt()).decode("utf-8")
 
         # Campos vacios para almacenar todo lo que va a actualizar
         fields = list(user_data.keys())
