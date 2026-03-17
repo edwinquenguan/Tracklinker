@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { modalIcons } from "../../../assets/icons/modalIcons";
 
-export default function Modal({ isOpen, title, children, onClose, type, z_index = "50" }) {
+export default function Modal({
+  isOpen,
+  title,
+  children,
+  onClose,
+  type,
+  z_index = "50",
+}) {
   const visible = isOpen || closing;
   const [closing, setClosing] = useState(false);
 
   // Validación de si la modal no está visible
   if (!visible) return null;
-  
+
   // Manejador para cuando la modal cierre
   const handleClose = () => {
     setClosing(true);
@@ -34,7 +41,7 @@ export default function Modal({ isOpen, title, children, onClose, type, z_index 
       {/* Card blanca o modal */}
       {/* stopPropagation sirve para que al momento de seleccionar la modal no la cierre */}
       <section
-        className={`bg-white rounded-xl shadow-lg w-[90%] p-6 relative animate-blur
+        className={`bg-white rounded-3xl shadow-lg w-[90%] p-6 relative animate-blur
             dark:bg-black dark:shadow-[0px_0px_0px_1px_#101012]
             ${closing ? "animate-modalFadeOut" : "animate-modalFadeIn"}
             ${
