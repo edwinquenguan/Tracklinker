@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 from app.models.product_model import Product
+from app.utils.date_formatter import date_formatter
 from app.models.product_details_model import ProductDetails
 from app.models.product_serial_model import ProductSerial
 from app.models.input_order_model import InputOrder
@@ -21,7 +22,7 @@ class ProductsRepository:
             data = [
                 {
                     "input_order_id": item[0],
-                    "input_date": item[1],
+                    "input_date": date_formatter(item[1]),
                     "input_order": item[2],
                     "category": item[3],
                     "subcategory": item[4],
@@ -273,11 +274,42 @@ class ProductsRepository:
                     connection.commit()
                 except Exception:
                     pass
-                return f"Error al crear el producto {error}",False, None
+                return f"Error al crear el producto {error}", False, None
 
             return None, True, f"Producto creado correctamente"
         except Exception as e:
             return f"Error al crear el producto {e}", False, None
+        finally:
+            cursor.close()
+            connection.close()
+
+    def update_product(product_id: int, product_data: dict):
+        data = product_data.model_dump()
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            "SELECT product_id FROM PRODUCTS WHERE product_id = %s",
+            (product_id,)
+        )
+        connection.commit()
+        product = cursor.fetchone()
+
+        if not product:
+            cursor.close()
+            connection.close()
+            return "Producto no encontrado", None, None
+
+        try:
+            cursor.execute("""
+            UPDATE PRODUCTS SET
+                product_
+            WHERE proudct_id = %s
+            """, (product_id)
+            )
+            return None, True, f"Producto actualizado correctamente"
+        except Exception as e:
+            return f"Error al intentar actualizar el producto {e}", False, None
         finally:
             cursor.close()
             connection.close()
