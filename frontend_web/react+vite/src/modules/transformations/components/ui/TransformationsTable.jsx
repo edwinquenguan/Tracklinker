@@ -8,17 +8,18 @@ export default function TransformationsTable({
 }) {
   return (
     <section>
-      <section className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden">
+      <section
+        className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
+      dark:border-[#303033]"
+      >
         <table className="min-h-full min-w-full">
           {/* Encabezado */}
           <thead className="sticky top-0 z-10">
-            <tr className="h-[40px] border-b border-gray-200 dark:border-[#303033] text-sm">
-              <th className="font-medium pl-4 text-start">Orden de salida</th>
+            <tr className="h-[40px] border-b border-gray-200 text-sm dark:text-white dark:border-[#303033]">
+              <th className="font-medium pl-4 text-start">N°</th>
               <th className="font-medium pl-4 text-start">Fecha de registro</th>
-              <th className="font-medium pl-4 text-start">
-                Serial de producto
-              </th>
-              <th className="font-medium pl-4 text-start">Finaliza garantía</th>
+              <th className="font-medium pl-4 text-start">Serial</th>
+              <th className="font-medium pl-4 text-start">Fecha de Finzalización</th>
               <th className="font-medium pl-4 text-start">Transformación</th>
               <th className="font-medium pl-4 text-center">Acciones</th>
             </tr>
@@ -26,17 +27,17 @@ export default function TransformationsTable({
 
           {/* Cuerpo de la tabla */}
           {transformations.map((transformation) => (
-            <tbody className="font-normal dark:text-gray-300">
+            <tbody className="font-normal dark:text-white">
               <tr
-              onClick={(e) => {
-                e.stopPropagation();
-                openModal(transformation, "info", refetch);
-              }}
-              key={transformation.output_details_id}
-              className="h-12 text-base overflow-x-auto overflow-y-auto transition duration-500 text-[#45474d] cursor-pointer
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openModal(transformation, "info", refetch);
+                }}
+                key={transformation.output_details_id}
+                className="h-12 text-base overflow-x-auto overflow-y-auto transition duration-500 text-[#45474d] cursor-pointer
                           hover:bg-[#e3e2e4] hover:shadow-md
-                          dark:hover:bg-[#101012]"
-              > 
+                          dark:hover:bg-[#2a2a30bd] dark:text-white"
+              >
                 <th className="font-normal text-start pl-4 text-sm">
                   {transformation.out_order_id}
                 </th>
