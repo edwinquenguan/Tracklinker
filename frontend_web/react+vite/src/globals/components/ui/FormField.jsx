@@ -22,8 +22,8 @@ export default function FormField({
         defaultValue={defaultValue}
         placeholder={placeholder}
         id={id}
-        className="w-full px-6 py-3 text-sm rounded-xl outline-none border bg-slate-50
-              dark:bg-transparent dark:border-[#101012] dark:text-white"
+        className="w-full px-6 py-3 text-sm rounded-xl outline-none border bg-[#e5e5e527] placeholder:text-[#8a8a8a]
+              dark:bg-[#ffffff10] dark:border-[#ffffff15] dark:text-[#a1a1a1]"
         autoComplete={autoComplete}
       />
     </div>
