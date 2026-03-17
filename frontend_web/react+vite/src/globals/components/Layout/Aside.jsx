@@ -8,8 +8,9 @@ import {
 import { useUser } from "../../hooks/useUser";
 
 // Menú lateral principal de opciones
-export default function Aside({ avatarOnClick }) {
+export default function Aside({ avatarOnClick, helpOnClick }) {
   const { user } = useUser();
+
   return (
     <aside
       className="flex px-2 py-3 order-2 overflow-hidden
@@ -44,7 +45,7 @@ export default function Aside({ avatarOnClick }) {
                 <section className="hidden xl:block text-center">
                   <span className="text-[#4a4a4d] font-medium dark:text-[#7E8088]">
                     {user.name} {user.first_surname}
-                  </span> 
+                  </span>
                 </section>
               </button>
             </li>
@@ -55,16 +56,16 @@ export default function Aside({ avatarOnClick }) {
                   {({ isActive }) => (
                     <section
                       className={`w-auto h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300 group
-                                md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
-                                    ${
-                                      isActive
-                                        ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white fill-white
-                                    dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
-                                        : `text-[#75777E] 
-                                    hover:bg-gray-200
-                                    dark:text-[7E8088] font-normal`
-                                    }`}
+                        md:w-full md:h-full md:py-3 md:px-7
+                        xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
+                        ${
+                          isActive
+                            ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white fill-white
+                        dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
+                            : `text-[#75777E] 
+                        hover:bg-gray-200
+                        dark:text-[7E8088] font-normal`
+                        }`}
                     >
                       <item.icon
                         className={`group-hover:stroke-black
@@ -81,14 +82,14 @@ export default function Aside({ avatarOnClick }) {
                       >
                         <span
                           className="text-nowrap text-xs  
-                                      md:hidden 
-                                      xl:block xl:text-base"
+                          md:hidden 
+                          xl:block xl:text-base"
                         >
                           {item.name}
                         </span>
                         <span
                           className="text-nowrap text-xs hidden
-                                        xl:block xl:text-base"
+                          xl:block xl:text-base"
                         >
                           {item.nameTwo}
                         </span>
@@ -102,9 +103,9 @@ export default function Aside({ avatarOnClick }) {
         </nav>
         <section
           className="hidden
-                md:block
-                lg:block
-                xl:block"
+          md:block
+          lg:block
+          xl:block"
         >
           {/* Segunda sección extendida */}
           <nav>
@@ -114,16 +115,16 @@ export default function Aside({ avatarOnClick }) {
                   {({ isActive }) => (
                     <section
                       className={`w-20 h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300 group
-                                md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
-                                    ${
-                                      isActive
-                                        ? `bg-black shadow-[0px_0px_32px_-9px_#000000] text-white
-                                    dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
-                                        : `text-[#75777E] 
-                                    hover:bg-gray-200
-                                    dark:text-[7E8088] font-normal`
-                                    }`}
+                        md:w-full md:h-full md:py-3 md:px-7
+                        xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
+                        ${
+                          isActive
+                            ? `bg-black shadow-[0px_0px_32px_-9px_#000000] text-white
+                        dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
+                            : `text-[#75777E] 
+                        hover:bg-gray-200
+                        dark:text-[7E8088] font-normal`
+                        }`}
                     >
                       <item.icon
                         className={`group-hover:stroke-black
@@ -140,14 +141,14 @@ export default function Aside({ avatarOnClick }) {
                       >
                         <span
                           className="text-center text-nowrap text-xs
-                                        md:hidden 
-                                        xl:block xl:text-base"
+                          md:hidden 
+                          xl:block xl:text-base"
                         >
                           {item.name}
                         </span>
                         <span
                           className="text-center text-nowrap text-xs hidden
-                                        xl:block xl:text-base"
+                          xl:block xl:text-base"
                         >
                           {item.nameTwo}
                         </span>
@@ -162,13 +163,13 @@ export default function Aside({ avatarOnClick }) {
           {/* Tercera Sección */}
           <nav
             className="p-0 order-2
-                    md:py-4
-                    xl:py-4"
+            md:py-4
+            xl:py-4"
           >
             <p
               className="text-sm py-1 pl-3 text-gray-300 hidden
-                        xl:block
-                        md:block"
+              xl:block
+              md:block"
             >
               Otros
             </p>
@@ -178,35 +179,31 @@ export default function Aside({ avatarOnClick }) {
                   key={item.name}
                   className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-950"
                 >
-                  <NavLink to={item.path} onClick={item.onClick}>
-                    {({ isActive }) => (
+                  {item.path ? (
+                    <NavLink to={item.path} onClick={item.onClick}>
                       <section
-                        className={`w-20 h-14 py-2.5 px-5 flex gap-2.5 items-center justify-center subpixel-antialiased rounded-xl group
-                          xl:justify-start xl:w-full xl:h-auto
-                          ${
-                            isActive
-                              ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect"
-                              : "text-[#75777E] dark:text-[7E8088]"
-                          }`}
+                        className="w-20 h-14 flex items-center justify-center gap-2.5 py-2.5 px-5 subpixel-antialiased rounded-xl text-[#75777E] group
+                          xl:justify-start xl:w-full xl:h-auto  dark:text-[7E8088]"
                       >
-                        <item.icon
-                          className={`
-                            ${
-                              isActive
-                                ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
-                                : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]"
-                            }`}
-                        />
-                        <span
-                          className={`hidden text-base xl:block font-medium
-                          ${isActive ? "" : "group-hover:text-black"}
-                          `}
-                        >
+                        <item.icon className="stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]" />
+                        <span className="hidden text-base font-medium group-hover:text-black xl:block">
                           {item.name}
                         </span>
                       </section>
-                    )}
-                  </NavLink>
+                    </NavLink>
+                  ) : (
+                    <button onClick={helpOnClick} className="w-full">
+                      <section
+                        className="w-full h-full flex items-center justify-center gap-2.5 py-2.5 px-5 subpixel-antialiased rounded-xl text-[#75777E] group
+                          xl:justify-start xl:w-full xl:h-auto  dark:text-[7E8088]"
+                      >
+                        <item.icon className="stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]" />
+                        <span className="hidden text-base font-medium group-hover:text-black xl:block">
+                          {item.name}
+                        </span>
+                      </section>
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

@@ -1,6 +1,6 @@
 import Aside from "./Aside";
 
-export default function Layout({ avatarOnClick, children }) {
+export default function Layout({ avatarOnClick, helpOnClick, children }) {
   return (
     // Container
     <div
@@ -9,7 +9,7 @@ export default function Layout({ avatarOnClick, children }) {
         xl:grid-cols-[270px_85%] xl:grid-rows-1
         "
     >
-      <Aside avatarOnClick={avatarOnClick} />
+      <Aside avatarOnClick={avatarOnClick} helpOnClick={helpOnClick} />
       <main
         className="min-w-full max-h-full px-1 py-4 dark:bg-black overflow-hidden order-1
             xl:order-2 md:order-2"
