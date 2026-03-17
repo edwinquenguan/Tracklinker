@@ -9,9 +9,10 @@ import TopSection from "../../globals/components/ui/TopSection";
 import ProductsTable from "./components/ui/ProductsTable";
 //Modales
 import Modal from "../../globals/components/modals/Modal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import AddProductModal from "./components/modals/AddProductModal";
 import EditProductModal from "./components/modals/EditProductModal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
 import ProductsFilterModal from "./components/modals/ProductsFilterModal";
 
 export default function ProductsPage() {
@@ -22,6 +23,9 @@ export default function ProductsPage() {
     <Layout
       avatarOnClick={() => {
         openModal(null, "user");
+      }}
+      helpOnClick={() => {
+        openModal(null, "help");
       }}
     >
       <TopSection
@@ -37,7 +41,11 @@ export default function ProductsPage() {
       />
 
       {/* Contenedor de la tabla */}
-      <ProductsTable products={products} openModal={openModal} refetch={fetchProducts}/>
+      <ProductsTable
+        products={products}
+        openModal={openModal}
+        refetch={fetchProducts}
+      />
 
       {/* Modales */}
       {isOpen && (
@@ -45,13 +53,15 @@ export default function ProductsPage() {
           title={
             modalType === "user"
               ? "Configuración"
-              : modalType === "filter"
-                ? "Filtrar"
-                : modalType === "add"
-                  ? "Agregar Producto"
-                  : modalType === "edit"
-                    ? "Editar Producto"
-                    : "Eliminar Producto"
+              : modalType === "help"
+                ? "Ayuda"
+                : modalType === "filter"
+                  ? "Filtrar"
+                  : modalType === "add"
+                    ? "Agregar Producto"
+                    : modalType === "edit"
+                      ? "Editar Producto"
+                      : "Eliminar Producto"
           }
           type={modalType}
           isOpen={isOpen}
@@ -65,6 +75,7 @@ export default function ProductsPage() {
           {modalType === "filter" && (
             <ProductsFilterModal onCloseModal={() => closeModal()} />
           )}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
           {modalType === "add" && (
             <AddProductModal
               onCloseModal={() => closeModal()}
