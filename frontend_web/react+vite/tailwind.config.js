@@ -53,6 +53,7 @@ export default {
     { pattern: /col-span-(2|3|4|5|6|7|8|9|10|11|12)/ },
     { pattern: /z-(50|100|150)/ },
     "flex-col",
+    "self-end",
     "bg-black",
     "bg-red-600",
     "w-64",
