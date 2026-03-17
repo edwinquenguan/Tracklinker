@@ -10,13 +10,13 @@ import { useState } from "react";
 
 export default function DeleteUserModal({ user, onClose }) {
   const [innerModal, setInnerModal] = useState(null);
-  const { handleSubmit, loading} = useDeleteUser(user.user_id);
+  const { handleSubmit, loading} = useDeleteUser(user.id);
   return (
     <section className="flex flex-col justify-center items-center dark:text-white">
       <p>
         ¿Seguro que deseas eliminar a{" "}
         <span className="font-medium">
-          {user.user_name} {user.user_first_surname}
+          {user.name} {user.first_surname}
         </span>
         ?
       </p>
