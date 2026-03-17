@@ -1,61 +1,53 @@
 // Componentes
-import FormField from "../../../../globals/components/ui/FormField";
-import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import DisabledFormField from "../../../../globals/components/ui/DisabledFormField";
-import SelectMenu from "../../../../globals/components/modals/SelectMenu";
 import Loader from "../../../../globals/components/ui/Loader";
+import FormField from "../../../../globals/components/ui/FormField";
+import SelectMenu from "../../../../globals/components/modals/SelectMenu";
+import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 // Hooks
-import { useEditUser } from "../../hooks/useEditUser";
-import { useRoles } from "../../hooks/useRoles";
 import { useState } from "react";
+import { useRoles } from "../../hooks/useRoles";
+import { useEditUser } from "../../hooks/useEditUser";
 // Modales
-import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
+import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
 export default function EditUserInfoModal({ user, onClose }) {
   const [innerModal, setInnerModal] = useState(null);
   const { roles } = useRoles();
   const { handleChange, handleSubmit, loading, form } = useEditUser(
-    user.user_id,
+    user.id,
     {
       rol_id: user.rol_id || "",
-      user_name: user.user_name || "",
-      user_first_surname: user.user_first_surname || "",
-      user_second_surname: user.user_second_surname || "",
-      user_address: user.user_address || "",
-      user_city: user.user_city || "",
-      user_email: user.user_email || "",
-      user_phone: user.user_phone || "",
+      name: user.name || "",
+      first_surname: user.first_surname || "",
+      second_surname: user.second_surname || "",
+      address: user.address || "",
+      city: user.city || "",
+      email: user.email || "",
+      phone: user.phone || "",
     },
   );
 
   return (
     <section className="flex flex-col items-center">
       <form action="" className="flex flex-col gap-2">
-        {/* ID del usuario */}
-        <DisabledFormField
-          hidden={"hidden"}
-          id={"user_id"}
-          value={user.user_id}
-        />
         <SelectMenu
           name={"rol_id"}
-          value={form.rol_id}
+          value={user.rol_name}
           id={"user_rol_menu"}
           spanText={"Rol"}
           onChange={handleChange}
         >
           <option> Seleccionar </option>
           {roles.map((rol) => (
-            <option value={rol.id} key={rol.id}>
+            <option value={rol.rol_id} key={rol.id}>
               {rol.name}
             </option>
           ))}
-          <option value="add-rol"> Agregar rol</option>
         </SelectMenu>
         <FormField
           name={"user_name"}
-          value={form.user_name}
+          value={form.name}
           labelText={"Nombre"}
           onChange={handleChange}
           id={"name"}
@@ -63,7 +55,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_first_surname"}
-          value={form.user_first_surname}
+          value={form.first_surname}
           labelText={"Primer Apellido"}
           id={"first_surname"}
           onChange={handleChange}
@@ -71,7 +63,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_second_surname"}
-          value={form.user_second_surname}
+          value={form.second_surname}
           labelText={"Segundo Apellido"}
           id={"second_surname"}
           onChange={handleChange}
@@ -79,7 +71,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_phone"}
-          value={form.user_phone}
+          value={form.phone}
           labelText={"Número"}
           id={"phone"}
           onChange={handleChange}
@@ -88,7 +80,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         <FormField
           name={"user_email"}
           isRequired={true}
-          value={form.user_email}
+          value={form.email}
           labelText={"Correo Electrónico"}
           id={"email"}
           onChange={handleChange}
@@ -96,7 +88,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         />
         <FormField
           name={"user_address"}
-          value={form.user_address}
+          value={form.address}
           labelText={"Dirección"}
           id={"address"}
           onChange={handleChange}
