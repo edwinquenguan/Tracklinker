@@ -32,7 +32,7 @@ export default function SelectMenu({
           }}
           disabled={addButtonInvisible}
           type="button"
-          className={`w-6 h-6 invert dark:invert-0 ${addButtonInvisible ? "hidden" : "opacity-100"}`}
+          className={`w-6 h-6 dark:invert ${addButtonInvisible ? "hidden" : "opacity-100"}`}
         >
           <img src={addIcon} />
         </button>
