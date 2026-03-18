@@ -161,133 +161,72 @@ class ReportsRepository:
             cursor.close()
             connection.close()
 
-    @staticmethod
-    def find_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE DATE(u.user_date) BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_users_grouped_by_create_date():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT 
-            DATE(u.user_date) AS create_date,
-            COUNT(*) AS user_count
-        FROM USERS AS u
-        GROUP BY DATE(u.user_date)
-        ORDER BY create_date;
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-    
-    @staticmethod
-    def find_disabled_users():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.is_active = FALSE
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_deleted_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date,
-            u.deleted_at
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.deleted_at BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
 
 #   ------------ REPORTES DE ------------
+
+    @staticmethod
+    def find_products():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            io.input_order_date,
+            ps.product_serial,
+            pd.product_detail_model,
+            pb.product_brand_name
+        FROM INPUT_ORDERS as io
+        INNER JOIN PRODUCT_SERIALS as ps
+        ON io.input_order_id = ps.input_order_id
+        INNER JOIN PRODUCTS as p
+        ON ps.product_id = p.product_id
+        INNER JOIN PRODUCT_DETAILS as pd
+        ON p.product_details_id = pd.product_details_id
+        INNER JOIN PRODUCT_BRANDS as pb
+        ON pd.product_brand_id = pb.product_brand_id
+        ORDER BY p.product_id DESC
+        LIMIT 6
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "input_date": date_formatter(item["input_order_date"]),
+                    "serial": item["product_serial"],
+                    "model": item["product_detail_model"],
+                    "brand": item["product_brand_name"]
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_products_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            COUNT(CASE WHEN ps.product_garanty_input >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_products,
+            COUNT(ps.poroduct_serial) as total_products,
+            COUNT(DISTINCT wi.product_serial) as warranties_products,
+            COUNT(DISTINCT od.product_serial) as tranformations_warranties
+        FROM PRODUCTS as p
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()

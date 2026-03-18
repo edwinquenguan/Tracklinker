@@ -33,74 +33,14 @@ def get_monthly_user_growth():
 def get_users_by_status():
     return ReportsController.get_users_by_status()
 
-#Endpoint para ususarios creado en un rango de fechas
-@router.get("/date-range/{start_date}/{end_date}")
-def get_users_by_date_range(
-    start_date: str,
-    end_date: str,
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_users_by_date_range(start_date, end_date)
-
-#Endopoint para obtener usuarios creados en un rango de fechas
-@router.get("/create-date-range/{start_date}/{end_date}")
-def get_report_users_by_create_date(
-    start_date: str,
-    end_date: str,
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_report_users_by_create_date(start_date, end_date) 
-
-#Endpoint para obtener todos los usuarios deshabilitados
-@router.get("/disabled-users/all")
-def get_disabled_users(
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_disabled_users()
-
-#Endpoint para obtener todos los usuarios eliminados en las fechas
-@router.get("/deleted-date-range/{start_date}/{end_date}")
-def get_deleted_users_by_date_range(
-    start_date: str,
-    end_date: str,
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_deleted_users_by_date_range(start_date, end_date)
-
 #   ------------ REPORTES DE PRODUCTOS ------------
 
-#Endopoint para obtener productos agregados en las fechas
-@router.get("/products-add-date-range/{start_date}/{end_date}")
-def get_products_added_by_date_range(
-    start_date: str,
-    end_date: str,
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_products_added_by_date_range(start_date, end_date)
+# Endpoint para obtener reporte de los ultimos 6 productos agregados
+@router.get("/get_products")
+def get_products_report():
+    return ReportsController.get_products()
 
 
-#Endponit para productos eliminados en las fechas
-@router.get("/products-deleted-date-range/{start_date}/{end_date}")
-def get_products_deleted_by_date_range(
-    start_date: str,
-    end_date: str,
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_products_deleted_by_date_range(start_date, end_date)
-
-#Endpoint para obtener productos existentes
-@router.get("/all-products")
-def get_all_products(
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_all_products()
-
-#Endpoint para obtener productos sin stock
-@router.get("/products-out-of-stock")
-def get_products_out_of_stock(
-    payload: dict = Depends(require_roles(["Admin", "Tecnico", "Almacen"]))
-):
-    return ReportsController.get_products_out_of_stock()
 
 #   ------------ REPORTES DE CATEGORIAS ------------
 

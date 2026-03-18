@@ -48,41 +48,13 @@ class ReportsController:
         return {
             "data": data 
         }
-    
+
+#   ------------ REPORTES DE PRODUCTOS ------------
     @staticmethod
-    def get_users_by_date_range(start_date: str, end_date: str):
-        error, users = ReportsRepository.find_users_by_date_range(start_date, end_date)
+    def get_products():
+        error, products = ReportsRepository.find_products()
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {
-            "data": users
+            "data": products
         }
-    
-    @staticmethod
-    def get_report_users_by_create_date():
-        error, users = ReportsRepository.find_users_grouped_by_create_date()
-        if error:
-            raise HTTPException(status_code=404, detail=error)
-        return {
-            "data": users
-        }
-    
-    @staticmethod
-    def get_disabled_users():
-        error, users = ReportsRepository.find_disabled_users()
-        if error:
-            raise HTTPException(status_code=404, detail=error)
-        return {
-            "data": users
-        }
-    
-    @staticmethod
-    def get_deleted_users_by_date_range(start_date: str, end_date: str):
-        error, users = ReportsRepository.find_deleted_users_by_date_range(start_date, end_date)
-        if error:
-            raise HTTPException(status_code=404, detail=error)
-        return {
-            "data": users
-        }
-    
-#   ------------ REPORTES DE ------------
