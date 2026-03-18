@@ -145,7 +145,7 @@ class UserRepository:
         # Hashear la contraseña
         password = data["password"].encode("utf-8")
         data["password"] = bcrypt.hashpw(
-            password, bcrypt.gensalt()).decode("utf-8")
+            password, bcrypt.gensalt(rounds=12)).decode("utf-8")
 
         # Petición a la base de datos
         query = """INSERT INTO USERS (
