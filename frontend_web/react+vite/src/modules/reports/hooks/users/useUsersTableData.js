@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getUsersTableDataService } from "../../services/getUsersTableDataService";
+import { getUsersTableDataService } from "../../services/users/getUsersTableDataService";
 
 export function useUsersTableData() {
   const [users, setUsers] = useState([]);

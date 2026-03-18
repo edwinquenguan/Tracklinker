@@ -1,9 +1,9 @@
-import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
+import { apiRoutes } from "../../../../config/apiRoutes";
+import { getToken } from "../../../../utils/auth";
 
-export async function getUsersDataService(signal) {
+export async function getUsersAreaChartService(signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_status`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_user_growth`,
     {
       method: "GET",
       headers: {

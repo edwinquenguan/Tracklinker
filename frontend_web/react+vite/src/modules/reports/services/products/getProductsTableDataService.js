@@ -1,9 +1,9 @@
-import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
+import { apiRoutes } from "../../../../config/apiRoutes";
+import { getToken } from "../../../../utils/auth";
 
-export async function getUsersTableDataService(signal) {
+export async function getProductsTableDataService(signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_products`,
     {
       method: "GET",
       headers: {

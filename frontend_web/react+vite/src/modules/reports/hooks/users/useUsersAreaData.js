@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { getUsersAreaChartService } from "../../services/getUsersAreaChartService";
 import { monthNames } from "../../../../constants/dateConstants";
+import { getUsersAreaChartService } from "../../services/users/getUsersAreaChartService";
 
 export function useUsersAreaData() {
   const [usersData, setUsersData] = useState([]);

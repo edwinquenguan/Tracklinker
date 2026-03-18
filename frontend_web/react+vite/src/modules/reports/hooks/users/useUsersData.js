@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getUsersDataService } from "../../services/getUsersDataService";
+import { getUsersDataService } from "../../services/users/getUsersDataService";
 
 export function useUsersData() {
   const [usersData, setUsersData] = useState([]);

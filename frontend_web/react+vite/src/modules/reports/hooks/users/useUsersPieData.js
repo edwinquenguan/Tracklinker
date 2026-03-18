@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getUsersPieDataService } from "../../services/getUsersPieDataService";
+import { getUsersPieDataService } from "../../services/users/getUsersPieDataService";
 
 export function useUsersPieData() {
   const [usersData, setUsersData] = useState([]);
