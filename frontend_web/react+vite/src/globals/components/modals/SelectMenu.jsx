@@ -3,25 +3,45 @@ export default function SelectMenu({
   name,
   onChange,
   value,
-  width,
   defaultValue,
   spanText,
   children,
+  addIcon,
+  addIconFunction,
+  addButtonInvisible = true,
 }) {
   return (
-    <section className={`flex flex-col px-2 gap-1 w-${width}`}>
+    <section className={`w-full flex flex-col gap-1`}>
       <span className="text-sm dark:text-white">{spanText}</span>
-      <select
-        defaultValue={defaultValue}
-        value={value}
-        onChange={onChange}
-        name={name}
-        id={id}
-        className="h-12 p-2 border outline-none
-            dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"
-      >
-        {children}
-      </select>
+      <div className="w-full flex items-center gap-1.5">
+        <div
+          className="w-full h-11 px-2 border border-[#a1a1a131] bg-[#e5e5e527] rounded-lg
+        dark:border-[#ffffff15] dark:bg-[#ffffff10] dark:text-[#a1a1a1]"
+        >
+          <select
+            defaultValue={defaultValue}
+            value={value}
+            onChange={onChange}
+            name={name}
+            id={id}
+            className="h-full w-full outline-none bg-transparent"
+          >
+            {children}
+          </select>
+        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (addIconFunction) addIconFunction(e);
+          }}
+          disabled={addButtonInvisible}
+          type="button"
+          className={`${addButtonInvisible ? "hidden" : "opacity-100"} w-12 h-11 flex items-center justify-center border rounded-xl
+              dark:invert`}
+        >
+          <img src={addIcon} className="h-5 w-5" />
+        </button>
+      </div>
     </section>
   );
 }

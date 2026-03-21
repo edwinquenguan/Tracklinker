@@ -1,4 +1,5 @@
 // Hooks
+import { useCatalog } from "./hooks/useCatalog";
 import { useModal } from "../../globals/hooks/useModal";
 // Iconos
 import { productsIcons } from "../../assets/icons/mainIcons";
@@ -8,20 +9,23 @@ import TopSection from "../../globals/components/ui/TopSection";
 import ProductsTable from "./components/ui/ProductsTable";
 //Modales
 import Modal from "../../globals/components/modals/Modal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import AddProductModal from "./components/modals/AddProductModal";
 import EditProductModal from "./components/modals/EditProductModal";
+import ProfileModal from "../../globals/components/modals/ProfileModal";
 import ProductsFilterModal from "./components/modals/ProductsFilterModal";
-import DeleteProductModal from "./components/modals/DeleteProductModal";
 
 export default function ProductsPage() {
-  const { modalType, selectedProduct, isOpen, openModal, closeModal } =
-    useModal();
+  const { modalType, modalData, isOpen, openModal, closeModal } = useModal();
+  const { fetchProducts, products } = useCatalog();
 
   return (
     <Layout
       avatarOnClick={() => {
         openModal(null, "user");
+      }}
+      helpOnClick={() => {
+        openModal(null, "help");
       }}
     >
       <TopSection
@@ -29,15 +33,19 @@ export default function ProductsPage() {
         addButtonIcon={productsIcons.addProductIcon}
         addButtonText={"Agregar Producto"}
         createOnClick={() => {
-          openModal(null, "add");
+          openModal(null, "add", fetchProducts);
         }}
         filterOnClick={() => {
           openModal(null, "filter");
         }}
       />
-      
+
       {/* Contenedor de la tabla */}
-      <ProductsTable openModal={openModal} />
+      <ProductsTable
+        products={products}
+        openModal={openModal}
+        refetch={fetchProducts}
+      />
 
       {/* Modales */}
       {isOpen && (
@@ -45,13 +53,15 @@ export default function ProductsPage() {
           title={
             modalType === "user"
               ? "Configuración"
-              : modalType === "filter"
-                ? "Filtrar"
-                : modalType === "add"
-                  ? "Agregar Producto"
-                  : modalType === "edit"
-                    ? "Editar Producto"
-                    : "Eliminar Producto"
+              : modalType === "help"
+                ? "Ayuda"
+                : modalType === "filter"
+                  ? "Filtrar"
+                  : modalType === "add"
+                    ? "Agregar Producto"
+                    : modalType === "edit"
+                      ? "Editar Producto"
+                      : "Eliminar Producto"
           }
           type={modalType}
           isOpen={isOpen}
@@ -60,34 +70,24 @@ export default function ProductsPage() {
           }}
         >
           {modalType === "user" && (
-            <ProfileModal
-              onClose={() => {
-                closeModal();
-              }}
-            />
+            <ProfileModal onClose={() => closeModal()} />
           )}
           {modalType === "filter" && (
-            <ProductsFilterModal onCloseModal={closeModal} />
+            <ProductsFilterModal onCloseModal={() => closeModal()} />
           )}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
           {modalType === "add" && (
             <AddProductModal
-              onCloseModal={closeModal}
-              selectedProduct={selectedProduct}
+              onCloseModal={() => closeModal()}
+              selectedProduct={modalData}
+              openModal={openModal}
             />
           )}
           {/* Modal para editar el producto */}
           {modalType === "edit" && (
             <EditProductModal
-              onCloseModal={closeModal}
-              selectedProduct={selectedProduct}
-            />
-          )}
-
-          {/* Modal para eliminar el producto */}
-          {modalType === "delete" && (
-            <DeleteProductModal
-              onCloseModal={closeModal}
-              selectedProduct={selectedProduct}
+              onCloseModal={() => closeModal()}
+              selectedProduct={modalData}
             />
           )}
         </Modal>

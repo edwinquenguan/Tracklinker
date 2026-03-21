@@ -7,21 +7,21 @@ export default function FilterModal({
   fieldName = "Creación",
 }) {
   return (
-    <section className="flex flex-col gap-3">
+    <section className="flex flex-col gap-3 px-1">
       <SelectMenu
         id={"order-by-name-menu"}
         name={"order-by-name-menu"}
         spanText={"Ordenar Por Nombre"}
       >
+        <option value="">Seleccionar</option>
         <option value="asc">a - Z</option>
         <option value="desc">Z - a</option>
       </SelectMenu>
+      <section className="w-full">{children}</section>
 
-      {children}
-
-      <section className="flex flex-col px-2 gap-1">
-        <span className="text-sm font-medium dark:text-white">
-          Ordenar por Fecha de {fieldName}:{" "}
+      <section className="flex flex-col gap-1">
+        <span className="text-sm dark:text-white">
+          Ordenar por Fecha de {fieldName}
         </span>
         {/* Inputs para seleccionar las fechas */}
         <section className="flex justify-between gap-1">
@@ -30,7 +30,7 @@ export default function FilterModal({
             <input
               id="start-date-input"
               type="date"
-              className="p-3 rounded-lg border text-sm outline-none
+              className="h-11 p-3 rounded-lg border text-sm outline-none
                         dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"
             />
           </div>
@@ -39,7 +39,7 @@ export default function FilterModal({
             <input
               id="finish-date-input"
               type="date"
-              className="p-3 rounded-lg border text-sm outline-none
+              className="h-11 p-3 rounded-lg border text-sm outline-none
                     dark:bg-[#2020226c] dark:border-[#101012] dark:text-white"
             />
           </div>

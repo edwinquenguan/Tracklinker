@@ -32,14 +32,18 @@ import inprocessIcon from "./main/warranties/inprocess-icon.svg";
 import completeIcon from "./main/warranties/complete-icon.svg";
 import editIcon from "./main/warranties/edit-info-icon.svg";
 
-
 /* Action Icons */
 import moreInfoIcon from "./main/actions/more-info-icon.svg";
 import editInfoIcon from "./main/actions/edit-info-icon.svg";
 import deleteIcon from "./main/actions/delete-user-icon.svg";
 import filterIcon from "./main/actions/filter-icon.svg";
-import addIcon from "./main/actions/add-icon.svg";
 import uploadIcon from "./main/actions/upload-icon.svg";
+import addIcon from "./main/actions/add-icon.svg";
+import visibility from "./main/actions/visibility.svg";
+import lockVisibility from "./main/actions/visibility-lock.svg";
+import arrowBack from "./main/actions/arrow-back.svg";
+import exportIcon from "./main/actions/export-icon.svg";
+import sendIcon from "./main/actions/send-icon.svg";
 
 export const dashboardIcons = {
   arrowDown,
@@ -78,6 +82,11 @@ export const actionsIcons = {
   filterIcon,
   addIcon,
   uploadIcon,
+  visibility,
+  lockVisibility,
+  arrowBack,
+  exportIcon,
+  sendIcon,
 };
 
 export const warrantiesIcons = {

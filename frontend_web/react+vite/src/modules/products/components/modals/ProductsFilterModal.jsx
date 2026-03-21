@@ -13,6 +13,7 @@ export default function ProductsFilterModal({ onCloseModal }) {
         name={"order-by-category-menu"}
         spanText={"Ordenar Por Categoria"}
       >
+        <option value="">Seleccionar</option>
         {categories.map((category) => (
           <option key={category.category_id} value={category.category_name}>
             {category.category_name}
@@ -21,10 +22,12 @@ export default function ProductsFilterModal({ onCloseModal }) {
       </SelectMenu>
       {/* Ordenar Por Subcategoria */}
       <SelectMenu
+        width={"w-full"}
         spanText={"Ordenar Por Subcategoria"}
         id={"order-by-subcategory-menu"}
         name={"order-by-subcategory-menu"}
       >
+        <option value="">Seleccionar</option>
         {subcategories.map((subcategory) => (
           <option
             key={subcategory.subcategory_id}
@@ -40,6 +43,7 @@ export default function ProductsFilterModal({ onCloseModal }) {
         id={"order-by-stock-menu"}
         name={"order-by-stock-menu"}
       >
+        <option value="">Seleccionar</option>
         <option value="minus of 20"> &lt; de 20 </option>
         <option value="minus of 50"> &lt; de 50 </option>
         <option value="minus of 100"> &lt; de 100 </option>
@@ -51,6 +55,7 @@ export default function ProductsFilterModal({ onCloseModal }) {
         id={"order-by-warranty-menu"}
         name={"order-by-warranty-menu"}
       >
+        <option value="">Seleccionar</option>
         <option value="minus of 6 months"> &lt; de 6 meses </option>
         <option value="minus of 12 months"> &lt; de 12 Meses </option>
         <option value="minus of 18 months"> &lt; de 18 Meses </option>

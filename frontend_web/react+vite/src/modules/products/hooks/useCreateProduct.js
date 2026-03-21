@@ -5,7 +5,6 @@ export function useCreateProduct(formData) {
   const [form, setForm] = useState(formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  console.log(form);
 
   function handleChange(e) {
     setForm((prev) => ({

@@ -1,6 +1,5 @@
 // Aqui se almacenan constantes que su contenido son listas fijas y cosas que casi nunca cambian
 import { asideIcons } from "../assets/icons/asideIcons";
-
 import { signOut } from "../modules/login/services/authService";
 
 export const avatarItem = {
@@ -70,7 +69,7 @@ export const extendedSectionItems = [
     alt: "",
   },
   {
-    name: "Transformaciones",
+    name: "Ordenes de salida",
     path: "/transformations",
     icon: asideIcons.transformationsIcon,
     alt: "",
@@ -80,9 +79,8 @@ export const extendedSectionItems = [
 export const secondSectionItems = [
   {
     name: "Ayuda",
-    path: "/help",
     icon: asideIcons.helpIcon,
-    alt: "Icono dee la seccion de ayuda",
+    alt: "Icono de la seccion de ayuda",
   },
   {
     name: "Cerrar Sesión",

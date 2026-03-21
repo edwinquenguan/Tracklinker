@@ -8,8 +8,9 @@ import {
 import { useUser } from "../../hooks/useUser";
 
 // Menú lateral principal de opciones
-export default function Aside({ avatarOnClick }) {
+export default function Aside({ avatarOnClick, helpOnClick }) {
   const { user } = useUser();
+
   return (
     <aside
       className="flex px-2 py-3 order-2 overflow-hidden
@@ -18,77 +19,77 @@ export default function Aside({ avatarOnClick }) {
         xl:flex-col xl:row-span-2 xl:px-5 xl:py-5 xl:order-1
         "
     >
-      {/* Primera Sección */}
-      <header
-        className="min-w-max flex justify-center items-center gap-3 p-[0_1rem] order-3 dark:text-white
-            xl:order-1 md:order-1"
-      >
-        <button onClick={avatarOnClick} className="w-[50px] h-[50px]">
-          <img
-            src={avatarItem.icon}
-            alt={avatarItem.alt}
-            className="w-full h-full"
-          />
-        </button>
-        <section className="hidden xl:block text-center">
-          <p className="font-medium">
-            {user.name} {user.first_surname}
-          </p>
-          <p className="font-normal"> Rol </p>
-        </section>
-      </header>
       {/* Menús de opciones */}
       <section className="flex flex-col gap-1 order-1">
-        {/* Segunda Sección */}
-        <nav
-          className="flex p-0
-                md:pt-4
-                xl:pt-4"
-        >
+        {/* Primera Sección */}
+        <nav className="flex p-0">
           <ul
             className="min-w-full flex gap-[3px]
                     md:flex-col
                     xl:flex-col"
           >
+            <li className="dark:hover:bg-gray-950">
+              <button
+                onClick={avatarOnClick}
+                className="w-full flex items-center justify-center py-1.5 px-4 gap-2.5 rounded-xl transition duration-300
+              hover:bg-gray-200 dark:text-gray-50
+              md:justify-start
+              xl:justify-start
+              "
+              >
+                <img
+                  src={avatarItem.icon}
+                  alt={avatarItem.alt}
+                  className="w-8 h-8"
+                />
+                <section className="hidden xl:block text-center">
+                  <span className="text-[#4a4a4d] font-medium dark:text-[#7E8088]">
+                    {user.name} {user.first_surname}
+                  </span>
+                </section>
+              </button>
+            </li>
             {/* Esto lo que hace es recorrer la constante y traer los datos uno a uno e ir creando un li para cada uno */}
             {firstSectionItems.map((item) => (
               <li key={item.name} className="rounded-xl dark:hover:bg-gray-950">
                 <NavLink to={item.path}>
                   {({ isActive }) => (
                     <section
-                      className={`w-auto h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300
-                                md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-3.5 xl:justify-start
-                                    ${
-                                      isActive
-                                        ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white
-                                    dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-slideIn`
-                                        : `text-[#7e8088] 
-                                    hover:bg-gray-200
-                                    dark:text-gray-500 font-normal`
-                                    }`}
+                      className={`w-auto h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300 group
+                        md:w-full md:h-full md:py-3 md:px-7
+                        xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
+                        ${
+                          isActive
+                            ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white fill-white
+                        dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
+                            : `text-[#75777E] 
+                        hover:bg-gray-200
+                        dark:text-[7E8088] font-normal`
+                        }`}
                     >
-                      <img
-                        src={item.icon}
-                        alt={item.alt}
-                        className={` w-[25px] h-[25px]
-                                        ${
-                                          isActive
-                                            ? "invert brightness-0 stroke-none dark:invert-0"
-                                            : ""
-                                        }`}
+                      <item.icon
+                        className={`group-hover:stroke-black
+                          ${
+                            isActive
+                              ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
+                              : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[70]"
+                          }`}
                       />
-                      <div className="flex gap-1">
+                      <div
+                        className={`flex gap-1 text-center font-medium
+                        ${isActive ? "" : "group-hover:text-black"}
+                        `}
+                      >
                         <span
-                          className="text-center text-nowrap text-xs
-                                        md:hidden 
-                                        xl:block xl:text-base"
+                          className="text-nowrap text-xs  
+                          md:hidden 
+                          xl:block xl:text-base"
                         >
                           {item.name}
                         </span>
                         <span
-                          className="text-center text-nowrap text-xs hidden
-                                        xl:block xl:text-base"
+                          className="text-nowrap text-xs hidden
+                          xl:block xl:text-base"
                         >
                           {item.nameTwo}
                         </span>
@@ -102,9 +103,9 @@ export default function Aside({ avatarOnClick }) {
         </nav>
         <section
           className="hidden
-                md:block
-                lg:block
-                xl:block"
+          md:block
+          lg:block
+          xl:block"
         >
           {/* Segunda sección extendida */}
           <nav>
@@ -113,39 +114,41 @@ export default function Aside({ avatarOnClick }) {
                 <NavLink to={item.path} key={item.name}>
                   {({ isActive }) => (
                     <section
-                      className={`w-20 h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300
-                                md:w-full md:h-full md:py-3 md:px-7
-                                xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-3.5 xl:justify-start
-                                    ${
-                                      isActive
-                                        ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white
-                                    dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-slideIn`
-                                        : `text-[#7e8088] 
-                                    hover:bg-gray-200
-                                    dark:text-gray-500 font-normal`
-                                    }`}
+                      className={`w-20 h-14 flex flex-col py-2.5 px-5 items-center justify-center subpixel-antialiased rounded-xl transition duration-300 group
+                        md:w-full md:h-full md:py-3 md:px-7
+                        xl:w-full xl:h-full xl:flex-row xl:py-2.5 xl:px-5 xl:gap-2.5 xl:justify-start
+                        ${
+                          isActive
+                            ? `bg-black shadow-[0px_0px_32px_-9px_#000000] text-white
+                        dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
+                            : `text-[#75777E] 
+                        hover:bg-gray-200
+                        dark:text-[7E8088] font-normal`
+                        }`}
                     >
-                      <img
-                        src={item.icon}
-                        alt={item.alt}
-                        className={` w-[25px] h-[25px]
-                                        ${
-                                          isActive
-                                            ? "invert brightness-0 stroke-none dark:invert-0"
-                                            : ""
-                                        }`}
+                      <item.icon
+                        className={`group-hover:stroke-black
+                          ${
+                            isActive
+                              ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
+                              : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[70]"
+                          }`}
                       />
-                      <div className="flex gap-1">
+                      <div
+                        className={`flex gap-1 font-medium
+                        ${isActive ? "" : "group-hover:text-black"}
+                        `}
+                      >
                         <span
                           className="text-center text-nowrap text-xs
-                                        md:hidden 
-                                        xl:block xl:text-base"
+                          md:hidden 
+                          xl:block xl:text-base"
                         >
                           {item.name}
                         </span>
                         <span
                           className="text-center text-nowrap text-xs hidden
-                                        xl:block xl:text-base"
+                          xl:block xl:text-base"
                         >
                           {item.nameTwo}
                         </span>
@@ -160,13 +163,13 @@ export default function Aside({ avatarOnClick }) {
           {/* Tercera Sección */}
           <nav
             className="p-0 order-2
-                    md:py-4
-                    xl:py-4"
+            md:py-4
+            xl:py-4"
           >
             <p
-              className="text-base py-1 pl-3 text-gray-500 hidden
-                        xl:block
-                        md:block"
+              className="text-sm py-1 pl-3 text-gray-300 hidden
+              xl:block
+              md:block"
             >
               Otros
             </p>
@@ -176,28 +179,31 @@ export default function Aside({ avatarOnClick }) {
                   key={item.name}
                   className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-gray-950"
                 >
-                  <NavLink
-                    to={item.path}
-                    onClick={item.onClick}
-                    className={({ isActive }) =>
-                      `w-20 h-14 py-2.5 px-5 flex gap-3.5 items-center justify-center subpixel-antialiased rounded-xl
-                                        xl:justify-start xl:w-full xl:h-auto
-                                        ${
-                                          isActive
-                                            ? "bg-black rounded-xl font-semibold shadow-[0px_0px_32px_-9px_#000000] text-white dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-slideIn"
-                                            : "text-gray-400 dark:text-gray-500"
-                                        }`
-                    }
-                  >
-                    <img
-                      src={item.icon}
-                      alt={item.alt}
-                      className="w-[25px] h-[25px]"
-                    />
-                    <span className="hidden text-base xl:block">
-                      {item.name}
-                    </span>
-                  </NavLink>
+                  {item.path ? (
+                    <NavLink to={item.path} onClick={item.onClick}>
+                      <section
+                        className="w-20 h-14 flex items-center justify-center gap-2.5 py-2.5 px-5 subpixel-antialiased rounded-xl text-[#75777E] group
+                          xl:justify-start xl:w-full xl:h-auto  dark:text-[7E8088]"
+                      >
+                        <item.icon className="stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]" />
+                        <span className="hidden text-base font-medium group-hover:text-black xl:block">
+                          {item.name}
+                        </span>
+                      </section>
+                    </NavLink>
+                  ) : (
+                    <button onClick={helpOnClick} className="w-full">
+                      <section
+                        className="w-full h-full flex items-center justify-center gap-2.5 py-2.5 px-5 subpixel-antialiased rounded-xl text-[#75777E] group
+                          xl:justify-start xl:w-full xl:h-auto  dark:text-[7E8088]"
+                      >
+                        <item.icon className="stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[70]" />
+                        <span className="hidden text-base font-medium group-hover:text-black xl:block">
+                          {item.name}
+                        </span>
+                      </section>
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

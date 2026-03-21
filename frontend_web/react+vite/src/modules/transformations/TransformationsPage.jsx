@@ -1,17 +1,13 @@
-// React
-import { useState } from "react";
-
-// Iconos
-import { actionsIcons } from "../../assets/icons/mainIcons";
-
 // Hooks
 import { useTransformations } from "./hooks/useTransformations";
-
-// Componentes base
+import { useModal } from "../../globals/hooks/useModal";
+// Iconos
+import { actionsIcons } from "../../assets/icons/mainIcons";
+// Componentes
 import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
 import ActionButtons from "../../globals/components/ui/ActionButtons";
-
+import TransformationsTable from "./components/ui/TransformationsTable";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
@@ -21,28 +17,11 @@ import EditTransformationModal from "./components/modals/EditTransformationModal
 import DeleteTransformationModal from "./components/modals/DeleteTransformationModal";
 
 export default function TransformationsPage() {
-  const {
-    transformations,
-    loading,
-    error,
-    fetchTransformations,
-  } = useTransformations();
+  const { transformations, loading, error, fetchTransformations } =
+    useTransformations();
 
-  const [selectedTransformation, setSelectedTransformation] = useState(null);
-  const [modalType, setModalType] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = (transformation, type) => {
-    setSelectedTransformation(transformation);
-    setModalType(type);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedTransformation(null);
-    setModalType(null);
-    setIsOpen(false);
-  };
+  const { modalType, isOpen, modalData, refetch, openModal, closeModal } =
+    useModal();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -54,94 +33,31 @@ export default function TransformationsPage() {
         filterOnClick={() => openModal(null, "filter")}
       />
 
-      <section className="max-h-[93%] max-w-[96%] overflow-x-auto overflow-y-auto overflow-hidden">
-        {loading && (
-          <p className="p-5 text-center">Cargando transformaciones...</p>
-        )}
-        {error && (
-          <p className="p-5 text-center text-red-500">Error: {error}</p>
-        )}
+      <TransformationsTable
+        transformations={transformations}
+        openModal={openModal}
+        refetch={fetchTransformations}
+        />
 
-        {!loading && !error && (
-          <ul className="pt-3 flex flex-col gap-1">
-            {/* Encabezado */}
-            <li className="flex items-center p-5 font-bold bg-gray-200 dark:bg-gray-800 rounded-lg sticky top-0 z-10">
-              <div className="w-1/5 text-center">Orden de salida</div>
-              <div className="w-1/5 text-center">Fecha de registro</div>
-              <div className="w-1/5 text-center">Serial de producto</div>
-              <div className="w-1/5 text-center">Finaliza garantía</div>
-              <div className="w-1/5 text-center">Transformación</div>
-              <div className="w-1/5 text-center">Acciones</div>
-            </li>
-
-            {/* Filas */}
-            {transformations.map((transformation) => (
-              <li
-                key={transformation.output_details_id}
-                className="flex items-center p-5 bg-[#f3eef5] rounded-lg shadow-md dark:bg-[#0f0f11] h-18 overflow-x-auto overflow-y-auto transition duration-500
-                          hover:bg-[#cdcacf] hover:shadow-lg
-                          dark:hover:bg-[#101012]"
-              >
-                <div className="w-1/5 text-center">
-                  {transformation.out_order_id}
-                </div>
-                <div className="w-1/5 text-center">
-                  {transformation.out_order_date}
-                </div>
-                <div className="w-1/5 text-center">
-                  {transformation.product_serial}
-                </div>
-                <div className="w-1/5 text-center">
-                  {transformation.out_product_garanty}
-                </div>
-                <div className="w-1/5 text-center">
-                  {transformation.product_transformation}
-                </div>
-                <div className="w-1/5 flex justify-center">
-                  <ActionButtons
-                    editButtonOnClick={() =>
-                      openModal(transformation, "edit")
-                    }
-                    deleteButtonOnClick={() =>
-                      openModal(transformation, "delete")
-                    }
-                  >
-                    <button
-                      className="hover:scale-125 transition"
-                      onClick={() => openModal(transformation, "info")}
-                    >
-                      <img
-                        src={actionsIcons.moreInfoIcon}
-                        alt="Más Info"
-                      />
-                    </button>
-                  </ActionButtons>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-
-      {/* Modales */}
+      {/* 
       {modalType && (
         <Modal
-          isOpen={isOpen}
-          onClose={closeModal}
-          title={
+        isOpen={isOpen}
+        onClose={closeModal}
+        title={
             modalType === "user"
               ? "Configuración"
               : modalType === "filter"
-              ? "Filtrar Transformaciones"
-              : modalType === "add"
-              ? "Crear Transformación"
-              : modalType === "edit"
-              ? "Editar Transformación"
-              : modalType === "delete"
-              ? "Eliminar Transformación"
-              : modalType === "info"
-              ? "Más Información"
-              : ""
+                ? "Filtrar Transformaciones"
+                : modalType === "add"
+                  ? "Crear Transformación"
+                  : modalType === "edit"
+                    ? "Editar Transformación"
+                    : modalType === "delete"
+                      ? "Eliminar Transformación"
+                      : modalType === "info"
+                        ? "Más Información"
+                        : ""
           }
         >
           {modalType === "user" && <ProfileModal onClose={closeModal} />}
@@ -192,8 +108,9 @@ export default function TransformationsPage() {
               </div>
             </address>
           )}
-        </Modal>
-      )}
+          </Modal>
+        )}
+        */}
     </Layout>
   );
 }

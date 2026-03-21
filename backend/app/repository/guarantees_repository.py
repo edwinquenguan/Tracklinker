@@ -1,5 +1,6 @@
 from app.core.database import get_connection
 from app.models.guarantiees_model import Guarantee
+from app.utils.date_formatter import date_formatter
 from datetime import datetime
 
 
@@ -11,20 +12,47 @@ class GuaranteeRepository:
         cursor = connection.cursor(dictionary=True)
 
         query = """
-        SELECT * FROM WARRANTY_INCIDENTS ORDER BY WARRANTY_INCIDENTS_ID DESC
+        SELECT
+            warranty_incidents_id,
+            product_serial,
+            warranty_customer,
+            warranty_customer,
+            warranty_phone,
+            warranty_address,
+            warranty_description,
+            warranty_link_attachments,
+            warranty_city,
+            warranty_date,
+            warranty_status
+        FROM WARRANTY_INCIDENTS
+        ORDER BY warranty_incidents_id DESC
         """
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            return None, results
+            data = [
+                {
+                    "warranty_incidents_id": item["warranty_incidents_id"],
+                    "product_serial": item["product_serial"],
+                    "warranty_customer": item["warranty_customer"],
+                    "warranty_phone": item["warranty_phone"],
+                    "warranty_address": item["warranty_address"],
+                    "warranty_description": item["warranty_description"],
+                    "warranty_link_attachments": item["warranty_link_attachments"],
+                    "warranty_city": item["warranty_city"],
+                    "warranty_date": date_formatter(item["warranty_date"]),
+                    "warranty_status": item["warranty_status"]
+                }
+                for item in results
+            ]
+            return None, data
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None
+            return f"Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
 
     # Obtener una incidencia por ID
-
     @staticmethod
     def find_by_id(warranty_incidents_id: int):
         connection = get_connection()

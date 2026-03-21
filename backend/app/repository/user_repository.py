@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.user_model import User
 from datetime import datetime
+from app.utils.date_formatter import date_formatter
 import bcrypt
 
 
@@ -15,8 +16,8 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            r.rol_id,
             r.rol_name,
+            r.rol_id,
             u.user_id,
             u.user_name,
             u.user_first_surname,
@@ -34,7 +35,23 @@ class UserRepository:
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            return None, results
+            data = [
+                {
+                    "rol_id": item["rol_id"],
+                    "rol_name": item["rol_name"],
+                    "id": item["user_id"],
+                    "name": item["user_name"],
+                    "first_surname": item["user_first_surname"],
+                    "second_surname": item["user_second_surname"],
+                    "phone": item["user_phone"],
+                    "email": item["user_email"],
+                    "address": item["user_address"],
+                    "city": item["user_city"],
+                    "date": date_formatter(item["user_date"]),
+                }
+                for item in results
+            ]
+            return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
         finally:
@@ -50,7 +67,6 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            r.rol_id,
             r.rol_name,
             u.user_id,
             u.user_name,
@@ -120,30 +136,41 @@ class UserRepository:
 
         # Validar email duplicado
         cursor.execute(
-            "SELECT user_id FROM USERS WHERE user_email = %s", (data["user_email"],))
+            "SELECT user_id FROM USERS WHERE user_email = %s", (data["email"],))
         if cursor.fetchone():
             cursor.close()
             connection.close()
             return None, False, "El correo ya está registrado"
 
         # Hashear la contraseña
-        password = data["user_password"].encode("utf-8")
-        data["user_password"] = bcrypt.hashpw(
-            password, bcrypt.gensalt()).decode("utf-8")
-
-        # Fecha actual para indicar la hora a la que se creo el usuario
-        data["user_date"] = datetime.now()
-
-        # Arrays vacios para almacenar los datos del usuario
-        fields = list(data.keys())
-        placeholders = ["%s"] * len(fields)
-        values = list(data.values())
+        password = data["password"].encode("utf-8")
+        data["password"] = bcrypt.hashpw(
+            password, bcrypt.gensalt(rounds=12)).decode("utf-8")
 
         # Petición a la base de datos
-        query = f"INSERT INTO USERS ({','.join(fields)}) VALUES({','.join(placeholders)})"
+        query = """INSERT INTO USERS (
+            rol_id,
+            user_name,
+            user_first_surname,
+            user_second_surname,
+            user_address,
+            user_city,
+            user_password,
+            user_email,
+            user_phone
+        ) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         try:
-            cursor.execute(query, values)
+            cursor.execute(query, (
+                data["rol_id"], 
+                data["name"], 
+                data["first_surname"], 
+                data["second_surname"], 
+                data["address"], 
+                data["city"], 
+                data["password"], 
+                data["email"], 
+                data["phone"]))
             connection.commit()
             return None, True, "Usuario creado correctamente"
         except Exception as e:
@@ -159,12 +186,6 @@ class UserRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        if "user_password" in user_data:
-            # Hashear la nueva contraseña
-            password = user_data["user_password"].encode("utf-8")
-            user_data["user_password"] = bcrypt.hashpw(
-                password, bcrypt.gensalt()).decode("utf-8")
-
         # Verificar si existe el usuario
         cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
         user = cursor.fetchone()
@@ -173,6 +194,22 @@ class UserRepository:
             cursor.close()
             connection.close()
             return "Usuario no encontrado", None, None
+        
+            
+        # Verificar si existe el correo y no duplicarlo
+        if "user_email" in user_data:
+            print(user_data["user_email"])
+            cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (user_data["user_email"],))
+            if cursor.fetchone():
+                cursor.close()
+                connection.close()
+                return None, False, "El correo ya está registrado"
+        
+        if "user_password" in user_data:
+            # Hashear la nueva contraseña
+            password = user_data["user_password"].encode("utf-8")
+            user_data["user_password"] = bcrypt.hashpw(
+                password, bcrypt.gensalt()).decode("utf-8")
 
         # Campos vacios para almacenar todo lo que va a actualizar
         fields = list(user_data.keys())
@@ -187,15 +224,10 @@ class UserRepository:
             cursor.execute(query, values)
             connection.commit()
 
-            # Consultar y devolver el usuario que actualizamos
-            cursor.execute(
-                "SELECT * FROM USERS WHERE user_id = %s", (user_id,))
-            result = cursor.fetchone()
-
-            return None, "Usuario actualizado correctamente", result
+            return None, True, "Usuario actualizado correctamente"
         except Exception as e:
             connection.rollback()
-            return f"Error al ejecutar la consulta: {e} {query}", None, None
+            return f"Error al ejecutar la consulta: {e}", False, None
         finally:
             cursor.close()
             connection.close()
@@ -226,49 +258,11 @@ class UserRepository:
             connection.close()
 
     @staticmethod
-    def find_by_rol(rol_id: int):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-        try:
-
-            query = """
-            SELECT
-                r.rol_name, 
-                u.user_id,
-                u.user_name,
-                u.user_first_surname,
-                u.user_second_surname,
-                u.user_phone,
-                u.user_email,
-                u.user_address,
-                u.user_city,
-                u.user_date
-            FROM USERS AS u 
-            INNER JOIN ROLES AS r 
-            ON u.rol_id = r.rol_id
-            WHERE r.rol_id = %s
-            """
-
-            # 2. Ejecutar y obtener resultados
-            cursor.execute(query, (rol_id,))
-            result = cursor.fetchall()  # Obtiene la lista completa de usuarios
-
-            return None, result
-
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-
-        finally:
-
-            cursor.close()
-            connection.close()
-
-    @staticmethod
     def find_all_roles():
         connection = get_connection()
         cursor = connection.cursor()
 
-        query = "SELECT * FROM ROLES"
+        query = "SELECT rol_id, rol_name FROM ROLES"
 
         try:
             cursor.execute(query)
@@ -287,132 +281,3 @@ class UserRepository:
         finally:
             connection.close()
             cursor.close()
-
-    @staticmethod
-    def find_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE DATE(u.user_date) BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_users_grouped_by_create_date():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        query = """
-        SELECT 
-            DATE(u.user_date) AS create_date,
-            COUNT(*) AS user_count
-        FROM USERS AS u
-        GROUP BY DATE(u.user_date)
-        ORDER BY create_date;
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-    
-    @staticmethod
-    def find_disabled_users():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.is_active = FALSE
-        """
-
-        try:
-            cursor.execute(query)
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def find_deleted_users_by_date_range(start_date: str, end_date: str):
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-
-        # Petición a la base de datos
-        query = """
-        SELECT
-            r.rol_id,
-            r.rol_name,
-            u.user_id,
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city,
-            u.user_date,
-            u.deleted_at
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
-        WHERE u.deleted_at BETWEEN %s AND %s
-        """
-
-        try:
-            cursor.execute(query, (start_date, end_date))
-            results = cursor.fetchall()
-            return None, results
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-        finally:
-            cursor.close()
-            connection.close()

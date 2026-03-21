@@ -133,3 +133,47 @@ LEFT JOIN (
     GROUP BY p.product_id
 ) AS stock
 ON v.product_id = stock.product_id;
+
+USE DB_TRACKLINKER;
+-- Vista para obtener todos los productos con sus categorias y subcategorias
+CREATE VIEW get_all_products_null AS
+SELECT
+    io.input_order_id,
+    io.input_order_date,
+    io.input_order_bill,
+    c.category_name,
+    sc.subcategory_name,
+    p.product_id,
+    s.supplier_name,
+    ps.product_serial,
+    pd.product_detail_model,
+    pd.product_details_id,
+    pd.product_detail_description,
+    pb.product_brand_name,
+    ps.product_garanty_input
+    FROM SUPPLIERS AS s
+    LEFT JOIN INPUT_ORDERS AS io
+    ON s.supplier_id = io.supplier_id
+    LEFT JOIN PRODUCT_SERIALS AS ps
+    ON io.input_order_id = ps.input_order_id
+    LEFT JOIN PRODUCTS as p
+    ON ps.product_id = p.product_id
+    LEFT JOIN SUBCATEGORIES AS sc
+    ON p.subcategory_id = sc.subcategory_id
+    LEFT JOIN CATEGORIES AS c
+    ON sc.category_id = c.category_id
+    LEFT JOIN PRODUCT_DETAILS AS pd
+    ON p.product_details_id = pd.product_details_id
+    LEFT JOIN PRODUCT_BRANDS AS pb
+    ON pd.product_brand_id = pb.product_brand_id
+    ORDER BY p.product_id;
+    
+SELECT * FROM get_all_products_with_stock;
+
+ SELECT 
+            product_brand_name AS brand,
+            SUM(stock) AS products
+        FROM get_all_products_with_stock
+        GROUP BY product_brand_name
+        ORDER BY products DESC
+        LIMIT 7;

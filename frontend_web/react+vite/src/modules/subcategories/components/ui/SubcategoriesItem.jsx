@@ -9,30 +9,25 @@ export default function SubcategoriesItem({
 }) {
   return (
     <li
-      className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300  
+      className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 cursor-pointer 
                     dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
       key={subcategory.subcategory_id}
-    > 
+      onClick={moreInfoOnClick}
+    >
       {/* Datos de la Subcategoría */}
       <article>
-        <address className="flex gap-3 not-italic font-medium dark:text-white">   
-          <p className="text-xl">
-            {subcategory.subcategory_name}
-          </p>  
+        <address className="flex gap-3 not-italic font-medium dark:text-white">
+          <p className="text-xl">{subcategory.subcategory_name}</p>
           <div className="flex items-center gap-2">
-            <img
-              src={asideIcons.categoriesIcon}
-              alt=""
-              className="w-5 h-5 dark:invert brightness-0"
-            />
+            <asideIcons.categoriesIcon className="w-5 h-5 stroke-[60] stroke-black dark:stroke-white" />
             <p>{subcategory.category_name}</p>
           </div>
         </address>
-      </article>  
+      </article>
       <SubcategoriesActions
-      editButtonOnClick={editButtonOnClick}
-      deleteButtonOnClick={deleteButtonOnClick}
-      moreInfoOnClick={moreInfoOnClick} 
+        editButtonOnClick={editButtonOnClick}
+        deleteButtonOnClick={deleteButtonOnClick}
+        moreInfoOnClick={moreInfoOnClick}
       />
     </li>
   );

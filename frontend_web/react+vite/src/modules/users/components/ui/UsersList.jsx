@@ -1,4 +1,6 @@
 import UserItem from "./UserItem";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function UsersList({
   users,
@@ -7,33 +9,37 @@ export default function UsersList({
   refetch,
   openModal,
 }) {
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
   return (
     /* Contenedor de los usuarios */
     <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
-      <ul className="pt-3 flex flex-col gap-1">
-        {users.map((user) => (
-          // Usuarios
-          <UserItem
-            key={user.user_id}
-            user_id={user.user_id}
-            user_name={user.user_name}
-            user_first_surname={user.user_first_surname}
-            user_second_surname={user.user_second_surname}
-            user_phone={user.user_phone}
-            user_rol={user.rol_name}
-            moreInfoOnClick={() => openModal(user, "info", refetch)}
-            editButtonOnClick={() => openModal(user, "edit", refetch)}
-            deleteButtonOnClick={() => openModal(user, "delete", refetch)}
-          />
-        ))}
+      <ul className="flex flex-col gap-1">
+        {loading ? (
+          <SkeletonTheme baseColor="#f3eef5" highlightColor="#848185">
+            <li>
+              <Skeleton height={"68px"} count={13} borderRadius={"8px"} />
+            </li>
+          </SkeletonTheme>
+        ) : (
+          users.map((user) => (
+            // Usuarios
+            <UserItem
+              key={user.id}
+              user={user}
+              moreInfoOnClick={(e) => {
+                e.stopPropagation();
+                openModal(user, "info");
+              }}
+              editButtonOnClick={(e) => {
+                e.stopPropagation();
+                openModal(user, "edit", refetch);
+              }}
+              deleteButtonOnClick={(e) => {
+                e.stopPropagation();
+                openModal(user, "delete", refetch);
+              }}
+            />
+          ))
+        )}
       </ul>
     </section>
   );

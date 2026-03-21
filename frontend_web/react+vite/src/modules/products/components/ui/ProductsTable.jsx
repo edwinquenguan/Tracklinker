@@ -1,35 +1,22 @@
 import ActionButtons from "../../../../globals/components/ui/ActionButtons";
-import { useCatalog } from "../../hooks/useCatalog";
 
-export default function ProductsTable({openModal}) {
-
-  const {products, loading, error } = useCatalog();
-
-  if (loading) {
-    return <div>Cargando...</div>
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
+export default function ProductsTable({ products, openModal, refetch }) {
   return (
     <section
-        className="max-h-[95%] max-w-full border border-gray-200 bg-[#f3eef5] rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
+      className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden
             dark:border-[#303033]"
-      >
-
+    >
       <table
         className="min-w-full min-h-full appearance-none border-collapse
               dark:bg-black"
       >
         {/* Cabecera de la tabla */}
         <thead
-          className="sticky top-0 bg-[#f3eef5] 
-                  dark:bg-black dark:text-gray-300"
+          className="sticky top-0 bg-white
+                   dark:text-white dark:bg-black"
         >
           <tr
-            className="h-[50px] border-b border-gray-200 
+            className="h-[40px] border-b border-gray-200 text-sm
                       dark:border-[#303033]"
           >
             <th className="font-medium text-start pl-4"> Fecha de Ingreso </th>
@@ -37,11 +24,10 @@ export default function ProductsTable({openModal}) {
             <th className="font-medium text-start pl-4"> Subcategoria </th>
             <th className="font-medium text-start pl-4"> Serial </th>
             <th className="font-medium text-start pl-4"> Modelo </th>
-            <th className="font-medium text-start pl-4"> Descripción </th>
+            <th className="font-medium text-start pl-2"> Descripción </th>
             <th className="font-medium text-start pl-4"> Marca </th>
-            <th className="font-medium text-start pl-4"> Stock </th>
             <th className="font-medium text-start pl-4"> Tiempo de Garantia </th>
-            <th className="font-medium text-start pl-4"> Acciones </th>
+            <th className="font-medium text-start pr-4"> Acciones </th>
           </tr>
         </thead>
 
@@ -49,92 +35,60 @@ export default function ProductsTable({openModal}) {
         {products.map((product) => (
           <tbody className="font-normal dark:text-gray-300">
             {/* Productos */}
-              <tr
-                key={product.product_serial}
-                className="h-12 overflow-x-auto overflow-y-auto transition duration-500
-                          hover:bg-[#cdcacf] hover:shadow-lg
+            <tr
+              key={product.product_serial}
+              className="text-base overflow-x-auto overflow-y-auto transition duration-500 text-[#45474d] dark:text-white
+                          hover:bg-[#e3e2e4] hover:shadow-md
                           dark:hover:bg-[#101012]"
-              >
-                {/* Fecha de ingreso */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.input_date}
-                </th>
+            >
+              {/* Fecha de ingreso */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.input_date}
+              </th>
 
-                {/* Orden de Entrada */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.input_order}
-                </th>
+              {/* Orden de Entrada */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.input_order}
+              </th>
 
-                {/* Subcategoria */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.subcategory}
-                </th>
+              {/* Subcategoria */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.subcategory}
+              </th>
 
-                {/* Serial */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.product_serial}
-                </th>
+              {/* Serial */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.product_serial}
+              </th>
 
-                {/* Modelo */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.model}
-                </th>
+              {/* Modelo */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.model}
+              </th>
 
-                {/* Descripción */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.description}
-                </th>
+              {/* Descripción */}
+              <th className="font-normal text-start pl-2 text-sm">
+                {product.description}
+              </th>
 
-                {/* Marca */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.brand}
-                </th>
+              {/* Marca */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.brand}
+              </th>
 
-                {/* Stock */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.stock}
-                </th>
+              {/* Tiempo de garantía */}
+              <th className="font-normal text-start pl-4 text-sm">
+                {product.warranty_time}
+              </th>
 
-                {/* Tiempo de garantía */}
-                <th
-                  className="font-normal text-start pl-4 text-sm
-                              xl:text-base"
-                >
-                  {product.warranty_time}
-                </th>
-
-                {/* Botones */}
-                <th className="flex h-14">
-                  <ActionButtons
-                    editButtonOnClick={() => openModal(product, "edit")}
-                    deleteButtonOnClick={() => openModal(product, "delete")}
-                  />
-                </th>
-              </tr>
+              {/* Botones */}
+              <th className="flex items-center justify-center h-14">
+                <ActionButtons
+                  editButtonOnClick={() => openModal(product, "edit", refetch)}
+                  deleteButtonVisible={false}
+                />
+              </th>
+            </tr>
           </tbody>
         ))}
       </table>

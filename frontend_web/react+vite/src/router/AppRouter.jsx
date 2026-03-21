@@ -10,7 +10,6 @@ import ReportsPage from "../modules/reports/ReportsPage";
 import WarrantiesPage from "../modules/warranties/WarrantiesPage";
 import SuppliersPage from "../modules/suppliers/SuppliersPage";
 import TransformationsPage from "../modules/transformations/TransformationsPage";
-import HelpPage from "../modules/help/HelpPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function AppRouter() {
@@ -54,9 +53,6 @@ export default function AppRouter() {
 
         {/* Página Transformaciones */}
         <Route path="/transformations" element={<TransformationsPage />} />
-
-        {/* Página Ayuda */}
-        <Route path="/help" element={<HelpPage />} />
       </Route>
     </Routes>
   );
