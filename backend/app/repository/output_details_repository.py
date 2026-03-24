@@ -1,5 +1,7 @@
 from app.core.database import get_connection
 from app.models.output_details_model import OutputDetails
+from app.repository.output_orders_repository import OutputOrdersRepository
+from app.models.output_orders_model import OutputOrder
 from datetime import datetime
 
 
@@ -51,24 +53,33 @@ class OutputDetailsrepository:
         connection = get_connection()
         cursor = connection.cursor()
 
-        # Fecha actual para indicar cuando se creo el detalle de salida
-        data["out_product_garanty"] = datetime.now()
-
-        # Arrays vacios para almacenar datos de detalles de salida
-        fields = list(data.keys())
-        placeholders = ["%s"] * len(fields)
-        values = list(data.values())
-
         # Petición a la base de datos
-
-        query = f"INSERT INTO output_details ({','.join(fields)}) VALUES({','.join(placeholders)})"
+        query = """
+        INSERT INTO OUTPUT_DETAILS (
+            out_order_id,
+            product_serial,
+            out_product_garanty,
+            product_transformation
+        ) VALUES (%s, %s, %s, %s)"""
 
         try:
-            cursor.execute(query, values)
+            error, success, out_order_id = OutputOrdersRepository.create(OutputOrder(
+                product_details_id=data["product_details_id"]
+            ))
+
+            if error is not None or not success:
+                return error, False, None
+            
+            cursor.execute(query, (
+                out_order_id,
+                data["product_serial"],
+                data["out_product_garanty"],
+                data["product_transformation"]
+                ))
             connection.commit()
-            return None, True, "Detalles de salida creados correctamente"
+            return None, True, "Orden de salida creada correctamente"
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None, None
+            return f"Error al ejecutar la consulta: {e}", False, None
         finally:
             cursor.close()
             connection.close()
@@ -99,22 +110,23 @@ class OutputDetailsrepository:
             connection.close()
 
     @staticmethod
-    def delete(output_details_id: int):
+    def delete(output_order_id: int):
         connection = get_connection()
         cursor = connection.cursor()
 
         cursor.execute(
-            "SELECT * FROM OUTPUT_DETAILS WHERE output_details_id = %s", (output_details_id,))
-        user = cursor.fetchone()
-        if not user:
+            "SELECT out_order_id FROM OUTPUT_ORDERS WHERE output_order_id = %s", (output_order_id,))
+        
+        output = cursor.fetchone()
+        if not output:
             cursor.close()
             connection.close()
             return "Detalle de salida no encontrado", False, None
 
-        query = "DELETE FROM OUTPUT_DETAILS WHERE output_details_id = %s"
+        query = "UPDATE OUTPUT_ORDERS SET (out_order_status = 0) WHERE output_order_id = %s"
 
         try:
-            cursor.execute(query, (output_details_id,))
+            cursor.execute(query, (output_order_id,))
             connection.commit()
             return None, True, "Detalle de salida eliminado correctamente"
         except Exception as e:
