@@ -73,9 +73,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE OUTPUT_ORDERS (
   out_order_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado de las ordenes de salida (INT, Not null)',
-  out_order_date DATE NOT NULL COMMENT 'Fecha de creación de la orden de salida, se usa para manejar control de las salidas (DATE, Not null)',
+  out_order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de creación de la orden de salida, se usa para manejar control de las salidas (DATE, Not null)',
   product_details_id INT NOT NULL COMMENT 'Requerimientos del cliente\n.\nCampo que registra las solicitudes, condiciones especiales o instrucciones específicas dadas por el cliente en relación con el pedido o la entrega del producto. Puede incluir información como empaques personalizados, fechas de entrega, condiciones de transporte, etiquetado especial, entre otros. Ya que asegura que las necesidades del cliente sean consideradas en el proceso logístico.',
-  amount INT NOT NULL COMMENT 'Cantidad\n\nRepresenta la cantidad asociada a un producto, transacción o movimiento. Su significado puede variar según el contexto del sistema (por ejemplo, unidades de producto, valor monetario o volumen físico), por lo tanto, debe estar claramente definido en cada caso de uso. Este campo es obligatorio.',
+  out_order_status INT NOT NULL DEFAULT 1 COMMENT "Estado en el que se encuentra la orden, 0 = Deshabilitada, 1 = Habilitada",
   PRIMARY KEY (out_order_id),
   INDEX fk_output_orders_product_details_idx (product_details_id ASC),
   CONSTRAINT fk_output_orders_product_details
