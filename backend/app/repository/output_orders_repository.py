@@ -51,24 +51,18 @@ class OutputOrdersRepository:
         connection = get_connection()
         cursor = connection.cursor()
 
-        # Fecha actual para indicar la hora a la que se creo la orden de salida
-        data["out_order_date"] = datetime.now()
-
-        # Arrays vacios para almacenar los datos de la orden de salida
-        fields = list(data.keys())
-        values = [data[field] for field in fields]
-
         # Construir la consulta SQL dinamicamente
-        query = f"""
-        INSERT INTO OUTPUT_ORDERS ({', '.join(fields)})
-        VALUES ({', '.join(['%s'] * len(values))})
+        query = """
+        INSERT INTO OUTPUT_ORDERS (product_details_id)
+        VALUES (%s)
         """
         try:
-            cursor.execute(query, values)
+            cursor.execute(query, (data["product_details_id"],))
             connection.commit()
-            return None, True, "✅ Orden de salida creada exitosamente."
+            output_order_id = cursor.lastrowid
+            return None, True, output_order_id
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", False, None
+            return f"Error al ejecutar la consulta: {e}", False, None
         finally:
             cursor.close()
             connection.close()
