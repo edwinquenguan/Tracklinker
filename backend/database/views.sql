@@ -22,6 +22,7 @@ SELECT
     io.input_order_date,
     io.input_order_bill,
     c.category_name,
+    sc.subcategory_id,
     sc.subcategory_name,
     p.product_id,
     s.supplier_name,
@@ -99,6 +100,7 @@ CREATE VIEW get_output_products AS
     SELECT
     oo.out_order_id,
     oo.out_order_date,
+    oo.out_order_status,
     od.output_details_id,
     od.product_serial,
     od.out_product_garanty,
@@ -168,7 +170,7 @@ SELECT
     ON pd.product_brand_id = pb.product_brand_id
     ORDER BY p.product_id;
     
-SELECT * FROM get_all_products_with_stock;
+SELECT * FROM get_output_products;
 
  SELECT 
             product_brand_name AS brand,

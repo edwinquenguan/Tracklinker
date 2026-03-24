@@ -10,7 +10,7 @@ class OutputDetailsController:
     
    @staticmethod
    def get_all_outputDetails():
-    error, outputDetails= OutputDetailsrepository.find_all_outpuDetails()
+    error, outputDetails = OutputDetailsrepository.find_all_outpuDetails()
     if error:
       raise HTTPException(status_code=400, detail=error)
     return{
@@ -27,8 +27,8 @@ class OutputDetailsController:
      }
    
    @staticmethod
-   def create_outputDetails(outputDetails:OutputDetails):
-     error, success, message= OutputDetailsrepository.create(outputDetails)
+   def create_outputDetails(output_details_data:OutputDetails):
+     error, success, message = OutputDetailsrepository.create(output_details_data)
      if error:
        raise HTTPException(status_code=400, detail=error)
      return{
@@ -37,18 +37,18 @@ class OutputDetailsController:
      }
    
    @staticmethod
-   def update_outputDetails(outputDetails:int, output_details_id: dict):
-     error, message, outputDetails = OutputDetailsrepository.update( output_details_id, outputDetails)
+   def update_outputDetails(output_details_id:int, output_details_data: dict):
+     error, success, message = OutputDetailsrepository.update(output_details_id, output_details_data)
      if error:
        raise HTTPException (status_code=400, detail=error)
      return{
-       "message": message,
-       "data": outputDetails
+        "success": success,
+        "message": message
      }
    
    @staticmethod
-   def delete_outputDetails(output_details_id:int):
-     error, success, message= OutputDetailsrepository.delete(output_details_id)
+   def disable_output(out_order_id:int):
+     error, success, message = OutputDetailsrepository.disable(out_order_id)
      if error:
        raise HTTPException(status_code=400, detail=error)
      return{
@@ -56,6 +56,16 @@ class OutputDetailsController:
        "message": message
      }
    
+   @staticmethod
+   def enable_output(out_order_id):
+      error, success, message = OutputDetailsrepository.enable(out_order_id)
+      if error:
+         raise HTTPException(status_code=400, detail=error)
+      return {
+         "success": success,
+         "message": message
+      }
+
    @staticmethod
    def get_transformations_by_date_range(start_date: str, end_date: str):
      error, transformations = OutputDetailsrepository.find_transformations_by_date_range(start_date, end_date)
