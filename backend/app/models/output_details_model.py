@@ -7,5 +7,4 @@ class OutputDetails(BaseModel):
     output_details_id: Optional[int] = None
     out_product_garanty: str
     product_transformation: str
-    product_details_id : int
    
