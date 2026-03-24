@@ -6,4 +6,3 @@ class OutputOrder(BaseModel):
     out_order_id: Optional[int] = None
     out_order_date: Optional[datetime] = None
     product_details_id: int
-    amount: int
