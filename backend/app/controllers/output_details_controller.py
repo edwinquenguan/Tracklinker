@@ -47,8 +47,8 @@ class OutputDetailsController:
      }
    
    @staticmethod
-   def delete_outputDetails(output_details_id:int):
-     error, success, message= OutputDetailsrepository.delete(output_details_id)
+   def delete_outputDetails(output_order_id:int):
+     error, success, message= OutputDetailsrepository.delete(output_order_id)
      if error:
        raise HTTPException(status_code=400, detail=error)
      return{
