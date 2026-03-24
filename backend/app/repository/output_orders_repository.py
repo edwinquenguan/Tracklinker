@@ -45,19 +45,17 @@ class OutputOrdersRepository:
             connection.close()
 
     @staticmethod
-    def create(output_order_data: OutputOrder):
-        data = output_order_data.model_dump()
-
+    def create():
         connection = get_connection()
         cursor = connection.cursor()
 
         # Construir la consulta SQL dinamicamente
         query = """
-        INSERT INTO OUTPUT_ORDERS (product_details_id)
-        VALUES (%s)
+        INSERT INTO OUTPUT_ORDERS (out_order_status)
+        VALUES (1)
         """
         try:
-            cursor.execute(query, (data["product_details_id"],))
+            cursor.execute(query)
             connection.commit()
             output_order_id = cursor.lastrowid
             return None, True, output_order_id
@@ -72,18 +70,16 @@ class OutputOrdersRepository:
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        # Construir la consulta SQL dinamicamente
-        fields = ", ".join([f"{key} = %s" for key in output_order_data.keys()])
-        values = list(output_order_data.values())
-        values.append(output_order_id)  # Agregar el ID al final de los valores
-
-        query = f"""
-        UPDATE OUTPUT_ORDERS
-        SET {fields}
+        query = """
+        UPDATE OUTPUT_ORDERS SET 
+            out_order_status = %s
         WHERE out_order_id = %s
         """
         try:
-            cursor.execute(query, values)
+            cursor.execute(query, (
+                output_order_data["out_order_status"],
+                output_order_id
+            ))
             connection.commit()
 
             # Obtener la orden de salida actualizada
@@ -91,27 +87,9 @@ class OutputOrdersRepository:
                 "SELECT * FROM OUTPUT_ORDERS WHERE out_order_id = %s", (output_order_id,))
             updated_order = cursor.fetchone()
 
-            return None, "✅ Orden de salida actualizada exitosamente.", updated_order
+            return None, "Orden de salida actualizada exitosamente.", updated_order
         except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", None, None
-        finally:
-            cursor.close()
-            connection.close()
-
-    @staticmethod
-    def delete(output_order_id: int):
-        connection = get_connection()
-        cursor = connection.cursor()
-
-        query = """
-        DELETE FROM OUTPUT_ORDERS WHERE out_order_id = %s
-        """
-        try:
-            cursor.execute(query, (output_order_id,))
-            connection.commit()
-            return None, True, "✅ Orden de salida eliminada exitosamente."
-        except Exception as e:
-            return f"❌ Error al ejecutar la consulta: {e}", False, None
+            return f"Error al ejecutar la consulta: {e}", None, None
         finally:
             cursor.close()
             connection.close()
