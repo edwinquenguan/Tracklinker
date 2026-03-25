@@ -162,7 +162,7 @@ class ReportsRepository:
             connection.close()
 
 
-#   ------------ REPORTES DE ------------
+#   ------------ REPORTES DE PRODUCTOS ------------
 
     @staticmethod
     def find_products():
@@ -219,6 +219,67 @@ class ReportsRepository:
             COUNT(DISTINCT wi.product_serial) as warranties_products,
             COUNT(DISTINCT od.product_serial) as tranformations_warranties
         FROM PRODUCTS as p
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_monthly_products_growth():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            MONTHNAME(io.input_order_date) as month,
+            COUNT(DISTINCT ps.product_serial) as products
+        FROM PRODUCT_SERIALS as ps
+        INNER JOIN INPUT_ORDERS as io
+            ON ps.input_order_id = io.input_order_id
+        WHERE YEAR(io.input_order_date) = 2024
+        GROUP BY MONTHNAME(io.input_order_date)
+        ORDER BY MONTHNAME(io.input_order_date) ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "month": item["month"],
+                    "products": item["products"]
+                }
+                for item in results
+            ]
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+
+    @staticmethod
+    def get_count_of_all():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            COUNT(DISTINCT p.product_id) as products,
+            COUNT(DISTINCT CASE WHEN u.rol_id = 4 THEN u.user_id END) as clients,
+            COUNT(DISTINCT u.user_id) as users
+        FROM USERS as u
+        INNER JOIN CUSTOMERS as c
+            ON u.user_id = c.user_id
+        CROSS JOIN PRODUCTS AS p
         """
 
         try:
