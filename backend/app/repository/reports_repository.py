@@ -277,8 +277,6 @@ class ReportsRepository:
             COUNT(DISTINCT CASE WHEN u.rol_id = 4 THEN u.user_id END) as clients,
             COUNT(DISTINCT u.user_id) as users
         FROM USERS as u
-        INNER JOIN CUSTOMERS as c
-            ON u.user_id = c.user_id
         CROSS JOIN PRODUCTS AS p
         """
 
