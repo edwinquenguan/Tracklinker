@@ -5,6 +5,10 @@ export default {
   theme: {
     extend: {
       keyframes: {
+        rotation: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
         modalFadeIn: {
           "0%": { opacity: "0", transform: "scale(0.95)", filter: "blur(4px)" },
           "100%": { opacity: "1", transform: "scale(1)", filter: "blur(0px)" },
@@ -40,6 +44,7 @@ export default {
         },
       },
       animation: {
+        rotation: "rotation 1s linear infinite",
         iconFill: "iconFill 0.3s cubic-bezier(.48, 0, 0, 1)",
         clickEffect: "clickEffect 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
         modalFadeIn: "modalFadeIn 0.3s ease-out forwards",
