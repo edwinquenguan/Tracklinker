@@ -12,7 +12,7 @@ import Modal from "../../globals/components/modals/Modal";
 import HelpModal from "../../globals/components/modals/HelpModal";
 import AddProductModal from "./components/modals/AddProductModal";
 import EditProductModal from "./components/modals/EditProductModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 import ProductsFilterModal from "./components/modals/ProductsFilterModal";
 
 export default function ProductsPage() {
@@ -70,7 +70,7 @@ export default function ProductsPage() {
           }}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
           {modalType === "filter" && (
             <ProductsFilterModal onCloseModal={() => closeModal()} />

@@ -6,10 +6,10 @@ import { actionsIcons } from "../../assets/icons/mainIcons";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
 import AddSubcategoryModal from "./components/modals/AddSubcategoryModal";
 import EditSubcategoryModal from "./components/modals/EditSubcategoryModal";
 import DeleteSubcategoryModal from "./components/modals/DeleteSubcategoryModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 // Componentes
 import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
@@ -59,7 +59,7 @@ export default function SubcategoriesPage() {
           onClose={() => closeModal()}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
           {modalType === "filter" && (
             <FilterModal onClose={() => closeModal()}></FilterModal>
