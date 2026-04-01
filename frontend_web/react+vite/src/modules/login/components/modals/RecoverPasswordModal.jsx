@@ -12,11 +12,9 @@ export default function RecoverPasswordModal({cancelButtonOnClick, confirmButton
         placeholder={"Escribe tu correo aquí"}
       />
       <ConfirmCancelButtons
-        flexDirection={"flex-col"}
-        cancelText="Volver al login"
-        cancelButtonWidth={"w-52"}
+        cancelText="Cancelar"
         cancelButtonOnClick={cancelButtonOnClick}
-        confirmText="Restablecer Contraseña"
+        confirmText="Restablecer"
         confirmButtonOnClick={confirmButtonOnClick}
       />
     </section>
