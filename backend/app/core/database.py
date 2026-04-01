@@ -12,12 +12,10 @@ def get_connection():
             password=settings.DB_PASSWORD,
             database=settings.DB_NAME
         )
-        if connection.is_connected():
-            print("✅ Conexión exitosa a la base de datos")
         return connection
 
     except Error as e:
-        print(f"⚠️ Error al conectar a la base de datos: {e}")
+        print(f"Error al conectar a la base de datos: {e}")
         return None
 
 get_connection()

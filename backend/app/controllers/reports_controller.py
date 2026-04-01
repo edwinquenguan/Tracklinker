@@ -58,3 +58,20 @@ class ReportsController:
         return {
             "data": products
         }
+    @staticmethod
+    def get_monthly_products_growth():
+        error, data = ReportsRepository.find_monthly_products_growth()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_count_of_all():
+        error, data = ReportsRepository.get_count_of_all()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
