@@ -39,7 +39,8 @@ export default function LoginForm({ openModal }) {
                 type="text"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
-                className="py-1 text-sm outline-none dark:bg-transparent dark:border-[#101012] dark:text-white"
+                className="py-1 text-sm outline-none dark:bg-transparent 
+                dark:border-[#101012]dark:text-white dark:placeholder:text-[#7c7c7cb5]"
               />
             </div>
           </section>
@@ -59,7 +60,8 @@ export default function LoginForm({ openModal }) {
                 type={showPassword ? "text" : "password"}
                 placeholder="Contraseña"
                 onChange={(e) => setPassword(e.target.value)}
-                className="py-1 text-sm outline-none dark:bg-transparent dark:border-[#101012] dark:text-white"
+                className="py-1 text-sm outline-none dark:bg-transparent 
+                dark:border-[#101012] dark:text-white dark:placeholder:text-[#7c7c7cb5]"
               />
             </div>
             <button
@@ -73,7 +75,7 @@ export default function LoginForm({ openModal }) {
                     : actionsIcons.lockVisibility
                 }
                 alt=""
-                className="dark:invert"
+                className="dark:invert dark:brightness-0"
               />
             </button>
           </section>
