@@ -9,7 +9,7 @@ import TopSection from "../../globals/components/ui/TopSection";
 // Modales
 import DownloadModal from "./components/modals/DownloadModal";
 import FilterModal from "../../globals/components/modals/FilterModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 import ChartsContainer from "./components/ui/ChartsContainer";
 
 export default function DashBoardPage() {
@@ -42,7 +42,7 @@ export default function DashBoardPage() {
           onClose={() => closeModal()}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
           {modalType === "filter" && (
             <FilterModal onClose={() => closeModal()} />

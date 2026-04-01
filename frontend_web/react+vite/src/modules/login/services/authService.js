@@ -2,55 +2,40 @@ import { apiRoutes } from "../../../config/apiRoutes";
 
 // Función para loguearse
 export async function login(email, password) {
-  try {
-    const res = await fetch(`${apiRoutes.apiUrl}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
+  const res = await fetch(`${apiRoutes.apiUrl}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+    credentials: "include",
+  });
 
-    // Validamos si el estado de la respuesta no fue 200
-    if (!res.ok) {
-      throw new Error("Credenciales Invalidas");
-    }
-
-    // Almacenamos la respuesta y la pasamos a json
-    const data = await res.json();
-
-    // Guardamos el token en localStorage con su tipo
-    localStorage.setItem("token", `${data.token_type} ${data.access_token}`);
-
-    // Guardamos la información del usuario en el localStorage
-    localStorage.setItem("user", JSON.stringify(data.user))
-    
-    return data;
-  } catch (error) {
-    return {
-      error: error.message,
-    };
+  if (!res.ok) {
+    throw new Error("Credenciales Invalidas");
   }
+
+  const data = await res.json();
+
+  return data;
 }
 
 // Función para cerrar sesión
-export async function signOut() {
-  try {
-    // Trae el token del localStorage
-    const token = localStorage.getItem("token");
+export async function logout(navigate) {
+  const res = await fetch(`${apiRoutes.apiUrl}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
 
-    if (!token) {
-      throw new Error("No existe un token");
-    }
-    // Remueve todo lo que este almacenado en el localStorage
-    localStorage.clear();
-  } catch (error) {
-    console.error(error);
-    return {
-      error: error,
-    };
+  if (!res.ok) {
+    throw new Error("No se pudo eliminar la cookie");
   }
+
+  localStorage.clear();
+  navigate("/login")
+
+  return await res.json();
 }

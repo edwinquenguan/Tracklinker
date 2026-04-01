@@ -12,7 +12,7 @@ import Modal from "../../globals/components/modals/Modal";
 import MoreInfoModal from "./components/modals/MoreInfoModal";
 import AddCategoryModal from "./components/modals/AddCategoryModal";
 import FilterModal from "../../globals/components/modals/FilterModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 import DeleteCategoryModal from "./components/modals/DeleteCategoryModal";
 import EditCategoryInfoModal from "./components/modals/EditCategoryInfoModal";
 
@@ -59,7 +59,7 @@ export default function CategoriesPage() {
           onClose={() => closeModal()}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
           {modalType === "filter" && (
             <FilterModal onClose={() => closeModal()}></FilterModal>

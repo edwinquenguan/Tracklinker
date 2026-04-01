@@ -11,7 +11,7 @@ import TransformationsTable from "./components/ui/TransformationsTable";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import FilterModal from "../../globals/components/modals/FilterModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 import AddTransformationModal from "./components/modals/AddTransformationModal";
 import EditTransformationModal from "./components/modals/EditTransformationModal";
 import DeleteTransformationModal from "./components/modals/DeleteTransformationModal";
@@ -60,7 +60,7 @@ export default function TransformationsPage() {
                         : ""
           }
         >
-          {modalType === "user" && <ProfileModal onClose={closeModal} />}
+          {modalType === "user" && <ProfileModal />}
           {modalType === "filter" && <FilterModal onClose={closeModal} />}
 
           {modalType === "add" && (

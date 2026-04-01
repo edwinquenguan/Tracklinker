@@ -1,9 +1,11 @@
-from fastapi import HTTPException, Depends
+from fastapi import HTTPException, Response, Cookie
 from datetime import timedelta
+from app.models.user_model import UpdateUser, UpdatePassword
 from app.core.security import verify_password
 from app.core.security import create_access_token
 from app.repository.user_repository import UserRepository
 from app.core.config import settings
+from jose import jwt, JWTError
 
 class AuthController:
     """
@@ -23,7 +25,7 @@ class AuthController:
         con la base de datos para poder validar las credenciales del usuario.
     """
     @staticmethod
-    def login(email: str, password: str):
+    def login(email: str, password: str, response: Response):
         user = UserRepository.find_by_email(email)
 
         # Validación de lo que retorna la función find_by_email
@@ -42,17 +44,18 @@ class AuthController:
             "role": user["rol_name"]
             }, 
             expires_delta=expires)
+        
+        response.set_cookie(
+            key="access_token",
+            value=f"Bearer {token}",
+            httponly=True,
+            secure=False,
+            samesite="lax",
+            max_age=settings.ACCESS_TOKEN_EXPIRE * 60)
 
         return{
             "success": True,
-            "user": {
-                "name": user["user_name"],
-                "first_surname": user["user_first_surname"],
-                "second_surname": user["user_second_surname"],
-                "email": email,
-            },
-            "token_type": "Bearer",
-            "access_token": token
+            "message": "Inicio de sesion exitoso"
         }
     
     @staticmethod
@@ -62,4 +65,74 @@ class AuthController:
             raise HTTPException(status_code=403, detail="No autorizado")
         return {
             "success": True
+        }
+    
+    @staticmethod
+    def logout(response: Response):
+        response.delete_cookie(
+            key="access_token",
+            httponly=True,
+            secure=False,
+            samesite="lax"
+        )
+        return {
+            "success": True,
+            "message": "Sesion cerrada"
+        }
+    
+    @staticmethod
+    def get_current_user(access_token: str = Cookie(None)):
+        if not access_token:
+            raise HTTPException(status_code=401, detail="No autenticado")
+        
+        try:
+            token = access_token.replace("Bearer ", "")
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+            error, data = UserRepository.find_by_id(payload["sub"])
+
+            if error:
+                raise HTTPException(status_code=404, detail=error)
+
+            return {
+                "user": data[0]
+            }
+        except JWTError:
+            raise HTTPException(status_code=401, detail="Token inválido")
+        
+    @staticmethod
+    def update_current_user(user_data: UpdateUser, payload: dict):
+        error, success, message = UserRepository.update(int(payload["user_id"]), user_data)
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+
+        return {
+            "success": success,
+            "message": message
+        }
+    
+    @staticmethod
+    def update_user_password(password_data: UpdatePassword, payload: dict):
+        data = password_data.model_dump()
+
+        if data["new_password"] != data["repeat_password"]:
+            raise HTTPException(status_code=400, detail="Las contraseñas no coinciden")
+
+        error, user = UserRepository.find_by_id(int(payload["user_id"]))
+
+        # Validación de lo que retorna la función find_by_email
+        if not user or error:
+            raise HTTPException(status_code=401, detail="Usuario No encontrado")
+        
+        # Validación de que la contraseña antigua sea valida
+        verify_password(user[0], data["old_password"])
+        
+        error, success, message = UserRepository.update_password(int(payload["user_id"]), data["new_password"])
+
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+
+        return {
+            "success": success,
+            "message": message
         }

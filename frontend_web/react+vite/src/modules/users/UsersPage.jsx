@@ -5,17 +5,17 @@ import { useUsers } from "./hooks/useUsers";
 import { usersIcons } from "../../assets/icons/mainIcons";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
-import FilterUserModal from "./components/modals/FilterUserModal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
-import MoreInfoModal from "./components/modals/MoreInfoModal";
-import EditUserInfoModal from "./components/modals/EditUserInfoModal";
-import DeleteUserModal from "./components/modals/DeleteUserModal";
 import AddUserModal from "./components/modals/AddUserModal";
+import MoreInfoModal from "./components/modals/MoreInfoModal";
+import FilterUserModal from "./components/modals/FilterUserModal";
+import DeleteUserModal from "./components/modals/DeleteUserModal";
+import EditUserInfoModal from "./components/modals/EditUserInfoModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 // Componentes
-import Layout from "../../globals/components/Layout/Layout";
-import TopSection from "../../globals/components/ui/TopSection";
-import SearchBar from "../../globals/components/ui/SearchBar";
 import UsersList from "./components/ui/UsersList";
+import Layout from "../../globals/components/Layout/Layout";
+import SearchBar from "../../globals/components/ui/SearchBar";
+import TopSection from "../../globals/components/ui/TopSection";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
@@ -64,7 +64,7 @@ export default function UsersPage() {
           onClose={() => closeModal()}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
           {modalType === "filter" && (
             <FilterUserModal onClose={() => closeModal()} />

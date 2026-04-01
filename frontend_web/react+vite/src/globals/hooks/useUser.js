@@ -1,17 +1,26 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react";
+import { getCurrentUserService } from "../services/getCurrentUserService";
 
 export function useUser() {
-    const [user, setUser] = useState([])
-    const [error, setError] = useState([])
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState(null);
+  const controllerRef = useRef(null);
 
-    useEffect(() => {
-        try {
-            const data = JSON.parse(localStorage.getItem("user"))
-            setUser(data)
-        } catch (error) {
-            setError(error)
-        }
-    }, [])
+  async function fetchCurrentUser() {
+    controllerRef.current?.abort();
+    controllerRef.current = new AbortController();
+    try {
+      const data = await getCurrentUserService();
+      setUser(data);
+    } catch (error) {
+      setError(error);
+    }
+  }
 
-    return { user };
+  useEffect(() => {
+    fetchCurrentUser();
+    return () => controllerRef.current?.abort();
+  }, []);
+
+  return { user, error, fetchCurrentUser };
 }

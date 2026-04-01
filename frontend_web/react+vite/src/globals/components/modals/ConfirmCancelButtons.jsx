@@ -1,4 +1,5 @@
 export default function ConfirmCancelButtons({
+  disabled = false,
   itemsPosition = "center",
   flexDirection,
   confirmImage,
@@ -28,6 +29,7 @@ export default function ConfirmCancelButtons({
         <span>{confirmText}</span>
       </button>
       <button
+        disabled={disabled}
         onClick={cancelButtonOnClick}
         className={`${cancelButtonWidth} px-4 py-2.5 rounded-xl text-sm transition duration-300 border border-gray-200 
             hover:bg-gray-200

@@ -16,7 +16,7 @@ import SubcategoriesReport from "./components/ui/reports/subcategories/Subcatego
 import TransformationsReport from "./components/ui/reports/transformations/TransformationsReport";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 
 export default function ReportsPage() {
   const [topSectionVisiblity, setTopSectionVisiblity] = useState(true);
@@ -91,7 +91,7 @@ export default function ReportsPage() {
           onClose={() => closeModal()}
         >
           {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
+            <ProfileModal />
           )}
         </Modal>
       )}

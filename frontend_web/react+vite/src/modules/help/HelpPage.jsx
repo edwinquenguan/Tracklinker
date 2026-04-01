@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "../../globals/components/modals/Modal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 import Layout from "../../globals/components/Layout/Layout";
 import HelpForm from "./components/ui/HelpForm";
 

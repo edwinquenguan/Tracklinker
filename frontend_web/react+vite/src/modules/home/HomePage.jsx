@@ -6,11 +6,11 @@ import Layout from "../../globals/components/Layout/Layout";
 import SectionsContainer from "./components/ui/SectionsContainer";
 // Modals
 import Modal from "../../globals/components/modals/Modal";
-import ProfileModal from "../../globals/components/modals/ProfileModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 
 export default function HomePage() {
   const { modalType, isOpen, openModal, closeModal } = useModal();
-  const { user } = useUser()
+  const { user } = useUser();
 
   return (
     <Layout avatarOnClick={() => openModal(null, "user")}>
@@ -27,9 +27,7 @@ export default function HomePage() {
           isOpen={isOpen}
           onClose={() => closeModal()}
         >
-          {modalType === "user" && (
-            <ProfileModal onClose={() => closeModal()} />
-          )}
+          {modalType === "user" && <ProfileModal />}
         </Modal>
       )}
     </Layout>
