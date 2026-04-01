@@ -73,6 +73,7 @@ export default function LoginForm({ openModal }) {
                     : actionsIcons.lockVisibility
                 }
                 alt=""
+                className="dark:invert"
               />
             </button>
           </section>
