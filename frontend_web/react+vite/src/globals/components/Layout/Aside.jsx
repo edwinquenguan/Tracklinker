@@ -33,7 +33,6 @@ export default function Aside({ avatarOnClick, helpOnClick }) {
                 onClick={avatarOnClick}
                 className="w-full flex items-center justify-center py-1.5 px-4 gap-2.5 rounded-xl transition duration-300
               hover:bg-gray-200 dark:text-gray-50
-              md:justify-start
               xl:justify-start
               "
               >
