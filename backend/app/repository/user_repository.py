@@ -1,5 +1,5 @@
 from app.core.database import get_connection
-from app.models.user_model import User
+from app.models.user_model import User, UpdateUser, UpdatePassword
 from datetime import datetime
 from app.utils.date_formatter import date_formatter
 import bcrypt
@@ -67,16 +67,14 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            r.rol_name,
-            u.user_id,
             u.user_name,
             u.user_first_surname,
             u.user_second_surname,
+            u.user_password,
             u.user_phone,
             u.user_email,
             u.user_address,
-            u.user_city,
-            u.user_date
+            u.user_city
         FROM USERS AS u 
         INNER JOIN ROLES AS r 
         ON u.rol_id = r.rol_id
@@ -86,7 +84,20 @@ class UserRepository:
         try:
             cursor.execute(query, (user_id,))
             result = cursor.fetchall()
-            return None, result
+            data = [
+                {
+                    "name": item["user_name"],
+                    "first_surname": item["user_first_surname"],
+                    "second_surname": item["user_second_surname"],
+                    "user_password": item["user_password"],
+                    "phone": item["user_phone"],
+                    "email": item["user_email"],
+                    "address": item["user_address"],
+                    "city": item["user_city"]
+                }
+                for item in result
+            ]
+            return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
         finally:
@@ -128,7 +139,6 @@ class UserRepository:
     # Crear un usuario
     @staticmethod
     def create(user_data: User):
-
         data = user_data.model_dump()
 
         connection = get_connection()
@@ -181,7 +191,8 @@ class UserRepository:
 
     # Actualizar la información de un usuario
     @staticmethod
-    def update(user_id: int, user_data: dict):
+    def update(user_id: int, user_data: UpdateUser):
+        data = user_data.model_dump()
 
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
@@ -198,36 +209,70 @@ class UserRepository:
             
         # Verificar si existe el correo y no duplicarlo
         if "user_email" in user_data:
-            print(user_data["user_email"])
             cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (user_data["user_email"],))
-            if cursor.fetchone():
+            existing = cursor.fetchone()
+            
+            if existing and existing["user_id"] != user_id:
                 cursor.close()
                 connection.close()
                 return None, False, "El correo ya está registrado"
-        
-        if "user_password" in user_data:
-            # Hashear la nueva contraseña
-            password = user_data["user_password"].encode("utf-8")
-            user_data["user_password"] = bcrypt.hashpw(
-                password, bcrypt.gensalt()).decode("utf-8")
 
-        # Campos vacios para almacenar todo lo que va a actualizar
-        fields = list(user_data.keys())
-        values = list(user_data.values())
 
-        set_clause = ",".join([f"{field} = %s" for field in fields])
-        values.append(user_id)
-
-        query = f"UPDATE USERS SET {set_clause} WHERE user_id = %s"
+        query = """
+        UPDATE USERS SET
+            user_name = %s,
+            user_first_surname = %s,
+            user_second_surname = %s,
+            user_email = %s,
+            user_phone = %s,
+            user_city = %s,
+            user_address = %s
+        WHERE user_id = %s"""
 
         try:
-            cursor.execute(query, values)
+            cursor.execute(query, (
+                data["name"], 
+                data["first_surname"], 
+                data["second_surname"], 
+                data["email"], 
+                data["phone"],
+                data["address"], 
+                data["city"],
+                user_id 
+            ))
             connection.commit()
 
             return None, True, "Usuario actualizado correctamente"
         except Exception as e:
             connection.rollback()
             return f"Error al ejecutar la consulta: {e}", False, None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def update_password(user_id: int, password: str):
+
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        query = """
+        UPDATE USERS SET
+            user_password = %s
+        WHERE user_id = %s
+        """
+        new_password = password.encode("utf-8")
+        hash_password = bcrypt.hashpw(new_password, bcrypt.gensalt(rounds=12)).decode("utf-8")
+
+        try:
+            cursor.execute(query, (hash_password, user_id))
+
+            connection.commit()
+
+            return None, True, "Contraseña actualizada correctamente"
+        except Exception:
+            connection.rollback()
+            return f"Error al actualizar la contraseña", False, None
         finally:
             cursor.close()
             connection.close()
