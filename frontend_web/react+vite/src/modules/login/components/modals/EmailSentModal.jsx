@@ -17,7 +17,8 @@ export default function EmailSentModal({ isOpen, onClose }) {
           </span>
           <span className="text-sm">
             Se ha enviado un enlace de confirmacion a tu correo. Por favor,
-            revisa tu bandeja de entrada o en el apartado de spam
+            revisa tu bandeja de entrada o en el apartado de spam, rectifica que
+            tu correo sea el correcto si no te aparece
           </span>
         </section>
         <ConfirmCancelButtons
