@@ -1,24 +1,39 @@
+// Hooks
+import { useState } from "react";
+// Icons
+import { loginIcons } from "../../../../assets/icons/loginIcons";
+// Components
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import { loginIcons } from "../../../../assets/icons/loginIcons";
+// Modals
+import EmailSentModal from "./EmailSentModal";
+import useRecoverPassword from "../../hooks/useRecoverPassword";
+import Loader from "../../../../globals/components/ui/Loader";
 
-export default function RecoverPasswordModal({cancelButtonOnClick, confirmButtonOnClick}) {
+export default function RecoverPasswordModal({ onClose }) {
+  const { loading, handleChange, handleSubmit } = useRecoverPassword({
+    email: "",
+  });
+  const [innerModal, setInnerModal] = useState(null);
   return (
     <section className="flex flex-col items-center">
       <FormField
+        name={"email"}
         labelText={"Email"}
+        onChange={handleChange}
         inputIcon={loginIcons.emailIcon}
         type="email"
         placeholder={"Escribe tu correo aquí"}
       />
       <ConfirmCancelButtons
-        flexDirection={"flex-col"}
-        cancelText="Volver al login"
-        cancelButtonWidth={"w-52"}
-        cancelButtonOnClick={cancelButtonOnClick}
-        confirmText="Restablecer Contraseña"
-        confirmButtonOnClick={confirmButtonOnClick}
+        cancelText="Cancelar"
+        cancelButtonOnClick={onClose}
+        confirmText={loading ? <Loader /> : "Restablecer"}
+        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
       />
+      {innerModal === "sentEmail" && (
+        <EmailSentModal isOpen={true} onClose={() => setInnerModal(null)} />
+      )}
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import { apiRoutes } from "../../../config/apiRoutes";
 
 // Función para loguearse
-export async function login(email, password) {
+export async function login(email, password, signal) {
   const res = await fetch(`${apiRoutes.apiUrl}/auth/login`, {
     method: "POST",
     headers: {
@@ -12,15 +12,14 @@ export async function login(email, password) {
       password: password,
     }),
     credentials: "include",
+    signal: signal,
   });
 
   if (!res.ok) {
     throw new Error("Credenciales Invalidas");
   }
 
-  const data = await res.json();
-
-  return data;
+  return await res.json();
 }
 
 // Función para cerrar sesión
@@ -35,7 +34,7 @@ export async function logout(navigate) {
   }
 
   localStorage.clear();
-  navigate("/login")
+  navigate("/login");
 
   return await res.json();
 }

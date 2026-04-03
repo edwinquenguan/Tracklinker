@@ -24,10 +24,7 @@ export default function Login() {
           {modalType === "error" && <ErrorModal onClose={() => closeModal()} />}
 
           {modalType === "rememberPassword" && (
-            <RecoverPasswordModal
-              cancelButtonOnClick={() => closeModal()}
-              confirmButtonOnClick={() => closeModal()}
-            />
+            <RecoverPasswordModal onClose={() => closeModal()} />
           )}
         </Modal>
       )}
