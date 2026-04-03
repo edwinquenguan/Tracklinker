@@ -7,13 +7,20 @@ import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
 // Modals
 import EmailSentModal from "./EmailSentModal";
+import useRecoverPassword from "../../hooks/useRecoverPassword";
+import Loader from "../../../../globals/components/ui/Loader";
 
 export default function RecoverPasswordModal({ onClose }) {
+  const { loading, handleChange, handleSubmit } = useRecoverPassword({
+    email: "",
+  });
   const [innerModal, setInnerModal] = useState(null);
   return (
     <section className="flex flex-col items-center">
       <FormField
+        name={"email"}
         labelText={"Email"}
+        onChange={handleChange}
         inputIcon={loginIcons.emailIcon}
         type="email"
         placeholder={"Escribe tu correo aquí"}
@@ -21,10 +28,10 @@ export default function RecoverPasswordModal({ onClose }) {
       <ConfirmCancelButtons
         cancelText="Cancelar"
         cancelButtonOnClick={onClose}
-        confirmText="Restablecer"
-        confirmButtonOnClick={() => setInnerModal("sendEmail")}
+        confirmText={loading ? <Loader /> : "Restablecer"}
+        confirmButtonOnClick={(e) => handleSubmit(e, setInnerModal)}
       />
-      {innerModal === "sendEmail" && (
+      {innerModal === "sentEmail" && (
         <EmailSentModal isOpen={true} onClose={() => setInnerModal(null)} />
       )}
     </section>
