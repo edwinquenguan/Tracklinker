@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, Response, Cookie, Body
 from app.controllers.auth_controller import AuthController
-from app.models.auth_model import LoginModel
+from app.models.auth_model import LoginModel, RecoverPassword
 from app.models.user_model import UpdateUser, UpdatePassword
 from app.middlewares.jwt_middleware import verify_jwt
+from pydantic import EmailStr
 
 router = APIRouter(
     prefix="/api/auth", 
@@ -34,6 +35,12 @@ def get_me(access_token: str = Cookie(None)):
 def update_me(user_data: UpdateUser = Body(...), payload: dict = Depends(verify_jwt)):
     return AuthController.update_current_user(user_data, payload)
 
+# Endpoint para actulizar la contraseña del usuario
 @router.put("/update-password")
 def update_user_password(password_data: UpdatePassword, payload: dict = Depends(verify_jwt)):
     return AuthController.update_user_password(password_data, payload)
+
+# Endpoint para recuperar contraseña
+@router.post("/recover-password")
+async def recover_user_password(data: RecoverPassword):
+    return await AuthController.recover_user_password(data.email)
