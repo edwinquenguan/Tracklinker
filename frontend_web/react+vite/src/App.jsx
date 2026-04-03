@@ -1,7 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
+import { useTheme } from "./globals/hooks/useTheme";
 
 function App() {
+  useTheme();
   return (
     <div className="w-screen h-screen dark:bg-[#0a0a0a]">
       <BrowserRouter>
