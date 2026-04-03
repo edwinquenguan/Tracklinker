@@ -1,8 +1,15 @@
+// Hooks
+import { useState } from "react";
+// Icons
+import { loginIcons } from "../../../../assets/icons/loginIcons";
+// Components
 import FormField from "../../../../globals/components/ui/FormField";
 import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmCancelButtons";
-import { loginIcons } from "../../../../assets/icons/loginIcons";
+// Modals
+import EmailSentModal from "./EmailSentModal";
 
-export default function RecoverPasswordModal({cancelButtonOnClick, confirmButtonOnClick}) {
+export default function RecoverPasswordModal({ onClose }) {
+  const [innerModal, setInnerModal] = useState(null);
   return (
     <section className="flex flex-col items-center">
       <FormField
@@ -13,10 +20,13 @@ export default function RecoverPasswordModal({cancelButtonOnClick, confirmButton
       />
       <ConfirmCancelButtons
         cancelText="Cancelar"
-        cancelButtonOnClick={cancelButtonOnClick}
+        cancelButtonOnClick={onClose}
         confirmText="Restablecer"
-        confirmButtonOnClick={confirmButtonOnClick}
+        confirmButtonOnClick={() => setInnerModal("sendEmail")}
       />
+      {innerModal === "sendEmail" && (
+        <EmailSentModal isOpen={true} onClose={() => setInnerModal(null)} />
+      )}
     </section>
   );
 }
