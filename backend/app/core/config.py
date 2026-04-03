@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from pydantic import EmailStr
 
 class Settings(BaseSettings):
     """
@@ -19,6 +20,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE: int
+    MAIL_USERNAME: EmailStr
+    MAIL_PASSWORD: str
+    MAIL_FROM: EmailStr
 
     class Config:
         env_file = ".env"

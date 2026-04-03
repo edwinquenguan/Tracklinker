@@ -6,6 +6,8 @@ from app.core.security import create_access_token
 from app.repository.user_repository import UserRepository
 from app.core.config import settings
 from jose import jwt, JWTError
+from app.core.mail import config
+from fastapi_mail import FastMail, MessageSchema
 
 class AuthController:
     """
@@ -135,4 +137,26 @@ class AuthController:
         return {
             "success": success,
             "message": message
+        }
+    
+    @staticmethod
+    async def recover_user_password(email: str):
+        user = UserRepository.find_by_email(email)
+
+        if not user:
+            raise HTTPException(status_code=400, detail="Correo inválido")
+        
+        message = MessageSchema(
+            subject="Recuperación de contraseña",
+            recipients=[email],
+            template_body={"name": user["user_name"]},
+            subtype="html",
+        )
+        
+        fm = FastMail(config)
+        await fm.send_message(message, template_name="recover_password.html")
+
+        return {
+            "success": True,
+            "messagge": "Correo enviado correctamente"
         }
