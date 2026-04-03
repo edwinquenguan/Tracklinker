@@ -7,15 +7,14 @@ export function useTheme() {
 
   useEffect(() => {
     const root = document.documentElement;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
 
-    if (theme === "dark") {
+    if (theme === "dark" || (theme === "system" && prefersDark)) {
       root.classList.add("dark");
-    } else if (theme === "light") {
-      root.classList.remove("dark");
     } else {
-      // Sistema
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      prefersDark ? root.classList.add("dark") : root.classList.remove("dark");
+      root.classList.remove("dark");
     }
 
     localStorage.setItem("theme", theme);
