@@ -1,5 +1,6 @@
-import { usersIcons } from "../../../../assets/icons/mainIcons";
 import UserActions from "./UserActions";
+import { userStatus } from "../../constants/userStatus";
+import { usersIcons } from "../../../../assets/icons/mainIcons";
 
 export default function UserItem({
   user,
@@ -16,7 +17,7 @@ export default function UserItem({
     >
       {/* Datos del Usuario */}
       <article>
-        <address className="flex gap-3 not-italic font-medium dark:text-white">
+        <address className="flex items-center gap-3 not-italic font-medium dark:text-white">
           <p className="text-xl">
             {user.name} {user.first_surname} {user.second_surname}
           </p>
@@ -35,6 +36,12 @@ export default function UserItem({
               className="w-5 h-5 dark:invert"
             />
             <p>{user.rol_name}</p>
+          </div>
+          <div
+            className={`flex items-center px-2 py-0.5 gap-1 rounded-full border text-xs ${userStatus[user.status]?.styles}`}
+          >
+            <img src={userStatus[user.status]?.icon} alt="" />
+            <span>{userStatus[user.status]?.text}</span>
           </div>
         </address>
       </article>
