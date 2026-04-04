@@ -1,11 +1,12 @@
-import UserActions from "./UserActions";
 import { userStatus } from "../../constants/userStatus";
 import { usersIcons } from "../../../../assets/icons/mainIcons";
+import ActionButtons from "../../../../globals/components/ui/ActionButtons";
 
 export default function UserItem({
   user,
+  openModal,
+  refetch,
   editButtonOnClick,
-  deleteButtonOnClick,
   moreInfoOnClick,
 }) {
   return (
@@ -46,9 +47,13 @@ export default function UserItem({
         </address>
       </article>
 
-      <UserActions
+      <ActionButtons
         editButtonOnClick={editButtonOnClick}
-        deleteButtonOnClick={deleteButtonOnClick}
+        deleteButtonOnClick={(e) => {
+          e.stopPropagation();
+          openModal(user, userStatus[user.status]?.modalType, refetch);
+        }}
+        visibilityIcon={userStatus[user.status]?.visibilityIcon}
         moreInfoOnClick={moreInfoOnClick}
       />
     </li>
