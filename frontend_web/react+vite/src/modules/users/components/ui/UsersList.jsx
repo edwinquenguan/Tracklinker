@@ -35,7 +35,7 @@ export default function UsersList({
               }}
               deleteButtonOnClick={(e) => {
                 e.stopPropagation();
-                openModal(user, "delete", refetch);
+                openModal(user, "disable", refetch);
               }}
             />
           ))

@@ -5,16 +5,16 @@ import ConfirmCancelButtons from "../../../../globals/components/modals/ConfirmC
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 // Hooks
-import { useDeleteUser } from "../../hooks/useDeleteUser";
+import { useDisableUser } from "../../hooks/useDisableUser";
 import { useState } from "react";
 
-export default function DeleteUserModal({ user, onClose }) {
+export default function DisableUserModal({ user, onClose }) {
   const [innerModal, setInnerModal] = useState(null);
-  const { handleSubmit, loading} = useDeleteUser(user.id);
+  const { handleSubmit, loading} = useDisableUser(user.id);
   return (
     <section className="flex flex-col justify-center items-center dark:text-white">
       <p>
-        ¿Seguro que deseas eliminar a{" "}
+        ¿Seguro/a que deseas deshabilitar a{" "}
         <span className="font-medium">
           {user.name} {user.first_surname}
         </span>
@@ -23,7 +23,7 @@ export default function DeleteUserModal({ user, onClose }) {
 
       {/* Botones */}
       <ConfirmCancelButtons
-        confirmText={loading ? <Loader /> : "Eliminar"}
+        confirmText={loading ? <Loader /> : "Deshabilitar"}
         confirmBgColor="red-600"
         confirmDarkBgColor=""
         cancelText={"Cancelar"}
@@ -34,8 +34,8 @@ export default function DeleteUserModal({ user, onClose }) {
         <SuccessModal
         isOpen={true}
         confirmButtonText={"Volver a la página"}
-        confirmTitle={"¡Usuario eliminado correctamente!"}
-        confirmText={"Todos los datos de este usuarios han sido eliminados exitosamente."}
+        confirmTitle={"¡Usuario deshabilitado correctamente!"}
+        confirmText={"El usuario ha sido deshabilitado correctamente."}
         onClose={() => {
             setInnerModal(null);
             onClose();

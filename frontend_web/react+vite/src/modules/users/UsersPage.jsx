@@ -9,7 +9,7 @@ import AddUserModal from "./components/modals/AddUserModal";
 import MoreInfoModal from "./components/modals/MoreInfoModal";
 import HelpModal from "../../globals/components/modals/HelpModal";
 import FilterUserModal from "./components/modals/FilterUserModal";
-import DeleteUserModal from "./components/modals/DeleteUserModal";
+import DisableUserModal from "./components/modals/DisableUserModal";
 import EditUserInfoModal from "./components/modals/EditUserInfoModal";
 import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 // Componentes
@@ -63,8 +63,8 @@ export default function UsersPage() {
                     ? "Información del usuario"
                     : modalType === "edit"
                       ? "Editar usuario"
-                      : modalType === "delete"
-                        ? "Eliminar usuario"
+                      : modalType === "disable"
+                        ? "Deshabilitar usuario"
                         : "Ayuda"
           }
           type={modalType}
@@ -89,8 +89,8 @@ export default function UsersPage() {
           )}
 
           {/* Modal para eliminar el usuario */}
-          {modalType === "delete" && (
-            <DeleteUserModal user={modalData} onClose={() => closeModal()} />
+          {modalType === "disable" && (
+            <DisableUserModal user={modalData} onClose={() => closeModal()} />
           )}
         </Modal>
       )}
