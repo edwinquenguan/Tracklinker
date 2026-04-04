@@ -9,6 +9,7 @@ import TopSection from "../../globals/components/ui/TopSection";
 import WarrantiesTable from "./components/ui/WarrantiesTable";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import MoreWarrantyInfo from "./components/modals/MoreWarrantyInfo";
 import AddWarrantyModal from "./components/modals/AddWarrantyModal";
 import EditWarrantyModal from "./components/modals/EditWarrantyModal";
@@ -22,7 +23,12 @@ export default function WarrantiesPage() {
   const { warranties, fetchWarranties } = useWarranties();
 
   return (
-    <Layout avatarOnClick={() => openModal(null, "user")}>
+    <Layout
+      avatarOnClick={() => openModal(null, "user")}
+      helpOnClick={() => {
+        openModal(null, "help");
+      }}
+    >
       <TopSection
         sectionName={"Garantías"}
         addButtonIcon={warrantiesIcons.addWarrantyIcon}
@@ -48,9 +54,11 @@ export default function WarrantiesPage() {
                   ? "Agregar Garantía"
                   : modalType === "info"
                     ? "Más Información"
-                    : modalType === "delete"
-                      ? "¿Eliminar Garantía?"
-                      : "Editar Garantía"
+                    : modalType === "edit"
+                      ? "Editar Garantía"
+                      : modalType === "delete"
+                        ? "Eliminar Proveedor"
+                        : "Ayuda"
           }
           type={modalType}
           isOpen={isOpen}
@@ -58,6 +66,7 @@ export default function WarrantiesPage() {
         >
           {modalType === "user" && <ProfileModal />}
           {modalType === "filter" && <FilterModal onClose={closeModal} />}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
           {modalType === "add" && (
             <AddWarrantyModal
               onCloseModal={closeModal}

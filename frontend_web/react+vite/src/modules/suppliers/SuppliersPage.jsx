@@ -4,23 +4,30 @@ import { useSuppliers } from "./hooks/useSuppliers";
 // Iconos
 import { actionsIcons } from "../../assets/icons/mainIcons";
 // Componentes
+import SuppliersList from "./components/ui/SuppliersList";
 import Layout from "../../globals/components/Layout/Layout";
 import TopSection from "../../globals/components/ui/TopSection";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
-import FilterModal from "../../globals/components/modals/FilterModal";
-import SuppliersList from "./components/ui/SuppliersList";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import AddSupplierModal from "./components/modals/AddSupplierModal";
+import FilterModal from "../../globals/components/modals/FilterModal";
+import DeleteSupplierModal from "./components/modals/DeleteSupplierModal";
 import MoreInfoSupplierModal from "./components/modals/MoreInfoSupplierModal";
 import EditSupplierInfoModal from "./components/modals/EditSupplierInfoModal";
-import DeleteSupplierModal from "./components/modals/DeleteSupplierModal";
+import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 
 export default function SuppliersPage() {
   const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
   const { suppliers, loading, error, fetchSuppliers } = useSuppliers();
 
   return (
-    <Layout>
+    <Layout
+      avatarOnClick={() => openModal(null, "user")}
+      helpOnClick={() => {
+        openModal(null, "help");
+      }}
+    >
       <TopSection
         sectionName={"Proveedores"}
         addButtonIcon={actionsIcons.addIcon}
@@ -41,23 +48,29 @@ export default function SuppliersPage() {
       {modalType && (
         <Modal
           title={
-            modalType === "filter"
-              ? "Filtrar"
-              : modalType === "add"
-                ? "Agregar Proveedor"
-                : modalType === "info"
-                  ? "Información del Proveedor"
-                  : modalType === "edit"
-                    ? "Editar Proveedor"
-                    : "Eliminar Proveedor"
+            modalType === "user"
+              ? "Configuración"
+              : modalType === "filter"
+                ? "Filtrar"
+                : modalType === "add"
+                  ? "Agregar Proveedor"
+                  : modalType === "info"
+                    ? "Información del Proveedor"
+                    : modalType === "edit"
+                      ? "Editar Proveedor"
+                      : modalType === "delete"
+                        ? "Eliminar Proveedor"
+                        : "Ayuda"
           }
           type={modalType}
           isOpen={isOpen}
           onClose={() => closeModal()}
         >
+          {modalType === "user" && <ProfileModal />}
           {modalType === "filter" && (
-            <FilterModal onClose={() => closeModal()}></FilterModal>
+            <FilterModal onClose={() => closeModal()} />
           )}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
           {modalType === "add" && (
             <AddSupplierModal onClose={() => closeModal()} />
           )}
