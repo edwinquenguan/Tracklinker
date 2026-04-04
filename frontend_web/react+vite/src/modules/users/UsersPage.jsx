@@ -17,6 +17,7 @@ import UsersList from "./components/ui/UsersList";
 import Layout from "../../globals/components/Layout/Layout";
 import SearchBar from "../../globals/components/ui/SearchBar";
 import TopSection from "../../globals/components/ui/TopSection";
+import EnableUserModal from "./components/modals/EnableUserModal";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
@@ -65,7 +66,9 @@ export default function UsersPage() {
                       ? "Editar usuario"
                       : modalType === "disable"
                         ? "Deshabilitar usuario"
-                        : "Ayuda"
+                        : modalType === "enable"
+                          ? "Habilitar usuario"
+                          : "Ayuda"
           }
           type={modalType}
           isOpen={isOpen}
@@ -88,9 +91,13 @@ export default function UsersPage() {
             <EditUserInfoModal user={modalData} onClose={() => closeModal()} />
           )}
 
-          {/* Modal para eliminar el usuario */}
+          {/* Modal para deshabilitar el usuario */}
           {modalType === "disable" && (
             <DisableUserModal user={modalData} onClose={() => closeModal()} />
+          )}
+          {/* Modal para habilitar el usuario */}
+          {modalType === "enable" && (
+            <EnableUserModal user={modalData} onClose={() => closeModal()} />
           )}
         </Modal>
       )}
