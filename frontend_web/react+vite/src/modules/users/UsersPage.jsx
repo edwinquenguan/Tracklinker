@@ -7,6 +7,7 @@ import { usersIcons } from "../../assets/icons/mainIcons";
 import Modal from "../../globals/components/modals/Modal";
 import AddUserModal from "./components/modals/AddUserModal";
 import MoreInfoModal from "./components/modals/MoreInfoModal";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import FilterUserModal from "./components/modals/FilterUserModal";
 import DeleteUserModal from "./components/modals/DeleteUserModal";
 import EditUserInfoModal from "./components/modals/EditUserInfoModal";
@@ -23,7 +24,12 @@ export default function UsersPage() {
   const { users, loading, error, fetchUsers } = useUsers();
 
   return (
-    <Layout avatarOnClick={() => openModal(null, "user")}>
+    <Layout
+      avatarOnClick={() => openModal(null, "user")}
+      helpOnClick={() => {
+        openModal(null, "help");
+      }}
+    >
       <TopSection
         sectionName={"Usuarios"}
         addButtonIcon={usersIcons.addUserIcon}
@@ -57,18 +63,19 @@ export default function UsersPage() {
                     ? "Información del usuario"
                     : modalType === "edit"
                       ? "Editar usuario"
-                      : "Eliminar usuario"
+                      : modalType === "delete"
+                        ? "Eliminar usuario"
+                        : "Ayuda"
           }
           type={modalType}
           isOpen={isOpen}
           onClose={() => closeModal()}
         >
-          {modalType === "user" && (
-            <ProfileModal />
-          )}
+          {modalType === "user" && <ProfileModal />}
           {modalType === "filter" && (
             <FilterUserModal onClose={() => closeModal()} />
           )}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
           {/* Modal para agregar un usuario */}
           {modalType === "add" && (
             <AddUserModal onClose={() => closeModal()} openModal={openModal} />

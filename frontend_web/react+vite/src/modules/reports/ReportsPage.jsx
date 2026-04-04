@@ -16,6 +16,7 @@ import SubcategoriesReport from "./components/ui/reports/subcategories/Subcatego
 import TransformationsReport from "./components/ui/reports/transformations/TransformationsReport";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
+import HelpModal from "../../globals/components/modals/HelpModal";
 import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 
 export default function ReportsPage() {
@@ -24,7 +25,12 @@ export default function ReportsPage() {
   const { modalType, isOpen, openModal, closeModal } = useModal();
 
   return (
-    <Layout avatarOnClick={() => openModal(null, "user")}>
+    <Layout
+      avatarOnClick={() => openModal(null, "user")}
+      helpOnClick={() => {
+        openModal(null, "help");
+      }}
+    >
       <TopSection
         sectionVisible={topSectionVisiblity}
         sectionName={"Informes"}
@@ -85,14 +91,13 @@ export default function ReportsPage() {
       {/* Modales */}
       {modalType && (
         <Modal
-          title={modalType === "user" ? "Configuración" : ""}
+          title={modalType === "user" ? "Configuración" : "Ayuda"}
           type={modalType}
           isOpen={isOpen}
           onClose={() => closeModal()}
         >
-          {modalType === "user" && (
-            <ProfileModal />
-          )}
+          {modalType === "user" && <ProfileModal />}
+          {modalType === "help" && <HelpModal onClose={() => closeModal()} />}
         </Modal>
       )}
     </Layout>
