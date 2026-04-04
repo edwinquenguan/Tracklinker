@@ -1,14 +1,11 @@
 import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
 
 // Esta función obtiene todos los usuarios y los almacena en data
 export async function getUsers(signal) {
   // Consumimos el endpoint y lo almacenamos en res, le pasamos el metodo y el jwt que necesita para traer los datos
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.users}/`, {
     method: "GET",
-    headers: {
-      Authorization: getToken(),
-    },
+    credentials: "include",
     signal,
   });
 

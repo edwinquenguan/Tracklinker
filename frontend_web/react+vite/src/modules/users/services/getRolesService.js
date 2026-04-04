@@ -1,12 +1,9 @@
 import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
 
 export async function getRoles() {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.users}/roles`, {
     method: "GET",
-    headers: {
-      Authorization: getToken(),
-    },
+    credentials: "include",
   });
   // Validamos si la respuesta fue OK
   if (!res.ok) {
