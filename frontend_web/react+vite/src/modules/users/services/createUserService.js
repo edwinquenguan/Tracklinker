@@ -1,12 +1,11 @@
 import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
 
 export async function createUser(user_data) {
   const res = await fetch(`${apiRoutes.apiUrl}${apiRoutes.users}/create`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: getToken(),
     },
     body: JSON.stringify(user_data),
   });
