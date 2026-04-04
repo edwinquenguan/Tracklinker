@@ -1,10 +1,16 @@
+import { usersIcons } from "../../../assets/icons/mainIcons";
+
 export const userStatus = {
-    0: {
-        text: "Deshabilitado",
-        styles: "bg-red-50 text-red-700 dark:text-[#ff00008e] dark:bg-[#ff00002f]",
-    },
-    1: {
-        text: "Activo",
-        styles: "bg-green-50 text-green-600 dark:text-[#00ff3779] dark:bg-[#00ff151f]"
-    }
-}
+  0: {
+    text: "Deshabilitado",
+    icon: usersIcons.inactiveCircle,
+    styles:
+      "bg-gray-50 text-gray-400 border-gray-400 dark:bg-[#1f2937]",
+  },
+  1: {
+    text: "Activo",
+    icon: usersIcons.activeCircle,
+    styles:
+      "bg-green-200 text-green-600 border-green-500 dark:text-[#00ff3779] dark:bg-[#00ff151f]",
+  },
+};
