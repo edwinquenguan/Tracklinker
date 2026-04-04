@@ -10,7 +10,7 @@ export async function disableUserService(userId) {
   );
 
   if (!res.ok) {
-    throw new Error("Error al intentar eliminar el usuario");
+    throw new Error("Error al intentar deshabilitar el usuario");
   }
 
   return await res.json();
