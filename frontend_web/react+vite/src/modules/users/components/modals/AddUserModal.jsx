@@ -11,20 +11,20 @@ import { useCreateUser } from "../../hooks/useCreateUser";
 import ErrorModal from "../../../../globals/components/modals/ErrorModal";
 import SuccessModal from "../../../../globals/components/modals/SuccessModal";
 
-export default function AddUserModal({ onClose, fetch }) {
+export default function AddUserModal({ onClose }) {
   // Estado para las modales se abren encima de esta
   const [innerModal, setInnerModal] = useState(null);
   const { roles } = useRoles();
   const { form, loading, handleSubmit, handleChange } = useCreateUser({
     rol_id: "",
-    user_name: "",
-    user_first_surname: "",
-    user_second_surname: "",
-    user_address: "",
-    user_city: "",
-    user_password: "",
-    user_email: "",
-    user_phone: "",
+    name: "",
+    first_surname: "",
+    second_surname: "",
+    address: "",
+    city: "",
+    password: "",
+    email: "",
+    phone: "",
   });
 
   return (
@@ -39,92 +39,91 @@ export default function AddUserModal({ onClose, fetch }) {
           spanText={"Rol"}
           onChange={handleChange}
         >
-          <option> Seleccionar </option>
+          <option> Seleccionar </option>  
           {roles.map((rol) => (
             <option value={rol.id} key={rol.id}>
               {rol.name}
             </option>
           ))}
-          <option value="add-rol"> Agregar rol</option>
         </SelectMenu>
 
         <FormField
-          value={form.user_name}
+          value={form.name}
           labelText={"Nombre"}
           placeholder={"Felipe"}
           id={"name"}
-          name={"user_name"}
+          name={"name"}
           onChange={handleChange}
           autoComplete="given-name"
         />
 
         <FormField
-          value={form.user_first_surname}
+          value={form.first_surname}
           labelText={"Primer Apellido"}
           placeholder={"Contreras"}
           id={"first_surname"}
-          name={"user_first_surname"}
+          name={"first_surname"}
           onChange={handleChange}
           autoComplete="family-name"
         />
 
         <FormField
-          value={form.user_second_surname}
+          value={form.second_surname}
           labelText={"Segundo Apellido"}
           placeholder={"Aguilar"}
           id={"second_surname"}
-          name={"user_second_surname"}
+          name={"second_surname"}
           onChange={handleChange}
           autoComplete="name"
         />
 
         <FormField
-          value={form.user_password}
+          value={form.password}
           labelText={"Contraseña"}
           type="password"
           placeholder={"********"}
           id={"password"}
-          name={"user_password"}
+          name={"password"}
           onChange={handleChange}
           autoComplete="pass"
         />
 
         <FormField
-          value={form.user_city}
+          value={form.city}
           labelText={"Ciudad"}
           placeholder={"Bogotá"}
           id={"city"}
-          name={"user_city"}
+          name={"city"}
           onChange={handleChange}
           autoComplete="address-level2"
         />
 
         <FormField
-          value={form.user_phone}
+          value={form.phone}
           labelText={"Número"}
           placeholder={"300012124"}
           id={"phone"}
-          name={"user_phone"}
+          name={"phone"}
           onChange={handleChange}
           autoComplete="tel"
         />
 
         <FormField
-          value={form.user_email}
+          value={form.email}
           labelText={"Email"}
           placeholder={"pepito@gmail.com"}
           id={"email"}
-          name={"user_email"}
+          name={"email"}
           onChange={handleChange}
           autoComplete="email"
         />
 
         <FormField
-          value={form.user_address}
+          value={form.address}
           labelText={"Dirección"}
           placeholder={"KR 124 # 12-124"}
           id={"address"}
-          name={"user_address"}
+          name={"address"}
           onChange={handleChange}
           autoComplete="street-address"
         />

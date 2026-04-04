@@ -25,6 +25,8 @@ export default function UsersList({
             <UserItem
               key={user.id}
               user={user}
+              openModal={openModal}
+              refetch={refetch}
               moreInfoOnClick={(e) => {
                 e.stopPropagation();
                 openModal(user, "info");
@@ -32,10 +34,6 @@ export default function UsersList({
               editButtonOnClick={(e) => {
                 e.stopPropagation();
                 openModal(user, "edit", refetch);
-              }}
-              deleteButtonOnClick={(e) => {
-                e.stopPropagation();
-                openModal(user, "delete", refetch);
               }}
             />
           ))

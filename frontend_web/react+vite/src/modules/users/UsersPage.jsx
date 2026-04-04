@@ -9,7 +9,7 @@ import AddUserModal from "./components/modals/AddUserModal";
 import MoreInfoModal from "./components/modals/MoreInfoModal";
 import HelpModal from "../../globals/components/modals/HelpModal";
 import FilterUserModal from "./components/modals/FilterUserModal";
-import DeleteUserModal from "./components/modals/DeleteUserModal";
+import DisableUserModal from "./components/modals/DisableUserModal";
 import EditUserInfoModal from "./components/modals/EditUserInfoModal";
 import ProfileModal from "../../globals/components/modals/profileModal/ProfileModal";
 // Componentes
@@ -17,6 +17,7 @@ import UsersList from "./components/ui/UsersList";
 import Layout from "../../globals/components/Layout/Layout";
 import SearchBar from "../../globals/components/ui/SearchBar";
 import TopSection from "../../globals/components/ui/TopSection";
+import EnableUserModal from "./components/modals/EnableUserModal";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
@@ -63,9 +64,11 @@ export default function UsersPage() {
                     ? "Información del usuario"
                     : modalType === "edit"
                       ? "Editar usuario"
-                      : modalType === "delete"
-                        ? "Eliminar usuario"
-                        : "Ayuda"
+                      : modalType === "disable"
+                        ? "Deshabilitar usuario"
+                        : modalType === "enable"
+                          ? "Habilitar usuario"
+                          : "Ayuda"
           }
           type={modalType}
           isOpen={isOpen}
@@ -88,9 +91,13 @@ export default function UsersPage() {
             <EditUserInfoModal user={modalData} onClose={() => closeModal()} />
           )}
 
-          {/* Modal para eliminar el usuario */}
-          {modalType === "delete" && (
-            <DeleteUserModal user={modalData} onClose={() => closeModal()} />
+          {/* Modal para deshabilitar el usuario */}
+          {modalType === "disable" && (
+            <DisableUserModal user={modalData} onClose={() => closeModal()} />
+          )}
+          {/* Modal para habilitar el usuario */}
+          {modalType === "enable" && (
+            <EnableUserModal user={modalData} onClose={() => closeModal()} />
           )}
         </Modal>
       )}

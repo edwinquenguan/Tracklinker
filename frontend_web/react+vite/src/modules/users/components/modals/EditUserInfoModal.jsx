@@ -16,14 +16,15 @@ export default function EditUserInfoModal({ user, onClose }) {
   const { roles } = useRoles();
   const { handleChange, handleSubmit, loading, form } = useEditUser(user.id, {
     rol_id: user.rol_id || "",
-    user_name: user.name || "",
-    user_first_surname: user.first_surname || "",
-    user_second_surname: user.second_surname || "",
-    user_address: user.address || "",
-    user_city: user.city || "",
-    user_email: user.email || "",
-    user_phone: user.phone || "",
-  },);
+    name: user.name || "",
+    first_surname: user.first_surname || "",
+    second_surname: user.second_surname || "",
+    address: user.address || "",
+    city: user.city || "",
+    email: user.email || "",
+    phone: user.phone || "",
+    status: user.status || "",
+  });
 
   return (
     <section className="flex flex-col items-center">
@@ -31,7 +32,7 @@ export default function EditUserInfoModal({ user, onClose }) {
         <SelectMenu
           name={"rol_id"}
           value={form.rol_id}
-          id={"user_rol_menu"}
+          id={"rol_menu"}
           spanText={"Rol"}
           onChange={handleChange}
         >
@@ -42,54 +43,63 @@ export default function EditUserInfoModal({ user, onClose }) {
           ))}
         </SelectMenu>
         <FormField
-          name={"user_name"}
-          value={form.user_name}
+          name={"name"}
+          value={form.name}
           labelText={"Nombre"}
           onChange={handleChange}
           id={"name"}
           autoComplete="given-name"
         />
         <FormField
-          name={"user_first_surname"}
-          value={form.user_first_surname}
+          name={"first_surname"}
+          value={form.first_surname}
           labelText={"Primer Apellido"}
           id={"first_surname"}
           onChange={handleChange}
           autoComplete="family-name"
         />
         <FormField
-          name={"user_second_surname"}
-          value={form.user_second_surname}
+          name={"second_surname"}
+          value={form.second_surname}
           labelText={"Segundo Apellido"}
           id={"second_surname"}
           onChange={handleChange}
           autoComplete="family-name"
         />
         <FormField
-          name={"user_phone"}
-          value={form.user_phone}
+          name={"phone"}
+          value={form.phone}
           labelText={"Número"}
           id={"phone"}
           onChange={handleChange}
           autoComplete="tel"
         />
         <FormField
-          name={"user_email"}
+          name={"email"}
           isRequired={true}
-          value={form.user_email}
+          value={form.email}
           labelText={"Correo Electrónico"}
           id={"email"}
           onChange={handleChange}
           autoComplete="email"
         />
         <FormField
-          name={"user_address"}
-          value={form.user_address}
+          name={"address"}
+          value={form.address}
           labelText={"Dirección"}
           id={"address"}
           onChange={handleChange}
           autoComplete="street-address"
         />
+        <SelectMenu
+          name={"status"}
+          value={form.status}
+          spanText={"Estado"}
+          onChange={handleChange}
+        >
+          <option value="0">Inactivo</option>
+          <option value="1">Activo</option>
+        </SelectMenu>
       </form>
 
       {/* Botones */}

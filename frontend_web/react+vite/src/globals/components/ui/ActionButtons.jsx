@@ -4,6 +4,7 @@ export default function ActionButtons({
   children,
   editButtonOnClick,
   deleteButtonVisible = true,
+  visibilityIcon = true,
   deleteButtonOnClick,
 }) {
   return (
@@ -21,7 +22,11 @@ export default function ActionButtons({
         className={`${deleteButtonVisible ? "" : "hidden"}`}
       >
         <img
-          src={actionsIcons.visibility}
+          src={
+            visibilityIcon
+              ? actionsIcons.visibility
+              : actionsIcons.lockVisibility
+          }
           alt=""
           className="dark:brightness-200 hover:scale-125 transition-all duration-500"
         />

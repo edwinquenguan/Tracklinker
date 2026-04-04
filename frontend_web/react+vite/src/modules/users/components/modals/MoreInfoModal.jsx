@@ -1,3 +1,5 @@
+import { userStatus } from "../../constants/userStatus";
+
 export default function MoreInfoModal({ user }) {
   return (
     <section className="flex flex-col justify-center dark:text-white">
@@ -16,6 +18,9 @@ export default function MoreInfoModal({ user }) {
       </p>
       <p>
         <strong>Dirección:</strong> {user.address}
+      </p>
+      <p>
+        <strong>Estado:</strong> {userStatus[user.status]?.text}
       </p>
       <p>
         <strong>Fecha De Creación:</strong> {user.date}
