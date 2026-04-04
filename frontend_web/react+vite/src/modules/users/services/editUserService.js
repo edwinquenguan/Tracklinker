@@ -1,14 +1,13 @@
 import { apiRoutes } from "../../../config/apiRoutes";
-import { getToken } from "../../../utils/auth";
 
 export async function editUserService(user_id, user_data) {
   const res = await fetch(
     `${apiRoutes.apiUrl}${apiRoutes.users}/update/${user_id}`,
     {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        Authorization: getToken(),
       },
       body: JSON.stringify(user_data),
     },
