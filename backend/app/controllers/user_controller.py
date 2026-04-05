@@ -69,7 +69,7 @@ class UserController:
                 subtype="html",
             )
             fm = FastMail(config)
-            await fm.send_message(emailMessage, template_name="welcome_email.html")
+            await fm.send_message(emailMessage, template_name="welcome_mail.html")
 
         return {
             "success": success,
