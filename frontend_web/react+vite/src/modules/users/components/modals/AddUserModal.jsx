@@ -22,7 +22,6 @@ export default function AddUserModal({ onClose }) {
     second_surname: "",
     address: "",
     city: "",
-    password: "",
     email: "",
     phone: "",
   });
@@ -75,17 +74,6 @@ export default function AddUserModal({ onClose }) {
           name={"second_surname"}
           onChange={handleChange}
           autoComplete="name"
-        />
-
-        <FormField
-          value={form.password}
-          labelText={"Contraseña"}
-          type="password"
-          placeholder={"********"}
-          id={"password"}
-          name={"password"}
-          onChange={handleChange}
-          autoComplete="pass"
         />
 
         <FormField
