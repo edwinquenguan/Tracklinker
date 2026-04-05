@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from typing import Union
+import secrets
+import string
 import bcrypt
 from jose import jwt
 from fastapi import HTTPException
@@ -49,3 +51,20 @@ def verify_password(user, password: str):
         )
     
     return True
+
+# Funcion para crear un contraseña temporal
+def generate_temporal_password(length: int = 12) -> str:
+    alphabet = string.ascii_letters + string.digits + "!@#$%&*"
+    
+    password = [
+        secrets.choice(string.ascii_uppercase),
+        secrets.choice(string.ascii_lowercase),
+        secrets.choice(string.digits),
+    ]
+    
+    password += [secrets.choice(alphabet) for _ in range(length - 3)]
+    
+    # Mezcla para que no sean predecibles las primeras posiciones
+    secrets.SystemRandom().shuffle(password)
+    
+    return ''.join(password)
