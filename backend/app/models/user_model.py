@@ -10,7 +10,6 @@ class User(BaseModel):
     second_surname: str
     address: str
     city: str
-    password: str
     email: EmailStr
     phone: int
     date: Optional[datetime] = None
@@ -23,6 +22,7 @@ class UpdateUser(BaseModel):
     city: str
     email: EmailStr
     phone: int
+    status: int
 
 class UpdatePassword(BaseModel):
     old_password: str
