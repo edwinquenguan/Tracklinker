@@ -3,7 +3,6 @@ from app.controllers.auth_controller import AuthController
 from app.models.auth_model import LoginModel, RecoverPassword
 from app.models.user_model import UpdateUser, UpdatePassword
 from app.middlewares.jwt_middleware import verify_jwt
-from pydantic import EmailStr
 
 router = APIRouter(
     prefix="/api/auth", 
@@ -16,9 +15,9 @@ def login(credentials: LoginModel, response: Response):
     return AuthController.login(credentials.email, credentials.password, response)
 
 # Endpoint para verificar el rol del usuario
-@router.get("/verify-role/{rol}")
-def verifyRole(rol: str, payload: dict = Depends(verify_jwt)):
-    return AuthController.verify_role(rol, payload)
+@router.post("/verify-roles")
+def verifyRole(body: dict = Body(...), payload: dict = Depends(verify_jwt)):
+    return AuthController.verify_role(body, payload)
 
 #Endpoint para cerrar sesión
 @router.post("/logout")

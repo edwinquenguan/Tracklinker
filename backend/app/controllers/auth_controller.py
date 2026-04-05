@@ -9,6 +9,7 @@ from jose import jwt, JWTError
 from app.core.mail import config
 from fastapi_mail import FastMail, MessageSchema
 
+
 class AuthController:
     """
     Controlador de autenticaión
@@ -32,8 +33,9 @@ class AuthController:
 
         # Validación de lo que retorna la función find_by_email
         if not user:
-            raise HTTPException(status_code=401, detail="Usuario No encontrado")
-        
+            raise HTTPException(
+                status_code=401, detail="Usuario No encontrado")
+
         # Validación de los parametros recibidos
         verify_password(user, password)
 
@@ -44,9 +46,9 @@ class AuthController:
         token = create_access_token({
             "sub": str(user["user_id"]),
             "role": user["rol_name"]
-            }, 
+        },
             expires_delta=expires)
-        
+
         response.set_cookie(
             key="access_token",
             value=f"Bearer {token}",
@@ -55,20 +57,24 @@ class AuthController:
             samesite="lax",
             max_age=settings.ACCESS_TOKEN_EXPIRE * 60)
 
-        return{
+        return {
             "success": True,
             "message": "Inicio de sesion exitoso"
         }
-    
+
     @staticmethod
-    def verify_role(rol, payload):
-        # Valida si el rol que hay dentro del jwt es igual al parametro rol
-        if payload.get("role") != rol:
+    def verify_role(body: dict, payload: dict):        
+        user_role = payload.get("role")
+        roles = body.get("roles", [])
+
+        # Valida si el rol que hay dentro del jwt esta el lista de roles envaidos
+        if user_role not in roles:
             raise HTTPException(status_code=403, detail="No autorizado")
         return {
-            "success": True
+            "success": True,
+            "role": user_role
         }
-    
+
     @staticmethod
     def logout(response: Response):
         response.delete_cookie(
@@ -81,15 +87,16 @@ class AuthController:
             "success": True,
             "message": "Sesion cerrada"
         }
-    
+
     @staticmethod
     def get_current_user(access_token: str = Cookie(None)):
         if not access_token:
             raise HTTPException(status_code=401, detail="No autenticado")
-        
+
         try:
             token = access_token.replace("Bearer ", "")
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+            payload = jwt.decode(token, settings.SECRET_KEY,
+                                 algorithms=[settings.ALGORITHM])
             error, data = UserRepository.find_by_id(payload["sub"])
 
             if error:
@@ -100,10 +107,11 @@ class AuthController:
             }
         except JWTError:
             raise HTTPException(status_code=401, detail="Token inválido")
-        
+
     @staticmethod
     def update_current_user(user_data: UpdateUser, payload: dict):
-        error, success, message = UserRepository.update(int(payload["user_id"]), user_data)
+        error, success, message = UserRepository.update(
+            int(payload["user_id"]), user_data)
 
         if error:
             raise HTTPException(status_code=404, detail=error)
@@ -112,24 +120,27 @@ class AuthController:
             "success": success,
             "message": message
         }
-    
+
     @staticmethod
     def update_user_password(password_data: UpdatePassword, payload: dict):
         data = password_data.model_dump()
 
         if data["new_password"] != data["repeat_password"]:
-            raise HTTPException(status_code=400, detail="Las contraseñas no coinciden")
+            raise HTTPException(
+                status_code=400, detail="Las contraseñas no coinciden")
 
         error, user = UserRepository.find_by_id(int(payload["user_id"]))
 
         # Validación de lo que retorna la función find_by_email
         if not user or error:
-            raise HTTPException(status_code=401, detail="Usuario No encontrado")
-        
+            raise HTTPException(
+                status_code=401, detail="Usuario No encontrado")
+
         # Validación de que la contraseña antigua sea valida
         verify_password(user[0], data["old_password"])
-        
-        error, success, message = UserRepository.update_password(int(payload["user_id"]), data["new_password"])
+
+        error, success, message = UserRepository.update_password(
+            int(payload["user_id"]), data["new_password"])
 
         if error:
             raise HTTPException(status_code=404, detail=error)
@@ -138,21 +149,21 @@ class AuthController:
             "success": success,
             "message": message
         }
-    
+
     @staticmethod
     async def recover_user_password(email: str):
         user = UserRepository.find_by_email(email)
 
         if not user:
             raise HTTPException(status_code=400, detail="Correo inválido")
-        
+
         message = MessageSchema(
             subject="Recuperación de contraseña",
             recipients=[email],
             template_body={"name": user["user_name"]},
             subtype="html",
         )
-        
+
         fm = FastMail(config)
         await fm.send_message(message, template_name="recover_password.html")
 
