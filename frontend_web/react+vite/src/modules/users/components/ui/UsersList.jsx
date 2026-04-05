@@ -5,16 +5,16 @@ import "react-loading-skeleton/dist/skeleton.css";
 export default function UsersList({
   users,
   loading,
-  error,
   refetch,
   openModal,
 }) {
+  const isFirstLoad = users.length === 0 && loading;
   return (
     /* Contenedor de los usuarios */
     <section className="max-h-[95%] max-w-full overflow-x-auto overflow-y-auto overflow-hidden">
       <ul className="flex flex-col gap-1">
-        {loading ? (
-          <SkeletonTheme baseColor="#f3eef5" highlightColor="#848185">
+        {isFirstLoad ? (
+          <SkeletonTheme baseColor="#f3eef5" highlightColor="#c5c1c7">
             <li>
               <Skeleton height={"68px"} count={13} borderRadius={"8px"} />
             </li>
