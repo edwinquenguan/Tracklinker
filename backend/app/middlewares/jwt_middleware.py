@@ -10,6 +10,9 @@ async def verify_jwt(access_token: str = Cookie(None)):
         detail="Token inválido o expirado",
     )
 
+    if not access_token:
+        raise credentials_exception
+
     try:
         token = access_token.replace("Bearer ", "")
         payload = jwt.decode(
@@ -24,11 +27,10 @@ async def verify_jwt(access_token: str = Cookie(None)):
         if not user_id or not role:
             raise credentials_exception
 
-    except JWTError as e:
-        print("error", {e})
+    except JWTError:
         raise credentials_exception
-    
-    return{
+
+    return {
         "user_id": user_id,
         "role": role
     }
