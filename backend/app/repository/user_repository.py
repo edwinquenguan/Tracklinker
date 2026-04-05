@@ -77,7 +77,7 @@ class UserRepository:
             user_email,
             user_address,
             user_city
-        FROM USERS AS
+        FROM USERS
         WHERE user_id = %s
         """
 
