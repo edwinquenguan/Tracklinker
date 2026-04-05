@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import get_connection
-from app.routes import user_routes, dashboard_routes, category_routes, subcategories_routes, auth_routes, output_details_routes, outputs_routes, guarantees_routes, products_routes, reports_routes, suppliers_routes
+from app.routes import user_routes, dashboard_routes, category_routes, subcategories_routes, auth_routes, output_details_routes, suggestion_routes, guarantees_routes, products_routes, reports_routes, suppliers_routes
 
 # Instancia principal de la app FastAPI
 app = FastAPI(
@@ -61,3 +61,5 @@ app.include_router(products_routes.router)
 app.include_router(reports_routes.router)
 # Rutas para el modúlo de Proveedores
 app.include_router(suppliers_routes.router)
+# Rutas para el modúlo de Ayuda o sugerencias
+app.include_router(suggestion_routes.router)

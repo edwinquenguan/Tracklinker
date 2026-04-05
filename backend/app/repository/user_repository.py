@@ -69,23 +69,25 @@ class UserRepository:
         # Petición a la base de datos
         query = """
         SELECT
-            u.user_name,
-            u.user_first_surname,
-            u.user_second_surname,
-            u.user_password,
-            u.user_phone,
-            u.user_email,
-            u.user_address,
-            u.user_city
-        FROM USERS AS u 
-        INNER JOIN ROLES AS r 
-        ON u.rol_id = r.rol_id
+            user_name,
+            user_first_surname,
+            user_second_surname,
+            user_password,
+            user_phone,
+            user_email,
+            user_address,
+            user_city
+        FROM USERS AS
         WHERE user_id = %s
         """
 
         try:
             cursor.execute(query, (user_id,))
             result = cursor.fetchall()
+
+            if not result:
+                return "Usuario no encontrado", None
+
             data = [
                 {
                     "name": item["user_name"],
