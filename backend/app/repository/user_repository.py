@@ -26,7 +26,8 @@ class UserRepository:
             u.user_email,
             u.user_address,
             u.user_city,
-            u.user_date
+            u.user_date,
+            u.user_status
         FROM USERS AS u 
         INNER JOIN ROLES AS r 
         ON u.rol_id = r.rol_id
@@ -48,6 +49,7 @@ class UserRepository:
                     "address": item["user_address"],
                     "city": item["user_city"],
                     "date": date_formatter(item["user_date"]),
+                    "status": item["user_status"]
                 }
                 for item in results
             ]
@@ -138,7 +140,7 @@ class UserRepository:
 
     # Crear un usuario
     @staticmethod
-    def create(user_data: User):
+    def create(user_data: User, temporal_password: str):
         data = user_data.model_dump()
 
         connection = get_connection()
@@ -153,8 +155,8 @@ class UserRepository:
             return None, False, "El correo ya está registrado"
 
         # Hashear la contraseña
-        password = data["password"].encode("utf-8")
-        data["password"] = bcrypt.hashpw(
+        password = temporal_password.encode("utf-8")
+        hash_password = bcrypt.hashpw(
             password, bcrypt.gensalt(rounds=12)).decode("utf-8")
 
         # Petición a la base de datos
@@ -178,7 +180,7 @@ class UserRepository:
                 data["second_surname"], 
                 data["address"], 
                 data["city"], 
-                data["password"], 
+                hash_password,
                 data["email"], 
                 data["phone"]))
             connection.commit()
@@ -226,7 +228,8 @@ class UserRepository:
             user_email = %s,
             user_phone = %s,
             user_city = %s,
-            user_address = %s
+            user_address = %s,
+            user_status= %s
         WHERE user_id = %s"""
 
         try:
@@ -238,6 +241,7 @@ class UserRepository:
                 data["phone"],
                 data["address"], 
                 data["city"],
+                data["status"],
                 user_id 
             ))
             connection.commit()
@@ -277,9 +281,9 @@ class UserRepository:
             cursor.close()
             connection.close()
 
-    # Eliminar un usuario
+    # Deshabilitar un usuario
     @staticmethod
-    def delete(user_id: int):
+    def disable(user_id: int):
         connection = get_connection()
         cursor = connection.cursor()
 
@@ -290,14 +294,39 @@ class UserRepository:
             connection.close()
             return "Usuario no encontrado", False, None
 
-        query = "DELETE FROM USERS WHERE user_id = %s"
+        query = "UPDATE USERS SET user_status = 0 WHERE user_id = %s"
 
         try:
             cursor.execute(query, (user_id,))
             connection.commit()
-            return None, True, "Usuario eliminado correctamente"
-        except Exception as e:
-            return f"Error la intentar ejecutar la consulta {e}", False, None
+            return None, True, "Usuario deshabilitado correctamente"
+        except Exception:
+            return "Error la intentar deshabilitar el usuario", False, None
+        finally:
+            cursor.close()
+            connection.close()
+
+    # Habilitar un usuario
+    @staticmethod
+    def enable(user_id: int):
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            cursor.close()
+            connection.close()
+            return "Usuario no encontrado", False, None
+
+        query = "UPDATE USERS SET user_status = 1 WHERE user_id = %s"
+
+        try:
+            cursor.execute(query, (user_id,))
+            connection.commit()
+            return None, True, "Usuario habilitado correctamente"
+        except Exception:
+            return "Error la intentar habilitar el usuario", False, None
         finally:
             cursor.close()
             connection.close()

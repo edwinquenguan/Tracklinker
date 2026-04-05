@@ -3,7 +3,9 @@ from fastapi import HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from app.repository.user_repository import UserRepository
 from app.models.user_model import User
-from app.core.security import create_access_token
+from app.core.mail import config
+from fastapi_mail import FastMail, MessageSchema
+from app.core.security import create_access_token, generate_temporal_password
 from app.core.config import settings
 
 class UserController:
@@ -45,10 +47,30 @@ class UserController:
     
     
     @staticmethod
-    def create_user(user_data: User):
-        error, success, message = UserRepository.create(user_data)
+    async def create_user(user_data: User):
+        data = user_data.model_dump()
+        temporal_password = generate_temporal_password()
+
+        error, success, message = UserRepository.create(user_data, temporal_password)
+
         if error:
             raise HTTPException(status_code=400, detail=error)
+
+        if success == True:
+            emailMessage = MessageSchema(
+                subject="Bienvenido a Tracklinker",
+                recipients=[data["email"]],
+                template_body={
+                    "name": data["name"],
+                    "surname": data["first_surname"],
+                    "email": data["email"],
+                    "password": temporal_password
+                },
+                subtype="html",
+            )
+            fm = FastMail(config)
+            await fm.send_message(emailMessage, template_name="welcome_email.html")
+
         return {
             "success": success,
             "message": message
@@ -65,8 +87,18 @@ class UserController:
         }
     
     @staticmethod
-    def delete_user(user_id: int):
-        error, success, message = UserRepository.delete(user_id)
+    def disable_user(user_id: int):
+        error, success, message = UserRepository.disable(user_id)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "success": success,
+            "message": message
+        }
+    
+    @staticmethod
+    def enable_user(user_id: int):
+        error, success, message = UserRepository.enable(user_id)
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {

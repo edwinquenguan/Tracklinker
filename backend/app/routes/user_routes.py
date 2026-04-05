@@ -26,10 +26,10 @@ def get_user_by_id(user_id: int):
 
 # Endpoint para crear o registrar un usuario
 @router.post("/create")
-def create_user(
+async def create_user(
     user_data: User
 ):
-    return UserController.create_user(user_data)
+    return await UserController.create_user(user_data)
 
 # Endpoint para actualizar la información de un usuario existente mediante su id
 @router.put("/update/{user_id}")
@@ -39,9 +39,16 @@ def update_user(
 ):
     return UserController.update_user(user_id, user_data)
 
-# Endpoint para eliminar un usuario mediante su id
-@router.delete("/delete/{user_id}")
-def delete_user(
+# Endpoint para deshabilitar un usuario mediante su id
+@router.put("/disable/{user_id}")
+def disable_user(
     user_id: int
 ):
-    return UserController.delete_user(user_id)
+    return UserController.disable_user(user_id)
+
+# Endpoint para habilitar un usuario mediante su id
+@router.put("/enable/{user_id}")
+def enable_user(
+    user_id: int
+):
+    return UserController.enable_user(user_id)
