@@ -12,11 +12,12 @@ export default function FilterModal({
         id={"order-by-name-menu"}
         name={"order-by-name-menu"}
         spanText={"Ordenar Por Nombre"}
-      >
-        <option value="">Seleccionar</option>
-        <option value="asc">a - Z</option>
-        <option value="desc">Z - a</option>
-      </SelectMenu>
+        options={[
+          {value: "", label: "Seleccionar"},
+          {value: "asc", label: "a - Z"},
+          {value: "desc", label: "Z - a"},
+        ]}
+      />
       <section className="w-full">{children}</section>
 
       <section className="flex flex-col gap-1">
