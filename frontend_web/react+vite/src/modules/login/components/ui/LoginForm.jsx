@@ -26,58 +26,58 @@ export default function LoginForm({ openModal }) {
           alt=""
           className="w-[150px] h-[150px] dark:invert dark:brightness-0"
         />
-        <form className="w-80 flex flex-col gap-2">
+        <form className="w-[330px] flex flex-col gap-1">
           {/* Campo del correo */}
-          <section
-            className="flex px-3.5 py-3 gap-2 items-center bg-white rounded-xl border
-            dark:bg-[#2020226c] dark:border-[#101012]"
-          >
-            <div className="flex items-center gap-3">
-              <img src={loginIcons.emailIcon} alt="" className="w-6 h-6" />
+          <section>
+            <span className="text-xs font-medium">Correo</span>
+            <section
+              className="flex rounded-xl border
+              dark:bg-[#2020226c] dark:border-[#101012]"
+            >
               <input
                 id="email-input"
                 type="text"
-                placeholder="Email"
+                placeholder="tu@correo.com"
                 onChange={(e) => setEmail(e.target.value)}
-                className="py-1 text-sm outline-none dark:bg-transparent 
-                dark:border-[#101012]dark:text-white dark:placeholder:text-[#7c7c7cb5]"
+                className="w-full px-3.5 py-3 text-sm rounded-xl outline-none bg-transparent
+                autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_white]
+                dark:border-[#101012]dark:text-white dark:placeholder:text-[#7c7c7cb5] dark:autofill:bg-black dark:autofill:shadow-[inset_0_0_0px_1000px_black]"
               />
-            </div>
+            </section>
           </section>
 
           {/* Campo de la contraseña */}
-          <section
-            className="flex px-3.5 py-3 gap-2 items-center justify-between bg-white rounded-xl border
-            dark:bg-[#2020226c] dark:border-[#101012]"
-          >
-            <div className="flex items-center gap-3">
-              <img
-                src={loginIcons.hidePasswordIcon}
-                alt=""
-                className="w-6 h-6 dark:invert"
-              />
+          <section>
+            <span className="text-xs font-medium">Contraseña</span>
+            <section
+              className="flex items-center rounded-xl border
+              dark:bg-[#2020226c] dark:border-[#101012]"
+            >
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Contraseña"
+                placeholder="********"
                 onChange={(e) => setPassword(e.target.value)}
-                className="py-1 text-sm outline-none dark:bg-transparent 
-                dark:border-[#101012] dark:text-white dark:placeholder:text-[#7c7c7cb5]"
+                className="w-full px-3 py-3 text-sm outline-none rounded-xl bg-transparent
+                autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_white]
+                dark:border-[#101012] dark:text-white dark:placeholder:text-[#7c7c7cb5] dark:autofill:bg-black dark:autofill:shadow-[inset_0_0_0px_1000px_black]"
               />
-            </div>
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              <img
-                src={
-                  showPassword
-                    ? actionsIcons.visibility
-                    : actionsIcons.lockVisibility
-                }
-                alt=""
-                className="dark:invert dark:brightness-0"
-              />
-            </button>
+
+              <button
+                className="pr-2"
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                <img
+                  src={
+                    showPassword
+                      ? actionsIcons.visibility
+                      : actionsIcons.lockVisibility
+                  }
+                  alt=""
+                  className="dark:invert dark:brightness-0"
+                />
+              </button>
+            </section>
           </section>
           {/* Botones de Ingresar y recuperar contraseña */}
           <FormButtons
