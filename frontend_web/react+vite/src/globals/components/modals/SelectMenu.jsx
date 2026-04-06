@@ -2,7 +2,6 @@ import { useState } from "react";
 import { modalIcons } from "../../../assets/icons/modalIcons";
 
 export default function SelectMenu({
-  id,
   name,
   onChange,
   value,
