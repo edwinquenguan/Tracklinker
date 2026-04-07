@@ -3,8 +3,9 @@ import { actionsIcons } from "../../../../assets/icons/mainIcons";
 export default function ReturnButton({ onClick }) {
   return (
     <button
-      className="flex items-center gap-1 px-3.5 py-1.5 border rounded-md shadow-md
-      dark:text-white dark:border-[#9490902d]"
+      className="flex items-center gap-1 px-3.5 py-1.5 border rounded-md shadow-md transition-all duration-300
+      hover:bg-gray-200
+      dark:text-white dark:border-[#9490902d] dark:hover:bg-[#2c2c2e]"
       onClick={onClick}
     >
       <img
