@@ -6,6 +6,7 @@ export async function getUsersAreaChartService(signal) {
     `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_user_growth`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },

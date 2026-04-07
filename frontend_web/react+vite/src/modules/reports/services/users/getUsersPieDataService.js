@@ -6,6 +6,7 @@ export async function getUsersPieDataService(signal) {
     `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_rol`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },
