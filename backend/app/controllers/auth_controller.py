@@ -1,6 +1,6 @@
 from fastapi import HTTPException, Response, Cookie
 from datetime import timedelta
-from app.models.user_model import UpdateUser, UpdatePassword
+from app.models.user_model import UpdateCurrentUser, UpdatePassword
 from app.core.security import verify_password
 from app.core.security import create_access_token
 from app.repository.user_repository import UserRepository
@@ -109,8 +109,8 @@ class AuthController:
             raise HTTPException(status_code=401, detail="Token inválido")
 
     @staticmethod
-    def update_current_user(user_data: UpdateUser, payload: dict):
-        error, success, message = UserRepository.update(
+    def update_current_user(user_data: UpdateCurrentUser, payload: dict):
+        error, success, message = UserRepository.update_current_user(
             int(payload["user_id"]), user_data)
 
         if error:

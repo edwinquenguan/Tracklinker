@@ -24,6 +24,15 @@ class UpdateUser(BaseModel):
     phone: int
     status: int
 
+class UpdateCurrentUser(BaseModel):
+    name: str
+    first_surname: str
+    second_surname: str
+    address: str
+    city: str
+    email: EmailStr
+    phone: int
+
 class UpdatePassword(BaseModel):
     old_password: str
     new_password: str
