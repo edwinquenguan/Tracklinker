@@ -26,14 +26,11 @@ export default function LoginForm({ openModal }) {
           alt=""
           className="w-[150px] h-[150px] dark:invert dark:brightness-0"
         />
-        <form className="w-[330px] flex flex-col gap-1">
+        <form className="w-[330px] flex flex-col gap-1 dark:text-white">
           {/* Campo del correo */}
           <section>
             <span className="text-xs font-medium">Correo</span>
-            <section
-              className="flex rounded-xl border
-              dark:bg-[#2020226c] dark:border-[#101012]"
-            >
+            <section className="flex rounded-xl border dark:border-gray-700">
               <input
                 id="email-input"
                 type="text"
@@ -41,7 +38,7 @@ export default function LoginForm({ openModal }) {
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3.5 py-3 text-sm rounded-xl outline-none bg-transparent
                 autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_white]
-                dark:border-[#101012]dark:text-white dark:placeholder:text-[#7c7c7cb5] dark:autofill:bg-black dark:autofill:shadow-[inset_0_0_0px_1000px_black]"
+                dark:text-white dark:placeholder:text-[#7c7c7cb5]"
               />
             </section>
           </section>
@@ -49,17 +46,14 @@ export default function LoginForm({ openModal }) {
           {/* Campo de la contraseña */}
           <section>
             <span className="text-xs font-medium">Contraseña</span>
-            <section
-              className="flex items-center rounded-xl border
-              dark:bg-[#2020226c] dark:border-[#101012]"
-            >
+            <section className="flex items-center rounded-xl border dark:border-gray-700">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="********"
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-3 text-sm outline-none rounded-xl bg-transparent
                 autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_white]
-                dark:border-[#101012] dark:text-white dark:placeholder:text-[#7c7c7cb5] dark:autofill:bg-black dark:autofill:shadow-[inset_0_0_0px_1000px_black]"
+                dark:text-white dark:placeholder:text-[#7c7c7cb5]"
               />
 
               <button
