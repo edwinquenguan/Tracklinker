@@ -35,13 +35,11 @@ export default function EditUserInfoModal({ user, onClose }) {
           id={"rol_menu"}
           spanText={"Rol"}
           onChange={handleChange}
-        >
-          {roles.map((rol) => (
-            <option value={rol.id} key={rol.id}>
-              {rol.name}
-            </option>
-          ))}
-        </SelectMenu>
+          options={roles.map((rol) => ({
+            value: rol.id,
+            label: rol.name,
+          }))}
+        />
         <FormField
           name={"name"}
           value={form.name}
@@ -96,10 +94,11 @@ export default function EditUserInfoModal({ user, onClose }) {
           value={form.status}
           spanText={"Estado"}
           onChange={handleChange}
-        >
-          <option value="0">Inactivo</option>
-          <option value="1">Activo</option>
-        </SelectMenu>
+          options={[
+            { value: 0, label: "Deshabilitado" },
+            { value: 1, label: "Activo" },
+          ]}
+        />
       </form>
 
       {/* Botones */}
