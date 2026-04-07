@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        dmsans: ["DM Sans", "sans-serif"],
+        poppins: ["Poopins", ...defaultTheme.fontFamily.sans],
+        inter: ["Inter", "sans-serif"],
+      },
       keyframes: {
         rotation: {
           "0%": { transform: "rotate(0deg)" },
