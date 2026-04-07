@@ -1,10 +1,7 @@
-export default function ReportCard({
-  name,
-  colSpan,
-  children
-}) {
+export default function ReportCard({ name, colSpan, children }) {
   return (
     <section
+      key={name}
       className={`row-span-3 col-span-${colSpan} bg-white dark:text-white
         flex flex-col p-5 shadow-md border border-gray-200 rounded-xl transition duration-500
         hover:bg-gray-200 hover:scale-[1.01]
@@ -12,9 +9,7 @@ export default function ReportCard({
     >
       <section className="flex flex-col items-start justify-between gap-6">
         <span> {name} </span>
-        <section className="h-auto w-full">
-          {children}
-        </section>
+        <section className="h-auto w-full">{children}</section>
       </section>
     </section>
   );
