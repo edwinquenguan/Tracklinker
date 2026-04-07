@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Response, Cookie, Body
 from app.controllers.auth_controller import AuthController
 from app.models.auth_model import LoginModel, RecoverPassword
-from app.models.user_model import UpdateUser, UpdatePassword
+from app.models.user_model import UpdateCurrentUser, UpdatePassword
 from app.middlewares.jwt_middleware import verify_jwt
 
 router = APIRouter(
@@ -31,7 +31,7 @@ def get_me(access_token: str = Cookie(None)):
 
 #Endpoint para actualizar la informacion del usuario
 @router.put("/update/me")
-def update_me(user_data: UpdateUser = Body(...), payload: dict = Depends(verify_jwt)):
+def update_me(user_data: UpdateCurrentUser = Body(...), payload: dict = Depends(verify_jwt)):
     return AuthController.update_current_user(user_data, payload)
 
 # Endpoint para actulizar la contraseña del usuario
