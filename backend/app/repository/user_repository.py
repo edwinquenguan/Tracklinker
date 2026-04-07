@@ -1,6 +1,5 @@
 from app.core.database import get_connection
-from app.models.user_model import User, UpdateUser, UpdatePassword
-from datetime import datetime
+from app.models.user_model import User, UpdateUser, UpdateCurrentUser
 from app.utils.date_formatter import date_formatter
 import bcrypt
 
@@ -252,6 +251,66 @@ class UserRepository:
         except Exception as e:
             connection.rollback()
             return f"Error al ejecutar la consulta: {e}", False, None
+        finally:
+            cursor.close()
+            connection.close()
+
+
+    # Actualizar la información de un usuario
+    @staticmethod
+    def update_current_user(user_id: int, user_data: UpdateCurrentUser):
+        data = user_data.model_dump()
+
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        # Verificar si existe el usuario
+        cursor.execute("SELECT * FROM USERS WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+
+        if not user:
+            cursor.close()
+            connection.close()
+            return "Usuario no encontrado", None, None
+            
+        # Verificar si existe el correo y no duplicarlo
+        if "user_email" in user_data:
+            cursor.execute("SELECT user_id FROM USERS WHERE user_email = %s", (user_data["user_email"],))
+            existing = cursor.fetchone()
+            
+            if existing and existing["user_id"] != user_id:
+                cursor.close()
+                connection.close()
+                return None, False, "El correo ya está registrado"
+
+        query = """
+        UPDATE USERS SET
+            user_name = %s,
+            user_first_surname = %s,
+            user_second_surname = %s,
+            user_email = %s,
+            user_phone = %s,
+            user_city = %s,
+            user_address = %s
+        WHERE user_id = %s"""
+
+        try:
+            cursor.execute(query, (
+                data["name"], 
+                data["first_surname"], 
+                data["second_surname"], 
+                data["email"], 
+                data["phone"],
+                data["address"], 
+                data["city"],
+                user_id 
+            ))
+            connection.commit()
+
+            return None, True, "Usuario actualizado correctamente"
+        except Exception as e:
+            connection.rollback()
+            return f"Error al ejecutar la consulta", False, None
         finally:
             cursor.close()
             connection.close()
