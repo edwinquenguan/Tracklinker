@@ -60,7 +60,7 @@ export default function UserItem({
       >
         {/* Botón de más información del usuario */}
         <button onClick={moreInfoOnClick}>
-          <img src={actionsIcons.moreInfoIcon} alt="" />
+          <img src={actionsIcons.moreInfoIcon} alt="" className="transition-all duration-300 hover:scale-125" />
         </button>
       </ActionButtons>
     </li>
