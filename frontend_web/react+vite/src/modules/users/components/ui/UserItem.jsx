@@ -1,5 +1,6 @@
 import { userStatus } from "../../constants/userStatus";
 import { usersIcons } from "../../../../assets/icons/mainIcons";
+import { actionsIcons } from "../../../../assets/icons/mainIcons";
 import ActionButtons from "../../../../globals/components/ui/ActionButtons";
 
 export default function UserItem({
@@ -11,8 +12,9 @@ export default function UserItem({
 }) {
   return (
     <li
-      className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300 cursor-pointer
-                    dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+      className="flex items-center justify-between p-5 bg-[#96929213] rounded-lg transition duration-300 cursor-pointer
+      hover:bg-[#96929231]
+      dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
       key={user.id}
       onClick={moreInfoOnClick}
     >
@@ -55,7 +57,12 @@ export default function UserItem({
         }}
         visibilityIcon={userStatus[user.status]?.visibilityIcon}
         moreInfoOnClick={moreInfoOnClick}
-      />
+      >
+        {/* Botón de más información del usuario */}
+        <button onClick={moreInfoOnClick}>
+          <img src={actionsIcons.moreInfoIcon} alt="" className="transition-all duration-300 hover:scale-125" />
+        </button>
+      </ActionButtons>
     </li>
   );
 }

@@ -28,10 +28,7 @@ export default function SelectMenu({
             bg-[#e5e5e527] rounded-lg cursor-pointer text-sm
             dark:bg-[#ffffff1a] dark:border-[#ffffff15] dark:text-white"
         >
-          <div
-            style={{ viewTransitionName: "select-menu" }}
-            className="w-full h-11 flex items-center pl-5"
-          >
+          <div className="w-full h-11 flex items-center pl-5">
             {options.find((opt) => opt.value === value)?.label || "Seleccionar"}
           </div>
           <img
@@ -56,12 +53,11 @@ export default function SelectMenu({
 
       {open && (
         <div
-          className="absolute top-full left-0 w-full mt-1 rounded-lg border bg-white shadow-lg z-250 
+          className="absolute top-full left-0 w-full rounded-lg border bg-white shadow-lg z-250 
         dark:bg-[#1a1a1a] dark:text-white dark:border-none"
         >
           {options.map((option) => (
             <div
-              style={{ viewTransitionName: "select-menu" }}
               key={option.value}
               onClick={() => handleSelect(option)}
               className="px-3 py-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-[#333]"
