@@ -1,6 +1,7 @@
 export default function TableCard({ tableTitle, children }) {
   return (
     <section
+      key={tableTitle}
       className="row-span-3 col-span-full bg-white dark:text-white
         flex flex-col p-5 shadow-md border border-gray-200 rounded-xl transition duration-500
         hover:bg-gray-200 hover:scale-[1.01]
