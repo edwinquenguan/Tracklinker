@@ -37,14 +37,11 @@ export default function AddUserModal({ onClose }) {
           name={"rol_id"}
           spanText={"Rol"}
           onChange={handleChange}
-        >
-          <option> Seleccionar </option>  
-          {roles.map((rol) => (
-            <option value={rol.id} key={rol.id}>
-              {rol.name}
-            </option>
-          ))}
-        </SelectMenu>
+          options={roles.map((rol) => ({
+            value: rol.id,
+            label: rol.name,
+          }))}
+        />
 
         <FormField
           value={form.name}
