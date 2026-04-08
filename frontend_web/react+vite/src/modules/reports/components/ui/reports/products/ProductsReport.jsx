@@ -13,7 +13,7 @@ import ProductsAreaChart from "./ProductsAreaChart";
 
 export default function ProductsReport({ setReport }) {
   const { productsData } = useProductsData();
-  const [period, setPeriod] = useState("30d");
+  const [period, setPeriod] = useState("1a");
   return (
     <section className="w-full h-full flex flex-col gap-2 animate-blurUp">
       <ReportsTopSection
