@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.suppliers_model import Supplier
 from app.utils.periods import period_map, daily_periods
+from app.utils.date_formatter import date_formatter
 
 
 class SuppliersRepository:
@@ -133,7 +134,8 @@ class SuppliersRepository:
         cursor = connection.cursor()
 
         # Comprobar si el proveedor existe
-        cursor.execute("SELECT * FROM SUPPLIERS WHERE supplier_id = %s", (supplier_id,))
+        cursor.execute(
+            "SELECT * FROM SUPPLIERS WHERE supplier_id = %s", (supplier_id,))
         supplier = cursor.fetchone()
         if not supplier:
             cursor.close()
@@ -161,13 +163,15 @@ class SuppliersRepository:
 
         query = """
         SELECT
-            product_serial,
-            warranty_customer,
-            warranty_description,
-            warranty_date,
-            warranty_status
-        FROM WARRANTY_INCIDENTS as c
-        ORDER BY warranty_incidents_id DESC
+            supplier_name,
+            supplier_city,
+            supplier_address,
+            supplier_email,
+            supplier_phone,
+            supplier_date,
+            supplier_status
+        FROM SUPPLIERS as c
+        ORDER BY supplier_id DESC
         LIMIT 6
         """
 
@@ -176,17 +180,19 @@ class SuppliersRepository:
             results = cursor.fetchall()
             data = [
                 {
-                    "serial": item["product_serial"],
-                    "customer": item["warranty_customer"],
-                    "description": item["warranty_description"],
-                    "date": date_formatter(item["warranty_date"]),
-                    "status": item["warranty_status"],
+                    "name": item["supplier_name"],
+                    "city": item["supplier_city"],
+                    "address": item["supplier_address"],
+                    "email": item["supplier_email"],
+                    "phone": item["supplier_phone"],
+                    "date": date_formatter(item["supplier_date"]),
+                    "status": item["supplier_status"],
                 }
                 for item in results
             ]
             return None, data
         except Exception as e:
-            return f"Error al ejecutar la consulta", None
+            return f"Error al ejecutar la consulta :{e}", None
         finally:
             cursor.close()
             connection.close()
@@ -201,19 +207,19 @@ class SuppliersRepository:
         query = f"""
         SELECT
             pb.product_brand_name,
-            COUNT(DISTINCT wi.warranty_incidents_id) as suppliers
-        FROM WARRANTY_INCIDENTS AS wi
-        INNER JOIN OUTPUT_DETAILS AS od
-            ON wi.product_serial = od.product_serial
+            COUNT(DISTINCT s.supplier_id) as suppliers
+        FROM SUPPLIERS AS s
+        INNER JOIN INPUT_ORDERS AS io
+            ON s.supplier_id = io.supplier_id
         INNER JOIN PRODUCT_SERIALS AS ps
-            ON od.product_serial = ps.product_serial
+            ON io.input_order_id = ps.input_order_id
         INNER JOIN PRODUCTS AS p
             ON ps.product_id = p.product_id
         INNER JOIN PRODUCT_DETAILS AS pd
             ON p.product_details_id = pd.product_details_id
         INNER JOIN PRODUCT_BRANDS AS pb
             ON pd.product_brand_id = pb.product_brand_id
-        WHERE wi.warranty_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        WHERE s.supplier_date >= DATE_SUB(NOW(), INTERVAL {interval})
         GROUP BY pb.product_brand_name
         ORDER BY pb.product_brand_name ASC
         """
@@ -243,11 +249,11 @@ class SuppliersRepository:
 
         query = """
         SELECT
-            (SELECT COUNT(*) FROM WARRANTY_INCIDENTS) AS total_suppliers,
-            SUM(CASE WHEN warranty_status = 0 THEN 0 ELSE 0 END) AS without_make_suppliers,
-            SUM(CASE WHEN warranty_status = 1 THEN 1 ELSE 0 END) AS inprocess_suppliers,
-            SUM(CASE WHEN warranty_status = 2 THEN 1 ELSE 0 END) AS complete_suppliers
-        FROM WARRANTY_INCIDENTS
+            (SELECT COUNT(*) FROM SUPPLIERS) AS total_suppliers,
+            COUNT(CASE WHEN supplier_date >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_suppliers,
+            SUM(CASE WHEN supplier_status = 0 THEN 0 ELSE 0 END) AS inactive_suppliers,
+            SUM(CASE WHEN supplier_status = 1 THEN 1 ELSE 0 END) AS active_suppliers
+        FROM SUPPLIERS
         """
 
         try:
@@ -272,18 +278,18 @@ class SuppliersRepository:
         use_daily = period in daily_periods
 
         if use_daily:
-            group_expr = "DATE(warranty_date)"
-            select_expr = "DATE(warranty_date) as label"
+            group_expr = "DATE(supplier_date)"
+            select_expr = "DATE(supplier_date) as label"
         else:
-            group_expr = "DATE_FORMAT(warranty_date, '%Y-%m')"
-            select_expr = "DATE_FORMAT(warranty_date, '%Y-%m') as label"
+            group_expr = "DATE_FORMAT(supplier_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(supplier_date, '%Y-%m') as label"
 
         query = f"""
         SELECT
             {select_expr},
-            COUNT(DISTINCT warranty_incidents_id) as suppliers
-        FROM WARRANTY_INCIDENTS
-        WHERE warranty_date >= DATE_SUB(NOW(), INTERVAL {interval})
+            COUNT(DISTINCT supplier_id) as suppliers
+        FROM SUPPLIERS
+        WHERE supplier_date >= DATE_SUB(NOW(), INTERVAL {interval})
         GROUP BY {group_expr}
         ORDER BY {group_expr} ASC
         """
