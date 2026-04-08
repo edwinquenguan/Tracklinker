@@ -13,7 +13,7 @@ import SuppliersReport from "./components/ui/reports/suppliers/SuppliersReport";
 import CategoriesReport from "./components/ui/reports/categories/CategoriesReport";
 import WarrantiesReport from "./components/ui/reports/warranties/WarrantiesReport";
 import SubcategoriesReport from "./components/ui/reports/subcategories/SubcategoriesReport";
-import TransformationsReport from "./components/ui/reports/transformations/TransformationsReport";
+import OutputsReport from "./components/ui/reports/outputs/OutputsReport";
 // Modales
 import Modal from "../../globals/components/modals/Modal";
 import HelpModal from "../../globals/components/modals/HelpModal";
@@ -53,8 +53,8 @@ export default function ReportsPage() {
       )}
       {report === "warranties" && <WarrantiesReport setReport={setReport} />}
       {report === "suppliers" && <SuppliersReport setReport={setReport} />}
-      {report === "transformations" && (
-        <TransformationsReport setReport={setReport} />
+      {report === "outputs" && (
+        <OutputsReport setReport={setReport} />
       )}
 
       {/* Modales */}
