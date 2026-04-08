@@ -1,6 +1,7 @@
 // Hooks
 import { useModal } from "../../globals/hooks/useModal";
 import { useUsers } from "./hooks/useUsers";
+import { useState } from "react";
 // Iconos
 import { usersIcons } from "../../assets/icons/mainIcons";
 // Modales
@@ -18,11 +19,14 @@ import Layout from "../../globals/components/Layout/Layout";
 import SearchBar from "../../globals/components/ui/SearchBar";
 import TopSection from "../../globals/components/ui/TopSection";
 import EnableUserModal from "./components/modals/EnableUserModal";
+import { useSearch } from "../../globals/hooks/useSearch";
 
 export default function UsersPage() {
   // Traer todos los datos o states de sus hooks
   const { modalType, isOpen, modalData, openModal, closeModal } = useModal();
   const { users, loading, error, fetchUsers } = useUsers();
+  const [search, setSearch] = useState("");
+  const filteredUsers = useSearch(users, search);
 
   return (
     <Layout
@@ -38,12 +42,12 @@ export default function UsersPage() {
         createOnClick={() => openModal(null, "add", fetchUsers)}
         filterOnClick={() => openModal(null, "filter", fetchUsers)}
       >
-        <SearchBar />
+        <SearchBar value={search} onChange={setSearch} />
       </TopSection>
 
       {/* Contenedor de los usuarios */}
       <UsersList
-        users={users}
+        users={filteredUsers}
         loading={loading}
         error={error}
         refetch={fetchUsers}
