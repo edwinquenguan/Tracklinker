@@ -6,7 +6,7 @@ export default function WarrantiesTable({ warranties, openModal, refetch }) {
   return (
     <section className="max-h-[95%] max-w-full border border-gray-200 rounded-xl shadow-md overflow-y-auto overflow-x-auto overflow-hidden dark:border-[#303033]">
       <table className="min-w-full min-h-full border-collapse dark:text-white">
-        <thead className="sticky top-0 z-10">
+        <thead className="sticky top-0 z-1">
           <tr className="h-[40px] border-b border-gray-200 dark:border-[#303033] text-sm">
             <th className="font-medium text-start pl-4">Estado</th>
             <th className="font-medium text-start pl-4">Fecha de creación</th>

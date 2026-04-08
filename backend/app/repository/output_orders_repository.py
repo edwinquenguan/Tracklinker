@@ -188,8 +188,9 @@ class OutputOrdersRepository:
         query = """
         SELECT
             (SELECT COUNT(*) FROM OUTPUT_ORDERS) AS total_outputs,
-            SUM(CASE WHEN out_order_status = 0 THEN 0 ELSE 0 END) AS active_outputs,
-            SUM(CASE WHEN out_order_status = 1 THEN 1 ELSE 0 END) AS inactive_outputs
+            COUNT(CASE WHEN out_order_date >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_outputs,
+            SUM(CASE WHEN out_order_status = 0 THEN 0 ELSE 0 END) AS inactive_outputs,
+            SUM(CASE WHEN out_order_status = 1 THEN 1 ELSE 0 END) AS active_outputs
         FROM OUTPUT_ORDERS
         """
 
