@@ -123,3 +123,40 @@ class ReportsController:
         return {
             "data": data 
         }
+    
+#   ------------ REPORTES DE SUBCATEGORIAS ------------
+    @staticmethod
+    def get_recent_subcategories():
+        error, subcategories = ReportsRepository.find_recent_subcategories()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": subcategories
+        }
+
+    @staticmethod
+    def get_monthly_subcategories_growth(period: str):
+        error, data = ReportsRepository.find_monthly_subcategories_growth(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_subcategories_by_category(period: str):
+        error, data = ReportsRepository.find_subcategories_by_category(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_subcategories_by_status():
+        error, data = ReportsRepository.find_subcategories_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
