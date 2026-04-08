@@ -340,16 +340,16 @@ INSERT INTO OUTPUT_DETAILS VALUES
 
 
 INSERT INTO WARRANTY_INCIDENTS VALUES
-(null, 'QTYC1123122', 'Juan Perez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 2),
-(null, 'QTYA9876543', 'Ana Gomez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 2),
-(null, 'QTYB5554441', 'Carlos Ruiz', '3002223344', 'Calle 80 #45-10', 'Teclado no enciende retroiluminación', '../warranties/images/WINC0002', 'Bogotá', '2025-09-01', 2),
-(null, 'QTYC3332220', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYD1234567', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYE9876543', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYF1112223', 'Pedro Torres', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYG7778889', 'Sofia Fernandez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1),
-(null, 'QTYH5556667', 'Luiz Alvarez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1),
-(null, 'QTYI9990001', 'Martha Vargas', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1);
+(null, 'QTYC1123122', 'Juan Perez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2026-01-15', 2),
+(null, 'QTYA9876543', 'Ana Gomez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2026-01-15', 2),
+(null, 'QTYB5554441', 'Carlos Ruiz', '3002223344', 'Calle 80 #45-10', 'Teclado no enciende retroiluminación', '../warranties/images/WINC0002', 'Bogotá', '2026-01-01', 2),
+(null, 'QTYC3332220', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYD1234567', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYE9876543', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYF1112223', 'Pedro Torres', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-02-02', 0),
+(null, 'QTYG7778889', 'Sofia Fernandez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-02-02', 1),
+(null, 'QTYH5556667', 'Luiz Alvarez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-03-02', 1),
+(null, 'QTYI9990001', 'Martha Vargas', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-04-02', 1);
 
 
 INSERT INTO TECHNICAL VALUES
