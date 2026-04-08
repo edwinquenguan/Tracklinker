@@ -45,7 +45,7 @@ export default function CategoriesReport({ setReport }) {
 
           <ReportCard name={"Distribución"} colSpan={4}></ReportCard>
 
-          <TableCard tableTitle={"Productos recientes"}>
+          <TableCard tableTitle={"Categorías recientes"}>
             <CategoriesTable />
           </TableCard>
         </ReportsContainer>
