@@ -291,3 +291,96 @@ class ReportsRepository:
         finally:
             cursor.close()
             connection.close()
+
+
+#   ------------ REPORTES DE CATEGORIAS ------------
+
+    @staticmethod
+    def find_recent_categories():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            category_name,
+            category_date,
+            category_status
+        FROM CATEGORIES
+        ORDER BY category_id DESC
+        LIMIT 6
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "name": item["category_name"],
+                    "date": date_formatter(item["category_date"]),
+                    "status": item["category_status"],
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_categories_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            (SELECT COUNT(*)
+            FROM CATEGORIES
+            WHERE category_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            ) AS recent_categories,
+            (SELECT COUNT(*) FROM CATEGORIES) AS total_categories,
+            SUM(CASE WHEN category_status = 0 THEN 1 ELSE 0 END) AS inactive_categories,
+            SUM(CASE WHEN category_status = 1 THEN 1 ELSE 0 END) AS active_categories
+        FROM CATEGORIES
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_monthly_categories_growth(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
+        SELECT
+            MONTH(category_date) as month_num,
+            COUNT(category_id) as categories
+        FROM CATEGORIES
+        WHERE category_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY MONTH(category_date)
+        ORDER BY MONTH(category_date) ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
