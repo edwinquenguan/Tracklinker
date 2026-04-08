@@ -13,6 +13,7 @@ export default function AddCategoryModal({ onClose }) {
   const [innerModal, setInnerModal] = useState(null);
   const { form, loading, handleChange, handleSubmit } = useCreateCategory({
     name: "",
+    description: "",
   });
   return (
     <section className="flex flex-col items-center">
@@ -21,10 +22,18 @@ export default function AddCategoryModal({ onClose }) {
           onChange={handleChange}
           value={form.name}
           name={"name"}
-          labelText={"Nombre de la Categoría"}
-          placeholder={"Electrodomésticos"}
+          labelText={"Nombre"}
+          placeholder={"Nombre"}
           id={"category_name"}
           autoComplete="off"
+        />
+        <FormField
+          onChange={handleChange}
+          value={form.description}
+          name={"description"}
+          placeholder={"Que productos almacena"}
+          labelText={"Descripción"}
+          id={"category_description"}
         />
       </form>
 
@@ -47,7 +56,7 @@ export default function AddCategoryModal({ onClose }) {
           confirmButtonText={"Volver a la página"}
           onClose={() => {
             setInnerModal(null);
-            onClose();            
+            onClose();
           }}
         />
       )}
