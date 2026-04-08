@@ -20,7 +20,12 @@ export default function HomePage() {
         openModal(null, "help");
       }}
     >
-      <h1 className="h-[10%] p-5 text-5xl font-medium dark:text-white">
+      <h1
+        className="h-[10%] p-5 text-3xl font-medium dark:text-white
+      md:text-4xl
+      xl:text-5xl
+      "
+      >
         Bienvenido, {user.name}
       </h1>
       {/* Contenedor de las cards de los modúlos */}

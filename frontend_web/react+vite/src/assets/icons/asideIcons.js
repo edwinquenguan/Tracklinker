@@ -15,6 +15,7 @@ import logoutIcon from "./aside/logout-icon.svg?react";
 import infoIcon from "./aside/more-info-icon.svg?react";
 import helpIcon from "./aside/help-icon.svg?react";
 import themesIcon from "./aside/themes-icon.svg?react";
+import moreIcon from "./aside/more-icon.svg?react";
 
 // Esta constante exporta los iconos del aside para usarlos en cualquier lugar
 export const asideIcons = {
@@ -34,4 +35,5 @@ export const asideIcons = {
   helpIcon,
   infoIcon,
   themesIcon,
+  moreIcon,
 };

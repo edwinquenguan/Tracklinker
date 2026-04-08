@@ -90,3 +90,76 @@ export const secondSectionItems = [
     onClick: logout,
   },
 ];
+
+export const mobileRelevantItems = [
+  {
+    name: "Inicio",
+    path: "/home",
+    icon: asideIcons.homeIcon,
+    alt: "a",
+  },
+  {
+    name: "Usuarios",
+    path: "/users",
+    icon: asideIcons.usersIcon,
+    alt: "",
+  },
+  {
+    name: "Productos",
+    path: "/products",
+    icon: asideIcons.productsIcon,
+    alt: "",
+  },
+  {
+    name: "Informes",
+    path: "/reports",
+    icon: asideIcons.reportsIcon,
+    alt: "",
+  },
+];
+
+export const mobileItems = [
+  {
+    name: "Categorias",
+    path: "/categories",
+    icon: asideIcons.categoriesIcon,
+    alt: "",
+  },
+  {
+    name: "Subcategorias",
+    path: "/subcategories",
+    icon: asideIcons.subcategoriesIcon,
+    alt: "",
+  },
+  {
+    name: "Informes",
+    path: "/reports",
+    icon: asideIcons.reportsIcon,
+    alt: "",
+  },
+  {
+    name: "Garantías",
+    path: "/warranties",
+    icon: asideIcons.warrantiesIcon,
+    alt: "",
+  },
+  {
+    name: "Proveedores",
+    path: "/suppliers",
+    icon: asideIcons.suppliersIcon,
+    alt: "",
+  },
+  {
+    name: "Ordenes",
+    path: "/transformations",
+    icon: asideIcons.transformationsIcon,
+    alt: "",
+  },
+  {
+    name: "Salir",
+    path: "/",
+    icon: asideIcons.logoutIcon,
+    alt: "Icono para cerrar sesión",
+    onClick: logout,
+  },
+];
