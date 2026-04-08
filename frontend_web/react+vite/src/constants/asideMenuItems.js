@@ -47,9 +47,6 @@ export const firstSectionItems = [
     icon: asideIcons.subcategoriesIcon,
     alt: "",
   },
-];
-
-export const extendedSectionItems = [
   {
     name: "Informes",
     path: "/reports",
@@ -87,7 +84,7 @@ export const secondSectionItems = [
     path: "/",
     icon: asideIcons.logoutIcon,
     alt: "Icono para cerrar sesión",
-    onClick: logout,
+    onClick: logout || null,
   },
 ];
 

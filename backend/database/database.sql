@@ -112,6 +112,8 @@ CREATE TABLE SUPPLIERS (
   supplier_address VARCHAR(255) NOT NULL COMMENT 'Dirección del proveedor (VARCHAR, Not null)',
   supplier_email VARCHAR(255) NOT NULL COMMENT 'Correo electronico del proveedor (VARCHAR, Not null)',
   supplier_phone VARCHAR(255) NOT NULL COMMENT 'Número de teléfono del proveedor (VARCHAR, Not null)',
+  supplier_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha de creación del proveedor (DATE, Not null)',
+  supplier_status INT NOT NULL DEFAULT 1 COMMENT "Estado en el que se encuentra el proveedor 0 = deshabilitado, 1 = activo",
   PRIMARY KEY (supplier_id))
 ENGINE = InnoDB;
 

@@ -22,7 +22,7 @@ INSERT INTO USERS VALUES
 (3, null, 'Lucía', 'Fernández', 'Quintero', '3205556677', 'lucia.fernandez@example.com', 'Carrera 15 #8-44', sha1('hash_password_25'), "Bogota", '2026-01-27', 1),
 (3, null, 'Santiago', 'Rojas', 'Bedoya', '3218889900', 'santiago.rojas@example.com', 'Cl. 30 #22-18', sha1('hash_password_26'), "Bogota", '2026-01-28', 1),
 (3, null, 'Valentina', 'Cárdenas', 'Prieto', '3221112233', 'valentina.cardenas@example.com', 'Zona Industrial 4', sha1('hash_password_27'), "Bogota", '2026-01-29', 1),
-(4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', sha1('hash_password_5'), "Bogota", '2026-08-16', 1),
+(4, null, 'Luis', 'Gómez', 'Fernández', '3127654321', 'luis.gomez33@example.com', 'Carrera 30 #15-22', sha1('hash_password_5'), "Bogota", '2026-01-16', 1),
 (4, null, 'Juan', 'Perez', 'Lopez', '3151234567', 'juanperez@gmail.com', 'Calle 50 #10-25', sha1('5678'), "Bogota", '2026-01-21', 1),
 (4, null, 'Ana', 'Gomez', ',Martinez', '3109876543', 'anagomez@yahoo.com', 'Calle 50 #10-25', sha1('1234'), "Bogota", '2026-01-10', 1),
 (4, null, 'Carlos', 'Ruiz', 'Garcia', '3123456789', 'carlosr@hotmail.com', 'Calle 50 #10-25', sha1('8765'), "Bogota", '2026-01-15', 1),
@@ -141,25 +141,25 @@ INSERT INTO PRODUCT_DETAILS VALUES
 (null, 9, 'Bravia XR-55A80K', 'Sony Smart TV OLED 55" 4K', '2026-04-05'),
 (null, 7, 'LED TV 43LM6370', 'LG TV LED 43" Full HD', '2026-04-05'),
 (null, 7, 'OLED TV 65C1', 'TV OLED LG 65" 4K UHD', '2026-04-05'),
-(null, 16, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0', '2026-06-05'),
-(null, 20, 'Logitech MX Keys', 'Teclado inalámbrico retroiluminado', '2026-06-05'),
-(null, 21, 'Razer DeathAdder V2', 'Mouse gamer ergonómico', '2026-06-05'),
-(null, 22, 'HyperX Cloud II', 'Auriculares gamer con sonido envolvente', '2026-06-05'),
-(null, 23, 'TP-Link Archer AX50', 'Router WiFi 6 de alta velocidad', '2026-07-05'),
-(null, 24, 'Cisco SG350-28', 'Switch gestionable de 28 puertos', '2026-07-05'),
-(null, 24, 'Cable Cat6 UTP', 'Cable de red de 2 metros', '2026-08-05'),
-(null, 10, 'Lenovo ThinkPad X1 Carbon', 'Portátil ultraligero con procesador Intel i7 y 16GB RAM', '2026-08-05'),
-(null, 11, 'Asus ROG Strix G15', 'Laptop gamer con RTX 3060 y 16GB RAM', '2026-09-05'),
-(null, 25, 'MacBook Pro 14"', 'Laptop Apple con chip M1 Pro y pantalla Retina', '2026-09-05'),
-(null, 7,  'LG NanoCell 55NANO80', 'Smart TV LG 55” con tecnología NanoCell 4K', '2026-10-05'),
-(null, 17, 'Kioxia Exceria 500GB', 'Disco SSD NVMe de alta velocidad', '2026-10-05'),
-(null, 18, 'Kingston Fury Beast 16GB DDR4', 'Memoria RAM para alto rendimiento', '2026-11-05'),
-(null, 19, 'Crucial Ballistix 32GB DDR5', 'Memoria RAM DDR5 para gaming y servidores', '2026-11-05'),
-(null, 20, 'Logitech G Pro X', 'Teclado mecánico gamer con switches intercambiables', '2026-11-05'),
-(null, 21, 'Razer Viper Ultimate', 'Mouse inalámbrico gamer ultraligero con 20K DPI', '2026-11-05'),
-(null, 22, 'HyperX Alpha Wireless', 'Auriculares inalámbricos gamer con batería de 300h', '2026-12-05'),
-(null, 23, 'TP-Link Deco X60', 'Sistema WiFi Mesh con cobertura para hogares grandes', '2026-12-05'),
-(null, 24, 'Cisco Catalyst 9300', 'Switch empresarial de alto rendimiento', '2026-12-05');
+(null, 16, 'WD My Passport 1TB', 'Disco duro externo portátil con USB 3.0', '2026-04-05'),
+(null, 20, 'Logitech MX Keys', 'Teclado inalámbrico retroiluminado', '2026-04-05'),
+(null, 21, 'Razer DeathAdder V2', 'Mouse gamer ergonómico', '2026-04-05'),
+(null, 22, 'HyperX Cloud II', 'Auriculares gamer con sonido envolvente', '2026-04-05'),
+(null, 23, 'TP-Link Archer AX50', 'Router WiFi 6 de alta velocidad', '2026-04-05'),
+(null, 24, 'Cisco SG350-28', 'Switch gestionable de 28 puertos', '2026-04-05'),
+(null, 24, 'Cable Cat6 UTP', 'Cable de red de 2 metros', '2026-04-05'),
+(null, 10, 'Lenovo ThinkPad X1 Carbon', 'Portátil ultraligero con procesador Intel i7 y 16GB RAM', '2026-04-05'),
+(null, 11, 'Asus ROG Strix G15', 'Laptop gamer con RTX 3060 y 16GB RAM', '2026-04-05'),
+(null, 25, 'MacBook Pro 14"', 'Laptop Apple con chip M1 Pro y pantalla Retina', '2026-04-05'),
+(null, 7,  'LG NanoCell 55NANO80', 'Smart TV LG 55” con tecnología NanoCell 4K', '2026-04-05'),
+(null, 17, 'Kioxia Exceria 500GB', 'Disco SSD NVMe de alta velocidad', '2026-04-05'),
+(null, 18, 'Kingston Fury Beast 16GB DDR4', 'Memoria RAM para alto rendimiento', '2026-04-05'),
+(null, 19, 'Crucial Ballistix 32GB DDR5', 'Memoria RAM DDR5 para gaming y servidores', '2026-04-05'),
+(null, 20, 'Logitech G Pro X', 'Teclado mecánico gamer con switches intercambiables', '2026-04-05'),
+(null, 21, 'Razer Viper Ultimate', 'Mouse inalámbrico gamer ultraligero con 20K DPI', '2026-04-05'),
+(null, 22, 'HyperX Alpha Wireless', 'Auriculares inalámbricos gamer con batería de 300h', '2026-04-05'),
+(null, 23, 'TP-Link Deco X60', 'Sistema WiFi Mesh con cobertura para hogares grandes', '2026-04-05'),
+(null, 24, 'Cisco Catalyst 9300', 'Switch empresarial de alto rendimiento', '2026-04-05');
 
 
 INSERT INTO PRODUCTS VALUES 
@@ -198,24 +198,24 @@ INSERT INTO PRODUCTS VALUES
 
 
 INSERT INTO SUPPLIERS VALUES
-(null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112'),
-(null, 'Servicios Industriales', 'Miami', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210'),
-(null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562'),
-(null, 'Logitech', 'Medellín', 'Cra 45 #12-30', 'ventas@logitech.com', '3021234567'),
-(null, 'Cisco', 'Bogotá', 'Av. El Dorado #25-80', 'ventas@cisco.com', '3186543210'),
-(null, 'TP-Link', 'Cali', 'Cl. 5 #15-22', 'soporte@tplink.com', '3009998887'),
-(null, 'Microsoft', 'Bogotá', 'Cra 15 # 45-20', 'soporte@microsoft.com', '3104442233'),
-(null, 'Razer', 'Medellín', 'Cl. 50 #30-12', 'contact@razer.com', '3115556677'),
-(null, 'HyperX', 'Cali', 'Av. 6N # 34-50', 'ventas@hyperx.com', '3129998877'),
-(null, 'Crucial', 'Barranquilla', 'Zona Franca Industrial', 'sales@crucial.com', '3131112233'),
-(null, 'Kingston', 'Miami', '1234 Kingston Blvd', 'contact@kingston.com', '3145557788'),
-(null, 'Western Digital', 'Bogotá', 'Av. 68 #45-80', 'support@wd.com', '3157778899'),
-(null, 'Sony', 'Cali', 'Cl. 10 #20-33', 'ventas@sony.com', '3168889900'),
-(null, 'LG', 'Medellín', 'Cra 45 # 25-15', 'lg@lg.com', '3172223344'),
-(null, 'Samsung', 'Bogotá', 'Cl. 26 #92-32', 'ventas@samsung.com', '3183334455'),
-(null, 'Mayorista', 'Medellin', 'CL 124 #15-245', 'mayorista@mayorista.com', '3401232255'),
-(null, 'HP', 'Bogotá', 'Avenida El Dorado # 68C - 61', 'hp@hp.com', '1000000113'),
-(null, 'Canon', 'Medellín', 'Calle 50 # 40 - 25', 'canon@canon.com', '1000000114');
+(null, 'Asus', 'Bogotá','Carrera 30 # 15 - 299', 'asus@asus.com', '1000000112', '2026-01-01', 1),
+(null, 'Servicios Industriales', 'Miami', 'Cra 50 #25-60, Barranquilla', 'contacto@sic.com', '3019873210', '2026-01-01', 1),
+(null, 'Lenovo', 'Miami', '1234 NW 107th Avenue, Miami, FL 33172', 'lenovo@lenovo.com', '3012141562', '2026-01-01', 1),
+(null, 'Logitech', 'Medellín', 'Cra 45 #12-30', 'ventas@logitech.com', '3021234567', '2026-01-01', 1),
+(null, 'Cisco', 'Bogotá', 'Av. El Dorado #25-80', 'ventas@cisco.com', '3186543210', '2026-01-01', 1),
+(null, 'TP-Link', 'Cali', 'Cl. 5 #15-22', 'soporte@tplink.com', '3009998887', '2026-01-01', 1),
+(null, 'Microsoft', 'Bogotá', 'Cra 15 # 45-20', 'soporte@microsoft.com', '3104442233', '2026-01-01', 1),
+(null, 'Razer', 'Medellín', 'Cl. 50 #30-12', 'contact@razer.com', '3115556677', '2026-01-01', 1),
+(null, 'HyperX', 'Cali', 'Av. 6N # 34-50', 'ventas@hyperx.com', '3129998877', '2026-01-01', 1),
+(null, 'Crucial', 'Barranquilla', 'Zona Franca Industrial', 'sales@crucial.com', '3131112233', '2026-01-01', 1),
+(null, 'Kingston', 'Miami', '1234 Kingston Blvd', 'contact@kingston.com', '3145557788', '2026-01-01', 1),
+(null, 'Western Digital', 'Bogotá', 'Av. 68 #45-80', 'support@wd.com', '3157778899', '2026-01-01', 1),
+(null, 'Sony', 'Cali', 'Cl. 10 #20-33', 'ventas@sony.com', '3168889900', '2026-01-01', 1),
+(null, 'LG', 'Medellín', 'Cra 45 # 25-15', 'lg@lg.com', '3172223344', '2026-01-01', 1),
+(null, 'Samsung', 'Bogotá', 'Cl. 26 #92-32', 'ventas@samsung.com', '3183334455', '2026-01-01', 1),
+(null, 'Mayorista', 'Medellin', 'CL 124 #15-245', 'mayorista@mayorista.com', '3401232255', '2026-01-01', 1),
+(null, 'HP', 'Bogotá', 'Avenida El Dorado # 68C - 61', 'hp@hp.com', '1000000113', '2026-01-01', 1),
+(null, 'Canon', 'Medellín', 'Calle 50 # 40 - 25', 'canon@canon.com', '1000000114', '2026-01-01', 1);
 
 
 INSERT INTO INPUT_ORDERS VALUES
@@ -287,21 +287,21 @@ INSERT INTO PRODUCT_SERIALS VALUES
 
 
 INSERT INTO OUTPUT_ORDERS VALUES
-(null, '2025-03-24', 1),
-(null, '2025-05-22', 1),
-(null, '2025-01-10', 1),
-(null, '2025-07-15', 1),
-(null, '2025-09-30', 1),
-(null, '2025-04-18', 1),
-(null, '2025-08-21', 1),
-(null, '2025-06-12', 0),
-(null, '2025-02-28', 1),
-(null, '2025-11-05', 0),
-(null, '2025-12-12', 1),
-(null, '2025-10-09', 1),
-(null, '2025-03-01', 1),
-(null, '2025-05-15', 1),
-(null, '2025-07-07', 1);    
+(null, '2026-01-24', 1),
+(null, '2026-01-22', 1),
+(null, '2026-01-10', 1),
+(null, '2026-01-15', 1),
+(null, '2026-01-30', 1),
+(null, '2026-02-18', 1),
+(null, '2026-02-21', 1),
+(null, '2026-02-12', 0),
+(null, '2026-02-28', 1),
+(null, '2026-03-05', 0),
+(null, '2026-03-12', 1),
+(null, '2026-03-09', 1),
+(null, '2026-03-01', 1),
+(null, '2026-04-07', 1),
+(null, '2026-04-08', 1); 
 
 
 INSERT INTO CUSTOMERS VALUES
@@ -336,20 +336,21 @@ INSERT INTO OUTPUT_DETAILS VALUES
 (11, 'QTYJ1234567', null, '2029-06-01', 'En ruta'),
 (12, 'QTYK7654321', null, '2029-06-10', 'Pendiente de revisión'),
 (13, 'QTYL9876543', null, '2029-06-25', 'Entregado'),
-(14, 'QTYM5556667', null, '2029-07-08', 'No necesita');
+(14, 'QTYM5556667', null, '2029-07-08', 'No necesita'),
+(15, 'QTYS7654329', null, '2029-07-09', 'No necesita');
 
 
 INSERT INTO WARRANTY_INCIDENTS VALUES
-(null, 'QTYC1123122', 'Juan Perez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 2),
-(null, 'QTYA9876543', 'Ana Gomez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2025-08-15', 2),
-(null, 'QTYB5554441', 'Carlos Ruiz', '3002223344', 'Calle 80 #45-10', 'Teclado no enciende retroiluminación', '../warranties/images/WINC0002', 'Bogotá', '2025-09-01', 2),
-(null, 'QTYC3332220', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYD1234567', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYE9876543', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYF1112223', 'Pedro Torres', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 0),
-(null, 'QTYG7778889', 'Sofia Fernandez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1),
-(null, 'QTYH5556667', 'Luiz Alvarez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1),
-(null, 'QTYI9990001', 'Martha Vargas', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2025-09-02', 1);
+(null, 'QTYC1123122', 'Juan Perez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2026-01-15', 2),
+(null, 'QTYA9876543', 'Ana Gomez', '3008765432', 'Calle 50 #10-25', 'Problema con la impresión', '../warranties/images/WINC0001', 'Miami', '2026-01-15', 2),
+(null, 'QTYB5554441', 'Carlos Ruiz', '3002223344', 'Calle 80 #45-10', 'Teclado no enciende retroiluminación', '../warranties/images/WINC0002', 'Bogotá', '2026-01-01', 2),
+(null, 'QTYC3332220', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYD1234567', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYE9876543', 'Laura Jimenez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-01-02', 0),
+(null, 'QTYF1112223', 'Pedro Torres', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-02-02', 0),
+(null, 'QTYG7778889', 'Sofia Fernandez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-02-02', 1),
+(null, 'QTYH5556667', 'Luiz Alvarez', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-03-02', 1),
+(null, 'QTYI9990001', 'Martha Vargas', '3015556677', 'Carrera 15 #22-55', 'Mouse con sensor defectuoso', '../warranties/images/WINC0003', 'Medellín', '2026-04-02', 1);
 
 
 INSERT INTO TECHNICAL VALUES

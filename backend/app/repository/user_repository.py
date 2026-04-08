@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.user_model import User, UpdateUser, UpdateCurrentUser
 from app.utils.date_formatter import date_formatter
+from app.utils.periods import period_map, daily_periods
 import bcrypt
 
 
@@ -416,3 +417,144 @@ class UserRepository:
         finally:
             connection.close()
             cursor.close()
+
+
+    #   ------------ REPORTES DE USUARIOS ------------
+
+    @staticmethod
+    def find_recent_users():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+        try:
+
+            query = """
+            SELECT
+                user_name,
+                user_first_surname,
+                user_email,
+                user_phone,
+                user_date,
+                user_status
+            FROM USERS
+            ORDER BY user_date DESC
+            LIMIT 6
+            """
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            data = [
+                {
+                    "name": item["user_name"],
+                    "surname": item["user_first_surname"],
+                    "email": item["user_email"],
+                    "phone": item["user_phone"],
+                    "date": date_formatter(item["user_date"]),
+                    "status": item["user_status"]
+                }
+                for item in result
+            ]
+
+            return None, data
+
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_users_by_rol(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+        try:
+            if period not in period_map:
+                period = "30d"
+
+            interval = period_map.get(period, "30 DAY")
+
+            query = f"""
+            SELECT
+                r.rol_name,
+                COUNT(u.user_id) as users
+            FROM USERS AS u 
+            INNER JOIN ROLES AS r
+            ON u.rol_id = r.rol_id
+            WHERE u.user_date >= DATE_SUB(NOW(), INTERVAL {interval})
+            GROUP BY r.rol_name
+            """
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            return None, result
+
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_users_growth(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(user_date)"
+            select_expr = "DATE(user_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(user_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(user_date, '%Y-%m') as label"
+
+        query = f"""
+        SELECT
+            {select_expr},
+            COUNT(DISTINCT user_id) as users
+        FROM USERS
+        WHERE user_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_users_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            COUNT(CASE WHEN user_date >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_users,
+            COUNT(CASE WHEN user_status = 1 THEN 1 END) as active_users,
+            COUNT(CASE WHEN user_status = 0 THEN 1 END) as inactive_users,
+            COUNT(user_id) as total_users
+        FROM USERS
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
