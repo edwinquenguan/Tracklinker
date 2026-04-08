@@ -3,7 +3,7 @@ import { getToken } from "../../../../utils/auth";
 
 export async function getSubcategoriesAreaChartService(period, signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_subcategories_growth/${period}`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_subcategories_growth/${period}`,
     {
       method: "GET",
       credentials: "include",

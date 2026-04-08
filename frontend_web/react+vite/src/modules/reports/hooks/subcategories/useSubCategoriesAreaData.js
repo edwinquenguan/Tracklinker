@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { monthNames } from "../../../../constants/dateConstants";
 import { getSubcategoriesAreaChartService } from "../../services/subcategories/getSubcategoriesAreaChartService";
+import { formatLabel } from "../../../../utils/formatLabel";
 
 export function useSubcategoriesAreaData(period) {
   const [subcategoriesData, setSubcategoriesData] = useState([]);
@@ -18,7 +18,7 @@ export function useSubcategoriesAreaData(period) {
           controllerRef.current.signal,
         );
         const data = response.map((row) => ({
-          month: monthNames[row.month_num - 1],
+          month: formatLabel(row.label, period),
           subcategories: row.subcategories,
         }));
         setSubcategoriesData(data);

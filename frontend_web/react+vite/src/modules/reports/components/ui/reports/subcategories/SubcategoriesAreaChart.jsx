@@ -6,7 +6,7 @@ import {
   YAxis,
   XAxis,
 } from "recharts";
-import { useSubcategoriesAreaData } from "../../../../hooks/Subcategories/useSubcategoriesAreaData";
+import { useSubcategoriesAreaData } from "../../../../hooks/subcategories/useSubCategoriesAreaData";
 
 export default function SubcategoriesAreaChart({ period }) {
   const { subcategoriesData } = useSubcategoriesAreaData(period);
