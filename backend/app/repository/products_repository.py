@@ -5,6 +5,7 @@ from app.models.product_details_model import ProductDetails
 from app.models.product_serial_model import ProductSerial
 from app.models.input_order_model import InputOrder
 from app.models.product_brand_model import ProductBrand
+from app.utils.periods import period_map, daily_periods
 
 class ProductsRepository:
 
@@ -310,6 +311,168 @@ class ProductsRepository:
             return None, True, f"Producto actualizado correctamente"
         except Exception as e:
             return f"Error al intentar actualizar el producto {e}", False, None
+        finally:
+            cursor.close()
+            connection.close()
+
+#   ------------ REPORTES DE PRODUCTOS ------------
+
+
+    @staticmethod
+    def find_recent_products():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            pd.product_detail_date,
+            ps.product_serial,
+            pd.product_detail_model,
+            pb.product_brand_name
+        FROM PRODUCT_SERIALS as ps
+        INNER JOIN PRODUCTS as p
+        ON ps.product_id = p.product_id
+        INNER JOIN PRODUCT_DETAILS as pd
+        ON p.product_details_id = pd.product_details_id
+        INNER JOIN PRODUCT_BRANDS as pb
+        ON pd.product_brand_id = pb.product_brand_id
+        ORDER BY MONTH(pd.product_detail_date) DESC
+        LIMIT 6
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "input_date": date_formatter(item["product_detail_date"]),
+                    "serial": item["product_serial"],
+                    "model": item["product_detail_model"],
+                    "brand": item["product_brand_name"]
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_products_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            (SELECT COUNT(*)
+            FROM PRODUCT_SERIALS
+            WHERE product_garanty_input >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            ) AS recent_products,
+
+            (SELECT COUNT(*)
+            FROM PRODUCT_SERIALS
+            ) AS total_products,    
+
+            (SELECT COUNT(DISTINCT product_serial)
+            FROM WARRANTY_INCIDENTS
+            ) AS warranties_products,
+
+            (SELECT COUNT(DISTINCT product_serial)
+            FROM OUTPUT_DETAILS
+            ) AS transformations_products;
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_products_growth(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(pd.product_detail_date)"
+            select_expr = "DATE(pd.product_detail_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(pd.product_detail_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(pd.product_detail_date, '%Y-%m') as label"
+
+        query = f"""
+        SELECT
+            {select_expr},
+            COUNT(DISTINCT ps.product_serial) as products
+        FROM PRODUCT_SERIALS as ps
+        INNER JOIN INPUT_ORDERS as io
+            ON ps.input_order_id = io.input_order_id
+        INNER JOIN PRODUCTS as p
+            ON ps.product_id = p.product_id
+        INNER JOIN PRODUCT_DETAILS as pd
+            ON p.product_details_id = pd.product_details_id
+        WHERE pd.product_detail_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_products_by_brand(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
+        SELECT
+            pb.product_brand_name,
+            COUNT(DISTINCT p.product_id) as products
+        FROM PRODUCTS as p
+        INNER JOIN PRODUCT_DETAILS as pd
+            ON p.product_details_id = pd.product_details_id
+        INNER JOIN PRODUCT_BRANDS as pb
+            ON pd.product_brand_id = pb.product_brand_id
+        WHERE pd.product_detail_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY pb.product_brand_name
+        ORDER BY pb.product_brand_name ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+
+            data = [
+                {
+                    "name": item["product_brand_name"],
+                    "value": item["products"]
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
