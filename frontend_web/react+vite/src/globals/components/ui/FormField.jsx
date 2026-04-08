@@ -14,7 +14,7 @@ export default function FormField({
       <label htmlFor={id} className="self-start text-sm dark:text-white">
         {labelText}
       </label>
-      <div className="flex rounded-xl outline-none border bg-[#e5e5e527] placeholder:text-[#8a8a8a] 
+      <div className="flex w-full rounded-xl outline-none border bg-[#e5e5e527] placeholder:text-[#8a8a8a] 
       dark:bg-[#ffffff10] dark:border-[#ffffff15]">
         <input
           name={name}

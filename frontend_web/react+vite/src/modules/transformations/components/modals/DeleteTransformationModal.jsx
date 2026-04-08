@@ -9,7 +9,7 @@ export default function DeleteTransformationModal({
   onClose,
   onDeleteSuccess,
 }) {
-  const [innerModal, setInnerModal] = useState(null); // "success" | "error"
+  const [innerModal, setInnerModal] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   const { handleDelete, loading } = useDeleteTransformation(
@@ -19,7 +19,7 @@ export default function DeleteTransformationModal({
     (error) => {
       setErrorMessage(error);
       setInnerModal("error");
-    }
+    },
   );
 
   const handleDeleteClick = () => {
@@ -35,16 +35,11 @@ export default function DeleteTransformationModal({
   return (
     <div className="flex flex-col items-center p-5">
       <p className="text-lg mb-6 text-center">
-        ¿Estás seguro de que deseas <strong>eliminar</strong> permanentemente la
-        transformación con ID{" "}
+        ¿Estás seguro de que deseas Eliminar la transformación N°{" "}
         <span className="font-bold">
           {selectedTransformation?.output_details_id}
         </span>
         ?
-      </p>
-
-      <p className="text-red-500 font-bold mb-4">
-        ¡Esta acción es irreversible!
       </p>
 
       <div className="flex gap-4 pt-5">
