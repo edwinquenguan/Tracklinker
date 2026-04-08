@@ -13,7 +13,7 @@ import SubcategoriesPieChart from "./SubcategoriesPieChart";
 
 export default function SubcategoriesReport({ setReport }) {
   const { subcategoriesData } = useSubcategoriesData();
-  const [period, setPeriod] = useState("30d");
+  const [period, setPeriod] = useState("1a");
   return (
     <section className="w-full h-full flex flex-col gap-2 animate-blurUp">
       <ReportsTopSection
