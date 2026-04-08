@@ -59,6 +59,7 @@ CREATE TABLE PRODUCT_DETAILS (
   product_brand_id INT NOT NULL COMMENT 'Identificador de marca de producto, Este campo se genera automáticamente de forma secuencial y no puede repetirse ni quedar vacío. Se utiliza para establecer una relación entre los productos y sus marcas correspondientes. (INT, Not null)',
   product_detail_model VARCHAR(255) NOT NULL COMMENT 'Modelo que tiene o maneja el producto, Se utiliza para diferenciarlo de otros productos o indicar los productos similares (VARCHAR(45), Not null)',
   product_detail_description TEXT NOT NULL COMMENT 'Descripción sobre el producto, Contiene un texto que detalla meticulosamente cada cualidad del producto (VARCHAR(100), Not null)',
+  product_detail_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Fecha en la que se agrego el producto',
   PRIMARY KEY (product_details_id),
   INDEX fk_product_details_product_brand_idx (product_brand_id ASC),
   CONSTRAINT fk_product_details_product_brand
@@ -141,6 +142,7 @@ CREATE TABLE CATEGORIES (
   category_id INT NOT NULL AUTO_INCREMENT COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
   category_name VARCHAR(100) NOT NULL COMMENT 'Identificar y clasificar los productos tecnológicos en el sistema.',
   category_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  category_status INT NOT NULL DEFAULT 1,
   UNIQUE INDEX category_id_UNIQUE (category_id ASC),
   PRIMARY KEY (category_id))
 ENGINE = InnoDB;
