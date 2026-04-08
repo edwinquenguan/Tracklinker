@@ -8,13 +8,13 @@ import {
 } from "recharts";
 import { useProductsAreaData } from "../../../../hooks/products/useProductsAreaData";
 
-export default function ProductsAreaChart() {
-  const { productsData } = useProductsAreaData();
+export default function ProductsAreaChart({ period }) {
+  const { productsData } = useProductsAreaData(period);
   return (
     <ResponsiveContainer width={"100%"} height={290}>
       <AreaChart
         data={productsData}
-        height={"70%"}
+        height={"auto"}
         width={"100%"}
         responsive
         margin={{ left: 10, right: 5 }}
