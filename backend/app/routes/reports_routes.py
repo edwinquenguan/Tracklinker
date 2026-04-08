@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from app.controllers.reports_controller import ReportsController
 from app.middlewares.roles_middleware import require_roles
+from app.controllers.reports_controller import ReportsController
 
 router = APIRouter(
     prefix="/api/reports",
@@ -8,25 +8,20 @@ router = APIRouter(
 )
 #   ------------ REPORTES DE USUARIOS ------------
 
-#Endpoint para obtener reportes de usuarios por rol
-@router.get("/get_users_by_rol")
-def get_user_by_rol():
-    return ReportsController.get_users_by_rol()
-
-#Endpoint para obtener reportes de usuarios por rol
-@router.get("/get_users_by_month")
-def get_user_by_rol():
-    return ReportsController.get_users_by_month()
+# Endpoint para obtener reportes de usuarios por rol
+@router.get("/get_users_by_rol/{period}")
+def get_users_by_rol(period: str = "30d", payload: dict = Depends(require_roles(["Admin"]))):
+    return ReportsController.get_users_by_rol(period)
 
 # Endpoint para obtener reporte de los ultimos 6 usuarios creados
-@router.get("/get_users")
-def get_users_report():
-    return ReportsController.get_users()
+@router.get("/get_recent_users")
+def get_recent_users():
+    return ReportsController.get_recent_users()
 
-#Endpoint para obtener el crecimiento mensual de usuarios
-@router.get("/get_monthly_user_growth")
-def get_monthly_user_growth():
-    return ReportsController.get_monthly_user_growth()
+# Endpoint para obtener el crecimiento mensual de usuarios
+@router.get("/get_monthly_user_growth/{period}")
+def get_monthly_user_growth(period: str = "30d"):
+    return ReportsController.get_monthly_user_growth(period)
 
 # Endpoint para obtener los usuarios activos, deshabilitados y recien creados
 @router.get("/get_users_by_status")
@@ -37,14 +32,37 @@ def get_users_by_status():
 #   ------------ REPORTES DE PRODUCTOS ------------
 
 # Endpoint para obtener reporte de los ultimos 6 productos agregados
-@router.get("/get_products")
-def get_products_report():
-    return ReportsController.get_products()
+@router.get("/get_recent_products")
+def get_recent_products():
+    return ReportsController.get_recent_products()
 
-@router.get("/get_monthly_products_growth")
-def get_monthly_products_growth():
-    return ReportsController.get_monthly_products_growth()
+# Endpoint para obtener el crecimiento de productos
+@router.get("/get_monthly_products_growth/{period}")
+def get_monthly_products_growth(period: str = "30d"):
+    return ReportsController.get_monthly_products_growth(period)
 
-@router.get("/get_count_of_all")
-def get_count_of_all():
-    return ReportsController.get_count_of_all()
+# Endpoint para obtener productos por marca
+@router.get("/get_products_by_brand/{period}")
+def get_products_by_brand(period: str = "30d"):
+    return ReportsController.get_products_by_brand(period)
+
+# Endpoint para obtener productos por estado
+@router.get("/get_products_by_status")
+def get_products_by_status():
+    return ReportsController.get_products_by_status()
+
+#   ------------ REPORTES DE CATEGORIAS ------------
+# Endpoint para obtener reporte de las ultimas 6 categorias agregados
+@router.get("/get_recent_categories")
+def get_recent_categories():
+    return ReportsController.get_recent_categories()
+
+# Endpoint para obtener el crecimiento de categorias
+@router.get("/get_monthly_categories_growth/{period}")
+def get_monthly_categories_growth(period: str = "30d"):
+    return ReportsController.get_monthly_categories_growth(period)
+
+# Endpoint para obtener cateegorias por estado
+@router.get("/get_categories_by_status")
+def get_categories_by_status():
+    return ReportsController.get_categories_by_status()
