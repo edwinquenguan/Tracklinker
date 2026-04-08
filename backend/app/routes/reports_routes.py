@@ -83,7 +83,70 @@ def get_monthly_subcategories_growth(period: str = "30d"):
 def get_subcategories_by_category(period: str = "30d"):
     return ReportsController.get_subcategories_by_category(period)
 
-# Endpoint para obtener cateegorias por estado
+# Endpoint para obtener subcategorias por estado
 @router.get("/get_subcategories_by_status")
 def get_subcategories_by_status():
     return ReportsController.get_subcategories_by_status()
+
+#   ------------ REPORTES DE GARANTIAS ------------
+# Endpoint para obtener reporte de las ultimas 6 garantias agregados
+@router.get("/get_recent_warranties")
+def get_recent_warranties():
+    return ReportsController.get_recent_warranties()
+
+# Endpoint para obtener el crecimiento de garantias
+@router.get("/get_monthly_warranties_growth/{period}")
+def get_monthly_warranties_growth(period: str = "30d"):
+    return ReportsController.get_monthly_warranties_growth(period)
+
+# Endpoint para obtener garantias por marca
+@router.get("/get_warranties_by_brand/{period}")
+def get_warranties_by_brand(period: str = "30d"):
+    return ReportsController.get_warranties_by_brand(period)
+
+# Endpoint para obtener garantias por estado
+@router.get("/get_warranties_by_status")
+def get_warranties_by_status():
+    return ReportsController.get_warranties_by_status()
+
+#   ------------ REPORTES DE PROVEEDORES ------------
+# Endpoint para obtener reporte de las ultimos 6 proveedores agregados
+@router.get("/get_recent_suppliers")
+def get_recent_suppliers():
+    return ReportsController.get_recent_suppliers()
+
+# Endpoint para obtener el crecimiento de proveedores
+@router.get("/get_monthly_suppliers_growth/{period}")
+def get_monthly_suppliers_growth(period: str = "30d"):
+    return ReportsController.get_monthly_suppliers_growth(period)
+
+# Endpoint para obtener proveedores por marca
+@router.get("/get_suppliers_by_brand/{period}")
+def get_suppliers_by_brand(period: str = "30d"):
+    return ReportsController.get_suppliers_by_brand(period)
+
+# Endpoint para obtener proveedores por estado
+@router.get("/get_suppliers_by_status")
+def get_suppliers_by_status():
+    return ReportsController.get_suppliers_by_status()
+
+#   ------------ REPORTES DE ORDENES DE SALIDA ------------
+# Endpoint para obtener reporte de las ultimas 6 ordenes agregados
+@router.get("/get_recent_outputs")
+def get_recent_outputs():
+    return ReportsController.get_recent_outputs()
+
+# Endpoint para obtener el crecimiento de ordenes
+@router.get("/get_monthly_outputs_growth/{period}")
+def get_monthly_outputs_growth(period: str = "30d"):
+    return ReportsController.get_monthly_outputs_growth(period)
+
+# Endpoint para obtener ordenes por *
+@router.get("/get_outputs_by_brand/{period}")
+def get_outputs_by_brand(period: str = "30d"):
+    return ReportsController.get_outputs_by_brand(period)
+
+# Endpoint para obtener salidas por estado
+@router.get("/get_outputs_by_status")
+def get_outputs_by_status():
+    return ReportsController.get_outputs_by_status()
