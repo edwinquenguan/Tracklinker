@@ -1,6 +1,6 @@
 from app.core.database import get_connection
 from app.utils.date_formatter import date_formatter
-from app.utils.period_map import period_map
+from app.utils.periods import period_map, daily_periods
 
 
 class ReportsRepository:
@@ -93,15 +93,23 @@ class ReportsRepository:
             period = "30d"
 
         interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(user_date)"
+            select_expr = "DATE(user_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(user_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(user_date, '%Y-%m') as label"
 
         query = f"""
         SELECT
-            MONTH(user_date) as month_num,
-            COUNT(user_id) as users
+            {select_expr},
+            COUNT(DISTINCT user_id) as users
         FROM USERS
         WHERE user_date >= DATE_SUB(NOW(), INTERVAL {interval})
-        GROUP BY MONTH(user_date)
-        ORDER BY MONTH(user_date) ASC
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
         """
 
         try:
@@ -226,10 +234,18 @@ class ReportsRepository:
             period = "30d"
 
         interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
 
+        if use_daily:
+            group_expr = "DATE(pd.product_detail_date)"
+            select_expr = "DATE(pd.product_detail_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(pd.product_detail_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(pd.product_detail_date, '%Y-%m') as label"
+    
         query = f"""
         SELECT
-            MONTH(pd.product_detail_date) as month_num,
+            {select_expr},
             COUNT(DISTINCT ps.product_serial) as products
         FROM PRODUCT_SERIALS as ps
         INNER JOIN INPUT_ORDERS as io
@@ -239,8 +255,8 @@ class ReportsRepository:
         INNER JOIN PRODUCT_DETAILS as pd
             ON p.product_details_id = pd.product_details_id
         WHERE pd.product_detail_date >= DATE_SUB(NOW(), INTERVAL {interval})
-        GROUP BY MONTH(pd.product_detail_date)
-        ORDER BY MONTH(pd.product_detail_date) ASC
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
         """
 
         try:
@@ -366,15 +382,23 @@ class ReportsRepository:
             period = "30d"
 
         interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(category_date)"
+            select_expr = "DATE(category_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(category_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(category_date, '%Y-%m') as label"
 
         query = f"""
         SELECT
-            MONTH(category_date) as month_num,
-            COUNT(category_id) as categories
+            {select_expr},
+            COUNT(DISTINCT category_id) as categories
         FROM CATEGORIES
         WHERE category_date >= DATE_SUB(NOW(), INTERVAL {interval})
-        GROUP BY MONTH(category_date)
-        ORDER BY MONTH(category_date) ASC
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
         """
 
         try:
@@ -499,15 +523,23 @@ class ReportsRepository:
             period = "30d"
 
         interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(subcategory_date)"
+            select_expr = "DATE(subcategory_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(subcategory_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(subcategory_date, '%Y-%m') as label"
 
         query = f"""
         SELECT
-            MONTH(subcategory_date) as month_num,
-            COUNT(subcategory_id) as subcategories
+            {select_expr},
+            COUNT(DISTINCT subcategory_id) as subcategories
         FROM SUBCATEGORIES
         WHERE subcategory_date >= DATE_SUB(NOW(), INTERVAL {interval})
-        GROUP BY MONTH(subcategory_date)
-        ORDER BY MONTH(subcategory_date) ASC
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
         """
 
         try:
