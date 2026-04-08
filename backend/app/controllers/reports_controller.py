@@ -225,7 +225,7 @@ class ReportsController:
     
     @staticmethod
     def get_suppliers_by_brand(period: str):
-        error, data = SuppliersRepository.find_suppliers_by_category(period)
+        error, data = SuppliersRepository.find_suppliers_by_brand(period)
         if error:
             raise HTTPException(status_code=404, detail=error)
         return {
