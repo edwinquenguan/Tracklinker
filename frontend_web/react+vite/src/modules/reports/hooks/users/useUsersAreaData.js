@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { monthNames } from "../../../../constants/dateConstants";
 import { getUsersAreaChartService } from "../../services/users/getUsersAreaChartService";
 
-export function useUsersAreaData() {
+export function useUsersAreaData(period) {
   const [usersData, setUsersData] = useState([]);
   const [error, setError] = useState(false);
   const controllerRef = useRef(null);
@@ -14,6 +14,7 @@ export function useUsersAreaData() {
 
       try {
         const response = await getUsersAreaChartService(
+          period,
           controllerRef.current.signal,
         );
         const data = response.map((row) => ({
@@ -29,7 +30,7 @@ export function useUsersAreaData() {
 
     fetchUsersData();
     return () => controllerRef.current?.abort();
-  }, []);
+  }, [period]);
 
   return { usersData, error };
 }
