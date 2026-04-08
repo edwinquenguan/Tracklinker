@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getUsersPieDataService } from "../../services/users/getUsersPieDataService";
 
-export function useUsersPieData() {
+export function useUsersPieData(period) {
   const [usersData, setUsersData] = useState([]);
   const [error, setError] = useState(false);
   const controllerRef = useRef(null);
@@ -12,13 +12,16 @@ export function useUsersPieData() {
       controllerRef.current = new AbortController();
 
       try {
-        const data = await getUsersPieDataService(controllerRef.current.signal);
-        const pieData = [
-          { name: "Administrador", value: data[0].users, color: "#a5acfa" },
-          { name: "Almacen", value: data[1].users, color: "#5769ff" },
-          { name: "Técnico", value: data[2].users, color: "#4f5ff1" },
-          { name: "Cliente", value: data[3].users, color: "#2f3ab5" },
-        ];
+        const data = await getUsersPieDataService(
+          period,
+          controllerRef.current.signal,
+        );
+        const colors = ["#a5acfa", "#5769ff", "#4f5ff1", "#2f3ab5"];
+
+        const pieData = data.map((item, index) => ({
+          ...item,
+          color: colors[index % colors.length],
+        }));
         setUsersData(pieData);
       } catch (error) {
         if (error.name === "AbortError") return;
@@ -28,7 +31,7 @@ export function useUsersPieData() {
 
     fetchUsersData();
     return () => controllerRef.current?.abort();
-  }, []);
+  }, [period]);
 
   return { usersData, error };
 }

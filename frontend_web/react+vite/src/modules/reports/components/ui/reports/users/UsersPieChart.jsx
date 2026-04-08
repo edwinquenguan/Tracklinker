@@ -8,8 +8,8 @@ import {
   Legend,
 } from "recharts";
 
-export default function UsersPieChart() {
-  const { usersData } = useUsersPieData();
+export default function UsersPieChart({ period }) {
+  const { usersData } = useUsersPieData(period);
   return (
     <ResponsiveContainer width={"100%"} height={280}>
       <PieChart width={"100%"} height={"100%"}>
@@ -17,7 +17,7 @@ export default function UsersPieChart() {
         <Pie
           data={usersData}
           cy={"85%"}
-          dataKey={"value"}
+          dataKey={"users"}
           nameKey={"name"}
           startAngle={180}
           endAngle={0}
