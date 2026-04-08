@@ -304,6 +304,7 @@ class ReportsRepository:
         SELECT
             category_name,
             category_date,
+            category_description,
             category_status
         FROM CATEGORIES
         ORDER BY category_id DESC
@@ -317,6 +318,7 @@ class ReportsRepository:
                 {
                     "name": item["category_name"],
                     "date": date_formatter(item["category_date"]),
+                    "description": item["category_description"],
                     "status": item["category_status"],
                 }
                 for item in results
