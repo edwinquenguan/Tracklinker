@@ -85,3 +85,41 @@ class ReportsController:
         return {
             "data": data 
         }
+    
+
+#   ------------ REPORTES DE CATEGORIAS ------------
+    @staticmethod
+    def get_recent_categories():
+        error, categories = ReportsRepository.find_recent_categories()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": categories
+        }
+
+    @staticmethod
+    def get_monthly_categories_growth(period: str):
+        error, data = ReportsRepository.find_monthly_categories_growth(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_categories_by_brand(period: str):
+        error, data = ReportsRepository.find_categories_by_brand(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_categories_by_status():
+        error, data = ReportsRepository.find_categories_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
