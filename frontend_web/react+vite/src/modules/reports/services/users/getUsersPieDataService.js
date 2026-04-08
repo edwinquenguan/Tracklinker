@@ -1,11 +1,12 @@
 import { apiRoutes } from "../../../../config/apiRoutes";
 import { getToken } from "../../../../utils/auth";
 
-export async function getUsersPieDataService(signal) {
+export async function getUsersPieDataService(period, signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_rol`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_rol/${period}`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },

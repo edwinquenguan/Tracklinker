@@ -6,6 +6,7 @@ export async function getUsersDataService(signal) {
     `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users_by_status`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },

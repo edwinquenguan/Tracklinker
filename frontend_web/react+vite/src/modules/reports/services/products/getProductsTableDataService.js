@@ -3,9 +3,10 @@ import { getToken } from "../../../../utils/auth";
 
 export async function getProductsTableDataService(signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_products`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_recent_products`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },
