@@ -21,7 +21,7 @@ def create_category(category_data: CategoryCreate):
     return CategoryController.create_category(category_data)
 
 @router.put("/update/{category_id}")
-def update_category(category_id: int, category_data: dict):
+def update_category(category_id: int, category_data: CategoryUpdate):
     return CategoryController.update_category(category_id, category_data)
 
 # Endpoint para eliminar una categoría mediante su id

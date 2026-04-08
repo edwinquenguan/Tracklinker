@@ -6,6 +6,10 @@ export default function MoreInfoCategoryModal({ category }) {
         {category.category_name}
       </p>
       <p>
+        <strong>Descripción: </strong>
+        {category.category_description}
+      </p>
+      <p>
         <strong>Fecha de Creación: </strong>
         {category.category_date}
       </p>

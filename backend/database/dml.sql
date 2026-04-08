@@ -40,19 +40,19 @@ INSERT INTO USERS VALUES
 
 
 INSERT INTO CATEGORIES VALUES 
-(null, 'Computadores', '2026-01-01', 1),
-(null, 'Televisores', '2026-01-01', 1),
-(null, 'Monitores', '2026-01-01', 1),
-(null, 'Impresoras', '2026-02-01', 1),
-(null, 'Cámaras', '2026-02-01', 1),
-(null, 'Servidores', '2026-02-01', 1),
-(null, 'Soportes', '2026-02-01', 1),
-(null, 'Teclados', '2026-02-01', 1),
-(null, 'Mouses', '2026-02-01', 1),
-(null, 'Auriculares', '2026-03-01', 1),
-(null, 'Redes', '2026-03-01', 1),
-(null, 'Discos Duros', '2026-03-01', 1),
-(null, 'Memorias RAM', '2026-03-01', 1);
+(null, 'Computadores', 'Computadores', '2026-01-01', 1),
+(null, 'Televisores', 'Televisores', '2026-01-01', 1),
+(null, 'Monitores', 'Monitores', '2026-01-01', 1),
+(null, 'Impresoras', 'Impresoras', '2026-02-01', 1),
+(null, 'Cámaras', 'Cámaras', '2026-02-01', 1),
+(null, 'Servidores', 'Servidores', '2026-02-01', 1),
+(null, 'Soportes', 'Soportes', '2026-02-01', 1),
+(null, 'Teclados', 'Teclados', '2026-02-01', 1),
+(null, 'Mouses', 'Mouses', '2026-02-01', 1),
+(null, 'Auriculares', 'Auriculares', '2026-03-01', 1),
+(null, 'Redes', 'Redes', '2026-03-01', 1),
+(null, 'Discos Duros', 'Discos Duros', '2026-03-01', 1),
+(null, 'Memorias RAM', 'Memorias RAM', '2026-03-01', 1);
 
 
 INSERT INTO SUBCATEGORIES VALUES 
