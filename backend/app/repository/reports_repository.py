@@ -386,3 +386,136 @@ class ReportsRepository:
         finally:
             cursor.close()
             connection.close()
+
+#   ------------ REPORTES DE SUBCATEGORIAS ------------
+
+    @staticmethod
+    def find_recent_subcategories():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            sc.subcategory_name,
+            c.category_name,
+            sc.subcategory_date,
+            sc.subcategory_status
+        FROM CATEGORIES as c
+        INNER JOIN SUBCATEGORIES AS sc
+            ON c.category_id = sc.category_id
+        ORDER BY sc.subcategory_id DESC
+        LIMIT 6
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "name": item["subcategory_name"],
+                    "category": item["category_name"],
+                    "date": date_formatter(item["subcategory_date"]),
+                    "status": item["subcategory_status"],
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_subcategories_by_category(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
+        SELECT
+            c.category_name,
+            COUNT(DISTINCT sc.subcategory_id) as subcategories
+        FROM SUBCATEGORIES AS sc
+        INNER JOIN CATEGORIES AS c
+            ON sc.category_id = c.category_id
+        WHERE sc.subcategory_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY c.category_name
+        ORDER BY c.category_name ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+
+            data = [
+                {
+                    "name": item["category_name"],
+                    "value": item["subcategories"]
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_subcategories_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            (SELECT COUNT(*)
+            FROM SUBCATEGORIES
+            WHERE subcategory_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            ) AS recent_subcategories,
+            (SELECT COUNT(*) FROM SUBCATEGORIES) AS total_subcategories,
+            SUM(CASE WHEN subcategory_status = 0 THEN 1 ELSE 0 END) AS inactive_subcategories,
+            SUM(CASE WHEN subcategory_status = 1 THEN 1 ELSE 0 END) AS active_subcategories
+        FROM SUBCATEGORIES
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_monthly_subcategories_growth(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
+        SELECT
+            MONTH(subcategory_date) as month_num,
+            COUNT(subcategory_id) as subcategories
+        FROM SUBCATEGORIES
+        WHERE subcategory_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY MONTH(subcategory_date)
+        ORDER BY MONTH(subcategory_date) ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
