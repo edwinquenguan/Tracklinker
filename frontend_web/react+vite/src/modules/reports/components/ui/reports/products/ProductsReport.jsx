@@ -1,30 +1,58 @@
-import ReturnButton from "../../ReturnButton";
+// Hooks
+import { useState } from "react";
+import { useProductsData } from "../../../../hooks/products/useProductsData";
+// Components
+import KpisContainer from "../../KpisContainer";
+import ReportsContainer from "../../ReportsContainer";
+import ReportsTopSection from "../../ReportsTopSection";
+import TableCard from "../../TableCard";
+import ReportCard from "../../ReportCard";
+import ProductsTable from "./ProductsTable";
+import ProductsPieChart from "./ProductsPieChart";
+import ProductsAreaChart from "./ProductsAreaChart";
 
-export default function ProductsReport({ setReport, setTopSectionVisiblity }) {
-  setTopSectionVisiblity(false);
+export default function ProductsReport({ setReport }) {
+  const { productsData } = useProductsData();
+  const [period, setPeriod] = useState("30d");
   return (
     <section className="w-full h-full flex flex-col gap-2 animate-blurUp">
-      <section className="flex items-center justify-between pl-3">
-        <ReturnButton onClick={() => setReport("home")} />
-        <div className="flex items-center justify-end gap-1.5 pr-3">
-          <button className="px-4 py-1.5 bg-gray-100 rounded-xl shadow-xl">
-            7d
-          </button>
-          <button className="px-4 py-1.5 border rounded-xl shadow-md">
-            30d
-          </button>
-          <button className="px-4 py-1.5 border rounded-xl shadow-md">
-            6m
-          </button>
-          <button className="px-4 py-1.5 border rounded-xl shadow-md">
-            1a
-          </button>
-        </div>
-      </section>
-      <section
-        className="h-[91%] w-full grid p-3 pt-2 gap-3
-                      xl:grid-cols-12 xl:grid-rows-7"
-      ></section>
+      <ReportsTopSection
+        setReport={setReport}
+        periods={["7d", "30d", "6m", "1a"]}
+        setPeriod={setPeriod}
+        currentPeriod={period}
+      />
+
+      {productsData.map((item) => (
+        <ReportsContainer
+          reportsName={"Productos"}
+          reportsDate={"16 De Marzo - 23 De Marzo 2025"}
+        >
+          {/* Cards o KPIs principales */}
+          <KpisContainer
+            firstKpiName={"Total productos"}
+            firstKpiValue={item.total_products}
+            secondKpiName={"Recientes"}
+            secondKpiValue={item.recent_products}
+            thirdKpiName={"En garantía"}
+            thirdKpiValue={item.warranties_products}
+            fourthKpiName={"En salidas"}
+            fourthKpiValue={item.transformations_products}
+          />
+
+          <ReportCard name={"Crecimiento"} colSpan={12}>
+            <ProductsAreaChart period={period} />
+          </ReportCard>
+
+          <ReportCard name={"Distribución"} colSpan={4}>
+            <ProductsPieChart period={period} />
+          </ReportCard>
+
+          <TableCard tableTitle={"Productos recientes"}>
+            <ProductsTable />
+          </TableCard>
+        </ReportsContainer>
+      ))}
     </section>
   );
 }

@@ -1,36 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import { monthNames } from "../../../../constants/dateConstants";
-import { getUsersAreaChartService } from "../../services/users/getUsersAreaChartService";
+import { getProductsAreaChartService } from "../../services/products/getProductsAreaChartService";
 
-export function useUsersAreaData(period) {
-  const [usersData, setUsersData] = useState([]);
+export function useProductsAreaData(period) {
+  const [productsData, setProductsData] = useState([]);
   const [error, setError] = useState(false);
   const controllerRef = useRef(null);
 
   useEffect(() => {
-    async function fetchUsersData() {
+    async function fetchProductsData() {
       controllerRef.current?.abort();
       controllerRef.current = new AbortController();
 
       try {
-        const response = await getUsersAreaChartService(
+        const response = await getProductsAreaChartService(
           period,
           controllerRef.current.signal,
         );
         const data = response.map((row) => ({
           month: monthNames[row.month_num - 1],
-          users: row.users,
+          products: row.products,
         }));
-        setUsersData(data);
+        setProductsData(data);
       } catch (error) {
         if (error.name === "AbortError") return;
         setError(error.message);
       }
     }
 
-    fetchUsersData();
+    fetchProductsData();
     return () => controllerRef.current?.abort();
   }, [period]);
 
-  return { usersData, error };
+  return { productsData, error };
 }

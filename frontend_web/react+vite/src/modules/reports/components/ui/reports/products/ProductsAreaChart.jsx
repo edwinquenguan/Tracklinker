@@ -6,15 +6,15 @@ import {
   YAxis,
   XAxis,
 } from "recharts";
-import { useUsersAreaData } from "../../../../hooks/users/useUsersAreaData";
+import { useProductsAreaData } from "../../../../hooks/products/useProductsAreaData";
 
-export default function UsersAreaChart({ period }) {
-  const { usersData } = useUsersAreaData(period);
+export default function ProductsAreaChart({ period }) {
+  const { productsData } = useProductsAreaData(period);
   return (
     <ResponsiveContainer width={"100%"} height={290}>
       <AreaChart
-        data={usersData}
-        height={"70%"}
+        data={productsData}
+        height={"auto"}
         width={"100%"}
         responsive
         margin={{ left: 10, right: 5 }}
@@ -25,7 +25,7 @@ export default function UsersAreaChart({ period }) {
 
         {/* Grandiente aplicada al gráfico */}
         <defs>
-          <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#1447e6" stopOpacity={1} />
             <stop offset="95%" stopColor="#1447e6" stopOpacity={0.1} />
           </linearGradient>
@@ -33,9 +33,9 @@ export default function UsersAreaChart({ period }) {
 
         <Area
           type={"natural"}
-          dataKey={"users"}
+          dataKey={"products"}
           stroke="#1447e6"
-          fill="url(#colorUsers)"
+          fill="url(#color)"
         />
       </AreaChart>
     </ResponsiveContainer>
