@@ -45,47 +45,16 @@ export default function ReportsPage() {
         />
       )}
       {/* Contenido principal dinamico */}
-      {report === "users" && (
-        <UsersReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
-      )}
-      {report === "products" && (
-        <ProductsReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
-      )}
-      {report === "categories" && (
-        <CategoriesReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
-      )}
+      {report === "users" && <UsersReport setReport={setReport} />}
+      {report === "products" && <ProductsReport setReport={setReport} />}
+      {report === "categories" && <CategoriesReport setReport={setReport} />}
       {report === "subcategories" && (
-        <SubcategoriesReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
+        <SubcategoriesReport setReport={setReport} />
       )}
-      {report === "warranties" && (
-        <WarrantiesReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
-      )}
-      {report === "suppliers" && (
-        <SuppliersReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
-      )}
+      {report === "warranties" && <WarrantiesReport setReport={setReport} />}
+      {report === "suppliers" && <SuppliersReport setReport={setReport} />}
       {report === "transformations" && (
-        <TransformationsReport
-          setReport={setReport}
-          setTopSectionVisiblity={setTopSectionVisiblity}
-        />
+        <TransformationsReport setReport={setReport} />
       )}
 
       {/* Modales */}

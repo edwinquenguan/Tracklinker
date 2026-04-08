@@ -3,9 +3,10 @@ import { getToken } from "../../../../utils/auth";
 
 export async function getUsersTableDataService(signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_users`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_recent_users`,
     {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: getToken(),
       },

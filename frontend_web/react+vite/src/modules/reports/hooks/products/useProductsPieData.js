@@ -1,38 +1,38 @@
 import { useEffect, useRef, useState } from "react";
-import { getUsersPieDataService } from "../../services/users/getUsersPieDataService";
+import { getProductsPieDataService } from "../../services/products/getProductsPieDataService";
 
-export function useUsersPieData(period) {
-  const [usersData, setUsersData] = useState([]);
+export function useProductsPieData(period) {
+  const [productsData, setProductsData] = useState([]);
   const [error, setError] = useState(false);
   const controllerRef = useRef(null);
 
   useEffect(() => {
-    async function fetchUsersData() {
+    async function fetchProductsData() {
       controllerRef.current?.abort();
       controllerRef.current = new AbortController();
 
       try {
-        const data = await getUsersPieDataService(
+        const data = await getProductsPieDataService(
           period,
           controllerRef.current.signal,
         );
+
         const colors = ["#a5acfa", "#5769ff", "#4f5ff1", "#2f3ab5"];
 
         const pieData = data.map((item, index) => ({
-          rol: item.rol_name,
-          users: item.users,
+          ...item,
           color: colors[index % colors.length],
         }));
-        setUsersData(pieData);
+        setProductsData(pieData);
       } catch (error) {
         if (error.name === "AbortError") return;
         setError(error.message);
       }
     }
 
-    fetchUsersData();
+    fetchProductsData();
     return () => controllerRef.current?.abort();
   }, [period]);
 
-  return { usersData, error };
+  return { productsData, error };
 }

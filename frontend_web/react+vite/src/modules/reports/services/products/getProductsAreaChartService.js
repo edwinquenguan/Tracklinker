@@ -1,9 +1,9 @@
 import { apiRoutes } from "../../../../config/apiRoutes";
 import { getToken } from "../../../../utils/auth";
 
-export async function getUsersAreaChartService(period, signal) {
+export async function getProductsAreaChartService(period, signal) {
   const response = await fetch(
-    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_user_growth/${period}`,
+    `${apiRoutes.apiUrl}${apiRoutes.reports}/get_monthly_products_growth/${period}`,
     {
       method: "GET",
       credentials: "include",

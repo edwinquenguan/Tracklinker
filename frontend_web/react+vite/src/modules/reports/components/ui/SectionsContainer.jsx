@@ -25,7 +25,10 @@ export default function SectionsContainer({
     >
       {sections.map((section) => (
         <ReportSectionCard
-          sectionOnClick={() => setReport(`${section.name}`)}
+          sectionOnClick={() => {
+            setReport(`${section.name}`);
+            setTopSectionVisiblity(false);
+          }}
           sectionKey={section.name}
           sectionIcon={section.icon}
           sectionIconAlt={section.alt}
