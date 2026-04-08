@@ -15,6 +15,7 @@ export default function EditCategoryInfoModal({ category, onClose}) {
     category.category_id,
     {
       category_name: category.category_name || "",
+      category_description: category.category_description || "",
     }
   );
   return (
@@ -26,6 +27,13 @@ export default function EditCategoryInfoModal({ category, onClose}) {
           name={"category_name"}
           labelText={"Nombre de la Categoría"}
           id={"category_name"}
+        />
+        <FormField
+          onChange={handleChange}
+          value={form.category_description}
+          name={"category_description"}
+          labelText={"Nombre de la Categoría"}
+          id={"category_description"}
         />
       </form>
 
