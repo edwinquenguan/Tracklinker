@@ -10,7 +10,7 @@ export default function SuppleirItem({
   return (
     <li
       className="flex items-center justify-between p-5 bg-[#f3eef5] rounded-lg shadow-md transition duration-300  
-    dark:bg-[#0f0f11] dark:hover:bg-[#212125]"
+    dark:bg-[#0f0f11] dark:hover:bg-[#212125] dark:text-white"
       hey={supplier.supplier_id}
       id="user-field"
     >

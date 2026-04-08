@@ -40,7 +40,7 @@ export const items = [
   },
   {
     name: "Transformaciones",
-    path: "/transforms",
+    path: "/transformations",
     icon: asideIcons.transformationsIcon,
     alt: "",
   },
