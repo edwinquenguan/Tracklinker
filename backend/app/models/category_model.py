@@ -8,7 +8,8 @@ from app.core.database import get_connection
 
 class CategoryCreate(BaseModel):
     name: str
-    category_date: Optional[datetime] = None
+    description: str
 
 class CategoryUpdate(BaseModel):
     name: str
+    description: str
