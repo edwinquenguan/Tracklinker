@@ -160,3 +160,115 @@ class ReportsController:
         return {
             "data": data 
         }
+    
+#   ------------ REPORTES DE GARANTÍAS ------------
+    @staticmethod
+    def get_recent_warranties():
+        error, warranties = ReportsRepository.find_recent_warranties()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": warranties
+        }
+
+    @staticmethod
+    def get_monthly_warranties_growth(period: str):
+        error, data = ReportsRepository.find_monthly_warranties_growth(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_warranties_by_brand(period: str):
+        error, data = ReportsRepository.find_warranties_by_category(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_warranties_by_status():
+        error, data = ReportsRepository.find_warranties_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+#   ------------ REPORTES DE PROVEEDORES ------------
+    @staticmethod
+    def get_recent_suppliers():
+        error, suppliers = ReportsRepository.find_recent_suppliers()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": suppliers
+        }
+
+    @staticmethod
+    def get_monthly_suppliers_growth(period: str):
+        error, data = ReportsRepository.find_monthly_suppliers_growth(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_suppliers_by_brand(period: str):
+        error, data = ReportsRepository.find_suppliers_by_category(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_suppliers_by_status():
+        error, data = ReportsRepository.find_suppliers_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+
+#   ------------ REPORTES DE ORDENES DE SALIDA ------------
+    @staticmethod
+    def get_recent_outputs():
+        error, outputs = ReportsRepository.find_recent_outputs()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": outputs
+        }
+
+    @staticmethod
+    def get_monthly_outputs_growth(period: str):
+        error, data = ReportsRepository.find_monthly_outputs_growth(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_outputs_by_brand(period: str):
+        error, data = ReportsRepository.find_outputs_by_category(period)
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
+    
+    @staticmethod
+    def get_outputs_by_status():
+        error, data = ReportsRepository.find_outputs_by_status()
+        if error:
+            raise HTTPException(status_code=404, detail=error)
+        return {
+            "data": data 
+        }
