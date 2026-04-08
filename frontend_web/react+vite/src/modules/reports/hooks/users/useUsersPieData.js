@@ -19,7 +19,8 @@ export function useUsersPieData(period) {
         const colors = ["#a5acfa", "#5769ff", "#4f5ff1", "#2f3ab5"];
 
         const pieData = data.map((item, index) => ({
-          ...item,
+          rol: item.rol_name,
+          users: item.users,
           color: colors[index % colors.length],
         }));
         setUsersData(pieData);

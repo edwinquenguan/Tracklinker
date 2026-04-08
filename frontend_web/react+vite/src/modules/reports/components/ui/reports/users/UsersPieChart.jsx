@@ -18,7 +18,7 @@ export default function UsersPieChart({ period }) {
           data={usersData}
           cy={"85%"}
           dataKey={"users"}
-          nameKey={"name"}
+          nameKey={"rol"}
           startAngle={180}
           endAngle={0}
           cornerRadius={"10%"}
@@ -33,7 +33,7 @@ export default function UsersPieChart({ period }) {
         <Legend
           layout="vertical"
           formatter={(value, entry) => {
-            return `${value}: ${entry.payload.value}`;
+            return `${entry.payload.rol}: ${entry.payload.users}`;
           }}
         />
       </PieChart>
