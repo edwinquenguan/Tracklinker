@@ -1,4 +1,5 @@
 // Hooks
+import { useState } from "react";
 import { useUsersData } from "../../../../hooks/users/useUsersData";
 // Components
 import UsersTable from "./UsersTable";
@@ -12,9 +13,15 @@ import ReportsTopSection from "../../ReportsTopSection";
 
 export default function UsersReport({ setReport }) {
   const { usersData } = useUsersData();
+  const [period, setPeriod] = useState("30d");
   return (
     <section className="w-full h-full flex flex-col gap-2 animate-blurUp">
-      <ReportsTopSection setReport={setReport} />
+      <ReportsTopSection
+        setReport={setReport}
+        periods={["7d", "30d", "6m", "1a"]}
+        setPeriod={setPeriod}
+        currentPeriod={period}
+      />
 
       {usersData.map((item) => (
         <ReportsContainer
@@ -34,11 +41,11 @@ export default function UsersReport({ setReport }) {
           />
 
           <ReportCard name={"Crecimiento Mensual"} colSpan={12}>
-            <UsersAreaChart />
+            <UsersAreaChart period={period} />
           </ReportCard>
 
           <ReportCard name={"Distribución"} colSpan={4}>
-            <UsersPieChart />
+            <UsersPieChart period={period} />
           </ReportCard>
 
           <TableCard tableTitle={"Usuarios recientes"}>
