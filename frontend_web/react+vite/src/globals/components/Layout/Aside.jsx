@@ -189,7 +189,7 @@ export default function Aside({ avatarOnClick, helpOnClick }) {
                             ? `bg-black font-medium shadow-[0px_0px_32px_-9px_#000000] text-white fill-white
                         dark:bg-white dark:text-black dark:shadow-[0px_0px_32px_-11px_#ffffff] animate-clickEffect`
                             : `text-[#75777E] font-normal hover:bg-gray-200
-                        dark:text-[7E8088] dark:hover:bg-[#3b3b3f77]`
+                        dark:text-[7E8088] dark:hover:bg-[#3b3b3f98]`
                         }`}
                     >
                       <item.icon
@@ -197,7 +197,7 @@ export default function Aside({ avatarOnClick, helpOnClick }) {
                           ${
                             isActive
                               ? "fill-white scale-105 stroke-none animate-iconFill dark:fill-black"
-                              : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[90] group-hover:stroke-[#ffffff]"
+                              : "stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-[90] group-hover:stroke-[#ffffff] dark:group-hover:stroke-white"
                           }`}
                       />
                       <div
@@ -237,13 +237,13 @@ export default function Aside({ avatarOnClick, helpOnClick }) {
             {secondSectionItems.map((item) => (
               <li
                 key={item.name}
-                className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-[#3b3b3f77]"
+                className="rounded-xl hover:bg-gray-200 transition duration-300 dark:hover:bg-[#3b3b3f98]"
               >
                 {item.path ? (
                   <NavLink to={item.path} onClick={item.onClick}>
                     <section
                       className="w-20 h-14 flex items-center justify-center gap-2.5 py-2.5 px-5 subpixel-antialiased rounded-xl text-[#75777E] group
-                          xl:justify-start xl:w-full xl:h-auto  dark:text-[7E8088]"
+                      xl:justify-start xl:w-full xl:h-auto dark:text-[7E8088]"
                     >
                       <item.icon className="stroke-[60] stroke-[#75777E] fill-none group-hover:stroke-black group-hover:stroke-[90] dark:group-hover:stroke-[#ffffff]" />
                       <span className="hidden text-base font-medium group-hover:text-black dark:group-hover:text-white xl:block">
