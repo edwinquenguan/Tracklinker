@@ -1,12 +1,14 @@
 from app.core.database import get_connection
 from app.utils.date_formatter import date_formatter
+from app.utils.period_map import period_map
+
 
 class ReportsRepository:
 
-#   ------------ REPORTES DE USUARIOS ------------
+    #   ------------ REPORTES DE USUARIOS ------------
 
     @staticmethod
-    def find_users():
+    def find_recent_users():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
         try:
@@ -49,18 +51,23 @@ class ReportsRepository:
             connection.close()
 
     @staticmethod
-    def find_by_rol():
+    def find_users_by_rol(period: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
         try:
+            if period not in period_map:
+                period = "30d"
 
-            query = """
+            interval = period_map.get(period, "30 DAY")
+
+            query = f"""
             SELECT
                 r.rol_name,
                 COUNT(u.user_id) as users
             FROM USERS AS u 
-            LEFT JOIN ROLES AS r
+            INNER JOIN ROLES AS r
             ON u.rol_id = r.rol_id
+            WHERE u.user_date >= DATE_SUB(NOW(), INTERVAL {interval})
             GROUP BY r.rol_name
             """
 
@@ -76,53 +83,23 @@ class ReportsRepository:
             cursor.close()
             connection.close()
 
-    @staticmethod
-    def find_by_month():
-        connection = get_connection()
-        cursor = connection.cursor(dictionary=True)
-        try:
-
-            query = """
-            SELECT
-                DATE_FORMAT(u.user_date, '%Y-%m-01') as month,
-                COUNT(u.user_id) as users
-            FROM USERS AS u
-            WHERE YEAR(u.user_date) = 2025
-            GROUP BY DATE_FORMAT(u.user_date, '%Y-%m-01')
-            ORDER BY month
-            """
-
-            cursor.execute(query)
-            result = cursor.fetchall()
-            
-            data = [
-                {
-                    "month": date_formatter(item["month"]),
-                    "users": item["users"]
-                }
-                for item in result
-            ]
-
-            return None, data
-
-        except Exception as e:
-            return f"Error al ejecutar la consulta: {e}", None
-
-        finally:
-            cursor.close()
-            connection.close()
 
     @staticmethod
-    def find_monthly_user_growth():
+    def find_monthly_users_growth(period: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        query = """
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
         SELECT
             MONTH(user_date) as month_num,
             COUNT(user_id) as users
         FROM USERS
-        WHERE YEAR(user_date) = 2025
+        WHERE user_date >= DATE_SUB(NOW(), INTERVAL {interval})
         GROUP BY MONTH(user_date)
         ORDER BY MONTH(user_date) ASC
         """
@@ -165,26 +142,24 @@ class ReportsRepository:
 #   ------------ REPORTES DE PRODUCTOS ------------
 
     @staticmethod
-    def find_products():
+    def find_recent_products():
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
         query = """
         SELECT
-            io.input_order_date,
+            pd.product_detail_date,
             ps.product_serial,
             pd.product_detail_model,
             pb.product_brand_name
-        FROM INPUT_ORDERS as io
-        INNER JOIN PRODUCT_SERIALS as ps
-        ON io.input_order_id = ps.input_order_id
+        FROM PRODUCT_SERIALS as ps
         INNER JOIN PRODUCTS as p
         ON ps.product_id = p.product_id
         INNER JOIN PRODUCT_DETAILS as pd
         ON p.product_details_id = pd.product_details_id
         INNER JOIN PRODUCT_BRANDS as pb
         ON pd.product_brand_id = pb.product_brand_id
-        ORDER BY p.product_id DESC
+        ORDER BY MONTH(pd.product_detail_date) DESC
         LIMIT 6
         """
 
@@ -193,7 +168,7 @@ class ReportsRepository:
             results = cursor.fetchall()
             data = [
                 {
-                    "input_date": date_formatter(item["input_order_date"]),
+                    "input_date": date_formatter(item["product_detail_date"]),
                     "serial": item["product_serial"],
                     "model": item["product_detail_model"],
                     "brand": item["product_brand_name"]
@@ -214,11 +189,22 @@ class ReportsRepository:
 
         query = """
         SELECT
-            COUNT(CASE WHEN ps.product_garanty_input >= DATE_SUB(NOW(), INTERVAL 30 DAY) THEN 1 END) as recent_products,
-            COUNT(ps.poroduct_serial) as total_products,
-            COUNT(DISTINCT wi.product_serial) as warranties_products,
-            COUNT(DISTINCT od.product_serial) as tranformations_warranties
-        FROM PRODUCTS as p
+            (SELECT COUNT(*)
+            FROM PRODUCT_SERIALS
+            WHERE product_garanty_input >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            ) AS recent_products,
+
+            (SELECT COUNT(*)
+            FROM PRODUCT_SERIALS
+            ) AS total_products,    
+
+            (SELECT COUNT(DISTINCT product_serial)
+            FROM WARRANTY_INCIDENTS
+            ) AS warranties_products,
+
+            (SELECT COUNT(DISTINCT product_serial)
+            FROM OUTPUT_DETAILS
+            ) AS transformations_products;
         """
 
         try:
@@ -232,32 +218,34 @@ class ReportsRepository:
             connection.close()
 
     @staticmethod
-    def find_monthly_products_growth():
+    def find_monthly_products_growth(period: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        query = """
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
         SELECT
-            MONTHNAME(io.input_order_date) as month,
+            MONTH(pd.product_detail_date) as month_num,
             COUNT(DISTINCT ps.product_serial) as products
         FROM PRODUCT_SERIALS as ps
         INNER JOIN INPUT_ORDERS as io
             ON ps.input_order_id = io.input_order_id
-        WHERE YEAR(io.input_order_date) = 2024
-        GROUP BY MONTHNAME(io.input_order_date)
-        ORDER BY MONTHNAME(io.input_order_date) ASC
+        INNER JOIN PRODUCTS as p
+            ON ps.product_id = p.product_id
+        INNER JOIN PRODUCT_DETAILS as pd
+            ON p.product_details_id = pd.product_details_id
+        WHERE pd.product_detail_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY MONTH(pd.product_detail_date)
+        ORDER BY MONTH(pd.product_detail_date) ASC
         """
 
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            data = [
-                {
-                    "month": item["month"],
-                    "products": item["products"]
-                }
-                for item in results
-            ]
             return None, results
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
@@ -265,25 +253,39 @@ class ReportsRepository:
             cursor.close()
             connection.close()
 
-
     @staticmethod
-    def get_count_of_all():
+    def find_products_by_brand(period: str):
         connection = get_connection()
         cursor = connection.cursor(dictionary=True)
 
-        query = """
+        interval = period_map.get(period, "30 DAY")
+
+        query = f"""
         SELECT
-            COUNT(DISTINCT p.product_id) as products,
-            COUNT(DISTINCT CASE WHEN u.rol_id = 4 THEN u.user_id END) as clients,
-            COUNT(DISTINCT u.user_id) as users
-        FROM USERS as u
-        CROSS JOIN PRODUCTS AS p
+            pb.product_brand_name,
+            COUNT(DISTINCT p.product_id) as products
+        FROM PRODUCTS as p
+        INNER JOIN PRODUCT_DETAILS as pd
+            ON p.product_details_id = pd.product_details_id
+        INNER JOIN PRODUCT_BRANDS as pb
+            ON pd.product_brand_id = pb.product_brand_id
+        WHERE pd.product_detail_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY pb.product_brand_name
+        ORDER BY pb.product_brand_name ASC
         """
 
         try:
             cursor.execute(query)
             results = cursor.fetchall()
-            return None, results
+
+            data = [
+                {
+                    "name": item["product_brand_name"],
+                    "value": item["products"]
+                }
+                for item in results
+            ]
+            return None, data
         except Exception as e:
             return f"Error al ejecutar la consulta: {e}", None
         finally:
