@@ -17,7 +17,7 @@ export default function CategoriesAreaChart({ period }) {
         height={"70%"}
         width={"100%"}
         responsive
-        margin={{ left: 10, right: 5 }}
+        margin={{ left: 25, right: 5 }}
       >
         <YAxis width="auto" fontSize={"10px"} />
         <XAxis fontSize={"10px"} dataKey={"month"} />

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { monthNames } from "../../../../constants/dateConstants";
+import { formatLabel } from "../../../../utils/formatLabel";
 import { getCategoriesAreaChartService } from "../../services/categories/getCategoriesAreaChartService";
 
 export function useCategoriesAreaData(period) {
@@ -18,7 +18,7 @@ export function useCategoriesAreaData(period) {
           controllerRef.current.signal,
         );
         const data = response.map((row) => ({
-          month: monthNames[row.month_num - 1],
+          month: formatLabel(row.label, period),
           categories: row.categories,
         }));
         setCategoriesData(data);
