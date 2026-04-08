@@ -29,23 +29,22 @@ class CategoryController:
     def create_category(category_data: CategoryCreate):
         data_dict = category_data.dict()
         
-        error, message, result = CategoryRepository.create(data_dict)
+        error, success, message = CategoryRepository.create(data_dict)
         if error:
             raise HTTPException(status_code=400, detail=error)
         return {
-            "success": True,
+            "success": success,
             "message": message,
-            "data": result
         }
 
     @staticmethod
     def update_category(category_id: int, category_data: CategoryUpdate):
-        error, message, category = CategoryRepository.update(category_id, category_data)
+        error, success, message = CategoryRepository.update(category_id, category_data)
         if error:
             raise HTTPException(status_code=400, detail=error)
         return {
-            "message": message,
-            "data": category
+            "success": success,
+            "message": message
         }
 
     @staticmethod
