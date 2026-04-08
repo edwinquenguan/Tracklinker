@@ -1,6 +1,7 @@
 from app.core.database import get_connection
 from app.models.category_model import CategoryUpdate
 from app.utils.date_formatter import date_formatter
+from app.utils.periods import period_map, daily_periods
 
 class CategoryRepository:
 
@@ -199,6 +200,109 @@ class CategoryRepository:
             return None, result
         except Exception:
             return f"Error al ejecutar la consulta", None
+        finally:
+            cursor.close()
+            connection.close()
+
+#   ------------ REPORTES DE CATEGORIAS ------------
+
+
+    @staticmethod
+    def find_recent_categories():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            category_name,
+            category_date,
+            category_description,
+            category_status
+        FROM CATEGORIES
+        ORDER BY category_id DESC
+        LIMIT 6
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            data = [
+                {
+                    "name": item["category_name"],
+                    "date": date_formatter(item["category_date"]),
+                    "description": item["category_description"],
+                    "status": item["category_status"],
+                }
+                for item in results
+            ]
+            return None, data
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_categories_by_status():
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        query = """
+        SELECT
+            (SELECT COUNT(*)
+            FROM CATEGORIES
+            WHERE category_date >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            ) AS recent_categories,
+            (SELECT COUNT(*) FROM CATEGORIES) AS total_categories,
+            SUM(CASE WHEN category_status = 0 THEN 1 ELSE 0 END) AS inactive_categories,
+            SUM(CASE WHEN category_status = 1 THEN 1 ELSE 0 END) AS active_categories
+        FROM CATEGORIES
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
+        finally:
+            cursor.close()
+            connection.close()
+
+    @staticmethod
+    def find_categories_growth(period: str):
+        connection = get_connection()
+        cursor = connection.cursor(dictionary=True)
+
+        if period not in period_map:
+            period = "30d"
+
+        interval = period_map.get(period, "30 DAY")
+        use_daily = period in daily_periods
+
+        if use_daily:
+            group_expr = "DATE(category_date)"
+            select_expr = "DATE(category_date) as label"
+        else:
+            group_expr = "DATE_FORMAT(category_date, '%Y-%m')"
+            select_expr = "DATE_FORMAT(category_date, '%Y-%m') as label"
+
+        query = f"""
+        SELECT
+            {select_expr},
+            COUNT(DISTINCT category_id) as categories
+        FROM CATEGORIES
+        WHERE category_date >= DATE_SUB(NOW(), INTERVAL {interval})
+        GROUP BY {group_expr}
+        ORDER BY {group_expr} ASC
+        """
+
+        try:
+            cursor.execute(query)
+            results = cursor.fetchall()
+            return None, results
+        except Exception as e:
+            return f"Error al ejecutar la consulta: {e}", None
         finally:
             cursor.close()
             connection.close()
