@@ -287,21 +287,21 @@ INSERT INTO PRODUCT_SERIALS VALUES
 
 
 INSERT INTO OUTPUT_ORDERS VALUES
-(null, '2025-03-24', 1),
-(null, '2025-05-22', 1),
-(null, '2025-01-10', 1),
-(null, '2025-07-15', 1),
-(null, '2025-09-30', 1),
-(null, '2025-04-18', 1),
-(null, '2025-08-21', 1),
-(null, '2025-06-12', 0),
-(null, '2025-02-28', 1),
-(null, '2025-11-05', 0),
-(null, '2025-12-12', 1),
-(null, '2025-10-09', 1),
-(null, '2025-03-01', 1),
-(null, '2025-05-15', 1),
-(null, '2025-07-07', 1);    
+(null, '2026-01-24', 1),
+(null, '2026-01-22', 1),
+(null, '2026-01-10', 1),
+(null, '2026-01-15', 1),
+(null, '2026-01-30', 1),
+(null, '2026-02-18', 1),
+(null, '2026-02-21', 1),
+(null, '2026-02-12', 0),
+(null, '2026-02-28', 1),
+(null, '2026-03-05', 0),
+(null, '2026-03-12', 1),
+(null, '2026-03-09', 1),
+(null, '2026-03-01', 1),
+(null, '2026-04-07', 1),
+(null, '2026-04-08', 1); 
 
 
 INSERT INTO CUSTOMERS VALUES
@@ -336,7 +336,8 @@ INSERT INTO OUTPUT_DETAILS VALUES
 (11, 'QTYJ1234567', null, '2029-06-01', 'En ruta'),
 (12, 'QTYK7654321', null, '2029-06-10', 'Pendiente de revisión'),
 (13, 'QTYL9876543', null, '2029-06-25', 'Entregado'),
-(14, 'QTYM5556667', null, '2029-07-08', 'No necesita');
+(14, 'QTYM5556667', null, '2029-07-08', 'No necesita'),
+(15, 'QTYS7654329', null, '2029-07-09', 'No necesita');
 
 
 INSERT INTO WARRANTY_INCIDENTS VALUES
