@@ -66,3 +66,24 @@ def get_monthly_categories_growth(period: str = "30d"):
 @router.get("/get_categories_by_status")
 def get_categories_by_status():
     return ReportsController.get_categories_by_status()
+
+#   ------------ REPORTES DE SUBCATEGORIAS ------------
+# Endpoint para obtener reporte de las ultimas 6 subcategorias agregados
+@router.get("/get_recent_subcategories")
+def get_recent_subcategories():
+    return ReportsController.get_recent_subcategories()
+
+# Endpoint para obtener el crecimiento de categorias
+@router.get("/get_monthly_subcategories_growth/{period}")
+def get_monthly_subcategories_growth(period: str = "30d"):
+    return ReportsController.get_monthly_subcategories_growth(period)
+
+# Endpoint para obtener subcategorias por categoria
+@router.get("/get_subcategories_by_category/{period}")
+def get_subcategories_by_category(period: str = "30d"):
+    return ReportsController.get_subcategories_by_category(period)
+
+# Endpoint para obtener cateegorias por estado
+@router.get("/get_subcategories_by_status")
+def get_subcategories_by_status():
+    return ReportsController.get_subcategories_by_status()
