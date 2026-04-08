@@ -40,19 +40,19 @@ INSERT INTO USERS VALUES
 
 
 INSERT INTO CATEGORIES VALUES 
-(null, 'Computadores', '2025-01-01'),
-(null, 'Televisores', '2025-01-01'),
-(null, 'Monitores', '2025-01-01'),
-(null, 'Impresoras', '2025-01-01'),
-(null, 'Cámaras', '2025-01-01'),
-(null, 'Servidores', '2025-01-01'),
-(null, 'Soportes', '2025-01-01'),
-(null, 'Teclados', '2025-01-01'),
-(null, 'Mouses', '2025-01-01'),
-(null, 'Auriculares', '2025-01-01'),
-(null, 'Redes', '2025-01-01'),
-(null, 'Discos Duros', '2025-01-01'),
-(null, 'Memorias RAM', '2025-01-01');
+(null, 'Computadores', '2026-01-01', 1),
+(null, 'Televisores', '2026-01-01', 1),
+(null, 'Monitores', '2026-01-01', 1),
+(null, 'Impresoras', '2026-02-01', 1),
+(null, 'Cámaras', '2026-02-01', 1),
+(null, 'Servidores', '2026-02-01', 1),
+(null, 'Soportes', '2026-02-01', 1),
+(null, 'Teclados', '2026-02-01', 1),
+(null, 'Mouses', '2026-02-01', 1),
+(null, 'Auriculares', '2026-03-01', 1),
+(null, 'Redes', '2026-03-01', 1),
+(null, 'Discos Duros', '2026-03-01', 1),
+(null, 'Memorias RAM', '2026-03-01', 1);
 
 
 INSERT INTO SUBCATEGORIES VALUES 
