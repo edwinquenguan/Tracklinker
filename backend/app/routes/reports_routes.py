@@ -19,9 +19,9 @@ def get_recent_users():
     return ReportsController.get_recent_users()
 
 # Endpoint para obtener el crecimiento mensual de usuarios
-@router.get("/get_monthly_user_growth/{period}")
-def get_monthly_user_growth(period: str = "30d"):
-    return ReportsController.get_monthly_user_growth(period)
+@router.get("/get_user_growth/{period}")
+def get_user_growth(period: str = "30d"):
+    return ReportsController.get_user_growth(period)
 
 # Endpoint para obtener los usuarios activos, deshabilitados y recien creados
 @router.get("/get_users_by_status")
@@ -37,9 +37,9 @@ def get_recent_products():
     return ReportsController.get_recent_products()
 
 # Endpoint para obtener el crecimiento de productos
-@router.get("/get_monthly_products_growth/{period}")
-def get_monthly_products_growth(period: str = "30d"):
-    return ReportsController.get_monthly_products_growth(period)
+@router.get("/get_products_growth/{period}")
+def get_products_growth(period: str = "30d"):
+    return ReportsController.get_products_growth(period)
 
 # Endpoint para obtener productos por marca
 @router.get("/get_products_by_brand/{period}")
@@ -58,9 +58,9 @@ def get_recent_categories():
     return ReportsController.get_recent_categories()
 
 # Endpoint para obtener el crecimiento de categorias
-@router.get("/get_monthly_categories_growth/{period}")
-def get_monthly_categories_growth(period: str = "30d"):
-    return ReportsController.get_monthly_categories_growth(period)
+@router.get("/get_categories_growth/{period}")
+def get_categories_growth(period: str = "30d"):
+    return ReportsController.get_categories_growth(period)
 
 # Endpoint para obtener cateegorias por estado
 @router.get("/get_categories_by_status")
@@ -74,9 +74,9 @@ def get_recent_subcategories():
     return ReportsController.get_recent_subcategories()
 
 # Endpoint para obtener el crecimiento de categorias
-@router.get("/get_monthly_subcategories_growth/{period}")
-def get_monthly_subcategories_growth(period: str = "30d"):
-    return ReportsController.get_monthly_subcategories_growth(period)
+@router.get("/get_subcategories_growth/{period}")
+def get_subcategories_growth(period: str = "30d"):
+    return ReportsController.get_subcategories_growth(period)
 
 # Endpoint para obtener subcategorias por categoria
 @router.get("/get_subcategories_by_category/{period}")
@@ -95,9 +95,9 @@ def get_recent_warranties():
     return ReportsController.get_recent_warranties()
 
 # Endpoint para obtener el crecimiento de garantias
-@router.get("/get_monthly_warranties_growth/{period}")
-def get_monthly_warranties_growth(period: str = "30d"):
-    return ReportsController.get_monthly_warranties_growth(period)
+@router.get("/get_warranties_growth/{period}")
+def get_warranties_growth(period: str = "30d"):
+    return ReportsController.get_warranties_growth(period)
 
 # Endpoint para obtener garantias por marca
 @router.get("/get_warranties_by_brand/{period}")
@@ -116,9 +116,9 @@ def get_recent_suppliers():
     return ReportsController.get_recent_suppliers()
 
 # Endpoint para obtener el crecimiento de proveedores
-@router.get("/get_monthly_suppliers_growth/{period}")
-def get_monthly_suppliers_growth(period: str = "30d"):
-    return ReportsController.get_monthly_suppliers_growth(period)
+@router.get("/get_suppliers_growth/{period}")
+def get_suppliers_growth(period: str = "30d"):
+    return ReportsController.get_suppliers_growth(period)
 
 # Endpoint para obtener proveedores por marca
 @router.get("/get_suppliers_by_brand/{period}")
@@ -137,9 +137,9 @@ def get_recent_outputs():
     return ReportsController.get_recent_outputs()
 
 # Endpoint para obtener el crecimiento de ordenes
-@router.get("/get_monthly_outputs_growth/{period}")
-def get_monthly_outputs_growth(period: str = "30d"):
-    return ReportsController.get_monthly_outputs_growth(period)
+@router.get("/get_outputs_growth/{period}")
+def get_outputs_growth(period: str = "30d"):
+    return ReportsController.get_outputs_growth(period)
 
 # Endpoint para obtener ordenes por *
 @router.get("/get_outputs_by_brand/{period}")
