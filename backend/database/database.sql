@@ -156,6 +156,8 @@ CREATE TABLE SUBCATEGORIES (
   subcategory_id INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador autogenerado de cada subcategoria (INT, Not null)',
   category_id INT NOT NULL COMMENT 'Es un Identificador único autogenerado para cada categoría de producto, (INT, Not null)',
   subcategory_name VARCHAR(100) NOT NULL COMMENT 'Nombre de cada subcategoria (VARCHAR, Not null)',
+  subcategory_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  subcategory_status INT NOT NULL DEFAULT 1,
   PRIMARY KEY (subcategory_id),
   UNIQUE INDEX subcategory_id_UNIQUE (subcategory_id ASC),
   INDEX fk_subcategory_category_idx (category_id ASC),
