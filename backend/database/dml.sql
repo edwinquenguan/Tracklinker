@@ -206,16 +206,16 @@ INSERT INTO SUPPLIERS VALUES
 (null, 'TP-Link', 'Cali', 'Cl. 5 #15-22', 'soporte@tplink.com', '3009998887', '2026-01-01', 1),
 (null, 'Microsoft', 'Bogotá', 'Cra 15 # 45-20', 'soporte@microsoft.com', '3104442233', '2026-01-01', 1),
 (null, 'Razer', 'Medellín', 'Cl. 50 #30-12', 'contact@razer.com', '3115556677', '2026-01-01', 1),
-(null, 'HyperX', 'Cali', 'Av. 6N # 34-50', 'ventas@hyperx.com', '3129998877', '2026-01-01', 1),
-(null, 'Crucial', 'Barranquilla', 'Zona Franca Industrial', 'sales@crucial.com', '3131112233', '2026-01-01', 1),
-(null, 'Kingston', 'Miami', '1234 Kingston Blvd', 'contact@kingston.com', '3145557788', '2026-01-01', 1),
-(null, 'Western Digital', 'Bogotá', 'Av. 68 #45-80', 'support@wd.com', '3157778899', '2026-01-01', 1),
-(null, 'Sony', 'Cali', 'Cl. 10 #20-33', 'ventas@sony.com', '3168889900', '2026-01-01', 1),
-(null, 'LG', 'Medellín', 'Cra 45 # 25-15', 'lg@lg.com', '3172223344', '2026-01-01', 1),
-(null, 'Samsung', 'Bogotá', 'Cl. 26 #92-32', 'ventas@samsung.com', '3183334455', '2026-01-01', 1),
-(null, 'Mayorista', 'Medellin', 'CL 124 #15-245', 'mayorista@mayorista.com', '3401232255', '2026-01-01', 1),
-(null, 'HP', 'Bogotá', 'Avenida El Dorado # 68C - 61', 'hp@hp.com', '1000000113', '2026-01-01', 1),
-(null, 'Canon', 'Medellín', 'Calle 50 # 40 - 25', 'canon@canon.com', '1000000114', '2026-01-01', 1);
+(null, 'HyperX', 'Cali', 'Av. 6N # 34-50', 'ventas@hyperx.com', '3129998877', '2026-02-01', 1),
+(null, 'Crucial', 'Barranquilla', 'Zona Franca Industrial', 'sales@crucial.com', '3131112233', '2026-02-01', 1),
+(null, 'Kingston', 'Miami', '1234 Kingston Blvd', 'contact@kingston.com', '3145557788', '2026-02-01', 1),
+(null, 'Western Digital', 'Bogotá', 'Av. 68 #45-80', 'support@wd.com', '3157778899', '2026-02-01', 1),
+(null, 'Sony', 'Cali', 'Cl. 10 #20-33', 'ventas@sony.com', '3168889900', '2026-02-01', 1),
+(null, 'LG', 'Medellín', 'Cra 45 # 25-15', 'lg@lg.com', '3172223344', '2026-03-01', 1),
+(null, 'Samsung', 'Bogotá', 'Cl. 26 #92-32', 'ventas@samsung.com', '3183334455', '2026-03-01', 1),
+(null, 'Mayorista', 'Medellin', 'CL 124 #15-245', 'mayorista@mayorista.com', '3401232255', '2026-04-01', 1),
+(null, 'HP', 'Bogotá', 'Avenida El Dorado # 68C - 61', 'hp@hp.com', '1000000113', '2026-04-02', 1),
+(null, 'Canon', 'Medellín', 'Calle 50 # 40 - 25', 'canon@canon.com', '1000000114', '2026-04-03', 1);
 
 
 INSERT INTO INPUT_ORDERS VALUES
