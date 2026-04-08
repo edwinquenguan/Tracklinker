@@ -38,8 +38,8 @@ export const sections = [
     alt: "",
   },
   {
-    name: "transformations",
-    cardName: "Reporte De Transformaciones",
+    name: "outputs",
+    cardName: "Reporte De Salidas",
     icon: asideIcons.transformationsIcon,
     alt: "",
   },

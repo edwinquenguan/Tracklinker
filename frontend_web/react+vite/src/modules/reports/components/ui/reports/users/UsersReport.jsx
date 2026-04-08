@@ -25,7 +25,7 @@ export default function UsersReport({ setReport }) {
 
       {usersData.map((item) => (
         <ReportsContainer
-          reportsName={"usuarios"}
+          reportsName={"Usuarios"}
           reportsDate={"16 De Marzo - 23 De Marzo 2025"}
         >
           {/* Cards o KPIs principales */}
@@ -40,7 +40,7 @@ export default function UsersReport({ setReport }) {
             fourthKpiValue={item.recent_users}
           />
 
-          <ReportCard name={"Crecimiento Mensual"} colSpan={12}>
+          <ReportCard name={"Crecimiento"} colSpan={12}>
             <UsersAreaChart period={period} />
           </ReportCard>
 

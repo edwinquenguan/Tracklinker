@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { monthNames } from "../../../../constants/dateConstants";
+import { formatLabel } from "../../../../utils/formatLabel";
 import { getProductsAreaChartService } from "../../services/products/getProductsAreaChartService";
 
 export function useProductsAreaData(period) {
@@ -18,7 +18,7 @@ export function useProductsAreaData(period) {
           controllerRef.current.signal,
         );
         const data = response.map((row) => ({
-          month: monthNames[row.month_num - 1],
+          month: formatLabel(row.label, period),
           products: row.products,
         }));
         setProductsData(data);

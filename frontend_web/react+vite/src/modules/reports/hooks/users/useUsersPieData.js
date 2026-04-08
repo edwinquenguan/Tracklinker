@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { colors } from "../../../../utils/colors";
 import { getUsersPieDataService } from "../../services/users/getUsersPieDataService";
 
 export function useUsersPieData(period) {
@@ -16,7 +17,6 @@ export function useUsersPieData(period) {
           period,
           controllerRef.current.signal,
         );
-        const colors = ["#a5acfa", "#5769ff", "#4f5ff1", "#2f3ab5"];
 
         const pieData = data.map((item, index) => ({
           rol: item.rol_name,

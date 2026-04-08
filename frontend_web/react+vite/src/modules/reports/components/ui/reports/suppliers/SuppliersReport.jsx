@@ -1,38 +1,57 @@
 // Hooks
+import { useState } from "react";
+import { useSuppliersData } from "../../../../hooks/suppliers/useSuppliersData";
 // Components
 import KpisContainer from "../../KpisContainer";
 import ReportsContainer from "../../ReportsContainer";
 import ReportsTopSection from "../../ReportsTopSection";
 import TableCard from "../../TableCard";
 import ReportCard from "../../ReportCard";
+import SuppliersAreaChart from "./SuppliersAreaChart";
+import SuppliersPieChart from "./SuppliersPieChart";
+import SuppliersTable from "./SuppliersTable";
 
 export default function SuppliersReport({ setReport }) {
+  const { suppliersData } = useSuppliersData();
+  const [period, setPeriod] = useState("1a");
   return (
     <section className="w-full h-full flex flex-col gap-2 animate-blurUp">
-      <ReportsTopSection setReport={setReport} />
+      <ReportsTopSection
+        setReport={setReport}
+        periods={["7d", "30d", "6m", "1a"]}
+        setPeriod={setPeriod}
+        currentPeriod={period}
+      />
+      {suppliersData.map((item) => (
+        <ReportsContainer
+          reportsName={"Proveedores"}
+          reportsDate={"16 De Marzo - 23 De Marzo 2025"}
+        >
+          {/* Cards o KPIs principales */}
+          <KpisContainer
+            firstKpiName={"Total"}
+            firstKpiValue={item.total_suppliers}
+            secondKpiName={"Recientes"}
+            secondKpiValue={item.recent_suppliers}
+            thirdKpiName={"Inactivos"}
+            thirdKpiValue={item.inactive_suppliers}
+            fourthKpiName={"Activos"}
+            fourthKpiValue={item.active_suppliers}
+          />
 
-      <ReportsContainer
-        reportsName={"Productos"}
-        reportsDate={"16 De Marzo - 23 De Marzo 2025"}
-      >
-        {/* Cards o KPIs principales */}
-        <KpisContainer
-          firstKpiName={""}
-          firstKpiValue={""}
-          secondKpiName={""}
-          secondKpiValue={""}
-          thirdKpiName={""}
-          thirdKpiValue={""}
-          fourthKpiName={""}
-          fourthKpiValue={""}
-        />
+          <ReportCard name={"Crecimiento"} colSpan={12}>
+            <SuppliersAreaChart period={period} />
+          </ReportCard>
 
-        <ReportCard name={"Crecimiento Mensual"} colSpan={12}></ReportCard>
+          <ReportCard name={"Distribución"} colSpan={4}>
+            <SuppliersPieChart period={period} />
+          </ReportCard>
 
-        <ReportCard name={"Distribución"} colSpan={4}></ReportCard>
-
-        <TableCard tableTitle={"Productos recientes"}></TableCard>
-      </ReportsContainer>
+          <TableCard tableTitle={"Proveedores recientes"}>
+            <SuppliersTable />
+          </TableCard>
+        </ReportsContainer>
+      ))}
     </section>
   );
 }
